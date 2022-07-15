@@ -1,0 +1,6 @@
+require('plugins')
+require('config')
+require('indent')
+require('keymaps')
+require('lline')
+require('telescope')
