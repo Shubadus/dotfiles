@@ -12,8 +12,8 @@ class Theme:
     active: Optional[str] = None
     border_focus: Optional[str] = None
     border_normal: Optional[str] = None
-    margin: int = 5
-    border_width: int = 2
+    margin: int = 2
+    border_width: int = 1
     font: str = "FontAwesome"
     fontsize: int = 16
 
@@ -32,7 +32,7 @@ colors: dict[str, Theme] = {
         border_normal="#282a36"
     ),
     "aqua": Theme(
-        background="#000000",#"#282a36",
+        background="#000000",
         foreground="#f8f8f2",
         this_current_screen_border="#00ffff",
         inactive="#6272a4",
@@ -40,13 +40,16 @@ colors: dict[str, Theme] = {
         border_focus="#00ffff",
         border_normal="#282a36"
     ),
-    #"tokyo_night": Theme(
-    #    background="#000000",
-    #    foreground="#00ffd2",
-    #)
+    "tokyo_night": Theme(
+        background="#1a1b26",
+        foreground="#a9b1d6",
+        this_current_screen_border="#7aa2f7",
+        inactive="#32344a",
+        active="#a9b1d6",
+        border_focus="#7aa2f7",
+        border_normal="#1a1b26"
+    )
 }
-
-current_theme = colors["dracula"].dict
 
 calendars = {
     # Wed YYYY-MM-DD [HH:MM]

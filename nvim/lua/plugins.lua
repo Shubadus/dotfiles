@@ -1,26 +1,6 @@
 local cmd = vim.cmd
 local fn = vim.fn
 
-vim.g['coc_global_extensions'] = {
-	'coc-sumneko-lua',
-	'coc-prettier',
-	'coc-yaml',
-	'coc-tsserver',
-	'coc-toml',
-	'coc-tabnine',
-	'coc-sh',
-	'coc-rust-analyzer',
-	'coc-pydocstring',
-	'coc-powershell',
-	'coc-json',
-	'coc-jedi',
-	'coc-go',
-	'coc-docker',
---	'coc-ansible',
-	'coc-snippets',
-	'coc-git'
-}
-
 -- Installs Packer if not present
 local install_path = fn.stdpath('data').. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -39,43 +19,43 @@ cmd([[
 
 -- Initialize Plugins
 return require("packer").startup(function(use)
-	use {'wbthomason/packer.nvim'}
-	use {'onsails/lspkind-nvim'}
-	use {
-		'tami5/lspsaga.nvim',
-	--	requires={'neovim/nvim-lspconfig'}
-	}
-	use {'neoclide/coc.nvim', branch='release'}
-	use {'nvim-lua/lsp_extensions.nvim'}
-	use {'ryanoasis/vim-devicons'}
-	use {'honza/vim-snippets'}
-	use {'scrooloose/nerdtree'}
-	use {'tmhedberg/matchit'}
---	use {'perservim/nerdcommenter'}
-	use {
-		'junegunn/fzf',
-		--requires='junegunn/fzf.vim'
-	}
-	use {'junegunn/fzf.vim'}
-	use {'mhinz/vim-startify'}
-	use {'tpope/vim-fugitive'}
-	use {'sheerun/vim-polyglot'}
-	use {'nvim-treesitter/nvim-treesitter'}
-	use {'kyazdani42/nvim-web-devicons'}
-	use {
-		'nvim-lualine/lualine.nvim',
-	-- 	requires='kyazdani42/nvim-web-devicons'
-	}
-	use {
-		'romgrk/barbar.nvim',
---		requires='kyazdani42/nvim-web-devicons'
-	}
-	use {'lukas-reineke/indent-blankline.nvim'}
-	use {'nvim-lua/plenary.nvim'}
-	use {
-		'nvim-telescope/telescope.nvim',
-		--requires={'nvim-lua/plenary.nvim'}
-	}
+	use('wbthomason/packer.nvim')
+
+	-- lsp fun
+	use('neovim/nvim-lspconfig')
+	use('hrsh7th/cmp-nvim-lsp')
+	use('hrsh7th/cmp-buffer')
+	use('hrsh7th/nvim-cmp')
+	use({'tzachar/cmp-tabnine', run='./install.sh', requires='hrsh7th/nvim-cmp'})
+	use('onsails/lspkind-nvim')
+	use('nvim-lua/lsp_extensions.nvim')
+	use('glepnir/lspsaga.nvim')
+	use('L3MON4D3/LuaSnip')
+	use('saadparwaiz1/cmp_luasnip')
+
+	use('ryanoasis/vim-devicons')
+	use('honza/vim-snippets')
+	-- use('scrooloose/nerdtree')
+	use('tmhedberg/matchit')
+	use('junegunn/fzf')
+	use('junegunn/fzf.vim')
+	use('mhinz/vim-startify')
+	use('tpope/vim-fugitive')
+	use('sheerun/vim-polyglot')
+	use('nvim-treesitter/nvim-treesitter')
+	use('nvim-treesitter/nvim-treesitter-context')
+	use('kyazdani42/nvim-web-devicons')
+	use('nvim-lualine/lualine.nvim')
+	use('romgrk/barbar.nvim')
+	use('lukas-reineke/indent-blankline.nvim')
+
+	use('nvim-lua/plenary.nvim')
+	use('nvim-lua/popup.nvim')
+	use('nvim-telescope/telescope.nvim')
+
+	-- Themes
+	use('folke/tokyonight.nvim')
+
 
 	if packer_bootstrap then
 		require('packer').sync()

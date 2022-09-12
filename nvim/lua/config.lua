@@ -2,6 +2,14 @@ local set = vim.opt
 
 vim.g.mapleader = ';'
 
+-- Neovide Config --
+vim.g.neovide_transparency=0.9
+
+-- Set Theme --
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_transparent = true
+vim.cmd[[colorscheme tokyonight]]
+
 set.guicursor = ""
 
 set.autoindent = true
