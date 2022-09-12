@@ -48,17 +48,25 @@ def init_groups() -> list[Group]:
         ]),
         # Code/Text Editors
         GroupDefaults(name="5", label="", matches=[
-            Match(wm_class=["vscodium", "mousepad", "vim"])
+            Match(
+                title=['vim', 'nvim'],
+                wm_class=["vscodium", "mousepad", "vim"]
+            )
         ]),
         # Office Suites
         GroupDefaults(name="6", label="", matches=[
             Match(wm_class=["libreoffice"])
         ]),
+        # Music
+        GroupDefaults(name="7", label="", matches=[
+            Match(wm_class=["Spotify","pavucontrol"])
+        ]),
         # Communications
-        GroupDefaults(name="7", label="", layout="monadtall", matches=[
+        GroupDefaults(name="8", label="", layout="monadtall", matches=[
             Match(
                 wm_class=["microsoft teams - preview", "zoom", "discord"])
         ]),
+        # TODO: Figure out how implement Qtile's ScratchPad and DropDown
         # GroupDefaults(name="8"),
         # ScratchPad("scratchpad", dropdowns=[
         #    DropDown("term", "Alacritty", on_focus_lost_hide=True),
@@ -69,7 +77,7 @@ def init_groups() -> list[Group]:
 def init_float_exceptions() -> layout.Floating:
     return layout.Floating(float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules, 
+        *layout.Floating.default_float_rules,
         Match(wm_class='confirmreset'),  # gitk
         Match(wm_class='makebranch'),  # gitk
         Match(wm_class='maketag'),  # gitk
@@ -92,7 +100,12 @@ def init_float_exceptions() -> layout.Floating:
         Match(wm_class='Galculator'),
         Match(wm_class='arcolinux-logout'),
         Match(wm_class='xfce4-terminal'),
+        Match(wm_class='Variety'),
+        Match(wm_class='ksnip'),
+        Match(wm_class='cairo-dock'),
+        Match(wm_class='RAIL'),
     ],  fullscreen_border_width = 0, border_width = 0)
 
 def init_float_types():
     return ["notification", "toolbar", "splash", "dialog"]
+

@@ -1,0 +1,9 @@
+/** Basic config file **/
+
+configuration {
+  modi: "drun,ssh,combi";
+  show-icons: true;
+  icon-theme: "Papirus";
+}
+@theme "/usr/share/rofi/themes/android_notification.rasi"
+//@theme "/usr/share/rofi/themes/dmenu.rasi"

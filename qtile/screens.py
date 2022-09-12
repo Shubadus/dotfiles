@@ -5,9 +5,10 @@ def get_wayland_active_screens() -> int:
     raise NotImplementedError()
 
 def get_xrandr_active_screens() -> int:
-    xrandr_output = subprocess.run(["xrandr", "--listactivemonitors"], stdout=subprocess.PIPE)
-    output_lines = xrandr_output.stdout.decode('utf-8').splitlines()
-    return int(output_lines[0].split(':')[1].strip())
+    xrandr_output = subprocess.run(
+        ["xrandr", "--listactivemonitors"], stdout=subprocess.PIPE
+    ).stdout.decode('utf-8').splitlines()
+    return int(xrandr_output[0].split(':')[1].strip())
 
 def get_active_screens() -> int:
     session_type = os.environ.get("XDG_SESSION_TYPE", None)

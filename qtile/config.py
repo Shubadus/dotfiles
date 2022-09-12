@@ -26,6 +26,8 @@
 
 import os
 import subprocess
+from dataclasses import dataclass
+from pathlib import Path
 from libqtile import hook
 from libqtile.command import lazy
 from groups import init_float_exceptions, init_groups, init_float_types
@@ -47,8 +49,7 @@ def window_to_next_group(qtile):
 
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser("~")
-    subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
+    subprocess.call([f"{Path.home()}/.config/qtile/scripts/autostart.sh"])
 
 @hook.subscribe.startup
 def start_always():
@@ -61,25 +62,35 @@ def set_floating(window):
             or window.window.get_wm_type() in floating_types):
         window.floating = True
 
-browser = "qutebrowser"
-theme = colors["aqua"]
-terminal = "alacritty"
-filemanager = f"{terminal} -e ranger"
-mod = "mod4"
-mod1 = "mod1"
+apps = dict(
+    browser = "qutebrowser",
+    terminal = "alacritty",
+    filemanager = "alacritty -e ranger",
+    sysmonitor = "alacritty -e btop"
+)
+
+mod_keys = dict(
+    mod = "mod4",
+    mod1 = "mod1",
+    mod2 = "control"
+)
+
+theme = colors["tokyo_night"]
+
+config = dict(
+    apps = apps,
+    mod_keys = mod_keys,
+    theme = theme,
+)
 
 groups = init_groups()
 keys = init_keys(
-    browser=browser,
-    groups=groups,
-    file_manager=filemanager,
-    terminal=terminal,
-    theme=theme,
-    mod=mod,
-    mod1=mod1
+    mod_keys,
+    apps,
+    groups
 )
-mouse = init_mouse_bindings(mod)
-screens = init_screens(1, calendars["ymd"], terminal, theme)
+mouse = init_mouse_bindings(mod_keys)
+screens = init_screens(1, calendars["ymd"], apps, theme)
 layouts = init_layouts(theme)
 floating_types = init_float_types()
 floating_layout = init_float_exceptions()
