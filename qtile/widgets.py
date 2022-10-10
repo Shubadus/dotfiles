@@ -124,24 +124,12 @@ def main_widget_list(apps: dict, calendar: str, theme: Theme):
             },
             **theme.dict
         ),
-        widget.CurrentLayoutIcon(scale=0.7, **theme.dict),
-        #widget.CurrentLayout(scale=0.7, **theme.dict),
         widget.Systray(
             icon_size=20,
             padding=4,
             **theme.dict
         ),
-        widget.Spacer(
-            length = 5,
-            **theme.dict
-        ),
-        # widget.TextBox(
-        #     fmt="",
-        #     mouse_callbacks={
-        #         'Button1': lambda: lazy.shutdown()
-        #     },
-        #     **theme.dict
-        # ),
+        widget.CurrentLayoutIcon(scale=0.7, **theme.dict),
     ])
     return widgets
 
@@ -170,10 +158,7 @@ def secondary_widget_list(apps: dict, calendar: str, theme: Theme):
             update_interval=1,
             **theme.dict
         ),
-        widget.Spacer(
-            length = 5,
-            **theme.dict
-        ),
+        widget.CurrentLayoutIcon(scale=0.7, **theme.dict),
     ])
     return widgets
 

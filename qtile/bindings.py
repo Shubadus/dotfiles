@@ -69,7 +69,7 @@ def init_keys(
         # Applications
         Key([mod_keys["mod"], "shift"], "d", lazy.spawn(
             #" ".join(dmenu)),
-            'rofi -show drun'),
+            "rofi -show drun"),
             desc="Launch Rofi app launcher"),
         Key([mod_keys["mod"], "shift"], "Return", lazy.spawn(apps["filemanager"])),
 
@@ -138,14 +138,16 @@ def init_keys(
     for i in groups:
         group_keys = [
             # CHANGE WORKSPACES
-            Key([mod_keys["mod"]], i.name, lazy.group[i.name].toscreen()),
-            Key([mod_keys["mod"]], "Tab", lazy.screen.next_group()),
-            Key([mod_keys["mod"], "shift"], "Tab", lazy.screen.prev_group()),
-            Key([mod_keys["mod1"]], "Tab", lazy.screen.next_group()),
-            Key([mod_keys["mod1"], "shift"], "Tab", lazy.screen.prev_group()),
+            Key([mod_keys["mod"]], i.name, lazy.group[i.name].toscreen(),
+                desc=f"Switch to screen {i.name}"),
+            Key([mod_keys["mod1"]], "Tab", lazy.screen.next_group(),
+                desc="Cycle through screens"),
+            Key([mod_keys["mod1"], "shift"], "Tab", lazy.screen.prev_group(),
+                desc="Cycle through screens in reverse"),
 
             # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
-            Key([mod_keys["mod"], "shift"], i.name, lazy.window.togroup(i.name)),
+            Key([mod_keys["mod"], "shift"], i.name, lazy.window.togroup(i.name),
+                desc=f"Move window to screen {i.name}"),
             # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND FOLLOW MOVED
             # WINDOW TO WORKSPACE
             # Key([mod_keys["mod"], "shift"], i.name, lazy.window.togroup(

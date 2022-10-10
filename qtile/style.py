@@ -53,11 +53,11 @@ colors: dict[str, Theme] = {
 
 calendars = {
     # Wed YYYY-MM-DD [HH:MM]
-    "ymd": "%a %Y-%m-%d [%H:%M]",
+    "ymd": "%a %Y-%m-%d | %H:%M",
     # Wed, Month DD [HH:MM]
-    "wmd": "%a, %B %d [%H:%M]",
+    "wmd": "%a, %B %d | %H:%M",
     # Wed, DD-MM-YYYY [HH:MM]
-    "dmy": "%a %d-%m-%Y [%H:%M]",
+    "dmy": "%a %d-%m-%Y | %H:%M",
 }
 
 def init_layouts(theme: Theme) -> list:
