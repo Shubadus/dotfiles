@@ -36,7 +36,7 @@ def init_groups() -> list[Group]:
         ]),
         # Remote / Virtual Desktops
         GroupDefaults(name="2", label="", matches=[
-            Match(wm_class=["remmina", "virt-manager", "vmrc"])
+            Match(wm_class=["org.remmina.Remmina", "virt-manager", "vmrc"])
         ]),
         # File Browsers
         GroupDefaults(name="3", label="", matches=[
@@ -102,8 +102,8 @@ def init_float_exceptions() -> layout.Floating:
         Match(wm_class='xfce4-terminal'),
         Match(wm_class='Variety'),
         Match(wm_class='ksnip'),
-        Match(wm_class='cairo-dock'),
         Match(wm_class='RAIL'),
+        Match(wm_class='xdg-desktop-portal-gnome'),
     ],  fullscreen_border_width = 0, border_width = 0)
 
 def init_float_types():
