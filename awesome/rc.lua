@@ -103,10 +103,11 @@ local themes = {
   "powerarrow", -- 4
   "powerarrow-blue", -- 5
   "powerarrow-dark", -- 6
+  "custom" -- 7
 }
 
 -- choose your theme here
-local chosen_theme = themes[5]
+local chosen_theme = themes[7]
 
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
@@ -125,10 +126,6 @@ local terminal    = "alacritty"
 
 -- awesome variables
 awful.util.terminal = terminal
--- awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
---awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
---awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
---awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
 -- Use this : https://fontawesome.com/cheatsheet
 awful.util.tagnames = { " ", " ", " ", " ", " ", " ", " ", " " }
 awful.layout.suit.tile.left.mirror = true
@@ -225,8 +222,6 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 beautiful.systray_icon_spacing = 2
 -- }}}
 
-
-
 -- {{{ Menu
 local myawesomemenu = {
   { "hotkeys", function() return false, hotkeys_popup.show_help end },
@@ -309,9 +304,10 @@ globalkeys = my_table.join(
   -- dmenu
   awful.key({ modkey, "Shift" }, "d",
     function()
-      awful.spawn(string.format("dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn NotoMonoRegular:bold:pixelsize=14"
-        ,
-        beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
+      awful.spawn("rofi -show drun")
+      --string.format("dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn NotoMonoRegular:bold:pixelsize=14"
+      --,
+      --beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
     end,
     { description = "show dmenu", group = "hotkeys" }),
 
@@ -357,6 +353,12 @@ globalkeys = my_table.join(
   -- Hotkeys Awesome
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
+
+  -- TODO: Replace this with better lockscreen appearance
+  awful.key({ modkey, "Control" }, "l", function()
+    awful.spawn("i3lock -c 000000 -k")
+  end,
+    { description = "lockscreen", group = "system" }),
 
   -- Tag browsing with modkey
   awful.key({ altkey, }, "Left", awful.tag.viewprev,
@@ -460,9 +462,12 @@ globalkeys = my_table.join(
   end, { description = "Toggle systray visibility", group = "awesome" }),
 
   -- On the fly useless gaps change
-  awful.key({ altkey, "Control" }, "j", function() lain.util.useless_gaps_resize(1) end,
+  awful.key({ altkey, "Control" }, "j", function()
+    lain.util.useless_gaps_resize(1)
+    -- awful.screen.focused().selected_tag.gap
+  end,
     { description = "increment useless gaps", group = "tag" }),
-  awful.key({ altkey, "Control" }, "h", function() lain.util.useless_gaps_resize(-1) end,
+  awful.key({ altkey, "Control" }, "k", function() lain.util.useless_gaps_resize(-1) end,
     { description = "decrement useless gaps", group = "tag" }),
 
   -- Dynamic tagging
@@ -657,6 +662,7 @@ clientbuttons = gears.table.join(
   awful.button({ modkey }, 1, function(c)
     c:emit_signal("request::activate", "mouse_click", { raise = true })
     awful.mouse.client.move(c)
+
   end),
   awful.button({ modkey }, 3, function(c)
     c:emit_signal("request::activate", "mouse_click", { raise = true })
@@ -688,55 +694,11 @@ awful.rules.rules = {
   -- Titlebars
   { rule_any = { type = { "dialog", "normal" } },
     properties = { titlebars_enabled = false } },
+  { rule = { class = "1password" },
+    properties = { titlebars_enabled = false } },
   -- Set applications to always map on the tag 2 on screen 1.
   --{ rule = { class = "Subl" },
   --properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-  -- Set applications to always map on the tag 1 on screen 1.
-  -- find class or role via xprop command
-  --{ rule = { class = browser2 },
-  --properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },
-
-  --{ rule = { class = browser1 },
-  --properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },
-
-  --{ rule = { class = "Vivaldi-stable" },
-  --properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true } },
-
-  --{ rule = { class = "Chromium" },
-  --properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },
-
-  --{ rule = { class = "Opera" },
-  --properties = { screen = 1, tag = awful.util.tagnames[1],switchtotag = true  } },
-
-  -- Set applications to always map on the tag 2 on screen 1.
-  --{ rule = { class = "Subl" },
-  --properties = { screen = 1, tag = awful.util.tagnames[2],switchtotag = true  } },
-
-  --{ rule = { class = editorgui },
-  --properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-  --{ rule = { class = "Brackets" },
-  --properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-  --{ rule = { class = "Code" },
-  --properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-  --{ rule = { class = "Geany" },
-  --properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-  -- Set applications to always map on the tag 3 on screen 1.
-  --{ rule = { class = "Inkscape" },
-  --properties = { screen = 1, tag = awful.util.tagnames[3], switchtotag = true  } },
-
-  -- Set applications to always map on the tag 4 on screen 1.
-  --{ rule = { class = "Gimp" },
-  --properties = { screen = 1, tag = awful.util.tagnames[4], switchtotag = true  } },
-
-  -- Set applications to always map on the tag 5 on screen 1.
-  --{ rule = { class = "Meld" },
-  --properties = { screen = 1, tag = awful.util.tagnames[5] , switchtotag = true  } },
-
 
   -- Set applications to be maximized at startup.
   -- find class or role via xprop command
@@ -769,7 +731,7 @@ awful.rules.rules = {
       "Unetbootin.elf",
       "Wpa_gui",
       "Remmina",
-      "1Password",
+      "1password",
       "pinentry",
       "veromix",
       "xtightvncviewer",
@@ -801,7 +763,9 @@ awful.rules.rules = {
 }
 -- }}}
 
-function setTitlebar(client, s)
+-- {{{ Logic to dynamically add titlebars to floating windows only.
+-- {{{ TODO: Refactor, there is already existing code that might be able to be incorporated.
+local function setTitlebar(client, s)
   if s then
     if client.titlebar == nil then
       client:emit_signal("request::titlebars", "rules", {})
