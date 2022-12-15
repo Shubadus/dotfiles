@@ -6,12 +6,12 @@ function run {
     $@&
   fi
 }
-# Use Autorandr to autodetect layout
-autorandr -c
-
-run cassowary
+# Use Autorandr to autodetect  t-1
+run autorandr -c
+run numlockx on
+run unclutter -root
 run nm-applet
 run xfce4-power-manager
-run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-run numlockx on
-run picom --config $HOME/.config/qtile/scripts/picom.conf &
+run /usr/libexec/polkit-gnome-authentication-agent-1
+run picom --config $HOME/.config/awesome/scripts/picom.conf
+

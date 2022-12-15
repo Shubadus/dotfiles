@@ -24,14 +24,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
+import asyncio
 import subprocess
-from dataclasses import dataclass
+
 from pathlib import Path
 from libqtile import hook
 from libqtile.command import lazy
+
 from groups import init_float_exceptions, init_groups, init_float_types
-from bindings import init_keys, init_mouse_bindings, SpecialKeys
+from bindings import init_keys, init_mouse_bindings
 from style import calendars, colors, init_layouts
 from widgets import init_screens
 
@@ -47,9 +48,11 @@ def window_to_next_group(qtile):
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
+qtile_scripts = Path.home().joinpath('.config','qtile','scripts')
+
 @hook.subscribe.startup_once
 def start_once():
-    subprocess.call([f"{Path.home()}/.config/qtile/scripts/autostart.sh"])
+    subprocess.call([f"{qtile_scripts}/autostart.sh"])
 
 @hook.subscribe.startup
 def start_always():
@@ -62,12 +65,30 @@ def set_floating(window):
             or window.window.get_wm_type() in floating_types):
         window.floating = True
 
+#TODO: look at creating function to handle screen change
+# @hook.subscribe.screen_change
+# def reload_screen(client):
+#     pass
+
+# @hook.subscribe.screens_reconfigured
+# async def output_change(qtile):
+#     await asyncio.sleep(1)
+#     qtile.reload_config()
+
+
 apps = dict(
     browser = "qutebrowser",
-    terminal = "alacritty",
-    filemanager = "alacritty -e ranger",
-    sysmonitor = "alacritty -e btop"
+    terminal = "kitty",
+    lock = f"{qtile_scripts}/lock.sh",
+    suspend = f"{qtile_scripts}/suspend.sh",
+    screenshot = "flameshot gui"
 )
+# Start Terminal Apps
+apps['filemanager'] = f"{apps['terminal']} -e ranger"
+apps['sysmonitor'] = f"{apps['terminal']} -e btop"
+
+# apps['filemanager'] = f"{apps['terminal']} start -- ranger"
+# apps['sysmonitor'] = f"{apps['terminal']} start -- btop"
 
 mod_keys = dict(
     mod = "mod4",
@@ -75,7 +96,8 @@ mod_keys = dict(
     mod2 = "control"
 )
 
-theme = colors["tokyo_night"]
+# theme = colors["tokyo_night"]
+theme = colors['catppuccin-macchiato']
 
 config = dict(
     apps = apps,
@@ -103,3 +125,4 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 wmname = "LG3D"
+

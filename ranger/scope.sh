@@ -335,10 +335,14 @@ handle_mime() {
 
         ## Image
         image/*)
-            ## Preview as text conversion
-            # img2txt --gamma=0.6 --width="${PV_WIDTH}" -- "${FILE_PATH}" && exit 4
-            exiftool "${FILE_PATH}" && exit 5
+            # Preview as text conversion
+            chafa "${FILE_PATH}" && exit 4
             exit 1;;
+        # image/*)# Image
+        #     ## Preview as text conversion
+        #     # img2txt --gamma=0.6 --width="${PV_WIDTH}" -- "${FILE_PATH}" && exit 4
+        #     exiftool "${FILE_PATH}" && exit 5
+        #     exit 1;;
 
         ## Video and audio
         video/* | audio/*)

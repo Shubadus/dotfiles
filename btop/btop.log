@@ -24,3 +24,6 @@ btop++ needs an interactive shell to run.
 
 2022/10/16 (09:54:45) | ===> btop++ v.1.2.9
 2022/10/16 (09:54:45) | ERROR: Exception in runner thread -> Proc:: -> basic_string::replace: __pos (which is 18446744073709551608) > this->size() (which is 0)
+
+2022/11/02 (12:55:16) | ===> btop++ v.1.2.9
+2022/11/02 (12:55:16) | ERROR: Exception in runner thread -> Proc:: -> basic_string::replace: __pos (which is 18446744073709551608) > this->size() (which is 0)

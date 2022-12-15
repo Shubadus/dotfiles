@@ -5,10 +5,10 @@
 ## Github  : @adi1090x
 ## Twitter : @adi1090x
 
-style="$($HOME/.config/rofi/applets/applets/style.sh)"
-
+# style="$($HOME/.config/rofi/applets/applets/style.sh)"
+theme="$HOME/.local/share/rofi/themes/catppuccin-mocha.rasi"
 dir="$HOME/.config/rofi/applets/applets/configs/$style"
-rofi_command="rofi -theme $dir/powermenu.rasi"
+rofi_command="rofi -theme $theme"
 
 uptime=$(uptime -p | sed -e 's/up //g')
 cpu=$($HOME/.config/rofi/bin/usedcpu)
@@ -27,12 +27,13 @@ confirm_exit() {
 		-i\
 		-no-fixed-num-lines\
 		-p "Are You Sure? : "\
-		-theme $HOME/.config/rofi/applets/styles/confirm.rasi
+    -theme $theme
+		# -theme $HOME/.config/rofi/applets/styles/confirm.rasi
 }
 
 # Message
 msg() {
-	rofi -theme "$HOME/.config/rofi/applets/styles/message.rasi" -e "Available Options  -  yes / y / no / n"
+	rofi -theme $theme -e "Available Options  -  yes / y / no / n"
 }
 
 # Variable passed to rofi
@@ -61,8 +62,8 @@ case $chosen in
         fi
         ;;
     $lock)
-		if [[ -f /usr/bin/betterlockscreen ]]; then
-			betterlockscreen -l
+		if [[ -f /usr/local/bin/betterlockscreen ]]; then
+			betterlockscreen -l --off 15
 		elif [[ -f /usr/bin/i3lock ]]; then
 			i3lock
 		fi
@@ -73,7 +74,7 @@ case $chosen in
 			mpc -q pause
 			amixer set Master mute
 			# Use betterlockscreen if it exists
-			if [[ -f /usr/bin/betterlockscreen ]]; then
+			if [[ -f /usr/local/bin/betterlockscreen ]]; then
 				betterlockscreen --suspend
 			else
 				systemctl suspend

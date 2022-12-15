@@ -1,22 +1,9 @@
-from dataclasses import dataclass
+import subprocess
+
 from pathlib import Path
-from typing import Optional
 
-from libqtile import extension
 from libqtile.command import lazy
-from libqtile.config import Key, Drag
-
-from style import Theme
-
-# TODO: Move mod_keys["mod"] keys to being defined in the main config file and passed here
-@dataclass
-class SpecialKeys:
-    MOD: str
-    MOD1: Optional[str] = None
-    MOD2: Optional[str] = None
-
-MOD1 = "alt"
-MOD2 = "control"
+from libqtile.config import Key, Drag, Group
 
 Rofi_path = Path.home().joinpath(".config","rofi","bin")
 
@@ -28,12 +15,16 @@ def next_screen(qtile):
 def prev_screen(qtile):
     qtile.cmd_prev_screen()
 
+@lazy.function
+def spawn_with_cmds(command):
+    subprocess.call(command)
+
 # TODO: allow init_keys to take a list of items to create keybindings with
 # TODO: add keybindings to shift focus between multiple screens
 def init_keys(
     mod_keys: dict,
     apps: dict,
-    groups: list[dict]
+    groups: list[Group]
 ) -> list[Key]:
     """
     Creates the keybindings for qtile
@@ -56,6 +47,14 @@ def init_keys(
             desc="Close current window"),
         Key([mod_keys["mod"]], "Return", lazy.spawn(apps["terminal"]),
             desc=f"Launch {apps['terminal']} terminal"),
+        Key([mod_keys["mod2"], "shift"], "escape", lazy.spawn(apps["sysmonitor"]),
+            desc=f"Launch {apps['terminal']} terminal"),
+        Key([mod_keys["mod2"], "shift"], "l", lazy.spawn(apps["lock"]), #lazy.spawn(apps["lock"]),
+            desc="Lock the screen"),
+        Key([mod_keys["mod2"], "shift"], "s", lazy.spawn(apps["suspend"]), #lazy.spawn(apps["lock"]),
+            desc="Lock the screen"),
+        Key([], "F12", lazy.spawn(apps["screenshot"]),
+            desc="Take a screenshot"),
         #Key([mod_keys["mod"]], "x", lazy.spawn("arcolinux-logout"),
         Key([mod_keys["mod"]], "x", lazy.spawn(f"{Rofi_path}/applet_powermenu"),
             desc="Launch ArcoLinux logout screen"),
@@ -117,8 +116,6 @@ def init_keys(
             ),
 
         # FLIP LAYOUT FOR MONADTALL/MONADWIDE
-        Key([mod_keys["mod"], "shift"], "f", lazy.layout.flip(),
-            desc="Flip Layout (MonadTall/MonadWide)"),
 
         # MOVE WINDOWS UP OR DOWN MONADTALL/MONADWIDE LAYOUT
         Key([mod_keys["mod"], "shift"], "k", lazy.layout.shuffle_up()),
@@ -136,25 +133,26 @@ def init_keys(
     ]
 
     for i in groups:
-        group_keys = [
-            # CHANGE WORKSPACES
-            Key([mod_keys["mod"]], i.name, lazy.group[i.name].toscreen(),
-                desc=f"Switch to screen {i.name}"),
-            Key([mod_keys["mod1"]], "Tab", lazy.screen.next_group(),
-                desc="Cycle through screens"),
-            Key([mod_keys["mod1"], "shift"], "Tab", lazy.screen.prev_group(),
-                desc="Cycle through screens in reverse"),
+        if isinstance(i, Group):
+            group_keys = [
+                # CHANGE WORKSPACES
+                Key([mod_keys["mod"]], i.name, lazy.group[i.name].toscreen(),
+                    desc=f"Switch to screen {i.name}"),
+                Key([mod_keys["mod1"]], "Tab", lazy.screen.next_group(),
+                    desc="Cycle through screens"),
+                Key([mod_keys["mod1"], "shift"], "Tab", lazy.screen.prev_group(),
+                    desc="Cycle through screens in reverse"),
 
-            # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
-            Key([mod_keys["mod"], "shift"], i.name, lazy.window.togroup(i.name),
-                desc=f"Move window to screen {i.name}"),
-            # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND FOLLOW MOVED
-            # WINDOW TO WORKSPACE
-            # Key([mod_keys["mod"], "shift"], i.name, lazy.window.togroup(
-            #     i.name), lazy.group[i.name].toscreen()),
-        ]
-        # Extend
-        keys.extend(group_keys)
+                # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
+                Key([mod_keys["mod"], "shift"], i.name, lazy.window.togroup(i.name),
+                    desc=f"Move window to screen {i.name}"),
+                # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND FOLLOW MOVED
+                # WINDOW TO WORKSPACE
+                # Key([mod_keys["mod"], "shift"], i.name, lazy.window.togroup(
+                #     i.name), lazy.group[i.name].toscreen()),
+            ]
+            # Extend
+            keys.extend(group_keys)
     return keys
 
 

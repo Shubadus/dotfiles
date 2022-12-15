@@ -1,0 +1,85 @@
+#!/bin/bash
+# Variables
+betterlockscreen=$(command -v 'betterlockscreen')
+feh=$(command -v 'feh')
+ranger=$(command -v 'ranger')
+script_name=${0##*/}
+wallpaper_cache_dir="$HOME/.cache/scripts/wallpaper"
+wallpaper_cache_file="$wallpaper_cache_dir/selected_wallpaper"
+wallpaper_dir=${2:-"$HOME/Pictures/wallpapers"}
+PS3="Select new wallpaper from the '$wallpaper_dir' directory (Type 'exit' to quit):"
+
+Help () {
+  echo "Usage: $script_name [-c|u] <PATH>"
+  echo "  -u <PATH>"
+  echo "      Sets the cached image as both the wallpaper and background"
+  echo "  -c"
+  echo "      Prompts changing the cached image"
+}
+
+get_wallpaper_selection () {
+  if [[ -d $wallpaper_cache_dir ]] && [[ -e $wallpaper_cache_file ]]; then
+    echo $(cat $wallpaper_cache_file)
+  fi
+}
+
+set_wallpaper_selection () {
+  if [[ ! -d $wallpaper_cache_dir ]]; then
+    mkdir -p "$wallpaper_cache_dir"
+  fi
+  echo $1 > "$wallpaper_cache_file"
+}
+
+update_wallpaper () {
+  echo "Attempting to update lockscreen"
+  if [[ -f $betterlockscreen ]]; then
+    echo "Updating betterlockscreen wallpaper..."
+    $betterlockscreen -u $1
+  fi
+  #TODO: Add i3lock color support
+
+  #TODO Add i3lock support
+  echo "Attempting to update background"
+  if [[ -f $feh ]]; then
+    echo "Updating background using feh..."
+    $feh --bg-fill $1
+    echo "Done"
+  fi
+}
+
+prompt_wallpaper_selection () {
+  if [[ -f $ranger ]]; then
+    $ranger $wallpaper_dir --choosefile=$wallpaper_cache_file
+  else
+    select wallpaper in $(ls $wallpaper_dir)
+    do
+      if [[ $REPLY == 'exit' ]]; then
+        exit 0
+      elif [[ ! -z $wallpaper ]]; then
+        set_wallpaper_selection "$wallpaper_dir/$wallpaper"
+        echo "Wallpaper is now set as: $wallpaper"
+        exit 0
+      else
+        echo "Invalid option $REPLY"
+      fi
+    done
+  fi
+}
+
+while getopts c,u flag; do
+  case "${flag}" in
+    c) 
+      prompt_wallpaper_selection $1
+      ;;
+    u)
+      update_wallpaper $(get_wallpaper_selection)
+      ;;
+    *)
+      Help
+      ;;
+  esac
+done
+
+if [[ $OPTIND == 1 ]]; then
+  Help
+fi
