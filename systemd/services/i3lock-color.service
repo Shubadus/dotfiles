@@ -1,0 +1,14 @@
+[Unit]
+Description=Lock screen before suspend
+Before=sleep.target
+
+[Service]
+User=%I
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock -B 10 -kn --time-color=ffffff --date-color=ffffff
+ExecStartPost=/bin/sleep 1
+
+[Install]
+WantedBy=suspend.target
+

@@ -1,139 +1,129 @@
-from dataclasses import dataclass
-from typing import Optional
-
-from libqtile import layout
-
-icons = {
-    'alert': '𥉉',
-    'close': '',
-    'code': '',
-    'cpu': '',
-    'fedora': '',
-    'file': '',
-    'folder': '',
-    'headphones': '',
-    'music': '',
-    'memory': '',
-    'message': '',
-    'open': '',
-    'pause': '',
-    'picture': '',
-    'play': '',
-    'remote': '  ',
-    'spotify': '',
-    'terminal': '',
-    'battery': {
-        'horizontal': {
-            '100': '',
-            '75': '',
-            '50': '',
-            '25': '',
-            '0': '',
+icons = dict( 
+    alert = '𥉉',
+    close = '',
+    code = '',
+    cpu = '',
+    fedora = '',
+    file = '',
+    folder = '',
+    headphones = '',
+    home = "",
+    music = '',
+    memory = '',
+    message = '',
+    open = '',
+    pause = '',
+    picture = '',
+    play = '',
+    power = '',
+    plug = '',
+    remote = '',
+    spotify = '',
+    terminal = '',
+    battery = dict( 
+        horizontal = { 
+            '100' : '',
+            '75' : '',
+            '50' : '',
+            '25' : '',
+            '0' : '',
         },
-        'vertical': {
-            'discharging': {
-                '10': '',
-                '20': '',
-                '30': '',
-                '40': '',
-                '50': '',
-                '60': '',
-                '70': '',
-                '80': '',
-                '90': '',
-                '100': '',
-            },
+        vertical = { 
+            '10': '',
+            '20': '',
+            '30': '',
+            '40': '',
+            '50': '',
+            '60': '',
+            '70': '',
+            '80': '',
+            '90': '',
+            '100': '',
             'alert': '',
-            'charging': {
-                '20': '',
-                '30': '',
-                '40': '',
-                '60': '',
-                '80': '',
-                '90': '',
-                '100': '',
-            },
             'unknown': '',
         },
-    },
-    'web': '爵',
-
-}
-
-@dataclass
-class Theme:
-    background: Optional[str] = None
-    foreground: Optional[str] = None
-    this_current_screen_border: Optional[str] = None
-    inactive: Optional[str] = None
-    active: Optional[str] = None
-    border_focus: Optional[str] = None
-    border_normal: Optional[str] = None
-    border_width: int = 1
-    font: str = "JetBrains-Mono-Nerd-Font-Complete"
-    fontsize: Optional[int] = 24
-
-    @property
-    def dict(self):
-        return self.__dict__
-
-colors: dict[str, Theme] = {
-    "aqua": Theme(
-        background="#000000",
-        foreground="#f8f8f2",
-        this_current_screen_border="#00ffff",
-        inactive="#6272a4",
-        active="#f8f8f2",
-        border_focus="#00ffff",
-        border_normal="#282a36"
     ),
-    "catppuccin-macchiato": Theme(
-        background="#181926", #crust
-        foreground="#cad3f5", #text
-        this_current_screen_border="#7dc4e4", #sapphire
-        inactive="#1e2030", #mantle
-        active="#cad3f5", #text
-        border_focus="#7dc4e4", #sapphire
-        border_normal="#181926" #crust
+    volume = '',
+    web = '爵',
+    wifi = '',
+)
+
+colors = dict(
+    catppuccin = dict(
+        macchiato = dict(
+            rosewater = '#f4dbd6',
+            flamingo = '#f0c6c6',
+            pink = '#f5bde6',
+            mauve = '#c6a0f6',
+            red = '#ed8796',
+            maroon = '#ee99a0',
+            peach = '#f5a97f',
+            yellow = '#eed49f',
+            green = '#a6da95',
+            teal = '#8bd5ca',
+            sky = '#91d7e3',
+            sapphire = '#7dc4e4',
+            blue = '#8aadf4',
+            lavender = '#b7bdf8',
+            text = '#cad3f5',
+            subtext1 = '#b8c0e0',
+            subtext0 = '#a5adcb',
+            overlay2 = '#939ab7',
+            overlay1 = '#8087a2',
+            overlay0 = '#6e738d',
+            surface2 = '#5b6078',
+            surface1 = '#494d64',
+            surface0 = '#363a4f',
+            base = '#24273a',
+            mantle = '#1e2030',
+            crust = '#181926'
+        ),
     ),
-    "dracula" : Theme(
-        background="#282a36",
-        foreground="#f8f8f2",
-        this_current_screen_border="#bd93f9",
-        inactive="#6272a4",
-        active="#f8f8f2",
-        border_focus="#bd93f9",
-        border_normal="#282a36"
-    ),
-    "tokyo_night": Theme(
-        background="#1a1b26",
-        foreground="#a9b1d6",
-        this_current_screen_border="#7aa2f7",
-        inactive="#32344a",
-        active="#a9b1d6",
-        border_focus="#7aa2f7",
-        border_normal="#1a1b26"
+
+    breeze = dict(
+        background_alternate="#4d4d4d",
+        background_normal="#31363b",
+        decoration_focus="#3daee9",
+        decoration_hover="#3daee9",
+        foreground_active="#3daee9",
+        foreground_inactive="#bdc3c7",
+        foreground_link="#2980b9",
+        foreground_negative="#804453",
+        foreground_neutral="#f67400",
+        foreground_normal="#eff0f1",
+        foreground_positive="27ae60",
+        foreground_visited="#7f8c8d",
     )
-}
+)
 
-calendars = {
-    # Wed YYYY-MM-DD [HH:MM]
-    "ymd": "%a %Y-%m-%d  %H:%M",
-    # Wed, Month DD [HH:MM]
-    "wmd": "%a, %B %d  %H:%M",
-    # Wed, DD-MM-YYYY [HH:MM]
-    "dmy": "%a %d-%m-%Y  %H:%M ",
-}
+# theme = dict(
+#     active=breeze['foreground_normal'],
+#     background=breeze['background_normal'],
+#     border_focus=breeze['decoration_focus'],
+#     border_normal=breeze['background_normal'],
+#     foreground=breeze['foreground_normal'],
+#     inactive=breeze['foreground_visited'],
+#     this_current_screen_border=breeze['decoration_focus'],
+#     urgent_text=breeze['foreground_negative']
+# )
 
-def init_layouts(theme: Theme) -> list:
-    """
-    Creates layouts used for qtile
-    """
-    return [
-        layout.Floating(margin=4, margin_on_single=0, **theme.dict),
-        layout.MonadTall(margin=4, single_margin=0, **theme.dict),
-        layout.MonadThreeCol(margin=4, single_margin=0, **theme.dict),
-        layout.MonadWide(margin=4, single_margin=0, **theme.dict),
-        layout.VerticalTile(margin=4, margin_on_single=0, **theme.dict)
-    ]
+theme = dict(
+    background=colors['catppuccin']['macchiato']['crust'],
+    foreground=colors['catppuccin']['macchiato']['text'],
+    this_current_screen_border=colors['catppuccin']['macchiato']['sapphire'],
+    inactive=colors['catppuccin']['macchiato']['base'],
+    active=colors['catppuccin']['macchiato']['text'],
+    border_focus=colors['catppuccin']['macchiato']['sapphire'],
+    border_normal=colors['catppuccin']['macchiato']['crust'],
+    urgent_text=colors['catppuccin']['macchiato']['red'],
+)
+
+
+widget_defaults = dict(
+        border_width = 2,
+        font = "NotoSans Nerd Font, Regular",
+        fontsize = 20,
+        margin_y = 3,
+        **theme
+    )
 

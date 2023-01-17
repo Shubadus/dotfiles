@@ -37,6 +37,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "javascript",
   "json",
   "lua",
+  -- "markdown",
   "python",
   "typescript",
   "tsx",
@@ -52,6 +53,14 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- Start my personal configuration
 -- Additional Plugins
 lvim.plugins = {
+  { 'iamcco/markdown-preview.nvim',
+    run = ':call mkdp#util#install()',
+    config = function()
+      -- vim.g.mkdp_browser = "/var/lib/flatpak/exports/bin/com.github.Eloston.UngoogledChromium"
+      vim.g.mkdp_browser = "/usr/bin/chromium-browser"
+      vim.g.mkdp_theme = "dark"
+    end,
+  },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
