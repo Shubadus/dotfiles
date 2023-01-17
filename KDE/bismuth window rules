@@ -1,0 +1,76 @@
+[1Password]
+Description=1Password
+activity=0e751d5e-3856-4ecf-b816-625bdeea42e0
+activityrule=2
+wmclass=1password
+wmclassmatch=1
+
+[AnyConnect]
+Description=AnyConnect
+activity=0e751d5e-3856-4ecf-b816-625bdeea42e0
+activityrule=2
+desktops=cb19de15-0808-4e36-af8e-7be731f302af
+desktopsrule=2
+screenrule=3
+wmclass=cisco anyconnect secure mobility client
+wmclassmatch=1
+
+[FreshService]
+Description=FreshService
+activity=0e751d5e-3856-4ecf-b816-625bdeea42e0
+activityrule=2
+desktops=f4e79a9d-ef9d-45f1-8d92-c3515e7339f3
+desktopsrule=3
+wmclass=webapp-freshservice2508
+wmclassmatch=1
+
+[LunarVim to Editors]
+Description=LunarVim to Editors
+desktops=71d08ce7-6651-4dc1-8ef9-ae59e85aa4a2
+desktopsrule=3
+title=*lvim*
+titlematch=2
+types=1
+
+[Neovim to Editors]
+Description=Neovim to Editors
+desktops=71d08ce7-6651-4dc1-8ef9-ae59e85aa4a2
+desktopsrule=3
+title=*VIM*
+titlematch=2
+wmclass=alacritty
+wmclassmatch=2
+
+[Office]
+Description=Office
+activity=0e751d5e-3856-4ecf-b816-625bdeea42e0
+activityrule=2
+desktops=\\0
+desktopsrule=3
+screen=1
+screenrule=2
+types=1
+wmclass=webapp-microsoftoffice8693
+wmclassmatch=2
+
+[Remmina]
+Description=Remmina
+activity=0e751d5e-3856-4ecf-b816-625bdeea42e0
+activityrule=2
+desktops=cb19de15-0808-4e36-af8e-7be731f302af
+desktopsrule=3
+screenrule=3
+wmclass=org.remmina.remmina
+wmclassmatch=1
+
+[Teams for Linux]
+Description=Teams for Linux
+activity=0e751d5e-3856-4ecf-b816-625bdeea42e0
+activityrule=2
+desktops=\\0
+desktopsrule=3
+screen=1
+screenrule=3
+title=Chat | Microsoft Teams
+wmclass=teams-for-linux
+wmclassmatch=1
