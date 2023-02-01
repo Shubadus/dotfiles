@@ -1,6 +1,6 @@
 local set = vim.opt
 
-vim.g.mapleader = ';'
+vim.g.mapleader = "space"
 
 -- Neovide Config --
 vim.g.neovide_transparency=0.9
@@ -20,6 +20,7 @@ set.nu = true
 set.nu.relativenumber = true
 set.ruler = true
 set.smartindent = true
+set.commandheight = 1
 
 set.clipboard:append("unnamedplus")
 set.shortmess:append("c")

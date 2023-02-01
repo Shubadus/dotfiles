@@ -56,8 +56,7 @@ lvim.plugins = {
   { 'iamcco/markdown-preview.nvim',
     run = ':call mkdp#util#install()',
     config = function()
-      -- vim.g.mkdp_browser = "/var/lib/flatpak/exports/bin/com.github.Eloston.UngoogledChromium"
-      vim.g.mkdp_browser = "/usr/bin/chromium-browser"
+      vim.g.mkdp_browser = "/var/lib/flatpak/exports/bin/org.chromium.Chromium"
       vim.g.mkdp_theme = "dark"
     end,
   },
@@ -65,7 +64,22 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
-  { "catppuccin/nvim" }
+  { "catppuccin/nvim" },
+  {
+    "tzachar/cmp-tabnine",
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+    config = function()
+      local tabnine = require "cmp_tabnine.config"
+      tabnine:setup {
+        max_lines = 1000,
+        max_num_results = 10,
+        sort = true,
+      }
+    end,
+    opt = true,
+    event = "InsertEnter",
+  },
 }
 
 -- Plugin configurations

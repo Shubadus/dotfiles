@@ -23,10 +23,12 @@ return require("packer").startup(function(use)
 
 	-- lsp fun
 	use('neovim/nvim-lspconfig')
+	use('williamboman/mason-lspconfig.nvim')
+	use('williamboman/mason.nvim')
 	use('hrsh7th/cmp-nvim-lsp')
 	use('hrsh7th/cmp-buffer')
 	use('hrsh7th/nvim-cmp')
-	use({'tzachar/cmp-tabnine', run='./install.sh', requires='hrsh7th/nvim-cmp'})
+	-- use({'tzachar/cmp-tabnine', run='./install.sh', requires='hrsh7th/nvim-cmp'})
 	use('onsails/lspkind-nvim')
 	use('nvim-lua/lsp_extensions.nvim')
 	use('glepnir/lspsaga.nvim')
@@ -48,14 +50,19 @@ return require("packer").startup(function(use)
 	use('nvim-lualine/lualine.nvim')
 	use('romgrk/barbar.nvim')
 	use('lukas-reineke/indent-blankline.nvim')
-
 	use('nvim-lua/plenary.nvim')
 	use('nvim-lua/popup.nvim')
 	use('nvim-telescope/telescope.nvim')
+	use({
+		'numToStr/Comment.nvim',
+		config = function()
+			require('Comment').setup()
+		end
+	})
 
 	-- Themes
 	use('folke/tokyonight.nvim')
-
+	use('folke/which-key.nvim')
 
 	if packer_bootstrap then
 		require('packer').sync()
