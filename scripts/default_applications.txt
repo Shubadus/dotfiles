@@ -1,0 +1,11 @@
+pcmanfm-qt.desktop:
+  - inode/directory
+
+com.microsoft.Edge.desktop:
+  - text/html
+  - x-scheme-handler/http
+  - x-scheme-handler/https
+  - x-scheme-handler/unknown
+
+com.chromium-browser.desktop:
+  - x-scheme-handler/mailto

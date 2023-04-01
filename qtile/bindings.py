@@ -1,5 +1,6 @@
 import subprocess
 
+from libqtile import qtile
 from libqtile.command import lazy
 from libqtile.config import Key, Drag
 
@@ -22,6 +23,10 @@ def prev_screen(qtile):
 @lazy.function
 def spawn_with_cmds(command):
     subprocess.call(command)
+
+@lazy.function
+def cmd_spawn(qtile, command):
+    qtile.cmd_spawn(command)
 
 keys = [
     # SUPER + FUNCTION KEYS
@@ -47,6 +52,8 @@ keys = [
         desc="Close current window"),
     Key([mod_keys["mod"], "shift"], "r", lazy.restart(),
         desc="Restart qtile"),
+    Key([mod_keys["mod"], "shift"], "p", lazy.spawn(apps['picom_toggle']),
+        desc="Toggle Picom"),
 
     # Applications
     Key([mod_keys["mod"], "shift"], "d", lazy.spawn(apps['launcher']),
@@ -56,6 +63,10 @@ keys = [
         desc=f"Launch {apps['browser']} web browser"),
     Key([mod_keys["mod"], "shift"], "s", lazy.spawn(apps["screenshot"]),
         desc=f"Take a screenshot"),
+    Key([mod_keys["mod"]], "x", lazy.spawn(apps["logout"]),
+        desc=f"Logout"),
+    Key([mod_keys["mod2"], "shift"], "space", lazy.spawn(apps['pass_man_launcher']),
+        desc=f"Launch {'pass_man'} --quick access"),
 
     # QTILE LAYOUT KEYS
     Key([mod_keys["mod"]], "n", lazy.layout.normalize()),
@@ -105,11 +116,27 @@ keys = [
 
     # TOGGLE FLOATING LAYOUT
     Key([mod_keys["mod"], "shift"], "space", lazy.window.toggle_floating(),
-        desc="Toggle floating layout")
+        desc="Toggle floating layout"),
 
-    # Key([mod_keys["mod"]], "F12",
-    #     lazy.group["scratchpad"].dropdown_toggle("git")),
-    # Key([], "F12", lazy.group["scratchpad"].dropdown_toggle("term")),
+    # Audio and Media controls
+    Key([], 'XF86AudioMute', lazy.spawn(apps['audio_mute'])),
+    Key([], 'XF86AudioRaiseVolume', lazy.spawn(apps['audio_up'])),
+    Key([], 'XF86AudioLowerVolume', lazy.spawn(apps['audio_down'])),
+    Key([], 'XF86AudioPlay', lazy.spawn(apps['audio_player_toggle'])),
+    Key([], 'XF86AudioNext', lazy.spawn(apps['audio_player_next'])),
+    Key([], 'XF86AudioPrev', lazy.spawn(apps['audio_player_prev'])),
+
+    # Brightness control
+    Key([], 'XF86MonBrightnessUp', lazy.spawn(apps['brightness_up'])),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn(apps['brightness_down'])),
+
+    # Scratchpads
+    Key([], "F12",
+        lazy.group["scratchpad"].dropdown_toggle("dropdown_term")),
+    Key([], "F10", lazy.group["scratchpad"].dropdown_toggle("network_manager")),
+    Key([], "F9", lazy.group["scratchpad"].dropdown_toggle("audio")),
+    Key([mod_keys["mod2"], "shift"], "escape",
+        lazy.group["scratchpad"].dropdown_toggle("sysmonitor")),
 ]
 
 mouse = [

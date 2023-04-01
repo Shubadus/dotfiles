@@ -2,9 +2,15 @@
 import hooks
 from groups import floating_layout, groups
 from bindings import keys, mouse
-from screens import screens, layouts
-from style import widget_defaults
+from screens import screens, layouts, widget_defaults
+# from style import widget_defaults
+from libqtile.backend.wayland import InputConfig
 
+wl_input_rules = {
+    "type:keyboard": InputConfig(
+        kb_layout='us',
+    ),
+}
 
 follow_mouse_focus = True
 cursor_warp = False

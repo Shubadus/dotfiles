@@ -1,0 +1,48 @@
+#!/bin/bash
+
+function run {
+  if ! pgrep $1 ;
+  then
+    $@&
+  fi
+}
+
+session=$(echo $XDG_SESSION_TYPE)
+
+#Export Env Vars
+export QT_QPA_PLATFORMTHEME="qt5ct"  
+
+#Find out your monitor name with xrandr or arandr (save and you get this line)
+
+# Restore Background Image
+# run $HOME/.fehbg
+run dunstctl set-paused false
+
+
+#starting utility applications at boot time
+run xfce4-power-manager --daemon
+run /usr/libexec/polkit-gnome-authentication-agent-1 # Polkit for authentication
+run /usr/bin/dunst # Notifications
+# run nm-applet --indicator # Run Network Manager applet
+# run variety
+
+# Xorg Specific Apps
+if [[ $session == "x11" ]]; then
+  # # Polybar and Modules
+  # run polybar
+  # run $HOME/.local/bin/spotify/launchlistener.sh
+  autorandr -c
+  run picom # Run compositor
+  run nitrogen --restore
+elif [[ $session == "wayland" ]]; then
+  echo "TODO" 
+fi
+
+# Flapaks
+flatpak run org.remmina.Remmina -i &
+flatpak run com.onepassword.OnePassword --silent &
+
+if pgrep packagekitd;
+  then
+    pkill packagekitd
+fi

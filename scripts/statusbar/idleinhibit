@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Qtile swayidle toggle
+function toggle {
+if pgrep "swayidle" > /dev/null
+then
+	pkill swayidle
+	icon="I"
+	notify-send -r 5556 -u normal "  Swayidle Inactive"
+else
+	swayidle timeout 5 "qtile cmd-obj -o core -f hide_cursor" resume "qtile cmd-obj -o core -f unhide_cursor" timeout 300 "swayidle-laptop-dim" resume "light -I" timeout 600 "wlopm --off \*;swaylock -F -i ~/.cache/wallpaper --effect-blur 10x5 --clock --indicator" resume "wlopm --on \*" &
+	icon="A"
+	notify-send -r 5556 -u normal "  Swayidle Active"
+fi
+}
+
+case $1 in
+	toggle)
+		toggle
+		;;
+	*)
+		if pgrep "swayidle" > /dev/null
+		then
+			icon=""
+		else
+			icon=""
+		fi
+		printf "%s" "$icon "
+		;;
+esac
+

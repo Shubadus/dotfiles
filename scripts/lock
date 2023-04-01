@@ -1,0 +1,50 @@
+#!/bin/bash
+#TODO: Add swaylock support
+
+session=$(echo $XDG_SESSION_TYPE)
+# wallpaper=$(cat .config/nitrogen/bg-saved.cfg | grep "file=" | sed "s/file=//g")[0]
+
+function lockscreen()
+{
+  if [[ $session == "x11" ]]; then
+
+    $(command -v 'i3lock') \
+    --indicator \
+    --clock \
+    --blur=15 \
+    --time-color=ffffff \
+    --date-color=ffffff \
+    --pass-media-keys \
+    --pass-screen-keys \
+    --pass-volume-keys \
+    --pass-power-keys \
+    &
+
+    if [[ $sleeptime ]]; then
+      sleep $sleeptime
+
+      xset s activate
+    fi
+  else
+    ""
+  fi
+}
+
+for arg in "$@"; do
+  [[ "${arg:0:1}" = '-' ]] || continue
+
+  case "$1" in
+
+    -l | --lock)
+      lockscreen
+      ;;
+    -s | --suspend )
+      sleeptime="$2"
+      shift 
+      lockscreen
+      ;;
+
+  esac
+done
+
+exit 0

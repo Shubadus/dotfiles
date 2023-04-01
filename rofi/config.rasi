@@ -6,7 +6,9 @@ configuration{
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
+    font: "NotoSans 12";
 }
 
-@theme "theming"
-
+/* @theme "theming" */
+/* @theme "nord" */
+@theme "breeze-dark"

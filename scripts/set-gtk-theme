@@ -1,0 +1,6 @@
+#! /bin/bash
+gnomescheme=org.gnome.desktop.interface
+
+gsettings set $gnomescheme gtk-theme 'Nordic'
+gsettings set $gnomescheme icon-theme 'Nordzy-cyan-dark'
+gsettings set $gnomescheme cursor-theme 'Breeze'

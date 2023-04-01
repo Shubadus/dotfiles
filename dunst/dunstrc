@@ -2,7 +2,7 @@
 
 [global]
     follow = keyboard
-    width = 300
+    width = (300,1200)
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -33,7 +33,7 @@
     progress_bar_frame_width = 1
 
     # Set the minimum width for the progress bar
-    progress_bar_min_width = 150
+    progress_bar_min_width = 300
 
     # Set the maximum width for the progress bar
     progress_bar_max_width = 300
@@ -46,7 +46,6 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.). (X11 only)
-    # transparency = 25
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
@@ -68,7 +67,6 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#8AADF4"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -175,7 +173,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = Adwaita
+    icon_theme = breeze-dark, breeze 
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
@@ -191,7 +189,7 @@
     max_icon_size = 128
 
     # Paths to default icons (only neccesary when not using recursive icon lookup)
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    # icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
     ### History ###
 
@@ -285,8 +283,9 @@
 
 
 [urgency_low]
-  background = "#24273A"
-  foreground = "#CAD3F5"
+  background = "#31363b" 
+  foreground = "#eff0f1"
+  frame_color = "#3daee9"
       # IMPORTANT: colors have to be defined in quotation marks.
       # Otherwise the "#" and following would be interpreted as a comment.
       # background = "#a6da95" # green
@@ -296,8 +295,9 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-  background = "#24273A"
-  foreground = "#CAD3F5"
+  background = "#31363b" 
+  foreground = "#eff0f1"
+  frame_color = "#3daee9"
       # background = "#181926" # crust
       # foreground = "#cad3f5" # text
   timeout = 10
@@ -305,9 +305,9 @@
     #default_icon = /path/to/icon
 
 [urgency_critical]
-  background = "#24273A"
-  foreground = "#CAD3F5"
-  frame_color = "#F5A97F"
+  background = "#31363b" 
+  foreground = "#eff0f1"
+  frame_color = "#804453"
       # background = "#ed8796" # red
       # foreground = "#181926" # text
       # frame_color = "#ff0000"

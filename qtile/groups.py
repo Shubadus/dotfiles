@@ -1,16 +1,15 @@
 from libqtile import layout
 from libqtile.command import lazy
-from libqtile.config import Group, Match, ScratchPad, DropDown, Key
+from libqtile.config import DropDown, Group, Match, Key, ScratchPad
 
+from apps import apps
 from bindings import keys, mod_keys
 from workspaces import workspaces
 
+
 groups = [Group(**x) for x in workspaces]
-# groups.append(
-#     ScratchPad("terminal", [
-#         DropDown("sysmon", "alacritty -e btop")
-#     ])
-# )
+
+
 for i in groups:
     if isinstance(i, Group):
         group_keys = [
@@ -28,6 +27,27 @@ for i in groups:
         ]
         # Extend
         keys.extend(group_keys)
+
+
+dropdown_conf = {
+    "warp_pointer": False,
+    "on_focus_lost_hide": True,
+}
+
+
+dropdowns = [
+    DropDown("sysmonitor", apps['sysmonitor'], height=0.7, opacity=0.9, **dropdown_conf),
+    DropDown("dropdown_term", apps['terminal'], height=0.7, opacity=0.9, **dropdown_conf),
+    DropDown("network_manager", apps['network_manager'], height=0.7, opacity=0.9, **dropdown_conf),
+    DropDown("audio", apps['audio_gui'], height=0.7, opacity=1, **dropdown_conf),
+]
+
+
+scratchpad = ScratchPad("scratchpad", dropdowns)
+
+
+groups.append(scratchpad)
+
 
 floating_layout = layout.Floating(float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -55,6 +75,7 @@ floating_layout = layout.Floating(float_rules=[
         Match(wm_class='Galculator'),
         Match(wm_class='arcolinux-logout'),
         Match(wm_class='xfce4-terminal'),
+        Match(wm_class='tlp-ui'),
         Match(wm_class='Variety'),
         Match(wm_class='ksnip'),
         Match(wm_class='RAIL'),
