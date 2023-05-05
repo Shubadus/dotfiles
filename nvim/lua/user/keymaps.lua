@@ -50,6 +50,9 @@ keymap("i", "jk", "<ESC>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- Tab Inspect
+keymap("n", "<leader>ti", ":Inspect<CR>")
+
 -- Plugins --
 
 -- NvimTree

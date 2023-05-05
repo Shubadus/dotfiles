@@ -7,6 +7,7 @@ from qtile_extras import widget
 
 from apps import apps
 from style import icons, theme, clock_fmt
+from widgets import memory, clock
 
 
 LAYOUT_DEFAULTS = dict(
@@ -18,6 +19,9 @@ widget_defaults = dict(
     border_width=2,
     font="NotoSans Nerd Font",
     fontsize=20,
+    tooltip_font="NotoSansMono Nerd Font",
+    tooltip_fontsize=20,
+    padding=8,
     **theme
 )
 
@@ -29,10 +33,13 @@ widgets = [
         padding=0,
         rounded=True,
     ),
-    widget.CurrentLayout(
+    widget.Sep(),
+    widget.CurrentLayoutIcon(
+        padding=4,
+        scale=0.7
     ),
     widget.Spacer(),
-    widget.Clock(
+    clock.ClockTooltip(
         format=clock_fmt,
         mouse_callbacks={
 
@@ -65,11 +72,26 @@ widgets = [
         },
         update_interval=1800,
     ),
-    widget.Memory(
-        format=f"{icons['memory']}" + " {MemUsed:02.1f} GB",
+    # widget.StatusNotifier(
+    #     icon_size=24,
+    # ),
+    widget.Systray(
+        icon_size=24,
+    ),
+    widget.TextBox(
+        " ",
+        padding=2
+    ),
+    memory.MemoryTooltip(
+        format=f"{icons['memory']}" + " {MemPercent:02.0f}%",
         measure_mem="G",
         update_interval=1,
     ),
+    # widget.Memory(
+    #     format=f"{icons['memory']}" + " {MemPercent:02.0f}%",
+    #     measure_mem="G",
+    #     update_interval=1,
+    # ),
     # Volume Widget
     widget.GenPollText(
         update_interval=1, func=lambda: subprocess.check_output(f"{apps['qtile_vol']}").decode(),
@@ -80,19 +102,18 @@ widgets = [
             'Button4': lazy.spawn(f"{apps['qtile_vol_up']}"),
             'Button5': lazy.spawn(f"{apps['qtile_vol_down']}"),
         }),
-    # Battery Widget
-    widget.GenPollText(update_interval=1, func=lambda: subprocess.check_output(str(apps['qtile_bat'])).decode(),
-                       mouse_callbacks={
-                           'Button1': lazy.spawn(f"{apps['qtile_bat']} --c left-click", shell=True),
-                           }),
     # Network Widget
     widget.GenPollText(update_interval=5, func=lambda: subprocess.check_output(str(apps['qtile_net'])).decode(),
                         mouse_callbacks={
                             'Button1': lazy.spawn(f"{apps['qtile_net']} ShowInfo", shell=True),
                             'Button3': lazy.group["scratchpad"].dropdown_toggle("network_manager")}),
-    widget.Systray(
-        icon_size = 24
-    ),
+    # Battery Widget
+    widget.GenPollText(update_interval=1, func=lambda: subprocess.check_output(str(apps['qtile_bat'])).decode(),
+                       mouse_callbacks={
+                           'Button1': lazy.spawn(f"{apps['qtile_bat']} --c left-click", shell=True),
+                           'Button2': lazy.spawn(f"{apps['qtile_bat']} --c middle-click", shell=True),
+                           'Button3': lazy.spawn(f"{apps['qtile_bat']} --c right-click", shell=True),
+                           }),
     widget.TextBox(
         f"{icons['power']}",
         mouse_callbacks={
@@ -102,13 +123,14 @@ widgets = [
 ]
 
 screens = [
-    # Screen(
-    #     top=bar.Bar(
-    #         widgets=widgets,
-    #         background=f"{theme.get('background')}",
-    #         size=26,
-    #     )
-    # )
+    Screen(
+        top=bar.Bar(
+            # wallpaper=
+            widgets=widgets,
+            background=f"{theme.get('background')}",
+            size=26,
+        )
+    )
 ]
 
 

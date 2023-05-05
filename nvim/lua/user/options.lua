@@ -43,4 +43,4 @@ vim.opt.iskeyword:append("-")                   -- treats words with `-` as sing
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
 vim.opt.linebreak = true
 
-vim.cmd.colorscheme('catppuccin')
+-- vim.cmd.colorscheme('catppuccin')

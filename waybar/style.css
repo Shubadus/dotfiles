@@ -1,7 +1,8 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-family: NotoSansMono Nerd;
+    font-size: 15px;
+    min-height: 0;
 }
 
 /*#define @trans: rgba(20,20,20,0) */
@@ -27,8 +28,10 @@ window#waybar.chromium {
     border: none;
 }
 
+
 #workspaces button {
-    padding: 0 5px;
+    font-size: 18px;
+    padding: 0 4px;
     background-color: transparent;
     color: #ffffff;
     /* Use box-shadow instead of border so the text isn't offset */
@@ -62,7 +65,6 @@ window#waybar.chromium {
     background: transparent
 }
 
-#clock,
 #battery,
 #cpu,
 #memory,
@@ -118,6 +120,12 @@ label:focus {
 
 #cpu, #memory, #disk, #backlight, #network, #pulseaudio,
 #custom-media, #temperature, #tray, #mpd, #langauge,
+
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
+    padding: 0 3px;
+    margin: 0 2px;
+}
+
 #clock, #battery, #idle_inhibitor {
     background-color: transparent;
     color: #ffffff;

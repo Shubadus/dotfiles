@@ -5,6 +5,7 @@ from libqtile.config import DropDown, Group, Match, Key, ScratchPad
 from apps import apps
 from bindings import keys, mod_keys
 from workspaces import workspaces
+from style import theme
 
 
 groups = [Group(**x) for x in workspaces]
@@ -30,8 +31,6 @@ for i in groups:
 
 
 dropdown_conf = {
-    "warp_pointer": False,
-    "on_focus_lost_hide": True,
 }
 
 
@@ -39,6 +38,7 @@ dropdowns = [
     DropDown("sysmonitor", apps['sysmonitor'], height=0.7, opacity=0.9, **dropdown_conf),
     DropDown("dropdown_term", apps['terminal'], height=0.7, opacity=0.9, **dropdown_conf),
     DropDown("network_manager", apps['network_manager'], height=0.7, opacity=0.9, **dropdown_conf),
+    DropDown("vpn", apps['vpn'], height=0.7, opacity=1, **dropdown_conf),
     DropDown("audio", apps['audio_gui'], height=0.7, opacity=1, **dropdown_conf),
 ]
 
@@ -49,7 +49,7 @@ scratchpad = ScratchPad("scratchpad", dropdowns)
 groups.append(scratchpad)
 
 
-floating_layout = layout.Floating(float_rules=[
+floating_layout = layout.Floating(float_rules=(
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
         Match(wm_class='confirmreset'),  # gitk
@@ -80,7 +80,7 @@ floating_layout = layout.Floating(float_rules=[
         Match(wm_class='ksnip'),
         Match(wm_class='RAIL'),
         Match(wm_class='xdg-desktop-portal-gnome'),
-    ],  fullscreen_border_width = 0, border_width = 0)
+    ), fullscreen_border_width=0, border_width=2, **theme)
 
-floating_types = ["notification", "toolbar", "splash", "dialog"]
+floating_types = ("notification", "toolbar", "splash", "dialog")
 

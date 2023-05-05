@@ -26,7 +26,7 @@ apps['brightness']          = "light"
 apps['brightness_up']       = f"{apps['brightness']} -A 10"
 apps['brightness_down']     = f"{apps['brightness']} -U 10"
 
-apps['pass_man']            = "flatpak run com.onepassword.OnePassword"
+apps['pass_man']            = "1password"
 apps['pass_man_main']       = f"{apps['pass_man']} --toggle"
 apps['pass_man_launcher']   = f"{apps['pass_man']} --quick-access"
 
@@ -38,8 +38,9 @@ apps['launcher']            = "rofi -show drun"
 apps['logout']              = "archlinux-logout"
 apps['network_manager']     = "nm-connection-editor"
 apps['screenshot']          = "flameshot gui"
+apps['vpn']                 = "/opt/cisco/anyconnect/bin/vpnui"
 apps['wallpaper']           = "nitrogen"
-apps['wallpaper_restore']   = f"{apps['wallpaper']} --restore"
+apps['wallpaper_restore']   = [f"{apps['wallpaper']}", "--restore"]
 
 # Flatpak Applications
 apps['power_manager']       = "flatpak run com.github.d4nj1.tlpui"
@@ -55,6 +56,7 @@ apps['suspend']             = f"{qtile_scripts}/suspend"
 
 # Qtile bar polling
 apps['qtile_bat']           = f"{statusbar_scripts}/battery.py"
+apps['qtile_bat_right']     = f"{apps['qtile_bat']} right-click"
 apps['qtile_cal']           = f"{statusbar_scripts}/calendar.sh"
 apps['qtile_cal_show']      = f"{apps['qtile_cal']} show"
 apps['qtile_net']           = f"{statusbar_scripts}/network.sh"

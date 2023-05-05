@@ -35,12 +35,12 @@ function ShowInfo {
 	else
 		connection="No active connection."
 	fi
-	dunstify -i "network-idle" "$connection" -r 1234
+  notify-send -r 55555 -u normal "$connection"
 }
 
 function IconUpdate() {
 	if [ "$(nmcli connection show --active | grep -oh "\w*ethernet\w*")" == "ethernet" ]; then
-		icon=" "
+		icon=""
 	elif [ "$(nmcli connection show --active | grep -oh "\w*wifi\w*")" == "wifi" ]; then
     sigstr=$(nmcli -f IN-USE,SIGNAL,SSID device wifi | awk '/^\*/{if (NR!=1) {print $2}}')
     if [ sigstr > 0 && sigstr =< 25]; then
@@ -53,9 +53,9 @@ function IconUpdate() {
       icon="󰤨 "
     fi
 	else
-		icon=" "
+		icon=""
 	fi
-	printf "%s" "$icon"
+	printf "%s" $icon
 }
 
 if [ "$1" = "ShowInfo" ]; then

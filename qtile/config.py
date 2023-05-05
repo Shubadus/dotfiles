@@ -4,13 +4,16 @@ from groups import floating_layout, groups
 from bindings import keys, mouse
 from screens import screens, layouts, widget_defaults
 # from style import widget_defaults
-from libqtile.backend.wayland import InputConfig
+# from libqtile.backend.wayland import InputConfig
 
-wl_input_rules = {
-    "type:keyboard": InputConfig(
-        kb_layout='us',
-    ),
-}
+# wl_input_rules = {
+#     "type:keyboard": InputConfig(
+#         kb_layout='us',
+#     ),
+#     # "type:touchpad": InputConfig(tap=True),
+#     # "type:pointer": InputConfig(tap=True),
+#     "*": InputConfig(tap=True),
+# }
 
 follow_mouse_focus = True
 cursor_warp = False

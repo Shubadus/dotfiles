@@ -135,6 +135,7 @@ keys = [
         lazy.group["scratchpad"].dropdown_toggle("dropdown_term")),
     Key([], "F10", lazy.group["scratchpad"].dropdown_toggle("network_manager")),
     Key([], "F9", lazy.group["scratchpad"].dropdown_toggle("audio")),
+    Key([], "F8", lazy.group["scratchpad"].dropdown_toggle("vpn")),
     Key([mod_keys["mod2"], "shift"], "escape",
         lazy.group["scratchpad"].dropdown_toggle("sysmonitor")),
 ]
