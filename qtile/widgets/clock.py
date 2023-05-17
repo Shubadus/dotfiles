@@ -1,5 +1,7 @@
 import subprocess
 
+
+from datetime import datetime, timezone
 from qtile_extras.widget import Clock
 from qtile_extras.widget.mixins import TooltipMixin
 
@@ -9,10 +11,17 @@ class ClockTooltip(Clock, TooltipMixin):
         TooltipMixin.__init__(self)
         self.add_defaults(Clock.defaults)
         self.add_defaults(TooltipMixin.defaults)
-        # self.tooltip_font = "NotoSans Mono"
-        # self.tooltip_fontsize = 18
-
-        self.tooltip_text = self.tooltip_poll()
+        # self.timeout_add(3600, self.tooltip_poll)
+        self.tooltip_poll()
+        # self.tooltip_text = self.tooltip_poll()
 
     def tooltip_poll(self):
-        return subprocess.check_output(['cal']).decode().lstrip("\n")
+        self.tooltip_text = subprocess.check_output(['cal']).decode().rstrip("\n")
+
+    def poll(self):
+        self.tooltip_poll()
+        if self.timezone:
+            now = datetime.now(timezone.utc).astimezone(self.timezone)
+        else:
+            now = datetime.now(timezone.utc).astimezone()
+        return (now + self.DELTA).strftime(self.format)

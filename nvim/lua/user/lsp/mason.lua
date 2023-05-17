@@ -1,4 +1,5 @@
 local servers = {
+  "ansible_language_server",
 	"sumneko_lua",
 	"cssls",
 	"html",

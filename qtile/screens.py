@@ -7,7 +7,6 @@ from qtile_extras import widget
 
 from apps import apps
 from style import icons, theme, clock_fmt
-from widgets import memory, clock
 
 
 LAYOUT_DEFAULTS = dict(
@@ -39,17 +38,23 @@ widgets = [
         scale=0.7
     ),
     widget.Spacer(),
-    clock.ClockTooltip(
+    widget.Clock(
         format=clock_fmt,
         mouse_callbacks={
-
             'Button1': lazy.spawn(f"{apps['qtile_cal_show']}"),
         }
     ),
+    # clock.ClockTooltip(
+    #     format=clock_fmt,
+    #     mouse_callbacks={
+    #
+    #         'Button1': lazy.spawn(f"{apps['qtile_cal_show']}"),
+    #     }
+    # ),
     widget.Spacer(),
     widget.Mpris2(
         display_metadata=['xesam:title', 'xesam:artist'],
-        fmt= f"{icons['spotify']}" + ' {}',
+        fmt=f"{icons['spotify']}" + ' {}',
         scroll_chars=20,
         name='spotify',
         no_metadata_text="No data",
@@ -61,8 +66,8 @@ widgets = [
     ),
     widget.CheckUpdates(
         distro="Fedora",
-        display_format= f"{icons['update']}" + " {updates}",
-        fmt = " {} ",
+        display_format=f"{icons['update']}" + " {updates}",
+        fmt=" {} ",
         no_update_string="",
         mouse_callbacks={
             'Button1': lambda: qtile.cmd_spawn(
@@ -82,19 +87,20 @@ widgets = [
         " ",
         padding=2
     ),
-    memory.MemoryTooltip(
-        format=f"{icons['memory']}" + " {MemPercent:02.0f}%",
-        measure_mem="G",
-        update_interval=1,
-    ),
-    # widget.Memory(
+    # memory.MemoryTooltip(
     #     format=f"{icons['memory']}" + " {MemPercent:02.0f}%",
     #     measure_mem="G",
     #     update_interval=1,
     # ),
+    widget.Memory(
+        format=f"{icons['memory']}" + " {MemPercent:02.0f}%",
+        measure_mem="G",
+        update_interval=1,
+    ),
     # Volume Widget
     widget.GenPollText(
-        update_interval=1, func=lambda: subprocess.check_output(f"{apps['qtile_vol']}").decode(),
+        update_interval=1, func=lambda: subprocess.check_output(
+            f"{apps['qtile_vol']}").decode(),
         mouse_callbacks={
             'Button1': lazy.spawn(f"{apps['qtile_vol_show']}"),
             'Button2': lazy.spawn(f"{apps['qtile_vol_mute']}"),
@@ -103,17 +109,24 @@ widgets = [
             'Button5': lazy.spawn(f"{apps['qtile_vol_down']}"),
         }),
     # Network Widget
-    widget.GenPollText(update_interval=5, func=lambda: subprocess.check_output(str(apps['qtile_net'])).decode(),
-                        mouse_callbacks={
-                            'Button1': lazy.spawn(f"{apps['qtile_net']} ShowInfo", shell=True),
-                            'Button3': lazy.group["scratchpad"].dropdown_toggle("network_manager")}),
+    widget.GenPollText(
+        update_interval=5,
+        func=lambda: subprocess.check_output(str(apps['qtile_net'])).decode(),
+        mouse_callbacks={
+            'Button1': lazy.spawn(f"{apps['qtile_net']} ShowInfo", shell=True),
+            'Button3': lazy.group["scratchpad"].dropdown_toggle("network_manager")}),
     # Battery Widget
-    widget.GenPollText(update_interval=1, func=lambda: subprocess.check_output(str(apps['qtile_bat'])).decode(),
-                       mouse_callbacks={
-                           'Button1': lazy.spawn(f"{apps['qtile_bat']} --c left-click", shell=True),
-                           'Button2': lazy.spawn(f"{apps['qtile_bat']} --c middle-click", shell=True),
-                           'Button3': lazy.spawn(f"{apps['qtile_bat']} --c right-click", shell=True),
-                           }),
+    widget.GenPollText(
+        update_interval=1,
+        func=lambda: subprocess.check_output(str(apps['qtile_bat'])).decode(),
+        mouse_callbacks={
+           'Button1': lazy.spawn(
+               f"{apps['qtile_bat']} --c left-click", shell=True),
+           'Button2': lazy.spawn(
+               f"{apps['qtile_bat']} --c middle-click", shell=True),
+           'Button3': lazy.spawn(
+               f"{apps['qtile_bat']} --c right-click", shell=True),
+           }),
     widget.TextBox(
         f"{icons['power']}",
         mouse_callbacks={

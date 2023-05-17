@@ -41,7 +41,7 @@ BATTERY_ICONS = {
         '100': ''
     }
 }
-PRIMARY_BATTERY= list(pathlib.Path('/sys/class/power_supply/').glob('BAT*'))[0]
+PRIMARY_BATTERY = list(pathlib.Path('/sys/class/power_supply/').glob('BAT*'))[0]
 POWER_PROFILES = (
     'balanced',
     'performance',
@@ -62,7 +62,7 @@ class PowerProfiles(Enum):
 
 @dataclass
 class Battery:
-    path: pathlib.Path 
+    path: pathlib.Path
     health: str = 'Unknown'
     name: str = 'Unknown'
     percent: int = 0
@@ -70,13 +70,13 @@ class Battery:
     profile: PowerProfiles = PowerProfiles.Balanced
     status: str = 'Unknown'
 
-    def generate_message(self):
+    def __str__(self) -> str:
         message = '\n'.join([
             '{:<18} {}'.format('Name:', self.name),
             '{:<18} {}'.format('Status:', self.status),
             '{:<18} {}%'.format('Battery Percent:', self.percent),
             '{:<18} {}%'.format('Battery Health:', self.health),
-            '{:<18} {}'.format('Power Profile:', self.profile.value.captialize)
+            '{:<18} {}'.format('Power Profile:', self.profile.capitalize())
         ])
         if self.status == "Discharging":
             message += '\n{:18} {}'.format('Time Remaining:', self.time_left)
@@ -112,7 +112,7 @@ class Battery:
 
     @staticmethod
     def set_power_plan(plan: str):
-        subprocess.call(['powerprofilesctl', 'set', plan]) 
+        subprocess.call(['powerprofilesctl', 'set', plan])
 
     @staticmethod
     def get_health(battery_path: pathlib.Path):
@@ -132,6 +132,7 @@ class Battery:
             time_left=cls.get_time_remaining(battery.secsleft),
         )
 
+
 def main(args):
     battery = Battery.new(battery=psutil.sensors_battery(), battery_path=PRIMARY_BATTERY)
 
@@ -139,7 +140,7 @@ def main(args):
         return battery.get_icon()
 
     if args.command == 'left-click':
-        send_notification(battery.generate_message())
+        send_notification(str(battery))
 
     if args.command == 'middle-click':
         # next_index = POWER_PROFILES.index(battery.profile) + 1
@@ -148,10 +149,16 @@ def main(args):
         # battery.set_power_plan(POWER_PROFILES[next_index])
         battery.next_power_plan()
         battery.profile = battery.get_power_plan()
-        send_notification(f'New Power Profile: {battery.profile}')
+        send_notification(f'New Power Profile: {battery.profile.capitalize()}')
 
     if args.command == 'right-click':
-        send_notification(f'Current Power Profile: {battery.profile}')
+        send_notification(f'Current Power Profile: {battery.profile.capitalize()}')
+
+    # if battery.status == 'Discharging':
+    #     battery.set_power_plan('power-saver')
+    # else:
+    #     battery.set_power_plan('performance')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

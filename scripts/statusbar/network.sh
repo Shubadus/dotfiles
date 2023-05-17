@@ -22,16 +22,16 @@ function getWifi {
 function ShowInfo {
 	if [ "$(nmcli connection show --active | grep -oh "\w*ethernet\w*")" == "ethernet" ]; then
 		wan="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-		connection="Interface: $(getEth | awk '{ print $6 }' FS=' ')
-    SSID: $(getEth | awk '{ print $1 }' FS='  ') 
-    IP Address: $(nmcli -t -f IP4.ADDRESS dev show $(getEth | awk '{ print $6 }' FS=' ') | awk '{print $2}' FS='[:/]')
-    WAN IP: $wan"
+		connection="Interface:      $(getEth | awk '{ print $6 }' FS=' ')
+SSID:           $(getEth | awk '{ print $1 }' FS='  ') 
+IP Address:     $(nmcli -t -f IP4.ADDRESS dev show $(getEth | awk '{ print $6 }' FS=' ') | awk '{print $2}' FS='[:/]')
+WAN IP:         $wan"
 	elif [ "$(nmcli connection show --active | grep -oh "\w*wifi\w*")" == "wifi" ]; then
 		wan="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-		connection="Interface: $(getWifi | awk '{ print $4 }' FS=' ')
-    SSID:       $(getWifi | awk '{ print $1 }' FS='  ') 
-    IP Address: $(nmcli -t -f IP4.ADDRESS dev show $(getWifi | awk '{ print $4 }' FS=' ') | awk '{print $2}' FS='[:/]')
-    WAN IP:     $wan"
+		connection="Interface:      $(getWifi | awk '{ print $4 }' FS=' ')
+SSID:           $(getWifi | awk '{ print $1 }' FS='  ') 
+IP Address:     $(nmcli -t -f IP4.ADDRESS dev show $(getWifi | awk '{ print $4 }' FS=' ') | awk '{print $2}' FS='[:/]')
+WAN IP:         $wan"
 	else
 		connection="No active connection."
 	fi
