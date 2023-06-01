@@ -7,8 +7,7 @@
 # General Variables
 ##############################################################
 # Logo key. Use Mod1 for Alt.
-# set $wallpaper ~/Pictures/wallpapers/nature.jpg
-# set $wallpaper 
+set $wallpaper ~/Pictures/wallpapers/nature.jpg
 set $opacity 0.80
 
 ##############################################################
@@ -30,6 +29,11 @@ set $browser qutebrowser
 set $lock wlogout 
 set $passman 1password --quick-access
 set $screenshot grim -g "$(slurp)"
+set $lockscreen swaylock --ignore-empty-password \
+ --daemonize \
+ --image=$wallpaper \
+ --indicator-x-position=60 \
+ --indicator-y-position=60 \
 
 ##############################################################
 # Options
@@ -57,7 +61,7 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
 # Set wallpaper
-output * bg $WALLPAPER fill
+output * bg $wallpaper fill
 
 # idle timeout to automatically lock the screen
 exec swayidle -w \
