@@ -50,8 +50,8 @@ keys = [
     # SUPER + SHIFT KEYS
     Key([mod_keys["mod"], "shift"], "q", lazy.window.kill(),
         desc="Close current window"),
-    Key([mod_keys["mod"], "shift"], "r", lazy.restart(),
-        desc="Restart qtile"),
+    Key([mod_keys["mod"], "shift"], "r", lazy.reload_config(),
+        desc="Reload qtile config"),
     Key([mod_keys["mod"], "shift"], "p", lazy.spawn(apps['picom_toggle']),
         desc="Toggle Picom"),
 

@@ -76,7 +76,7 @@ class Battery:
             '{:<18} {}'.format('Status:', self.status),
             '{:<18} {}%'.format('Battery Percent:', self.percent),
             '{:<18} {}%'.format('Battery Health:', self.health),
-            '{:<18} {}'.format('Power Profile:', self.profile.capitalize())
+            # '{:<18} {}'.format('Power Profile:', self.profile.capitalize())
         ])
         if self.status == "Discharging":
             message += '\n{:18} {}'.format('Time Remaining:', self.time_left)
@@ -87,11 +87,11 @@ class Battery:
         return BATTERY_ICONS[self.status][icon_percentage]
 
     #TODO: Try to convert from the profile list to the Enum
-    def next_power_plan(self):
-        next_index = POWER_PROFILES.index(self.profile) + 1
-        if next_index > len(POWER_PROFILES) - 1:
-            next_index = 0
-        self.set_power_plan(POWER_PROFILES[next_index])
+    # def next_power_plan(self):
+    #     next_index = POWER_PROFILES.index(self.profile) + 1
+    #     if next_index > len(POWER_PROFILES) - 1:
+    #         next_index = 0
+    #     self.set_power_plan(POWER_PROFILES[next_index])
         # power_profiles = PowerProfiles
         # power_profile_list = list(power_profiles)
         # next_index = power_profile_list.index(self.profile.value) + 1
@@ -106,13 +106,13 @@ class Battery:
         hh, mm = divmod(mm, 60)
         return '{}:{:02d}'.format(hh, mm)
 
-    @staticmethod
-    def get_power_plan():
-        return subprocess.check_output(['powerprofilesctl', 'get']).decode().strip("\n")
-
-    @staticmethod
-    def set_power_plan(plan: str):
-        subprocess.call(['powerprofilesctl', 'set', plan])
+    # @staticmethod
+    # def get_power_plan():
+    #     return subprocess.check_output(['powerprofilesctl', 'get']).decode().strip("\n")
+    #
+    # @staticmethod
+    # def set_power_plan(plan: str):
+    #     subprocess.call(['powerprofilesctl', 'set', plan])
 
     @staticmethod
     def get_health(battery_path: pathlib.Path):
@@ -127,7 +127,7 @@ class Battery:
             name=battery_path.name,
             path=battery_path,
             percent=int(battery.percent),
-            profile=cls.get_power_plan(),
+            # profile=cls.get_power_plan(),
             status=battery_path.joinpath('status').read_text().strip('\n'),
             time_left=cls.get_time_remaining(battery.secsleft),
         )
@@ -143,16 +143,18 @@ def main(args):
         send_notification(str(battery))
 
     if args.command == 'middle-click':
+        pass  
         # next_index = POWER_PROFILES.index(battery.profile) + 1
         # if next_index > len(POWER_PROFILES) - 1:
         #     next_index = 0
         # battery.set_power_plan(POWER_PROFILES[next_index])
-        battery.next_power_plan()
-        battery.profile = battery.get_power_plan()
-        send_notification(f'New Power Profile: {battery.profile.capitalize()}')
+        # battery.next_power_plan()
+        # battery.profile = battery.get_power_plan()
+        # send_notification(f'New Power Profile: {battery.profile.capitalize()}')
 
     if args.command == 'right-click':
-        send_notification(f'Current Power Profile: {battery.profile.capitalize()}')
+        pass
+        # send_notification(f'Current Power Profile: {battery.profile.capitalize()}')
 
     # if battery.status == 'Discharging':
     #     battery.set_power_plan('power-saver')

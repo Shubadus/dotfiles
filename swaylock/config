@@ -1,6 +1,6 @@
 ignore-empty-password
-
-color=000000
+daemonize
+image=$WALLPAPER
 
 indicator-x-position=60
-indicator-y-position=1020
+indicator-y-position=60

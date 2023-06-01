@@ -14,7 +14,6 @@ session=$(echo $XDG_SESSION_TYPE)
 
 #Find out your monitor name with xrandr or arandr (save and you get this line)
 
-# Restore Background Image
 run dunstctl set-paused false
 
 #starting utility applications at boot time
@@ -22,17 +21,18 @@ run xfce4-power-manager --daemon
 run /usr/libexec/polkit-gnome-authentication-agent-1 # Polkit for authentication
 run /usr/bin/dunst # Notifications
 run /usr/bin/1password --silent
+run /usr/bin/remmina -i
 
-# Xorg Specific Apps
 if [[ $session == "x11" ]]; then
-  # # Polybar and Modules
-  # run polybar
-  # run $HOME/.local/bin/spotify/launchlistener.sh
+  # Xorg Specific Apps
+  # Detect Screen Settings
   autorandr -c
-  run picom # Run compositor
+  # Run X compositor
+  run picom
+# Restore Background Image
   run nitrogen --restore
 elif [[ $session == "wayland" ]]; then
-  run swaybg -i ~/Pictures/wallpapers/waterfall.png -m fill -o *
+  # run swaybg -i ~/Pictures/wallpapers/waterfall.png -m fill -o *
   run swayidle
   run kanshi
 fi

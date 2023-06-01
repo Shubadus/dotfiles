@@ -1,19 +1,22 @@
-profile "work_dual_monitor" {
+# NOTE: When moving workspaces, specify 'workspace number #' to allow sworkstyle to properly work.
+profile "work_2k_montior" {
 		output eDP-1 disable
-		output "Dell Inc. DELL P2419HC 22YWWP2" enable mode 1920x1080@60
-		output "Dell Inc. DELL P2419HC FVVBJQ2" enable mode 1920x1080@60
-}
-profile "work_dual_monitor" {
-		output eDP-1 disable
-    output DP4 enable mode 2560x1440@60
+    output "BNQ BenQ PD2710QC L8H0049101Q" enable mode 2560x1440@60
+    exec swaymsg workspace number *, move workspace to output 'BNQ BenQ PD2710QC L8H0049101Q'
 }
 profile "laptop_only" {
 		output eDP-1 enable mode 1920x1080@60
-    exec swaymsg workspace 5, move workspace to output eDP-1
+    exec swaymsg workspace number *, move workspace to output eDP-1
 }
 profile "home_dual_monitor" {
 		output eDP-1 disable
-		output "Unknown 2460G4 0x00006801" enable mode 1920x1080@60 position 0,0
+		output "AOC 2460G4 0x00006801" enable mode 1920x1080@60 position 0,0
 		output "HannStar Display Corp HE247DPB 1234567890123" enable mode 1920x1080@60 position 1920,0
-    exec swaymsg workspace 5, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
+    exec swaymsg workspace number 6, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
+    exec swaymsg workspace number 7, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
+    exec swaymsg workspace number 8, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
+    exec swaymsg workspace number 9, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
+    exec swaymsg workspace number 10, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
 }
+
+# vi: ft=swayconfig

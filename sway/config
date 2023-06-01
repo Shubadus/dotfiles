@@ -3,24 +3,27 @@
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-
-exec_always "pkill kanshi; kanshi" 
-exec_always "autotiling -l 2"
-exec "/usr/libexec/polkit-gnome-authentication-agent-1"
-exec wl-paste -t text --watch clipman store
-
-### Variables
+##############################################################
+# General Variables
+##############################################################
 # Logo key. Use Mod1 for Alt.
-set $wallpaper ~/Pictures/wallpapers/waterfall.png
-set $mod Mod4
+# set $wallpaper ~/Pictures/wallpapers/nature.jpg
+# set $wallpaper 
+set $opacity 0.80
 
+##############################################################
+# Key Variables
+##############################################################
+set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
 
-# Default Programs
+##############################################################
+# Program Variables
+##############################################################
 set $term alacritty 
 set $menu rofi -show drun
 set $browser qutebrowser
@@ -28,26 +31,41 @@ set $lock wlogout
 set $passman 1password --quick-access
 set $screenshot grim -g "$(slurp)"
 
+##############################################################
+# Options
+##############################################################
 xwayland enable
 focus_follows_mouse no
 focus_on_window_activation smart
 smart_borders on
-smart_gaps on
+# smart_gaps on
 popup_during_fullscreen smart
 default_border pixel
+gaps inner 4
+###############################################
+# SwayFX config
+###############################################
+blur enable
+corner_radius 12
+layer_effects "waybar" blur enable
+layer_effects "dunst" blur enable
+layer_effects "rofi" blur enable
+scratchpad_minimize enable
 
 # WOB
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg $wallpaper fill
+# Set wallpaper
+output * bg $WALLPAPER fill
 
 # idle timeout to automatically lock the screen
 exec swayidle -w \
     timeout 900 'swaylock' \
-    timeout 1000 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+    timeout 1000 'swaymsg "output * dpms off"' \
     before-sleep 'playerctl pause' \
+    timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
+    resume 'swaymsg "output * dpms on"' \
     before-sleep 'swaylock' \
 
 ##############################################################
@@ -65,7 +83,7 @@ exec swayidle -w \
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+Shift+d exec $menu
 
     # Start Lockscreen app
     bindsym $mod+x exec $lock
@@ -180,6 +198,7 @@ exec swayidle -w \
 ##############################################################
 # Scratchpad:
 ##############################################################
+  # TODO: Look at using Sway and SwayMsg to emulate qtile's scratchpad functionality.
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
@@ -199,22 +218,5 @@ exec swayidle -w \
         bindsym $mod+Control+$right resize grow width 10px
 
 ##############################################################
-# Status Bar:
-##############################################################
-    # Read `man 5 sway-bar` for more information about this section.
-    bar {
-        position top
-
-        # When the status_command prints a new line to stdout, swaybar updates.
-        # The default just shows the current date and time.
-        # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-        swaybar_command waybar
-        colors {
-            statusline #ffffff
-            background #323232
-            inactive_workspace #32323200 #32323200 #5c5c5c
-        }
-    }
-
-##############################################################
-include /etc/sway/config.d/*
+# include /etc/sway/config.d/*
+include "~/.config/sway/config.d/*"
