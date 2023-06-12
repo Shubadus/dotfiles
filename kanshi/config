@@ -12,6 +12,11 @@ profile "home_dual_monitor" {
 		output eDP-1 disable
 		output "AOC 2460G4 0x00006801" enable mode 1920x1080@60 position 0,0
 		output "HannStar Display Corp HE247DPB 1234567890123" enable mode 1920x1080@60 position 1920,0
+    exec swaymsg workspace number 1, move workspace to output "AOC 2460G4 0x00006801"
+    exec swaymsg workspace number 2, move workspace to output "AOC 2460G4 0x00006801"
+    exec swaymsg workspace number 3, move workspace to output "AOC 2460G4 0x00006801"
+    exec swaymsg workspace number 4, move workspace to output "AOC 2460G4 0x00006801"
+    exec swaymsg workspace number 5, move workspace to output "AOC 2460G4 0x00006801"
     exec swaymsg workspace number 6, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
     exec swaymsg workspace number 7, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
     exec swaymsg workspace number 8, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"

@@ -3,7 +3,6 @@
     border: none;
     border-radius: 0;
     font-family: Hack;
-    /* font-family: "NotoSans Nerd"; */
     font-size: 18px;
     box-shadow: none;
     text-shadow: none;
@@ -68,9 +67,12 @@ label:focus {
 
 #cpu, #disk, #backlight, #network, #pulseaudio, 
 #custom-media, #temperature, #mpd, #langauge,
-#idle_inhibitor, #clock, #custom-spotify {
+#idle_inhibitor, #clock, #custom-spotify, #custom-check_updates {
     padding: 0 8px;
     margin: 0 2px;
+}
+#custom-check_updates.reboot {
+  background-color: #f53c3c;
 }
 
 #memory, #battery, #network, #tray {

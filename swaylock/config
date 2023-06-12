@@ -1,6 +1,7 @@
 ignore-empty-password
 daemonize
-image=$WALLPAPER
+
+image=~/Pictures/wallpapers/nature.jpg
 
 indicator-x-position=60
 indicator-y-position=60

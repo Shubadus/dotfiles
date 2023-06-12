@@ -48,7 +48,7 @@ function update_icon {
 
   printf "%s" "$icon"
 }
-step=2
+step=5
 # for arg in "$@"; do
 # [[ "${arg:0:1}" = '-' ]] || continue
 case "$1" in

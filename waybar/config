@@ -15,6 +15,7 @@
       "clock",
     ],
     "modules-right": [
+      "custom/check_updates",
       "idle_inhibitor",
       "memory",
       "backlight",
@@ -32,7 +33,7 @@
     //Modules configuration
     "sway/workspaces": {
       "disable-scroll": true,
-      "all-outputs": true,
+      // "all-outputs": true,
       "format": "{icon}",
       // "persistent_workspaces": {
       //   "1":[],
@@ -154,7 +155,10 @@
         },
         "tooltip-format": "{desc}: {volume}%",
         "on-click-right": "pavucontrol",
-        "on-click-middle": "amixer set Master 1+ toggle > /dev/null"
+        // "on-click-middle": "amixer set Master 1+ toggle > /dev/null",
+        "on-click-middle": "~/.local/bin/statusbar/volumecontrol mute",
+        "on-scroll-up": "~/.local/bin/statusbar/volumecontrol up",
+        "on-scroll-down": "~/.local/bin/statusbar/volumecontrol down"
     },
     "custom/media": {
         "format": "{icon} {}",
@@ -167,6 +171,14 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+    "custom/check_updates": {
+      "interval": 43200,
+      "format": "{}",
+      "return-type": "json",
+      "exec": "$HOME/.local/bin/statusbar/updates.sh --check-updates" ,
+      "on-click": "alacritty -e $HOME/.local/bin/statusbar/updates.sh --update-dnf; pkill -SIGRTMIN+10 waybar",
+      "signal": 10,
+    },
 }
 

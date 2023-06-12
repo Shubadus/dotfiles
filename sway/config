@@ -29,11 +29,10 @@ set $browser qutebrowser
 set $lock wlogout 
 set $passman 1password --quick-access
 set $screenshot grim -g "$(slurp)"
-set $lockscreen swaylock --ignore-empty-password \
- --daemonize \
- --image=$wallpaper \
- --indicator-x-position=60 \
- --indicator-y-position=60 \
+set $volumecontrol ~/.local/bin/statusbar/volumecontrol
+set $volumecontrol_up $volumecontrol up
+set $volumecontrol_down $volumecontrol down
+set $volumecontrol_mute $volumecontrol mute
 
 ##############################################################
 # Options
@@ -44,8 +43,9 @@ focus_on_window_activation smart
 smart_borders on
 # smart_gaps on
 popup_during_fullscreen smart
-default_border pixel
+default_border pixel 2
 gaps inner 4
+
 ###############################################
 # SwayFX config
 ###############################################
@@ -56,9 +56,14 @@ layer_effects "dunst" blur enable
 layer_effects "rofi" blur enable
 scratchpad_minimize enable
 
-# WOB
-set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
-exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+###############################################
+# Sway Colors
+###############################################
+# Colors are Breeze Dark
+client.focused #3daee9 #232629 #eff0f1 #804453 #3daee9
+# client.focused_inactive #3daee9 #232629 #eff0f1 #804453 #3daee9
+# client.focused #3daee9 #232629 #eff0f1 #804453 #3daee9
+client.urgent #804453 #232629 #eff0f1 #804453 #3daee9
 
 # Set wallpaper
 output * bg $wallpaper fill
@@ -112,9 +117,13 @@ exec swayidle -w \
     bindsym --locked XF86AudioPrev exec playerctl previous
 
     # Pactl volume controls
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    # bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+    # bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+    # bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+    bindsym XF86AudioRaiseVolume exec $volumecontrol_up
+    bindsym XF86AudioLowerVolume exec $volumecontrol_down
+    bindsym XF86AudioMute exec $volumecontrol_mute
 
     # Brightness Controls
     bindsym --locked XF86MonBrightnessUp exec --no-startup-id light -A 10
@@ -129,22 +138,15 @@ exec swayidle -w \
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+
+    bindsym Alt+$left focus output left 
+    bindsym Alt+$right focus output right
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
 ##############################################################
 # Workspaces:
 ##############################################################
@@ -170,6 +172,9 @@ exec swayidle -w \
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
+
+    bindsym $mod+Alt+$left move workspace to output left
+    bindsym $mod+Alt+$right move workspace to output right
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
 
