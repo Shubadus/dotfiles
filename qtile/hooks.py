@@ -17,10 +17,11 @@ def start_always():
     subprocess.Popen(('xsetroot', '-cursor_name', 'left_ptr'))
 
 
-@hook.subscribe.screen_change
-def update_wallpaper():
-    subprocess.call(apps['wallpaper_restore'])
-
+# @hook.subscribe.screen_change
+# def update_wallpaper(qtile, ev):
+#     qtile.cmd_restart()
+#     subprocess.call(apps['wallpaper_restore'])
+#
 
 @hook.subscribe.client_new
 def set_floating(window):

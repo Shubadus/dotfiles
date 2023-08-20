@@ -1,0 +1,11 @@
+exec rm /tmp/nwg-shell-check-update.lock
+exec wlsunset -t 4500 -T 6500 -l 39.7683 -L -86.1583 -g 1.0
+exec swaync -s /home/cshumer/.config/swaync/preset-1.css
+exec nm-applet --indicator
+exec_always nwg-autotiling -w 1 2 3 4 5 6 7 8
+exec_always nwg-drawer -r -c 6 -is 64 -fscol 2 -s preset-1.css -term alacritty
+exec_always nwg-dock -d -p bottom -l overlay -a center -i 48 -hd 20 -s preset-1.css
+exec_always nwg-panel -c preset-1 -s preset-1.css
+exec_always nwg-shell-check-updates
+exec swayidle timeout 1200 nwg-lock timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+exec nwg-shell-config

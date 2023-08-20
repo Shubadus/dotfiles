@@ -1,9 +1,7 @@
-# import hooks
 import hooks
 from groups import floating_layout, groups
 from bindings import keys, mouse
 from screens import screens, layouts, widget_defaults
-# from style import widget_defaults
 # from libqtile.backend.wayland import InputConfig
 
 # wl_input_rules = {

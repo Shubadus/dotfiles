@@ -21,7 +21,7 @@ profile "home_dual_monitor" {
     exec swaymsg workspace number 7, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
     exec swaymsg workspace number 8, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
     exec swaymsg workspace number 9, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
-    exec swaymsg workspace number 10, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
+    # exec swaymsg workspace number 10, move workspace to output "HannStar Display Corp HE247DPB 1234567890123"
 }
 
 # vi: ft=swayconfig

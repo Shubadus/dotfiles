@@ -23,8 +23,14 @@ widget_defaults = dict(
     padding=8,
     **theme
 )
+sep = widget.Sep()
 
 widgets = [
+    widget.CurrentLayoutIcon(
+        padding=4,
+        scale=0.7
+    ),
+    sep,
     widget.GroupBox(
         disable_drag=True,
         highlight_method="text",
@@ -32,26 +38,15 @@ widgets = [
         padding=0,
         rounded=True,
     ),
-    widget.Sep(),
-    widget.CurrentLayoutIcon(
-        padding=4,
-        scale=0.7
+    widget.TaskList(
+        fontsize=14,
+        padding_y=2,
+        padding_x=5,
+        icon_size=18,
+        margin=1,
+        max_title_width=300,
     ),
-    widget.Spacer(),
-    widget.Clock(
-        format=clock_fmt,
-        mouse_callbacks={
-            'Button1': lazy.spawn(f"{apps['qtile_cal_show']}"),
-        }
-    ),
-    # clock.ClockTooltip(
-    #     format=clock_fmt,
-    #     mouse_callbacks={
-    #
-    #         'Button1': lazy.spawn(f"{apps['qtile_cal_show']}"),
-    #     }
-    # ),
-    widget.Spacer(),
+    # widget.Spacer(),
     widget.Mpris2(
         display_metadata=['xesam:title', 'xesam:artist'],
         fmt=f"{icons['spotify']}" + ' {}',
@@ -77,60 +72,61 @@ widgets = [
         },
         update_interval=1800,
     ),
-    # widget.StatusNotifier(
-    #     icon_size=24,
-    # ),
-    widget.Systray(
-        icon_size=24,
-    ),
-    widget.TextBox(
-        " ",
-        padding=2
-    ),
-    # memory.MemoryTooltip(
-    #     format=f"{icons['memory']}" + " {MemPercent:02.0f}%",
-    #     measure_mem="G",
-    #     update_interval=1,
-    # ),
     widget.Memory(
         format=f"{icons['memory']}" + " {MemPercent:02.0f}%",
         measure_mem="G",
         update_interval=1,
     ),
+    widget.Systray(
+        icon_size=20,
+        padding=12,
+    ),
+    widget.TextBox(
+        " ",
+        padding=2
+    ),
     # Volume Widget
     widget.GenPollText(
         update_interval=1, func=lambda: subprocess.check_output(
-            f"{apps['qtile_vol']}").decode(),
+            f"{apps['vol']}").decode(),
         mouse_callbacks={
-            'Button1': lazy.spawn(f"{apps['qtile_vol_show']}"),
-            'Button2': lazy.spawn(f"{apps['qtile_vol_mute']}"),
+            'Button1': lazy.spawn(f"{apps['vol_show']}"),
+            'Button2': lazy.spawn(f"{apps['vol_mute']}"),
             'Button3': lazy.group['scratchpad'].dropdown_toggle("audio"),
-            'Button4': lazy.spawn(f"{apps['qtile_vol_up']}"),
-            'Button5': lazy.spawn(f"{apps['qtile_vol_down']}"),
+            'Button4': lazy.spawn(f"{apps['vol_up']}"),
+            'Button5': lazy.spawn(f"{apps['vol_down']}"),
         }),
     # Network Widget
     widget.GenPollText(
         update_interval=5,
-        func=lambda: subprocess.check_output(str(apps['qtile_net'])).decode(),
+        func=lambda: subprocess.check_output(str(apps['net'])).decode(),
         mouse_callbacks={
-            'Button1': lazy.spawn(f"{apps['qtile_net']} ShowInfo", shell=True),
+            'Button1': lazy.spawn(f"{apps['net']} ShowInfo", shell=True),
             'Button3': lazy.group["scratchpad"].dropdown_toggle("network_manager")}),
     # Battery Widget
     widget.GenPollText(
         update_interval=1,
-        func=lambda: subprocess.check_output(str(apps['qtile_bat'])).decode(),
+        func=lambda: subprocess.check_output(str(apps['bat'])).decode(),
         mouse_callbacks={
            'Button1': lazy.spawn(
-               f"{apps['qtile_bat']} --c left-click", shell=True),
+               f"{apps['bat']} --c left-click", shell=True),
            'Button2': lazy.spawn(
-               f"{apps['qtile_bat']} --c middle-click", shell=True),
+               f"{apps['bat']} --c middle-click", shell=True),
            'Button3': lazy.spawn(
-               f"{apps['qtile_bat']} --c right-click", shell=True),
+               f"{apps['bat']} --c right-click", shell=True),
            }),
-    widget.TextBox(
-        f"{icons['power']}",
+    sep,
+    # widget.TextBox(
+    #     f"{icons['power']}",
+    #     mouse_callbacks={
+    #         'Button1': lazy.spawn(apps['logout']),
+    #     }
+    # ),
+    # widget.Sep(size_percent=0),
+    widget.Clock(
+        format=clock_fmt,
         mouse_callbacks={
-            'Button1': lazy.spawn(apps['logout']),
+            'Button1': lazy.spawn(f"{apps['cal_show']}"),
         }
     ),
 ]
@@ -138,7 +134,6 @@ widgets = [
 screens = [
     Screen(
         top=bar.Bar(
-            # wallpaper=
             widgets=widgets,
             background=f"{theme.get('background')}",
             size=26,

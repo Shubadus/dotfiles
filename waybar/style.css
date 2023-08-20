@@ -2,23 +2,17 @@
     /* `otf-font-awesome` is required to be installed for icons */
     border: none;
     border-radius: 0;
-    font-family: Hack;
-    font-size: 18px;
-    box-shadow: none;
-    text-shadow: none;
+    font-family: NotoSans Nerd Font;
+    font-size: 20px;
     transition-duration: 0s;
+    padding: 0 2px;
 }
 
 window#waybar {
-    background: alpha(@theme_base_color, 0.80);
-    /* border-bottom: 1px solid @unfocused_borders; */
+    background: @theme_base_color;
     color: @theme_text_color;
     transition-property: background-color;
     transition-duration: .5s
-}
-
-#workspaces button {
-    padding: 0 12px;
 }
 
 #workspaces button:hover {
@@ -65,19 +59,8 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu, #disk, #backlight, #network, #pulseaudio, 
-#custom-media, #temperature, #mpd, #langauge,
-#idle_inhibitor, #clock, #custom-spotify, #custom-check_updates {
-    padding: 0 8px;
-    margin: 0 2px;
-}
 #custom-check_updates.reboot {
   background-color: #f53c3c;
-}
-
-#memory, #battery, #network, #tray {
-    padding: 0 4px;
-    margin: 0 2px;
 }
 
 #network.disconnected {

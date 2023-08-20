@@ -1,3 +1,5 @@
+import gtk_helper
+
 themes = dict(
     breeze = dict(
         background="#232629", #background_normal
@@ -5,6 +7,7 @@ themes = dict(
         this_current_screen_border="#3daee9", #foreground_active
         inactive="#4d4d4d",#background_alternate
         active="#eff0f1",#foreground_normal
+        border="#3daee9", #foreground_active
         border_focus="#3daee9", #foreground_active
         border_normal="#232629", #background_normal
         urgent_text="#804453", #foreground_negative
@@ -26,7 +29,8 @@ icons = dict(
     file = '',
     folder = '',
     headphones = '',
-    home = "", music = '',
+    home = "",
+    music = '',
     memory = '',
     message = '',
     open = '',
@@ -67,7 +71,6 @@ icons = dict(
     wifi = '',
 )
 
-theme = themes['breeze']
-# theme = themes['default']
-clock_fmt = "%a, %d %b %Y - %H:%M"
+theme = gtk_helper.get_gtk3_theme()
+clock_fmt = "%a, %b %d  %H:%M"
 

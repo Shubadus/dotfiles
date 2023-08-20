@@ -40,7 +40,7 @@ apps['network_manager']     = "nm-connection-editor"
 apps['screenshot']          = "flameshot gui"
 apps['vpn']                 = "/opt/cisco/anyconnect/bin/vpnui"
 apps['wallpaper']           = "nitrogen"
-apps['wallpaper_restore']   = [f"{apps['wallpaper']}", "--restore"]
+apps['wallpaper_restore']   = f"{apps['wallpaper']} --restore"
 
 # Flatpak Applications
 apps['power_manager']       = "flatpak run com.github.d4nj1.tlpui"
@@ -55,17 +55,25 @@ apps['picom_toggle']        = f"{qtile_scripts}/picom-toggle"
 apps['suspend']             = f"{qtile_scripts}/suspend"
 
 # Qtile bar polling
-apps['qtile_bat']           = f"{statusbar_scripts}/battery.py"
-apps['qtile_bat_right']     = f"{apps['qtile_bat']} right-click"
-apps['qtile_cal']           = f"{statusbar_scripts}/calendar.sh"
-apps['qtile_cal_show']      = f"{apps['qtile_cal']} show"
-apps['qtile_net']           = f"{statusbar_scripts}/network.sh"
-apps['qtile_net_show']      = f"{apps['qtile_net']} ShowInfo"
-apps['qtile_vol']           = f"{statusbar_scripts}/volumecontrol"
-apps['qtile_vol_show']      = f"{apps['qtile_vol']} show"
-apps['qtile_vol_down']      = f"{apps['qtile_vol']} down"
-apps['qtile_vol_mute']      = f"{apps['qtile_vol']} mute"
-apps['qtile_vol_up']        = f"{apps['qtile_vol']} up"
+apps['bat']           = f"{statusbar_scripts}/battery.py"
+apps['bat_right']     = f"{apps['bat']} right-click"
+
+apps['cal']           = f"{statusbar_scripts}/calendar.sh"
+apps['cal_show']      = f"{apps['cal']} show"
+
+apps['net']           = f"{statusbar_scripts}/network.sh"
+apps['net_show']      = f"{apps['net']} ShowInfo"
+
+apps['vol']           = f"{statusbar_scripts}/volumecontrol"
+apps['vol_show']      = f"{apps['vol']} show"
+apps['vol_down']      = f"{apps['vol']} down"
+apps['vol_mute']      = f"{apps['vol']} mute"
+apps['vol_up']        = f"{apps['vol']} up"
+
+apps['updates']        = f"{statusbar_scripts}/updates.sh"
+apps['check_updates'] = f"{apps['updates']} --check-updates"
+apps['pkg_mgr_update'] = f"{apps['updates']} --update-dnf"
+apps['flatpak_update'] = f"{apps['updates']} --update-flatpak"
 
 # Qtile bar apps
   

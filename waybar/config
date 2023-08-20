@@ -1,7 +1,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 32, // Waybar height (to be removed for auto height)
+    // "height": 32, // Waybar height (to be removed for auto height)
     // "width": 98,
     // "width": 1280, // Waybar width
     // Choose the order of the modules
@@ -15,14 +15,15 @@
       "clock",
     ],
     "modules-right": [
-      "custom/check_updates",
-      "idle_inhibitor",
       "memory",
+      "idle_inhibitor",
+      "custom/check_updates",
+      "tray",
+      "custom/notification",
       "backlight",
       "pulseaudio",
       "battery",
       "network",
-      "tray",
     ],
     // Hyprland
     "wlr/workspaces": {
@@ -33,15 +34,20 @@
     //Modules configuration
     "sway/workspaces": {
       "disable-scroll": true,
-      // "all-outputs": true,
+      "all-outputs": true,
       "format": "{icon}",
-      // "persistent_workspaces": {
-      //   "1":[],
-      //   "2":[],
-      //   "3":[],
-      //   "4":[],
-      //   "5":[],
-      // }
+      "persistent_workspaces": {
+        "1":[],
+        "2":[],
+        "3":[],
+        "4":[],
+        "5":[],
+        "6":[],
+        "7":[],
+        "8":[],
+        "9":[],
+        // "10":[]
+      }
     },
     "wlr/taskbar": {
       "format": "{icon}{name}",
@@ -59,14 +65,14 @@
         "unknown-tag": "N/A",
         "interval": 2,
         "consume-icons": {
-            "on": " "
+            "on": ""
         },
         "random-icons": {
             "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
+            "on": ""
         },
         "repeat-icons": {
-            "on": " "
+            "on": ""
         },
         "single-icons": {
             "on": "1 "
@@ -99,7 +105,8 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{icon}  {percent}%",
+        "format": "{icon}",
+        "format-alt": "{icon} {percent}%",
         "format-icons": ["󰃝", "󰃞", "󰃟", "󰃠"]
     },
     "battery": {
@@ -110,7 +117,7 @@
         "format": "{icon}",
         "format-alt": "{icon} {capacity}%",
         // "format-good": "", // An empty format will hide the module
-        "format-full": "󰂄",
+        "format-full": "", //"󰂄",
         "format-icons": { 
           // TODO: Discharge Icons not showing correctly.
           "discharging": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂"],
@@ -141,7 +148,7 @@
         "format-alt": "{icon} {volume}%",
         "format-bluetooth": "󰂰 {volume}",
         "format-bluetooth-muted": "󰂲 {format_source}",
-        "format-muted": "󰝟  Muted",
+        "format-muted": "󰝟 Muted",
         // "format-source": " {volume}%",
         // "format-source-muted": "",
         "format-icons": {
@@ -177,8 +184,28 @@
       "format": "{}",
       "return-type": "json",
       "exec": "$HOME/.local/bin/statusbar/updates.sh --check-updates" ,
-      "on-click": "alacritty -e $HOME/.local/bin/statusbar/updates.sh --update-dnf; pkill -SIGRTMIN+10 waybar",
+      "on-click": "$HOME/.local/bin/statusbar/updates.sh --update-dnf; pkill -SIGRTMIN+10 waybar",
       "signal": 10,
+    }, 
+    "custom/notification": {
+      "tooltip": false,
+      "format": "{icon}",
+      "format-icons": {
+        "notification": "󰂚<span foreground='red'><sup></sup></span>",
+        "none": "󰂚",
+        "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
+        "dnd-none": "󰂛",
+        "inhibited-notification": "󰂚<span foreground='red'><sup></sup></span>",
+        "inhibited-none": "󰂚",
+        "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
+        "dnd-inhibited-none": "󰂛"
     },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
 }
 

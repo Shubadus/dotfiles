@@ -24,6 +24,9 @@ run /usr/bin/1password --silent
 run /usr/bin/remmina -i
 
 if [[ $session == "x11" ]]; then
+  xset s on
+  xset s 600
+  xss-lock -- ~/.local/bin/lock -l
   # Xorg Specific Apps
   # Detect Screen Settings
   autorandr -c
