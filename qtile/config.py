@@ -9,5 +9,5 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
-wmname = "LG3D"
+wmname = "Qtile"
 

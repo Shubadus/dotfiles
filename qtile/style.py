@@ -1,4 +1,4 @@
-import gtk_helper
+# import gtk_helper
 
 themes = dict(
     breeze = dict(
@@ -71,6 +71,7 @@ icons = dict(
     wifi = '',
 )
 
-theme = gtk_helper.get_gtk3_theme()
+# theme = gtk_helper.get_gtk3_theme()
+theme = themes['breeze']
 clock_fmt = "%a, %b %d  %H:%M"
 

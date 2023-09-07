@@ -1,7 +1,7 @@
 import subprocess
 
 from libqtile import qtile
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from libqtile.config import Key, Drag
 
 from apps import apps

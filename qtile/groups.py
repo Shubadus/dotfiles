@@ -1,5 +1,5 @@
 from libqtile import layout
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from libqtile.config import DropDown, Group, Match, Key, ScratchPad
 
 from apps import apps

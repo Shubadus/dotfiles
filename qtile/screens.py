@@ -1,9 +1,9 @@
 import subprocess
 
-from libqtile import bar, qtile, layout
-from libqtile.command import lazy
+from libqtile import bar, qtile, layout, widget
+from libqtile.lazy import lazy
 from libqtile.config import Screen
-from qtile_extras import widget
+# from qtile_extras import widget
 
 from apps import apps
 from style import icons, theme, clock_fmt
@@ -17,10 +17,10 @@ LAYOUT_DEFAULTS = dict(
 widget_defaults = dict(
     border_width=2,
     font="NotoSans Nerd Font",
-    fontsize=20,
+    fontsize=18,
     tooltip_font="NotoSansMono Nerd Font",
     tooltip_fontsize=20,
-    padding=8,
+    padding=6,
     **theme
 )
 sep = widget.Sep()
@@ -38,13 +38,7 @@ widgets = [
         padding=0,
         rounded=True,
     ),
-    widget.TaskList(
-        fontsize=14,
-        padding_y=2,
-        padding_x=5,
-        icon_size=18,
-        margin=1,
-        max_title_width=300,
+    widget.WindowName(
     ),
     # widget.Spacer(),
     widget.Mpris2(
@@ -79,42 +73,42 @@ widgets = [
     ),
     widget.Systray(
         icon_size=20,
-        padding=12,
+        padding=4,
     ),
     widget.TextBox(
         " ",
         padding=2
     ),
     # Volume Widget
-    widget.GenPollText(
-        update_interval=1, func=lambda: subprocess.check_output(
-            f"{apps['vol']}").decode(),
-        mouse_callbacks={
-            'Button1': lazy.spawn(f"{apps['vol_show']}"),
-            'Button2': lazy.spawn(f"{apps['vol_mute']}"),
-            'Button3': lazy.group['scratchpad'].dropdown_toggle("audio"),
-            'Button4': lazy.spawn(f"{apps['vol_up']}"),
-            'Button5': lazy.spawn(f"{apps['vol_down']}"),
-        }),
+    # widget.GenPollText(
+    #     update_interval=1, func=lambda: subprocess.check_output(
+    #         f"{apps['vol']}").decode(),
+    #     mouse_callbacks={
+    #         'Button1': lazy.spawn(f"{apps['vol_show']}"),
+    #         'Button2': lazy.spawn(f"{apps['vol_mute']}"),
+    #         'Button3': lazy.group['scratchpad'].dropdown_toggle("audio"),
+    #         'Button4': lazy.spawn(f"{apps['vol_up']}"),
+    #         'Button5': lazy.spawn(f"{apps['vol_down']}"),
+    #     }),
     # Network Widget
-    widget.GenPollText(
-        update_interval=5,
-        func=lambda: subprocess.check_output(str(apps['net'])).decode(),
-        mouse_callbacks={
-            'Button1': lazy.spawn(f"{apps['net']} ShowInfo", shell=True),
-            'Button3': lazy.group["scratchpad"].dropdown_toggle("network_manager")}),
+    # widget.GenPollText(
+    #     update_interval=5,
+    #     func=lambda: subprocess.check_output(str(apps['net'])).decode(),
+    #     mouse_callbacks={
+    #         'Button1': lazy.spawn(f"{apps['net']} ShowInfo", shell=True),
+    #         'Button3': lazy.group["scratchpad"].dropdown_toggle("network_manager")}),
     # Battery Widget
-    widget.GenPollText(
-        update_interval=1,
-        func=lambda: subprocess.check_output(str(apps['bat'])).decode(),
-        mouse_callbacks={
-           'Button1': lazy.spawn(
-               f"{apps['bat']} --c left-click", shell=True),
-           'Button2': lazy.spawn(
-               f"{apps['bat']} --c middle-click", shell=True),
-           'Button3': lazy.spawn(
-               f"{apps['bat']} --c right-click", shell=True),
-           }),
+    # widget.GenPollText(
+    #     update_interval=1,
+    #     func=lambda: subprocess.check_output(str(apps['bat'])).decode(),
+    #     mouse_callbacks={
+    #        'Button1': lazy.spawn(
+    #            f"{apps['bat']} --c left-click", shell=True),
+    #        'Button2': lazy.spawn(
+    #            f"{apps['bat']} --c middle-click", shell=True),
+    #        'Button3': lazy.spawn(
+    #            f"{apps['bat']} --c right-click", shell=True),
+    #        }),
     sep,
     # widget.TextBox(
     #     f"{icons['power']}",
