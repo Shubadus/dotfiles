@@ -13,8 +13,7 @@ def start_once():
 
 @hook.subscribe.startup
 def start_always():
-    # Set the cursor to something sane in X
-    subprocess.Popen(('xsetroot', '-cursor_name', 'left_ptr'))
+    subprocess.call(apps['set-gtk-theme'])
 
 
 # @hook.subscribe.screen_change
@@ -22,6 +21,7 @@ def start_always():
 #     qtile.cmd_restart()
 #     subprocess.call(apps['wallpaper_restore'])
 #
+
 
 @hook.subscribe.client_new
 def set_floating(window):

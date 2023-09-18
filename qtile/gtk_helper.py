@@ -15,6 +15,8 @@ def get_gtk3_theme() -> dict[str,str]:
         color_list = [x.replace('@define-color ','').replace(';\n ','') for x in f.readlines() if x.startswith('@define-color')]
     
     for color in color_list:
+        if color.startswith('@import'):
+            pass
         k, v = color.split(' ', 1)
         v = v.strip().replace(';', '')
         if v.startswith('rgba'):

@@ -13,7 +13,7 @@ workspaces = [
   ]),
   dict(
       name="2",
-      label=f"{icons['remote']}",
+      label=f"{icons['presentation']}",
       matches=[
           Match(wm_class=["org.remmina.Remmina", "virt-manager", "vmrc"]),
           Match(wm_class=re.compile("Cisco AnyConnect*"))
@@ -29,13 +29,13 @@ workspaces = [
   ]),
   dict(
       name="4",
-      label=f"{icons['file']}",
+      label=f"{icons['text']}",
       matches=[
           Match(wm_class=["libreoffice","obsidian"])
   ]),
   dict(
       name="5",
-      label=f"{icons['message']}",
+      label=f"{icons['email']}",
       matches=[
           Match(wm_class=["microsoft teams - preview", "zoom", "discord"]),
           Match(wm_class=["Spotify","pavucontrol"]),

@@ -1,9 +1,9 @@
 import subprocess
 
-from libqtile import bar, qtile, layout, widget
+from libqtile import bar, qtile, layout
 from libqtile.lazy import lazy
 from libqtile.config import Screen
-# from qtile_extras import widget
+from qtile_extras import widget
 
 from apps import apps
 from style import icons, theme, clock_fmt
@@ -27,8 +27,8 @@ sep = widget.Sep()
 
 widgets = [
     widget.CurrentLayoutIcon(
-        padding=4,
-        scale=0.7
+        # padding=2,
+        scale=0.67
     ),
     sep,
     widget.GroupBox(
@@ -37,12 +37,12 @@ widgets = [
         urgent_alert_method="text",
         padding=0,
         rounded=True,
+        fontsize=22
     ),
     widget.WindowName(
     ),
     # widget.Spacer(),
-    widget.Mpris2(
-        display_metadata=['xesam:title', 'xesam:artist'],
+    widget.Mpris2( display_metadata=['xesam:title', 'xesam:artist'],
         fmt=f"{icons['spotify']}" + ' {}',
         scroll_chars=20,
         name='spotify',
@@ -54,13 +54,13 @@ widgets = [
         scroll=True,
     ),
     widget.CheckUpdates(
-        distro="Fedora",
+        distro="Arch_yay",
         display_format=f"{icons['update']}" + " {updates}",
         fmt=" {} ",
         no_update_string="",
         mouse_callbacks={
             'Button1': lambda: qtile.cmd_spawn(
-                apps["terminal"] + ' -e sudo dnf update'),
+                apps["terminal"] + ' -e yay -Syu'),
             'Button3': lambda: qtile.cmd_spawn(
                 apps["terminal"] + ' -e flatpak update')
         },
@@ -73,55 +73,45 @@ widgets = [
     ),
     widget.Systray(
         icon_size=20,
-        padding=4,
+        padding=8,
     ),
     widget.TextBox(
         " ",
-        padding=2
+        padding=0
     ),
+    widget.WiFiIcon(padding=6),
     # Volume Widget
-    # widget.GenPollText(
-    #     update_interval=1, func=lambda: subprocess.check_output(
-    #         f"{apps['vol']}").decode(),
-    #     mouse_callbacks={
-    #         'Button1': lazy.spawn(f"{apps['vol_show']}"),
-    #         'Button2': lazy.spawn(f"{apps['vol_mute']}"),
-    #         'Button3': lazy.group['scratchpad'].dropdown_toggle("audio"),
-    #         'Button4': lazy.spawn(f"{apps['vol_up']}"),
-    #         'Button5': lazy.spawn(f"{apps['vol_down']}"),
-    #     }),
-    # Network Widget
-    # widget.GenPollText(
-    #     update_interval=5,
-    #     func=lambda: subprocess.check_output(str(apps['net'])).decode(),
-    #     mouse_callbacks={
-    #         'Button1': lazy.spawn(f"{apps['net']} ShowInfo", shell=True),
-    #         'Button3': lazy.group["scratchpad"].dropdown_toggle("network_manager")}),
-    # Battery Widget
-    # widget.GenPollText(
-    #     update_interval=1,
-    #     func=lambda: subprocess.check_output(str(apps['bat'])).decode(),
-    #     mouse_callbacks={
-    #        'Button1': lazy.spawn(
-    #            f"{apps['bat']} --c left-click", shell=True),
-    #        'Button2': lazy.spawn(
-    #            f"{apps['bat']} --c middle-click", shell=True),
-    #        'Button3': lazy.spawn(
-    #            f"{apps['bat']} --c right-click", shell=True),
-    #        }),
-    sep,
-    # widget.TextBox(
-    #     f"{icons['power']}",
-    #     mouse_callbacks={
-    #         'Button1': lazy.spawn(apps['logout']),
-    #     }
+    widget.GenPollText(
+        update_interval=1, func=lambda: subprocess.check_output(
+            f"{apps['vol']}").decode(),
+        mouse_callbacks={
+            'Button1': lazy.spawn(f"{apps['vol_show']}"),
+            'Button2': lazy.spawn(f"{apps['vol_mute']}"),
+            'Button3': lazy.group['scratchpad'].dropdown_toggle("audio"),
+            'Button4': lazy.spawn(f"{apps['vol_up']}"),
+            'Button5': lazy.spawn(f"{apps['vol_down']}"),
+        },
+        fontsize=20,
+        padding=4
+    ),
+    # widget.ALSAWidget(
+    #     mode='bar',
+    #     update_interval=0.25
     # ),
-    # widget.Sep(size_percent=0),
+    widget.UPowerWidget(
+        margin=6
+    ),
+    sep,
     widget.Clock(
-        format=clock_fmt,
+        format=f"{icons['calendar']} {clock_fmt}",
         mouse_callbacks={
             'Button1': lazy.spawn(f"{apps['cal_show']}"),
         }
+    ),
+    widget.AnalogueClock(
+        face_shape='circle',
+        face_border_color=theme.get('border', ''),
+        padding=0
     ),
 ]
 

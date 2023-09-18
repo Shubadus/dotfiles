@@ -20,6 +20,7 @@ apps['audio_down']          = f"{apps['audio_cli']} set-sink-volume @DEFAULT_SIN
 
 # Assorted CLI apps
 apps['autostart']           = f"{qtile_scripts}/autostart"
+apps['set-gtk-theme']           = f"{qtile_scripts}/set-gtk-theme"
 
 # Brightness
 apps['brightness']          = "light"

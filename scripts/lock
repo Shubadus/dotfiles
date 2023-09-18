@@ -4,11 +4,18 @@
 session=$(echo $XDG_SESSION_TYPE)
 # wallpaper=$(cat .config/nitrogen/bg-saved.cfg | grep "file=" | sed "s/file=//g")[0]
 
+function run {
+  if ! pgrep $1 ;
+  then
+    $@&
+  fi
+}
+
 function lockscreen()
 {
   if [[ $session == "x11" ]]; then
 
-    $(command -v 'i3lock') \
+    run $(command -v 'i3lock') \
     --indicator \
     --clock \
     --blur=15 \

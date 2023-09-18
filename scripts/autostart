@@ -9,24 +9,22 @@ function run {
 
 session=$(echo $XDG_SESSION_TYPE)
 
-#Export Env Vars
-# export QT_QPA_PLATFORMTHEME="qt5ct"  
-
 #Find out your monitor name with xrandr or arandr (save and you get this line)
 
 run dunstctl set-paused false
 
 #starting utility applications at boot time
 run xfce4-power-manager --daemon
-run /usr/libexec/polkit-gnome-authentication-agent-1 # Polkit for authentication
+# run /usr/libexec/polkit-gnome-authentication-agent-1 # Fedora location
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Arch location
 run /usr/bin/dunst # Notifications
 run /usr/bin/1password --silent
-run /usr/bin/remmina -i
+run flatpak run org.remmina.Remmina -i
 
 if [[ $session == "x11" ]]; then
   xset s on
-  xset s 600
-  xss-lock -- ~/.local/bin/lock -l
+  xset s 150 600
+  run xss-lock -- ~/.local/bin/lock -l
   # Xorg Specific Apps
   # Detect Screen Settings
   autorandr -c

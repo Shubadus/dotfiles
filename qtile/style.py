@@ -1,4 +1,4 @@
-# import gtk_helper
+import gtk_helper
 
 themes = dict(
     breeze = dict(
@@ -21,20 +21,25 @@ themes = dict(
 )
 
 icons = dict( 
-    alert = '𥉉',
-    close = '',
-    code = '',
-    cpu = '',
+    alert = '󰀦',
+    arch = '󰣇',
+    calendar = '󰃭',
+    close = '󰅙',
+    code = '󱃖',
+    cpu = '',
+    clock = '󰥔',
+    email = '󰴃',
     fedora = '',
     file = '',
     folder = '',
-    headphones = '',
+    headphones = '󰋌',
     home = "",
-    music = '',
+    music = '󰎄',
     memory = '',
-    message = '',
+    message = '󰍩',
     open = '',
     pause = '',
+    presentation='󰈩',
     picture = '',
     play = '',
     power = '',
@@ -42,32 +47,21 @@ icons = dict(
     remote = '',
     spotify = '',
     terminal = '',
-    battery = dict( 
-        horizontal = { 
-            '100' : '',
-            '75' : '',
-            '50' : '',
-            '25' : '',
-            '0' : '',
-        },
-        vertical = { 
-            '10': '',
-            '20': '',
-            '30': '',
-            '40': '',
-            '50': '',
-            '60': '',
-            '70': '',
-            '80': '',
-            '90': '',
-            '100': '',
-            'alert': '',
-            'unknown': '',
-        },
-    ),
+    text = '󰈚',
+    battery = {
+        '100' : '',
+        '75' : '',
+        '50' : '',
+        '25' : '',
+        '0' : '',
+    },
     update = '󰚰',
     volume = '',
-    web = '爵',
+    volume_low = '󰕿',
+    volume_med = '󰖀',
+    volume_high = '󰕾',
+    volume_mute = '󰝟',
+    web = '󰾔',
     wifi = '',
 )
 
