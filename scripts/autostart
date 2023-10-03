@@ -8,38 +8,52 @@ function run {
 }
 
 session=$(echo $XDG_SESSION_TYPE)
+wallpaper=~/.local/share/wallpaper
+xorg_lock=~/.local/bin/lock
+wayland_lock=swaylock
+set_gtk=~/.local/bin/set-gtk-theme
+azote_wallpapers=~/.azotebg
+
 
 #Find out your monitor name with xrandr or arandr (save and you get this line)
 
-run dunstctl set-paused false
+#  Pause dunst, mostly we use this for KDE.
+if [[ $DESKTOP_SESSION == "qtile"* ]]; then
+  run dunst
+  run dunstctl set-paused false
+  run $set_gtk
+else
+  run dunstctl set-paused true
+fi
+
 
 #starting utility applications at boot time
-run xfce4-power-manager --daemon
 # run /usr/libexec/polkit-gnome-authentication-agent-1 # Fedora location
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Arch location
-run /usr/bin/dunst # Notifications
-run /usr/bin/1password --silent
+# run /usr/bin/1password --silent
+
+# Flatpaks
 run flatpak run org.remmina.Remmina -i
 
 if [[ $session == "x11" ]]; then
-  xset s on
-  xset s 150 600
-  run xss-lock -- ~/.local/bin/lock -l
-  # Xorg Specific Apps
-  # Detect Screen Settings
+  xset +dpms dpms 150 300 300
+  run xss-lock --transfer-sleep-lock -- $xorg_lock
   autorandr -c
-  # Run X compositor
   run picom
-# Restore Background Image
-  run nitrogen --restore
+  run feh --bg-fill $wallpaper
+
 elif [[ $session == "wayland" ]]; then
-  # run swaybg -i ~/Pictures/wallpapers/waterfall.png -m fill -o *
-  run swayidle
+  run $azote_wallpapers
+  # run swaybg -i $wallpaper -m fill
+  run swayidle -w \
+    timeout 900 $wayland_lock \
+    timeout 1000 'dpms off' \
+    before-sleep 'playerctl pause' \
+    # timeout 15 if pgrep -x $wayland_lock; then swaymsg 'dpms off'; fi \
+    resume 'dpms on' \
+    before-sleep $wayland_lock
   run kanshi
 fi
-
-# Flapaks
-run flatpak run org.remmina.Remmina -i
 
 if pgrep packagekitd;
   then

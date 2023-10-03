@@ -1,57 +1,62 @@
 #!/bin/bash
 #TODO: Add swaylock support
 
+dimensions=$(xdpyinfo | awk '/dimensions/ {print $2}')
+IFS=x read -r dimensions_x dimensions_y <<< $dimensions
+dimensions_x=$(echo "$dimensions_x * 0.05" | bc)
+dimensions_y=$(echo "$dimensions_y * 0.9" | bc)
+# greeter_x=$(echo "$dimensions_x * 5" | bc)
+# greeter_y=$(echo "$dimensions_y / 0.95" | bc)
+# --greeter-text="Please enter your password to unlock" \
+# --greeter-pos="$greeter_x:$greeter_y"\
+player_status=$(playerctl status)
 session=$(echo $XDG_SESSION_TYPE)
-# wallpaper=$(cat .config/nitrogen/bg-saved.cfg | grep "file=" | sed "s/file=//g")[0]
+wallpaper=~/.local/share/wallpaper
+was_playing=false
 
-function run {
-  if ! pgrep $1 ;
-  then
-    $@&
+pre_lock() {
+  dunstctl set-paused true
+  if [[ $player_status == "Playing" ]]; then
+    was_playing=true
+    playerctl pause
   fi
 }
 
-function lockscreen()
-{
+post_lock() {
+  dunstctl set-paused false
+  if $was_playing; then
+    playerctl play
+  fi
+}
+
+lock() {
   if [[ $session == "x11" ]]; then
 
-    run $(command -v 'i3lock') \
-    --indicator \
+    convert $wallpaper -resize $dimensions -blur 0x10 RGB:- | $(command -v 'i3lock') \
     --clock \
-    --blur=15 \
-    --time-color=ffffff \
+    --fill \
+    --ignore-empty-password \
+    --indicator \
+    --image /dev/stdin \
+    --ind-pos="$dimensions_x:$dimensions_y" \
+    --raw "$dimensions:rgb"\
     --date-color=ffffff \
+    --date-str="%a, %b %d" \
+    --time-color=ffffff \
+    --time-str="%H:%M:%S" \
     --pass-media-keys \
     --pass-screen-keys \
     --pass-volume-keys \
     --pass-power-keys \
-    &
-
-    if [[ $sleeptime ]]; then
-      sleep $sleeptime
-
-      xset s activate
-    fi
-  else
-    ""
+    --nofork
+    
+    xset dpms
+  elif [[ $session == 'wayland' ]]; then
+    gtklock
   fi
 }
 
-for arg in "$@"; do
-  [[ "${arg:0:1}" = '-' ]] || continue
-
-  case "$1" in
-
-    -l | --lock)
-      lockscreen
-      ;;
-    -s | --suspend )
-      sleeptime="$2"
-      shift 
-      lockscreen
-      ;;
-
-  esac
-done
-
+pre_lock
+lock
+post_lock
 exit 0

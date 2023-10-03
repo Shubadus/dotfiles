@@ -1,5 +1,6 @@
 #!/bin/bash
-lock="swaylock -f -i ~/.cache/wallpaper --effect-blur 10x5 --clock --indicator"
+# lock="swaylock -f -i ~/.cache/wallpaper --effect-blur 10x5 --clock --indicator"
+lock=loginctl lock-screen
 
 #### Options ###
 power_off="襤 Shutdown"
@@ -12,7 +13,7 @@ log_out="﫼 Log Out"
 # Options passed to fuzzel
 options="$power_off\n$reboot\n$suspend\n$hibernate\n$log_out\n$lock_screen"
 lines="$(echo "$options" | grep -oF '\n' | wc -l)"
-rofi_command="fuzzel -d -w 14 -l $((lines+1))"
+# rofi_command="fuzzel -d -w 14 -l $((lines+1))"
 chosen="$(echo -e "$options" | $rofi_command )"
 case $chosen in
     "$lock_screen")

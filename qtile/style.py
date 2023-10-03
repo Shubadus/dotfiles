@@ -1,23 +1,65 @@
 import gtk_helper
 
+def get_theme(theme_name):
+    return dict(
+        background=themes[theme_name].get('dark', '000000'),
+        foreground=themes[theme_name].get('light', 'ffffff'),
+        this_current_screen_border=themes[theme_name].get('focus', '#8AB4F8'),
+        inactive=themes[theme_name].get('inactive', 'A9A9A9'),
+        active=themes[theme_name].get('active', 'ffffff'),
+        border=themes[theme_name].get('focus', '#8AB4F8'),
+        border_focus=themes[theme_name].get('focus', '#8AB4F8'),
+        border_normal=themes[theme_name].get('dark', '000000'),
+        urgent_text=themes[theme_name].get('urgent', 'FF0000'),
+        selected_foreground=themes[theme_name].get('grey', 'A9A9A9'),
+        selected_background=themes[theme_name].get('focus', '#8AB4F8'),
+        tooltip_background=themes[theme_name].get('dark', '000000'),
+        tooltip_color=themes[theme_name].get('light', 'ffffff'),
+        face_border_colour=themes[theme_name].get('focus', '#8AB4F8'),
+    )
+
+
 themes = dict(
     breeze = dict(
-        background="#232629", #background_normal
-        foreground="#eff0f1",#foreground_normal
-        this_current_screen_border="#3daee9", #foreground_active
-        inactive="#4d4d4d",#background_alternate
-        active="#eff0f1",#foreground_normal
-        border="#3daee9", #foreground_active
-        border_focus="#3daee9", #foreground_active
-        border_normal="#232629", #background_normal
-        urgent_text="#804453", #foreground_negative
-        tooltip_background="#232629", #background_normal
-        tooltip_color="#eff0f1",#foreground_normal
+        grey="#232629",#background_alternate
+        dark="#232629",
+        light="#eff0f1",
+        focus="#3daee9",
+        active="#eff0f1",
+        inactive="#4d4d4d",
+        urgent="#804453", #foreground_negative
     ),
     default = dict(
-        this_current_screen_border="#3daee9", #foreground_active
-        border_focus="#3daee9", #foreground_active
-    )
+        focus="#8AB4F8"
+    ),
+    materia_darker = dict(
+        dark="#212121", 
+        grey="#353c4a",
+        light="#f1ffff",
+        text="#0f101a",
+        focus="#a151d3",
+        active="#f1ffff",
+        inactive="#4c566a",
+        urgent="#F07178",
+        color1="#a151d3",
+        color2="#F07178",
+        color3="#fb9f7f",
+        color4="#ffd47e",
+    ),
+    materia_ocean = { 
+        "dark": "#0f101a",
+        "grey": "#353c4a",
+        "light": "#f1ffff",
+        "text": "#0f101a",
+        "focus": "#a151d3",
+        "active": "#f1ffff",
+        "inactive": "#4c566a",
+        "urgent": "#F07178",
+        "color1": "#a151d3",
+        "color2": "#F07178",
+        "color3": "#fb9f7f",
+        "color4": "#ffd47e",
+    }
 )
 
 icons = dict( 
@@ -32,19 +74,23 @@ icons = dict(
     fedora = '',
     file = '',
     folder = '',
+    flathub = '',
     headphones = '󰋌',
-    home = "",
-    music = '󰎄',
+    home = '',
+    maximize = '  ',
     memory = '',
     message = '󰍩',
+    minimize = '  ',
+    music = '󰎄',
     open = '',
     pause = '',
-    presentation='󰈩',
+    presentation = '󰈩',
     picture = '',
     play = '',
     power = '',
     plug = '',
     remote = '',
+    restore = '  ',
     spotify = '',
     terminal = '',
     text = '󰈚',
@@ -65,7 +111,7 @@ icons = dict(
     wifi = '',
 )
 
-# theme = gtk_helper.get_gtk3_theme()
-theme = themes['breeze']
+theme = get_theme('materia_darker')
+
 clock_fmt = "%a, %b %d  %H:%M"
 

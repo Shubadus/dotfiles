@@ -38,7 +38,6 @@ workspaces = [
       label=f"{icons['email']}",
       matches=[
           Match(wm_class=["microsoft teams - preview", "zoom", "discord"]),
-          Match(wm_class=["Spotify","pavucontrol"]),
           Match(wm_class=re.compile("WebApp-Outlook*"))
   ])
 ]

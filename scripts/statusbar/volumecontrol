@@ -22,6 +22,7 @@ function send_notification {
   dunstify \
     -r 5556 \
     -u normal \
+    -i " " \
     " Volume: $volume" \
     " $bar"
 }

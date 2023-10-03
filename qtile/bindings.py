@@ -1,10 +1,28 @@
 import subprocess
 
-from libqtile import qtile
+from libqtile import extension
 from libqtile.lazy import lazy
 from libqtile.config import Key, Drag
 
 from apps import apps
+from style import theme
+
+# dmenu = extension.J4DmenuDesktop(
+#     dmenu_ignorecase=True,
+#     dmenu_lines=15,
+#     dmenu_prompt=">",
+#     # dmenu_font="NotoSans Nerd Font",
+#     **theme
+# )
+
+@lazy.function
+def cycle_windows(qtile, index=1):
+    windows = extension.window_list(qtile) # get the list of windows
+    if windows: # check if the list is not empty
+        current = qtile.current_window # get the current window
+        next_index = (windows.index(current) + index) % len(windows) # get the index of the next window
+        next_window = windows[next_index] # get the next window
+        next_window.focus(warp=True) # focus the next window and warp the pointer to it
 
 mod_keys = dict(
     mod = "mod4",
@@ -32,6 +50,8 @@ keys = [
     # SUPER + FUNCTION KEYS
     Key([mod_keys["mod"]], "f", lazy.window.toggle_fullscreen(),
         desc="Fullscreen current window"),
+    Key([], "F11", lazy.window.toggle_fullscreen(),
+        desc="Fullscreen current window"),
     Key([mod_keys["mod"]], "m", lazy.window.toggle_maximize(),
         desc="Maximize current window"),
     Key([mod_keys["mod"]], "q", lazy.window.kill(),
@@ -42,10 +62,6 @@ keys = [
         desc=f"Launch {apps['terminal']} terminal"),
     Key([mod_keys["mod2"], "shift"], "l", lazy.spawn(apps["lock"]),
         desc="Lock the screen"),
-    Key([mod_keys["mod2"], "shift"], "s", lazy.spawn(apps["suspend"]),
-        desc="Lock the screen"),
-    Key([], "F12", lazy.spawn(apps["screenshot"]),
-        desc="Take a screenshot"),
 
     # SUPER + SHIFT KEYS
     Key([mod_keys["mod"], "shift"], "q", lazy.window.kill(),
@@ -55,17 +71,23 @@ keys = [
     Key([mod_keys["mod"], "shift"], "p", lazy.spawn(apps['picom_toggle']),
         desc="Toggle Picom"),
 
+    Key([mod_keys["mod1"]], "Tab", lazy.group.next_window()),
+    Key([mod_keys["mod1"], "shift"], "Tab", lazy.group.prev_window()),
+
     # Applications
     Key([mod_keys["mod"], "shift"], "d", lazy.spawn(apps['launcher']),
         desc="Launch app launcher"),
-    Key([mod_keys["mod"], "shift"], "Return", lazy.spawn(apps["filemanager"])),
+    # Key([mod_keys["mod"], "shift"], "d", lazy.run_extension(dmenu)),
+    Key([mod_keys["mod"], "shift"], "Return", lazy.group["scratchpad"].dropdown_toggle("dropdown_ranger")),
     Key([mod_keys["mod"], "shift"], "b", lazy.spawn(apps["browser"]),
         desc=f"Launch {apps['browser']} web browser"),
     Key([mod_keys["mod"], "shift"], "s", lazy.spawn(apps["screenshot"]),
         desc=f"Take a screenshot"),
     Key([mod_keys["mod"]], "x", lazy.spawn(apps["logout"]),
         desc=f"Logout"),
-    Key([mod_keys["mod2"], "shift"], "space", lazy.spawn(apps['pass_man_launcher']),
+    # Key([mod_keys["mod2"], "shift"], "space", lazy.spawn(apps['pass_man_launcher']),
+    #     desc=f"Launch {'pass_man'} --quick access"),
+    Key([mod_keys["mod2"], "shift"], "space", lazy.group['scratchpad'].dropdown_toggle('pass_man'),
         desc=f"Launch {'pass_man'} --quick access"),
 
     # QTILE LAYOUT KEYS
@@ -82,6 +104,7 @@ keys = [
     # Move between screens
     Key([mod_keys["mod1"]], "l", next_screen()),
     Key([mod_keys["mod1"]], "h", prev_screen()),
+
     # RESIZE UP, DOWN, LEFT, RIGHT
     Key([mod_keys["mod"], "control"], "l",
         lazy.layout.grow_right(),
@@ -136,6 +159,7 @@ keys = [
     Key([], "F10", lazy.group["scratchpad"].dropdown_toggle("network_manager")),
     Key([], "F9", lazy.group["scratchpad"].dropdown_toggle("audio")),
     Key([], "F8", lazy.group["scratchpad"].dropdown_toggle("vpn")),
+    Key([], "F7", lazy.group["scratchpad"].dropdown_toggle("spotify")),
     Key([mod_keys["mod2"], "shift"], "escape",
         lazy.group["scratchpad"].dropdown_toggle("sysmonitor")),
 ]

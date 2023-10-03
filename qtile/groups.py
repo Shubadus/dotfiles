@@ -1,6 +1,6 @@
 from libqtile import layout
 from libqtile.lazy import lazy
-from libqtile.config import DropDown, Group, Match, Key, ScratchPad
+from libqtile.config import DropDown, Group, Match, Key, ScratchPad, Rule
 
 from apps import apps
 from bindings import keys, mod_keys
@@ -37,9 +37,12 @@ dropdown_conf = {
 dropdowns = [
     DropDown("sysmonitor", apps['sysmonitor'], height=0.7, opacity=0.9, **dropdown_conf),
     DropDown("dropdown_term", apps['terminal'], height=0.7, opacity=0.9, **dropdown_conf),
+    DropDown("dropdown_ranger", apps['filemanager'], height=0.7, opacity=0.9, **dropdown_conf),
     DropDown("network_manager", apps['network_manager'], height=0.7, opacity=0.9, **dropdown_conf),
     DropDown("vpn", apps['vpn'], height=0.7, opacity=1, **dropdown_conf),
     DropDown("audio", apps['audio_gui'], height=0.7, opacity=1, **dropdown_conf),
+    DropDown("spotify", apps['spotify'], match=Match(wm_class='Spotify'), height=0.7, opacity=1, **dropdown_conf),
+    DropDown("pass_man", apps['pass_man'], match=Match(wm_class='1Password'), height=0.7, opacity=1, **dropdown_conf),
 ]
 
 
@@ -58,10 +61,6 @@ floating_layout = layout.Floating(float_rules=(
         Match(wm_class='ssh-askpass'),  # ssh-askpass
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
-        Match(wm_class='Arcolinux-welcome-app.py'),
-        Match(wm_class='Arcolinux-tweak-tool.py'),
-        Match(wm_class='Arcolinux-calamares-tool.py'),
-        Match(wm_class='cairo-dock'),
         Match(wm_class='confirm'),
         Match(wm_class='dialog'),
         Match(wm_class='download'),
@@ -71,12 +70,17 @@ floating_layout = layout.Floating(float_rules=(
         Match(wm_class='splash'),
         Match(wm_class='toolbar'),
         Match(wm_class='Arandr'),
+        Match(wm_class='Spotify'),
         Match(wm_class='feh'),
+        Match(wm_class='plank'),
         Match(wm_class='Galculator'),
         Match(wm_class='arcolinux-logout'),
+        Match(wm_class='archlinux-logout.py'),
+        Match(wm_class='wlogout'),
         Match(wm_class='xfce4-terminal'),
         Match(wm_class='tlp-ui'),
         Match(wm_class='Variety'),
+        Match(wm_class='gsimplecal'),
         Match(wm_class='ksnip'),
         Match(wm_class='RAIL'),
         Match(wm_class='xdg-desktop-portal-gnome'),
@@ -84,3 +88,6 @@ floating_layout = layout.Floating(float_rules=(
 
 floating_types = ("notification", "toolbar", "splash", "dialog")
 
+# rules = [
+#     Rule(match=Match(wm_class='wlogout'), float=True)
+# ]

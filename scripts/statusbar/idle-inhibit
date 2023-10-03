@@ -1,0 +1,43 @@
+#!/bin/bash
+icon=""
+inhibit_on=""
+dpms_status=$(xset -q | awk '/DPMS is/ {print $NF}')
+session=$(echo $XDG_SESSION_TYPE)
+wayland_idle=~/.local/bin/wayland-idle
+
+toggle_x11() {
+  if [[ $dpms_status == "Enabled" ]]; then
+    xset -dpms
+    dunstify -i " " "Idle Inhibitor Enabled" "Blocking Sleep"
+  elif [[ $dpms_status == "Disabled" ]]; then
+    xset +dpms
+    dunstify -i " " "Idle Inhibitor Disabled" "Resuming Sleep"
+  fi
+}
+
+toggle_wayland() {
+  ~/.local/bin/wayland-idle
+}
+
+get_status() {
+  if [[ $dpms_status == "Disabled" ]]; then
+    icon=$inhibit_on
+  fi
+  printf "%s" "$icon"
+}
+
+
+case "$1" in
+  toggle)
+    if [[ $session == "x11" ]]; then
+      toggle_x11
+    elif [[ $session == "wayland" ]]; then
+      toggle_wayland
+    fi
+    get_status
+  ;;
+  *)
+    get_status
+  ;;
+esac
+exit 0

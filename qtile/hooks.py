@@ -1,6 +1,7 @@
 import subprocess
 
 from libqtile import hook
+from libqtile.lazy import lazy
 
 from apps import apps
 from groups import floating_types
@@ -21,6 +22,10 @@ def start_always():
 #     qtile.cmd_restart()
 #     subprocess.call(apps['wallpaper_restore'])
 #
+@hook.subscribe.client_new
+def keep_dock_on_top(window):
+    if "plank" in window.get_wm_class():
+        window.window.keep_above(True)
 
 
 @hook.subscribe.client_new

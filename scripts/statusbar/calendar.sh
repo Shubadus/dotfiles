@@ -1,26 +1,24 @@
 #!/bin/bash
 
-# Calendar script
-
 function ShowCalendar() {
-  dunstify " Calendar" "$(cal)"
+  dunstify -i " " " Calendar" "$(cal)"
 }
 
 function EditCalendar() {
-  echo 
+  echo ""
 }
 
 case "$1" in
-        show)
-            ShowCalendar
-            ;;
-         
-        edit)
-            EditCalendar
-            ;;
-         
-        *)
-            echo $"Usage: ${0##*/} {show|edit}"
-            exit 1
- 
+  show)
+      ShowCalendar
+      ;;
+   
+  edit)
+      EditCalendar
+      ;;
+   
+  *)
+      echo $"Usage: ${0##*/} {show|edit}"
+      exit 1
 esac
+

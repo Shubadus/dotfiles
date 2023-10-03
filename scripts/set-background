@@ -1,0 +1,6 @@
+#!/bin/bash
+wallpaper=~/.local/share/wallpaper
+
+cp "$@" $wallpaper
+feh --bg-fill $wallpaper
+

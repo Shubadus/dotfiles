@@ -1,18 +1,18 @@
 {
-    // "layer": "top", // Waybar at top layer
+    "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     // "height": 32, // Waybar height (to be removed for auto height)
     // "width": 98,
     // "width": 1280, // Waybar width
     // Choose the order of the modules
     "modules-left": [
+      "hyprland/workspaces",
       "sway/workspaces",
       "sway/mode",
       "custom/media"
     ],
     "modules-center": [
-      // "sway/window"
-      "clock",
+
     ],
     "modules-right": [
       "memory",
@@ -24,12 +24,28 @@
       "pulseaudio",
       "battery",
       "network",
+      "clock"
     ],
     // Hyprland
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
+      "all-outputs": true,
+      "persistent_workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": []
+      },
       "format": "{icon}",
-      "on-scroll-up": "hyprctl dispatch workspace e+1",
-      "on-scroll-down": "hyprctl dispatch workspace e-1"
+      "format-icons": {
+        "1": "󰾔",
+        "2": "󰈩",
+        "3": "󱃖",
+        "4": "",
+        "5": "󰋌",
+        "6": "󰈚"
+      },
     },
     //Modules configuration
     "sway/workspaces": {
@@ -97,7 +113,8 @@
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d}",
+        "format": "{:%a, %b %d  %H:%M}"
     },
     "memory": {
         "format": "{icon} {}%",
