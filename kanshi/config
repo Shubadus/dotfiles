@@ -1,7 +1,7 @@
 # NOTE: When moving workspaces, specify 'workspace number #' to allow sworkstyle to properly work.
 profile "work_2k_montior" {
 		output eDP-1 disable
-    output "BenQ Corporation BenQ PD2710QC L8H0049101Q" enable mode 2560x1440@60
+    output "BNQ BenQ PD2710QC L8H0049101Q" enable mode 2560x1440@60
     # exec swaymsg workspace number *, move workspace to output 'BNQ BenQ PD2710QC L8H0049101Q'
 }
 profile "laptop_only" {

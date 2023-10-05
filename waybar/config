@@ -1,25 +1,23 @@
 {
     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    // "height": 32, // Waybar height (to be removed for auto height)
+    "height": 32, // Waybar height (to be removed for auto height)
     // "width": 98,
     // "width": 1280, // Waybar width
     // Choose the order of the modules
     "modules-left": [
       "hyprland/workspaces",
       "sway/workspaces",
-      "sway/mode",
-      "custom/media"
+      "sway/mode"
+      //"custom/media"
     ],
-    "modules-center": [
-
-    ],
+    "modules-center": [],
     "modules-right": [
       "memory",
       "idle_inhibitor",
-      "custom/check_updates",
+      // "custom/check_updates",
       "tray",
-      "custom/notification",
+      // "custom/notification",
       "backlight",
       "pulseaudio",
       "battery",
@@ -34,8 +32,8 @@
         "2": [],
         "3": [],
         "4": [],
-        "5": [],
-        "6": []
+        "5": []
+        // "6": []
       },
       "format": "{icon}",
       "format-icons": {
@@ -43,8 +41,8 @@
         "2": "󰈩",
         "3": "󱃖",
         "4": "",
-        "5": "󰋌",
-        "6": "󰈚"
+        //"5": "󰋌",
+        "5": "󰈚"
       },
     },
     //Modules configuration
@@ -108,7 +106,7 @@
         }
     },
     "tray": {
-        "icon-size": 20,
+        //"icon-size": 20,
         "spacing": 4
     },
     "clock": {
@@ -216,13 +214,27 @@
         "inhibited-none": "󰂚",
         "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
         "dnd-inhibited-none": "󰂛"
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
     },
+  "custom/waybar-mpris": {
     "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
+    "exec": "waybar-mpris --position --autofocus",
+    "on-click": "waybar-mpris --send toggle",
+    // This option will switch between players on right click.
+        "on-click-right": "waybar-mpris --send player-next",
+    // The options below will switch the selected player on scroll
+        // "on-scroll-up": "waybar-mpris --send player-next",
+        // "on-scroll-down": "waybar-mpris --send player-prev",
+    // The options below will go to next/previous track on scroll
+        // "on-scroll-up": "waybar-mpris --send next",
+        // "on-scroll-down": "waybar-mpris --send prev",
+    "escape": true,
   },
 }
 

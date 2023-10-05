@@ -1,0 +1,58 @@
+{ 
+  "pyprland": {
+    "plugins": [
+      "scratchpads"
+    ]
+  },
+  "scratchpads": {
+    "term": {
+      "command": "alacritty --class dropterm",
+      "animation": "fromTop",
+      "unfocus": "hide",
+      "margin": 4,
+    },
+    "vpn": {
+      "command": "/opt/cisco/anyconnect/bin/vpnui",
+      "animation": "fromTop",
+      "unfocus": "hide",
+      "margin": 4,
+      "lazy": true
+    },
+    "spotify": {
+      "command": "spotify",
+      "animation": "fromTop",
+      "unfocus": "hide"
+      "class": "spotify",
+      "margin": 4,
+      "lazy": true
+    },
+    "network_manager": {
+      "command": "nm-connection-editor",
+      "animation": "fromTop",
+      "unfocus": "hide",
+      "margin": 4,
+      "lazy": true
+    },
+    "audio": {
+      "command": "pavucontrol",
+      "animation": "fromTop",
+      "unfocus": "hide",
+      "margin": 4,
+      "lazy": true
+    },
+    "sysmonitor": {
+      "command": "alacritty --class sysmonitor -e btop",
+      "animation": "fromTop",
+      "unfocus": "hide",
+      "margin": 4,
+      "lazy": true
+    },
+    "ranger": {
+      "command": "alacritty --class sysmonitor -e ranger",
+      "animation": "fromTop",
+      "unfocus": "hide",
+      "margin": 4,
+      "lazy": true
+    }
+  }
+}

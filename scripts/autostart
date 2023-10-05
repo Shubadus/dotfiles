@@ -45,6 +45,7 @@ if [[ $session == "x11" ]]; then
 elif [[ $session == "wayland" ]]; then
   run $azote_wallpapers
   # run swaybg -i $wallpaper -m fill
+  # run kanshi
   run swayidle -w \
     timeout 900 $wayland_lock \
     timeout 1000 'dpms off' \
@@ -52,7 +53,6 @@ elif [[ $session == "wayland" ]]; then
     # timeout 15 if pgrep -x $wayland_lock; then swaymsg 'dpms off'; fi \
     resume 'dpms on' \
     before-sleep $wayland_lock
-  run kanshi
 fi
 
 if pgrep packagekitd;

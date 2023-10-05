@@ -81,6 +81,8 @@ apps['vol_up']              = f"{apps['vol']} up"
 apps['idle_inhibit']        = f"{statusbar_scripts}/idle-inhibit"
 apps['idle_toggle']         = f"{apps['idle_inhibit']} toggle"
 
+apps['videobridge']         = "flatpak run xwaylandvideobridge"
+
 # Updates
 apps['update_flatpak']      = f"{apps['terminal']} -e flatpak update -y"
 apps['update_pkg_mngr']     = f"{apps['terminal']} -e {apps['pkg_mngr_update']}"

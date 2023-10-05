@@ -31,18 +31,21 @@ for i in groups:
 
 
 dropdown_conf = {
+    'on_focus_lost_hide': False
 }
 
 
 dropdowns = [
-    DropDown("sysmonitor", apps['sysmonitor'], height=0.7, opacity=0.9, **dropdown_conf),
+    DropDown("sysmonitor", apps['sysmonitor'], height=0.7, opacity=1, **dropdown_conf),
     DropDown("dropdown_term", apps['terminal'], height=0.7, opacity=0.9, **dropdown_conf),
     DropDown("dropdown_ranger", apps['filemanager'], height=0.7, opacity=0.9, **dropdown_conf),
-    DropDown("network_manager", apps['network_manager'], height=0.7, opacity=0.9, **dropdown_conf),
+    DropDown("network_manager", apps['network_manager'], height=0.7, opacity=1, **dropdown_conf),
     DropDown("vpn", apps['vpn'], height=0.7, opacity=1, **dropdown_conf),
     DropDown("audio", apps['audio_gui'], height=0.7, opacity=1, **dropdown_conf),
     DropDown("spotify", apps['spotify'], match=Match(wm_class='Spotify'), height=0.7, opacity=1, **dropdown_conf),
-    DropDown("pass_man", apps['pass_man'], match=Match(wm_class='1Password'), height=0.7, opacity=1, **dropdown_conf),
+    # DropDown("pass_man", apps['pass_man_launcher'], match=Match(wm_class='1Password'), height=0.7, opacity=1, **dropdown_conf),
+    DropDown("xwaylandvideobridge", apps['videobridge'], match=Match(wm_class='xwaylandvideobridge'), height=0.7, opacity=1, **dropdown_conf),
+    DropDown("calendar", apps['cal'], match=Match(wm_class='gsimplecal'), x=0.95),
 ]
 
 
@@ -78,6 +81,7 @@ floating_layout = layout.Floating(float_rules=(
         Match(wm_class='archlinux-logout.py'),
         Match(wm_class='wlogout'),
         Match(wm_class='xfce4-terminal'),
+        Match(wm_class='1Password'),
         Match(wm_class='tlp-ui'),
         Match(wm_class='Variety'),
         Match(wm_class='gsimplecal'),

@@ -5,32 +5,33 @@
     font-family: NotoSans Nerd Font;
     font-size: 20px;
     transition-duration: 0s;
-    padding: 0 2px;
+    padding: 0 4px;
 }
 
 window#waybar {
-    background: @theme_base_color;
-    color: @theme_text_color;
+    background: @theme_bg_color;
     transition-property: background-color;
     transition-duration: .5s
 }
 
-#workspaces,
-.button:hover {
-    background: rgba(0, 0, 0, 0.2);
+#workspaces button {
+  /* font-size: 22px; */
+  padding: 0 0px;
+  margin: 0px;
+  color: @theme_unselected_bg_color
 }
 
-.button.focused {
-  color: @theme_selected_fg_color;
-    /* background-color: #64727D; */
+#workspaces button.empty {
+  color: @unfocused_borders
+  /* color: @theme_unselected_bg_color */
 }
 
-.button.urgent {
-    background-color: #eb4d4b;
+#workspaces button.active {
+  color: @theme_selected_bg_color
 }
 
-.button.empty {
-  color: @theme_unfocused_fg_color;
+#workspaces button.urgent {
+  color: @error_color
 }
 
 #window,
@@ -93,18 +94,8 @@ label:focus {
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
+    background-color: @theme_selected_bg_color;
+    /* background-color: #ecf0f1; */
+    /* color: #2d3436; */
+    color: @theme_selected_fg_color
 }

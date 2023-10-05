@@ -1,9 +1,11 @@
 import subprocess
+# import os
 
-from libqtile import bar, qtile, layout
+from libqtile import bar, layout
 from libqtile.lazy import lazy
 from libqtile.config import Screen
 from qtile_extras import widget
+# from qtile_extras.popup.templates.mpris2 import DEFAULT_LAYOUT # Needs ver 0.23
 
 from apps import apps
 from style import icons, theme, clock_fmt
@@ -180,6 +182,8 @@ widgets = [
 screens = [
     Screen(
         top=bar.Bar(
+            # wallpaper=os.path.expanduser('~/.local/share/wallpaper'),
+            # wallpaper_mode='fill',
             widgets=widgets,
             background=f"{theme.get('dark', '000000')}",
             size=32,

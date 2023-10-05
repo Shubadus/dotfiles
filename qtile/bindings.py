@@ -85,10 +85,10 @@ keys = [
         desc=f"Take a screenshot"),
     Key([mod_keys["mod"]], "x", lazy.spawn(apps["logout"]),
         desc=f"Logout"),
-    # Key([mod_keys["mod2"], "shift"], "space", lazy.spawn(apps['pass_man_launcher']),
-    #     desc=f"Launch {'pass_man'} --quick access"),
-    Key([mod_keys["mod2"], "shift"], "space", lazy.group['scratchpad'].dropdown_toggle('pass_man'),
+    Key([mod_keys["mod2"], "shift"], "space", lazy.spawn(apps['pass_man_launcher']),
         desc=f"Launch {'pass_man'} --quick access"),
+    # Key([mod_keys["mod2"], "shift"], "space", lazy.group['scratchpad'].dropdown_toggle('pass_man'),
+    #     desc=f"Launch {'pass_man'} --quick access"),
 
     # QTILE LAYOUT KEYS
     Key([mod_keys["mod"]], "n", lazy.layout.normalize()),

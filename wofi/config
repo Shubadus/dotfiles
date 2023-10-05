@@ -6,4 +6,5 @@ insensitive=true
 no_actions=true
 single_click=true
 location=top
-yoffset=32
+# yoffset=32 # Needed for qtile
+# yoffset=4
