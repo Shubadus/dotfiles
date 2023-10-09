@@ -1,7 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 32, // Waybar height (to be removed for auto height)
+    // "height": 32, // Waybar height (to be removed for auto height)
     // "width": 98,
     // "width": 1280, // Waybar width
     // Choose the order of the modules
@@ -13,6 +13,8 @@
     ],
     "modules-center": [],
     "modules-right": [
+      "custom/arch_updates",
+      "custom/flatpak_updates",
       "memory",
       "idle_inhibitor",
       // "custom/check_updates",
@@ -33,7 +35,6 @@
         "3": [],
         "4": [],
         "5": []
-        // "6": []
       },
       "format": "{icon}",
       "format-icons": {
@@ -41,7 +42,6 @@
         "2": "󰈩",
         "3": "󱃖",
         "4": "",
-        //"5": "󰋌",
         "5": "󰈚"
       },
     },
@@ -62,8 +62,7 @@
         "9":[],
         // "10":[]
       }
-    },
-    "wlr/taskbar": {
+    }, "wlr/taskbar": {
       "format": "{icon}{name}",
       "tooltip-format": "{title}",
       "on-click": "minimize-raise",
@@ -194,13 +193,23 @@
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
-    "custom/check_updates": {
+    "custom/arch_updates": {
       "interval": 43200,
       "format": "{}",
+      "exec": "$HOME/.local/bin/statusbar/check-updates.sh check-arch",
+      "exec-if": "exit 0",
       "return-type": "json",
-      "exec": "$HOME/.local/bin/statusbar/updates.sh --check-updates" ,
-      "on-click": "$HOME/.local/bin/statusbar/updates.sh --update-dnf; pkill -SIGRTMIN+10 waybar",
-      "signal": 10,
+      "on-click": "$HOME/.local/bin/statusbar/check-updates.sh update-arch; pkill -SIGRTMIN+11 waybar",
+      "signal": 11,
+    }, 
+    "custom/flatpak_updates": {
+      "interval": 43200,
+      "format": "{}",
+      "exec": "$HOME/.local/bin/statusbar/check-updates.sh check-flatpak",
+      "return-type": "json",
+      "exec-if": "exit 0",
+      "on-click": "$HOME/.local/bin/statusbar/check-updates.sh update-flatpak; pkill -SIGRTMIN+12 waybar",
+      "signal": 12,
     }, 
     "custom/notification": {
       "tooltip": false,

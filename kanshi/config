@@ -5,7 +5,7 @@ profile "work_2k_montior" {
     # exec swaymsg workspace number *, move workspace to output 'BNQ BenQ PD2710QC L8H0049101Q'
 }
 profile "laptop_only" {
-		output eDP-1 enable mode 1920x1080@60
+		output eDP-1 enable mode 1920x1080@60 scale 1.25
     # exec swaymsg workspace number *, move workspace to output eDP-1
 }
 profile "home_dual_monitor" {
