@@ -1,5 +1,3 @@
-#!/bin/bash
-#TODO: Add swaylock support
 
 dimensions=$(xdpyinfo | awk '/dimensions/ {print $2}')
 IFS=x read -r dimensions_x dimensions_y <<< $dimensions

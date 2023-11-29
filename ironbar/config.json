@@ -1,0 +1,20 @@
+{
+  "position": "top",
+  "anchor_to_edges": true,
+  "start": [
+    {
+      "type":"workspaces"
+    }
+  ],
+  "end": [
+    {
+      "type": "tray"
+    },
+    {
+      "type": "upower"
+    },
+    {
+      "type": "clock"
+    }
+  ]
+}

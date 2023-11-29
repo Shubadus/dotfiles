@@ -1,6 +1,6 @@
 from libqtile import layout
 from libqtile.lazy import lazy
-from libqtile.config import DropDown, Group, Match, Key, ScratchPad, Rule
+from libqtile.config import DropDown, Group, Match, Key, ScratchPad
 
 from apps import apps
 from bindings import keys, mod_keys
@@ -88,10 +88,7 @@ floating_layout = layout.Floating(float_rules=(
         Match(wm_class='ksnip'),
         Match(wm_class='RAIL'),
         Match(wm_class='xdg-desktop-portal-gnome'),
-    ), fullscreen_border_width=0, border_width=2, **theme)
+    ), auto_fullscreen=True, fullscreen_border_width=0, border_width=2, **theme)
 
 floating_types = ("notification", "toolbar", "splash", "dialog")
 
-# rules = [
-#     Rule(match=Match(wm_class='wlogout'), float=True)
-# ]

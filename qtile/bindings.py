@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from libqtile import extension
@@ -14,6 +15,8 @@ from style import theme
 #     # dmenu_font="NotoSans Nerd Font",
 #     **theme
 # )
+
+DESKTOP_SESSION = os.environ['XDG_SESSION_TYPE']
 
 @lazy.function
 def cycle_windows(qtile, index=1):
@@ -60,7 +63,7 @@ keys = [
         desc=f"Launch {apps['terminal']} terminal"),
     Key([mod_keys["mod2"], "shift"], "escape", lazy.spawn(apps["sysmonitor"]),
         desc=f"Launch {apps['terminal']} terminal"),
-    Key([mod_keys["mod2"], "shift"], "l", lazy.spawn(apps["lock"]),
+    Key([mod_keys["mod2"], "shift"], "l", lazy.spawn(apps[DESKTOP_SESSION]["lock"]),
         desc="Lock the screen"),
 
     # SUPER + SHIFT KEYS
@@ -75,15 +78,15 @@ keys = [
     Key([mod_keys["mod1"], "shift"], "Tab", lazy.group.prev_window()),
 
     # Applications
-    Key([mod_keys["mod"], "shift"], "d", lazy.spawn(apps['launcher']),
+    Key([mod_keys["mod"], "shift"], "d", lazy.spawn(apps[DESKTOP_SESSION]['launcher']),
         desc="Launch app launcher"),
     # Key([mod_keys["mod"], "shift"], "d", lazy.run_extension(dmenu)),
     Key([mod_keys["mod"], "shift"], "Return", lazy.group["scratchpad"].dropdown_toggle("dropdown_ranger")),
     Key([mod_keys["mod"], "shift"], "b", lazy.spawn(apps["browser"]),
         desc=f"Launch {apps['browser']} web browser"),
-    Key([mod_keys["mod"], "shift"], "s", lazy.spawn(apps["screenshot"]),
+    Key([mod_keys["mod"], "shift"], "s", lazy.spawn(apps[DESKTOP_SESSION]["screenshot"]),
         desc=f"Take a screenshot"),
-    Key([mod_keys["mod"]], "x", lazy.spawn(apps["logout"]),
+    Key([mod_keys["mod"]], "x", lazy.spawn(apps[DESKTOP_SESSION]["logout"]),
         desc=f"Logout"),
     Key([mod_keys["mod2"], "shift"], "space", lazy.spawn(apps['pass_man_launcher']),
         desc=f"Launch {'pass_man'} --quick access"),

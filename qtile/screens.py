@@ -39,8 +39,10 @@ widget_defaults = dict(
     **theme
 )
 
+
 def remove_text(text):
     return ''
+
 
 sep = widget.Sep()
 
@@ -170,7 +172,6 @@ widgets = [
     widget.AnalogueClock(
         face_shape='circle',
         face_border_color=theme.get('border', ''),
-        padding=0,
         margin=4,
         mouse_callbacks={
             'Button1': lazy.spawn(f"{apps['cal_show']}"),
@@ -181,14 +182,21 @@ widgets = [
 
 screens = [
     Screen(
+        # top=bar.Gap(size=28),
         top=bar.Bar(
-            # wallpaper=os.path.expanduser('~/.local/share/wallpaper'),
-            # wallpaper_mode='fill',
             widgets=widgets,
             background=f"{theme.get('dark', '000000')}",
-            size=32,
+            size=32
         )
-    )
+    ),
+    # Screen(
+    #     top=bar.Gap(size=28),
+    #     # top=bar.Bar(
+    #     #     widgets=widgets,
+    #     #     background=f"{theme.get('dark', '000000')}",
+    #     #     size=32
+    #     # )
+    # )
 ]
 
 
@@ -196,6 +204,7 @@ layouts = [
     layout.MonadTall(
         single_border_width=0,
         single_margin=0,
+        # ratio=0.6,
         **LAYOUT_DEFAULTS
     ),
     layout.MonadThreeCol(

@@ -15,17 +15,29 @@ def start_once():
 @hook.subscribe.startup
 def start_always():
     subprocess.call(apps['set-gtk-theme'])
+    subprocess.call(apps['wayland']['monitors'])
 
 
-# @hook.subscribe.screen_change
-# def update_wallpaper(qtile, ev):
-#     qtile.cmd_restart()
-#     subprocess.call(apps['wallpaper_restore'])
-#
 @hook.subscribe.client_new
 def keep_dock_on_top(window):
     if "plank" in window.get_wm_class():
+        window.floating = True
         window.window.keep_above(True)
+
+
+@hook.subscribe.client_new
+def fullscreen_logout(window):
+    if "wlogout" in window.get_wm_class():
+        # window.floating = True
+        window.fullscreen = True
+
+
+@hook.subscribe.client_new
+def xwayland_video_bridge(window):
+    if "pwbypass" in window.get_wm_class():
+        # window.floating = True
+        # window.cmd_toggle_minimize()
+        window.togroup("scratchpad")
 
 
 @hook.subscribe.client_new

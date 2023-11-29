@@ -11,27 +11,26 @@
 window#waybar {
     background: @theme_bg_color;
     transition-property: background-color;
-    transition-duration: .5s
+    transition-duration: .5s;
 }
 
 #workspaces button {
   /* font-size: 22px; */
   padding: 0 0px;
   margin: 0px;
-  color: @theme_unselected_bg_color
+  color: @theme_unselected_bg_color;
 }
 
 #workspaces button.empty {
-  color: @unfocused_borders
-  /* color: @theme_unselected_bg_color */
+  color: @unfocused_borders;
 }
 
 #workspaces button.active {
-  color: @theme_selected_bg_color
+  color: @theme_selected_bg_color;
 }
 
 #workspaces button.urgent {
-  color: @error_color
+  color: @error_color;
 }
 
 #window,
@@ -80,6 +79,10 @@ label:focus {
 #temperature.critical {
     background-color: #eb4d4b;
 }
+#tray {
+  padding: 2;
+}
+
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
@@ -95,7 +98,5 @@ label:focus {
 
 #idle_inhibitor.activated {
     background-color: @theme_selected_bg_color;
-    /* background-color: #ecf0f1; */
-    /* color: #2d3436; */
-    color: @theme_selected_fg_color
+    color: @theme_selected_fg_color;
 }

@@ -7,19 +7,16 @@
     // Choose the order of the modules
     "modules-left": [
       "hyprland/workspaces",
-      "sway/workspaces",
-      "sway/mode"
-      //"custom/media"
     ],
-    "modules-center": [],
+    "modules-center": [
+      "mpris",
+    ],
     "modules-right": [
       "custom/arch_updates",
       "custom/flatpak_updates",
       "memory",
       "idle_inhibitor",
-      // "custom/check_updates",
       "tray",
-      // "custom/notification",
       "backlight",
       "pulseaudio",
       "battery",
@@ -50,8 +47,7 @@
       "disable-scroll": true,
       "all-outputs": true,
       "format": "{icon}",
-      "persistent_workspaces": {
-        "1":[],
+      "persistent_workspaces": { "1":[],
         "2":[],
         "3":[],
         "4":[],
@@ -62,65 +58,44 @@
         "9":[],
         // "10":[]
       }
-    }, "wlr/taskbar": {
-      "format": "{icon}{name}",
-      "tooltip-format": "{title}",
-      "on-click": "minimize-raise",
-      "on-click-middle": "close",
-      "ignore-list": [
-         "Alacritty"
-      ],
     },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": " ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": ""
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": ""
-        },
-        "repeat-icons": {
-            "on": ""
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+  "mpris": {
+    "format": "<small>{player_icon} {title} [{position}/{length}]</small>",
+    "format-paused": "<small>{status_icon} <i>{title} [{position}/{length}]</i></small>",
+    "interval": 1,
+    "player-icons": {
+      "default": "",
+      "mpv": "🎵"
     },
+    "status-icons": {
+      "paused": "󰏥"
+    },
+    // "ignored-players": ["firefox"]
+  },
     "idle_inhibitor": {
-        "format": "{icon}",
+        "format": "<small>{icon}</small>",
         "format-icons": {
             "activated": "",
             "deactivated": ""
         }
     },
     "tray": {
-        //"icon-size": 20,
-        "spacing": 4
+        //"spacing": 4
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}",
-        "format": "{:%a, %b %d  %H:%M}"
+        "format-alt": "<small>{:%Y-%m-%d}</small>",
+        "format": "<small>{:%a, %b %d  %H:%M}</small>"
     },
     "memory": {
-        "format": "{icon} {}%",
+        "format": "<small>{icon} {}%</small>",
+        "tooltip-format": "{used:0.1f} GB Used",
         "format-icons": ""
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{icon}",
-        "format-alt": "{icon} {percent}%",
+        "format": "<small>{icon}</small>",
+        "format-alt": "<small>{icon} {percent}%</small>",
         "format-icons": ["󰃝", "󰃞", "󰃟", "󰃠"]
     },
     "battery": {
@@ -128,8 +103,8 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon}",
-        "format-alt": "{icon} {capacity}%",
+        "format": "<small>{icon}</small>",
+        "format-alt": "<small>{icon} {capacity}%</small>",
         // "format-good": "", // An empty format will hide the module
         "format-full": "", //"󰂄",
         "format-icons": { 
@@ -143,13 +118,13 @@
     },
     "network": {
       // "interface": "wlp2*", // (Optional) To force the use of this interface
-      "format-wifi": "{icon}",
-      "format-ethernet": "{icon}",
+      "format-wifi": "<small>{icon}</small>",
+      "format-ethernet": "<small>{icon}</small>",
       "tooltip-format": "{essid}: {signalStrength}%",
       // "tooltip-format": "{ifname} via {gwaddr}",
-      "format-linked": "{ifname} (No IP)",
-      "format-disconnected": "",
-      "format-alt": "{icon}  {essid}: {signalStrength}%",
+      "format-linked": "<small>{ifname} (No IP)</small>",
+      "format-disconnected": "<small>󰅛</small>",
+      "format-alt": "<small>{icon}  {essid}: {signalStrength}%</small>",
       // "format-alt": "{ifname}: {ipaddr}/{cidr}",
       "format-icons": {
         "wifi": ["󰤯", "󰤢", "󰤥", "󰤨"],
@@ -158,11 +133,11 @@
     },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
-        "format": "{icon}",
-        "format-alt": "{icon} {volume}%",
-        "format-bluetooth": "󰂰 {volume}",
-        "format-bluetooth-muted": "󰂲 {format_source}",
-        "format-muted": "󰝟 Muted",
+        "format": "<small>{icon}</small>",
+        "format-alt": "<small>{icon} {volume}%</small>",
+        "format-bluetooth": "<small>󰂰 {volume}</small>",
+        "format-bluetooth-muted": "<small>󰂲 {format_source}</small>",
+        "format-muted": "<small>󰝟 Muted</small>",
         // "format-source": " {volume}%",
         // "format-source-muted": "",
         "format-icons": {
@@ -181,21 +156,9 @@
         "on-scroll-up": "~/.local/bin/statusbar/volumecontrol up",
         "on-scroll-down": "~/.local/bin/statusbar/volumecontrol down"
     },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
     "custom/arch_updates": {
       "interval": 43200,
-      "format": "{}",
+      "format": "<small>{}</small>",
       "exec": "$HOME/.local/bin/statusbar/check-updates.sh check-arch",
       "exec-if": "exit 0",
       "return-type": "json",
@@ -204,7 +167,7 @@
     }, 
     "custom/flatpak_updates": {
       "interval": 43200,
-      "format": "{}",
+      "format": "<small>{}</small>",
       "exec": "$HOME/.local/bin/statusbar/check-updates.sh check-flatpak",
       "return-type": "json",
       "exec-if": "exit 0",
@@ -231,19 +194,5 @@
       "on-click-right": "swaync-client -d -sw",
       "escape": true
     },
-  "custom/waybar-mpris": {
-    "return-type": "json",
-    "exec": "waybar-mpris --position --autofocus",
-    "on-click": "waybar-mpris --send toggle",
-    // This option will switch between players on right click.
-        "on-click-right": "waybar-mpris --send player-next",
-    // The options below will switch the selected player on scroll
-        // "on-scroll-up": "waybar-mpris --send player-next",
-        // "on-scroll-down": "waybar-mpris --send player-prev",
-    // The options below will go to next/previous track on scroll
-        // "on-scroll-up": "waybar-mpris --send next",
-        // "on-scroll-down": "waybar-mpris --send prev",
-    "escape": true,
-  },
 }
 

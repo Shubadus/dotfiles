@@ -10,6 +10,7 @@ apps = dict()
 apps['pkg_mngr']            = "yay"
 apps['pkg_mngr_update']     = f"{apps['pkg_mngr']} -Syu"
 
+
 # Audio
 apps['audio_gui']           = "pavucontrol"
 apps['audio_player_cli']    = "playerctl"
@@ -33,17 +34,27 @@ apps['pass_man']            = "1password"
 apps['pass_man_main']       = f"{apps['pass_man']} --toggle"
 apps['pass_man_launcher']   = f"{apps['pass_man']} --quick-access"
 
+apps['xorg']                = {}
+apps['wayland']             = {}
+
 # Gui Applications
 apps['browser']             = "qutebrowser"
 apps['terminal']            = "alacritty"
-# apps['launcher']            = "krunner"
-# apps['launcher']            = "rofi -show drun"
-apps['launcher']            = 'wofi'
-apps['logout']              = "archlinux-logout"
 apps['network_manager']     = "nm-connection-editor"
-# apps['screenshot']          = "flameshot gui"
-apps['screenshot']          = 'grim -g "$(slurp)"'
 apps['vpn']                 = "/opt/cisco/anyconnect/bin/vpnui"
+
+apps['wayland']['launcher']   = 'wofi'
+apps['wayland']['logout']     = "wlogout"
+# apps['wayland']['screenshot'] = 'grim -g "$(slurp)"'
+apps['wayland']['screenshot'] = f"{qtile_scripts}/screenshot"
+apps['wayland']['lock']       = "gtklock"
+apps['wayland']['monitors']   = 'pkill kanshi; kanshi'
+
+apps['xorg']['launcher']    = 'rofi -show drun'
+apps['xorg']['logout']      = 'archlinux-logout'
+apps['xorg']['screenshot']  = "flameshot gui"
+apps['xorg']['lock']        = "i3lock"
+apps['xorg']['monitors']    = 'autorandr -c'
 
 # Flatpak Applications
 apps['power_manager']       = "flatpak run com.github.d4nj1.tlpui"
@@ -56,7 +67,6 @@ apps['sysmonitor']          = f"{apps['terminal']} -e btop"
 # Scripts
 # apps['lock']                = f"{qtile_scripts}/lock -s 5"
 # apps['lock']                = "loginctl lock-session"
-apps['lock']                = "gtklock"
 apps['picom_toggle']        = f"{qtile_scripts}/picom-toggle"
 apps['suspend']             = f"{qtile_scripts}/suspend"
 

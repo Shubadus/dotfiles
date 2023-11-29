@@ -21,7 +21,11 @@ azote_wallpapers=~/.azotebg
 if [[ $DESKTOP_SESSION == "qtile"* ]]; then
   run dunst
   run dunstctl set-paused false
-  run $set_gtk
+  # run $set_gtk
+elif [[ $DESKTOP_SESSION == "Hyprland"* ]]; then
+  run dunst
+  run dunstctl set-paused false
+  # run $set_gtk
 else
   run dunstctl set-paused true
 fi
@@ -30,6 +34,8 @@ fi
 #starting utility applications at boot time
 # run /usr/libexec/polkit-gnome-authentication-agent-1 # Fedora location
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Arch location
+run /usr/bin/slimbookbattery --minimize
+run thunar --daemon
 # run /usr/bin/1password --silent
 
 # Flatpaks
@@ -44,6 +50,7 @@ if [[ $session == "x11" ]]; then
 
 elif [[ $session == "wayland" ]]; then
   run $azote_wallpapers
+  run foot -s
   # run swaybg -i $wallpaper -m fill
   # run kanshi
   run swayidle -w \
@@ -53,6 +60,7 @@ elif [[ $session == "wayland" ]]; then
     # timeout 15 if pgrep -x $wayland_lock; then swaymsg 'dpms off'; fi \
     resume 'dpms on' \
     before-sleep $wayland_lock
+  run flatpak run org.kde.xwaylandvideobridge
 fi
 
 if pgrep packagekitd;

@@ -1,0 +1,64 @@
+[pyprland]
+plugins = [
+  "scratchpads",
+]
+
+[scratchpads.term]
+animation = "fromTop"
+command = "alacritty --class dropterm"
+# command = "footclient -a 'dropterm'"
+lazy = true
+margin = 36
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.vpn]
+animation = "fromTop"
+command = "/opt/cisco/anyconnect/bin/vpnui"
+lazy = true
+margin = 36
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.spotify]
+animation = "fromTop"
+command = "spotify"
+lazy = true
+margin = 36
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.network_manager]
+animation = "fromTop"
+command = "nm-connection-editor"
+lazy = true
+margin = 36
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.audio]
+animation = "fromTop"
+command = "pavucontrol"
+lazy = true
+margin = 36
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.sysmonitor]
+animation = "fromTop"
+command = "alacritty --class sysmonitor -e btop"
+# command = "footclient -a 'sysmonitor' btop"
+lazy = true
+margin = 36
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.ranger]
+animation = "fromTop"
+command = "alacritty --class ranger -e ranger"
+# command = "footclient -a 'ranger' ranger"
+lazy = true
+margin = 36
+size = "80% 60%"
+unfocus = "hide"
+
