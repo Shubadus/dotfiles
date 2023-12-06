@@ -26,7 +26,7 @@
     // Hyprland
     "hyprland/workspaces": {
       "all-outputs": true,
-      "persistent_workspaces": {
+      "persistent-workspaces": {
         "1": [],
         "2": [],
         "3": [],
@@ -47,7 +47,7 @@
       "disable-scroll": true,
       "all-outputs": true,
       "format": "{icon}",
-      "persistent_workspaces": { "1":[],
+      "persistent-workspaces": { "1":[],
         "2":[],
         "3":[],
         "4":[],
@@ -84,7 +84,6 @@
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "<small>{:%Y-%m-%d}</small>",
         "format": "<small>{:%a, %b %d  %H:%M}</small>"
     },
     "memory": {
@@ -96,6 +95,7 @@
         // "device": "acpi_video1",
         "format": "<small>{icon}</small>",
         "format-alt": "<small>{icon} {percent}%</small>",
+        "tooltip-format": "Brightness: {percent}%",
         "format-icons": ["󰃝", "󰃞", "󰃟", "󰃠"]
     },
     "battery": {
