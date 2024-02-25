@@ -1,0 +1,309 @@
+{
+  "layer": "top", // Waybar at top layer
+  // "position": "bottom", // Waybar position (top|bottom|left|right)
+  // "height": 32, // Waybar height (to be removed for auto height)
+  // "width": 98,
+  // "width": 1280, // Waybar width
+  // Choose the order of the modules
+  "modules-left": [
+    "hyprland/workspaces",
+  ],
+  "modules-center": [
+    "mpris",
+  ],
+  "modules-right": [
+    "custom/arch_updates",
+    "custom/flatpak_updates",
+    "privacy",
+    "cpu",
+    "memory",
+    // "disk",
+    "idle_inhibitor",
+    "tray",
+    "backlight",
+    "pulseaudio",
+    "battery",
+    // "network",
+    "clock"
+  ],
+  // Hyprland
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    "format": "{icon}",
+    "format-icons": {
+      //"1": "󰾔",
+      //"2": "󰈩",
+      //"3": "󱃖",
+      //"4": "",
+      //"5": "󰈚",
+      "active": "",
+      "default": ""
+    },
+  },
+  //Modules configuration
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      // "10":[]
+    }
+  },
+  "mpris": {
+    "format": "<small>{player_icon} {title} [{position}/{length}]</small>",
+    "format-paused": "<small>{status_icon} <i>{title} [{position}/{length}]</i></small>",
+    "interval": 1,
+    "player-icons": {
+      "default": "",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "󰏥"
+    },
+    // "ignored-players": ["firefox"]
+  },
+  "idle_inhibitor": {
+    "format": "<small>{icon}</small>",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "tray": {
+    // "reverse-direction": true
+    // "spacing": 4
+  },
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "<small>{:%a, %b %d  %H:%M}</small>"
+  },
+  "cpu": {
+    "format": "<small>{icon}</small>",
+    "format-alt": "<small>{icon} {}%</small>",
+    "tooltip-format": "CPU: {usage}",
+    "format-icons": [
+      "󰝦",
+      "󰪞",
+      "󰪟",
+      "󰪠",
+      "󰪡",
+      "󰪢",
+      "󰪣",
+      "󰪤",
+      "󰪥"
+    ]
+    // "format-icons": ""
+  },
+  "memory": {
+    "format": "<small>{icon}</small>",
+    "format-alt": "<small>{icon} {}%</small>",
+    "tooltip-format": "Memory: {used:0.1f} GB Used",
+    "format-icons": [
+      "󰝦",
+      "󰪞",
+      "󰪟",
+      "󰪠",
+      "󰪡",
+      "󰪢",
+      "󰪣",
+      "󰪤",
+      "󰪥"
+    ]
+    // "format-icons": ""
+  },
+  "disk": {
+    "format": "<small>{icon}</small>",
+    "format-alt": "<small>{icon} {percentage_used}%</small>",
+    // "tooltip-format": "Free Disk Space: {percentage_free}",
+    "format-icons": [
+      "󰝦",
+      "󰪞",
+      "󰪟",
+      "󰪠",
+      "󰪡",
+      "󰪢",
+      "󰪣",
+      "󰪤",
+      "󰪥"
+    ]
+    // "format-icons": ""
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "<small>{icon}</small>",
+    "format-alt": "<small>{icon} {percent}%</small>",
+    "tooltip-format": "Brightness: {percent}%",
+    "format-icons": [
+      "󰃝",
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ]
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<small>{icon}</small>",
+    "format-alt": "<small>{icon} {capacity}%</small>",
+    // "format-good": "", // An empty format will hide the module
+    "format-full": "", //"󰂄",
+    "format-icons": {
+      // TODO: Discharge Icons not showing correctly.
+      "discharging": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂"
+      ],
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋"
+      ]
+    },
+  },
+  "battery#bat2": {
+    "bat": "BAT2"
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "<small>{icon}</small>",
+    "format-ethernet": "<small>{icon}</small>",
+    "tooltip-format": "{essid}: {signalStrength}%",
+    // "tooltip-format": "{ifname} via {gwaddr}",
+    "format-linked": "<small>{ifname} (No IP)</small>",
+    "format-disconnected": "<small>󰅛</small>",
+    "format-alt": "<small>{icon}  {essid}: {signalStrength}%</small>",
+    // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "format-icons": {
+      "wifi": [
+        "󰤯",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+      ],
+      "ethernet": "",
+    }
+  },
+  "pulseaudio": {
+    "scroll-step": 5, // %, can be a float
+    "format": "<small>{icon}</small>",
+    "format-alt": "<small>{icon} {volume}%</small>",
+    "format-bluetooth": "<small>󰂰 {volume}</small>",
+    "format-bluetooth-muted": "<small>󰂲 {format_source}</small>",
+    "format-muted": "<small>󰝟 Muted</small>",
+    // "format-source": " {volume}%",
+    // "format-source-muted": "",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋋",
+      "headset": "󰋋",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "tooltip-format": "{desc}: {volume}%",
+    "on-click-right": "pavucontrol",
+    // "on-click-middle": "amixer set Master 1+ toggle > /dev/null",
+    "on-click-middle": "~/.local/bin/scripts/statusbar/volumecontrol mute",
+    "on-scroll-up": "~/.local/bin/scripts/statusbar/volumecontrol up",
+    "on-scroll-down": "~/.local/bin/scripts/statusbar/volumecontrol down"
+  },
+  "custom/arch_updates": {
+    "interval": 43200,
+    "format": "<small>{}</small>",
+    "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-arch",
+    "exec-if": "exit 0",
+    "return-type": "json",
+    "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-arch; pkill -SIGRTMIN+11 waybar",
+    "signal": 11,
+  },
+  "custom/flatpak_updates": {
+    "interval": 43200,
+    "format": "<small>{}</small>",
+    "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-flatpak",
+    "return-type": "json",
+    "exec-if": "exit 0",
+    "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-flatpak; pkill -SIGRTMIN+12 waybar",
+    "signal": 12,
+  },
+  "wlr/taskbar": {
+    "all-outputs": false,
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󰂚<span foreground='red'><sup></sup></span>",
+      "none": "󰂚",
+      "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
+      "dnd-none": "󰂛",
+      "inhibited-notification": "󰂚<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "󰂚",
+      "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": "󰂛"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+}

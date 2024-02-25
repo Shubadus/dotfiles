@@ -1,12 +1,17 @@
 [pyprland]
 plugins = [
   "scratchpads",
+  "workspaces_follow_focus"
 ]
+
+# [workspaces_follow_focus]
+
 
 [scratchpads.term]
 animation = "fromTop"
 command = "alacritty --class dropterm"
-# command = "footclient -a 'dropterm'"
+class = "dropterm"
+# command = "footclient -a dropterm"
 # lazy = true
 margin = 36
 size = "80% 60%"
@@ -22,7 +27,9 @@ unfocus = "hide"
 
 [scratchpads.spotify]
 animation = "fromTop"
+class = "Spotify"
 command = "spotify"
+# command = "flatpak run com.spotify.Client"
 lazy = true
 margin = 36
 size = "80% 60%"
@@ -39,6 +46,7 @@ unfocus = "hide"
 [scratchpads.audio]
 animation = "fromTop"
 command = "pavucontrol"
+class = "pavucontrol"
 lazy = true
 margin = 36
 size = "80% 60%"
@@ -47,7 +55,8 @@ unfocus = "hide"
 [scratchpads.sysmonitor]
 animation = "fromTop"
 command = "alacritty --class sysmonitor -e btop"
-# command = "footclient -a 'sysmonitor' btop"
+class = "sysmonitor"
+# command = "footclient -a sysmonitor -e btop"
 lazy = true
 margin = 36
 size = "80% 60%"
@@ -56,7 +65,8 @@ unfocus = "hide"
 [scratchpads.ranger]
 animation = "fromTop"
 command = "alacritty --class ranger -e ranger"
-# command = "footclient -a 'ranger' ranger"
+class = "ranger"
+# command = "footclient -a ranger -e ranger"
 lazy = true
 margin = 36
 size = "80% 60%"

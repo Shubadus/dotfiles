@@ -1,23 +1,20 @@
 #!/bin/bash
 
 function run {
-  if ! pgrep $1 ;
-  then
-    $@&
+  if ! pgrep -f $1 > /dev/null ; then
+    $@ &
   fi
 }
 
+script_path=~/.local/bin/scripts
 session=$(echo $XDG_SESSION_TYPE)
 wallpaper=~/.local/share/wallpaper
-xorg_lock=~/.local/bin/lock
-wayland_lock=swaylock
-set_gtk=~/.local/bin/set-gtk-theme
-azote_wallpapers=~/.azotebg
-
+lock="$script_path/lock"
+set_gtk="$script_path/set-gtk-theme"
 
 #Find out your monitor name with xrandr or arandr (save and you get this line)
 
-#  Pause dunst, mostly we use this for KDE.
+#  Pause dunst, mostly we use this for DEs with built-in notification managers.
 if [[ $DESKTOP_SESSION == "qtile"* ]]; then
   run dunst
   run dunstctl set-paused false
@@ -43,27 +40,33 @@ run flatpak run org.remmina.Remmina -i
 
 if [[ $session == "x11" ]]; then
   xset +dpms dpms 150 300 300
-  run xss-lock --transfer-sleep-lock -- $xorg_lock
+  run xss-lock --transfer-sleep-lock -- $lock
   autorandr -c
   run picom
   run feh --bg-fill $wallpaper
 
 elif [[ $session == "wayland" ]]; then
-  run $azote_wallpapers
-  run foot -s
-  # run swaybg -i $wallpaper -m fill
+  # run foot -s
+  # run swaybg -o '*' -i $wallpaper -m fill
   # run kanshi
+  # if [[ $DESKTOP_SESSION == "sway"* ]]; then
   run swayidle -w \
-    timeout 900 $wayland_lock \
-    timeout 1000 'dpms off' \
+    timeout 900 "$lock" \
+    timeout 1000 'hyprctl dispatch dpms off' \
     before-sleep 'playerctl pause' \
-    # timeout 15 if pgrep -x $wayland_lock; then swaymsg 'dpms off'; fi \
-    resume 'dpms on' \
-    before-sleep $wayland_lock
-  run flatpak run org.kde.xwaylandvideobridge
+    before-sleep "$lock" \
+    after-resume 'hyprctl dispatch dpms on'
+    # if 
+  # elif [[ $DESKTOP_SESSION == "Hyprland"* ]]; then
+  # run flatpak run org.kde.xwaylandvideobridge
+  # fi
+  run xwaylandvideobridge
 fi
 
-if pgrep packagekitd;
-  then
-    pkill packagekitd
+run nm-applet --indicator
+
+if pgrep packagekitd; then
+  pkill packagekitd
 fi
+
+exit 0

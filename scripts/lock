@@ -1,8 +1,8 @@
-
+#!/bin/bash
 dimensions=$(xdpyinfo | awk '/dimensions/ {print $2}')
 IFS=x read -r dimensions_x dimensions_y <<< $dimensions
 dimensions_x=$(echo "$dimensions_x * 0.05" | bc)
-dimensions_y=$(echo "$dimensions_y * 0.9" | bc)
+dimensions_y=$(echo "$dimensions_y * 0.90" | bc)
 # greeter_x=$(echo "$dimensions_x * 5" | bc)
 # greeter_y=$(echo "$dimensions_y / 0.95" | bc)
 # --greeter-text="Please enter your password to unlock" \
@@ -50,7 +50,15 @@ lock() {
     
     xset dpms
   elif [[ $session == 'wayland' ]]; then
-    gtklock
+    # gtklock
+    swaylock \
+      --indicator-x-position $dimensions_x \
+      --indicator-y-position $dimensions_y
+
+    # if [[ $DESKTOP_SESSION == "Hyprland"* ]]; then
+    #   hyprctl dispatch dpms off
+
+    # fi
   fi
 }
 

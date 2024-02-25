@@ -1,6 +1,20 @@
 #!/bin/bash
 wallpaper=~/.local/share/wallpaper
+lockscreen=~/.local/share/lockscreen
+session=$(echo $XDG_SESSION_TYPE)
 
-cp "$@" $wallpaper
-feh --bg-fill $wallpaper
+if [[ -z $@ ]]; then
+else
+  cp "$@" $wallpaper
+  convert $wallpaper -blur 0x30 $lockscreen
+fi
+
+if [[ $session == "x11" ]]; then
+  pkill feh
+  feh --bg-fill $wallpaper &
+
+elif [[ $session == 'wayland' ]]; then
+  pkill swaybg
+  swaybg -o '*' -i "$wallpaper" -m fill &
+fi
 

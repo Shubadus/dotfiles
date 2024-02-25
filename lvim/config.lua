@@ -53,7 +53,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- Start my personal configuration
 -- Additional Plugins
 lvim.plugins = {
-  { 'iamcco/markdown-preview.nvim',
+  {
+    'iamcco/markdown-preview.nvim',
     run = ':call mkdp#util#install()',
     config = function()
       vim.g.mkdp_browser = "/var/lib/flatpak/exports/bin/org.chromium.Chromium"
@@ -65,6 +66,7 @@ lvim.plugins = {
     cmd = "TroubleToggle",
   },
   { "catppuccin/nvim" },
+  { "luckasRanarison/tree-sitter-hypr" },
   {
     "tzachar/cmp-tabnine",
     run = "./install.sh",
@@ -106,6 +108,7 @@ vim.opt.relativenumber = true
 vim.opt.smartindent = true
 vim.opt.colorcolumn = "120"
 vim.opt.cmdheight = 1
+vim.opt.wrap = false
 -- Disable Yanking directly to clipboard, this is handled by a Leader keymap
 -- vim.opt.clipboard = ""
 
@@ -113,10 +116,20 @@ vim.opt.cmdheight = 1
 -- Yank to clipboard
 vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"*y')
 vim.keymap.set({ 'n', 'v' }, '<Leader>d', '"_d') -- delete line without writing over buffer
-vim.keymap.set('v', '<leader>P', "\"_dP") -- Paste over entry without losing buffer
-vim.keymap.set('n', '<leader>P', "\"+p") -- Paste from clipboard
+vim.keymap.set('v', '<leader>P', "\"_dP")        -- Paste over entry without losing buffer
+vim.keymap.set('n', '<leader>P', "\"+p")         -- Paste from clipboard
 
 -- Tab navigation
 vim.keymap.set('n', '<Tab>', ':bprev<cr>')
 vim.keymap.set('n', '<S-Tab>', ':bnext<cr>')
 vim.keymap.set('n', '<Leader>d', ':bdelete<cr>')
+
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.hypr = {
+  install_info = {
+    url = "https://github.com/luckasRanarison/tree-sitter-hypr",
+    files = { "src/parser.c" },
+    branch = "master",
+  },
+  filetype = "hypr",
+}
