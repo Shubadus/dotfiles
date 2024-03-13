@@ -13,7 +13,7 @@ command = "alacritty --class dropterm"
 class = "dropterm"
 # command = "footclient -a dropterm"
 # lazy = true
-margin = 36
+margin = 40
 size = "80% 60%"
 unfocus = "hide"
 
@@ -21,7 +21,7 @@ unfocus = "hide"
 animation = "fromTop"
 command = "/opt/cisco/anyconnect/bin/vpnui"
 lazy = true
-margin = 36
+margin = 40
 size = "80% 60%"
 unfocus = "hide"
 
@@ -31,7 +31,7 @@ class = "Spotify"
 command = "spotify"
 # command = "flatpak run com.spotify.Client"
 lazy = true
-margin = 36
+margin = 40
 size = "80% 60%"
 unfocus = "hide"
 
@@ -39,7 +39,7 @@ unfocus = "hide"
 animation = "fromTop"
 command = "nm-connection-editor"
 lazy = true
-margin = 36
+margin = 40
 size = "80% 60%"
 unfocus = "hide"
 
@@ -48,7 +48,7 @@ animation = "fromTop"
 command = "pavucontrol"
 class = "pavucontrol"
 lazy = true
-margin = 36
+margin = 40
 size = "80% 60%"
 unfocus = "hide"
 
@@ -58,7 +58,7 @@ command = "alacritty --class sysmonitor -e btop"
 class = "sysmonitor"
 # command = "footclient -a sysmonitor -e btop"
 lazy = true
-margin = 36
+margin = 40
 size = "80% 60%"
 unfocus = "hide"
 
@@ -68,7 +68,7 @@ command = "alacritty --class ranger -e ranger"
 class = "ranger"
 # command = "footclient -a ranger -e ranger"
 lazy = true
-margin = 36
+margin = 40
 size = "80% 60%"
 unfocus = "hide"
 

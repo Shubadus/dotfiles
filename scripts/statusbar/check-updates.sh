@@ -24,10 +24,11 @@ get_flatpak_updates() {
 }
 
 start_arch_updates() {
-  dunstify \
-    -r 5556 \
+  notify-send \
+    -a "arch-updates" \
+    -c update \
     -u normal \
-    -i " " \
+    "Arch\AUR updates" \
     "Starting Arch and AUR updates" 
 
   alacritty -e yay -Syu
@@ -35,11 +36,12 @@ start_arch_updates() {
 }
 
 start_flatpak_updates() {
-  dunstify \
-    -r 5556 \
+  notify-send \
+    -a "flatpak-updates" \
+    -c update \
     -u normal \
-    -i " " \
-    "Starting flatpak updates" 
+    "Flatpak updates" \
+    "Starting Flatpak updates"
 
   alacritty -e flatpak update -y
 }

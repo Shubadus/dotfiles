@@ -4,6 +4,7 @@ lockscreen=~/.local/share/lockscreen
 session=$(echo $XDG_SESSION_TYPE)
 
 if [[ -z $@ ]]; then
+  exit
 else
   cp "$@" $wallpaper
   convert $wallpaper -blur 0x30 $lockscreen
