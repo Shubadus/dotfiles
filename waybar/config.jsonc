@@ -4,10 +4,6 @@
     "margin-top": 4,
     "margin-left": 4,
     "margin-right": 4,
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    // "height": 32, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
     "modules-left": [
       "hyprland/workspaces",
     ],
@@ -104,24 +100,6 @@
         "default": ""
       },
     },
-    //Modules configuration
-    "sway/workspaces": {
-      "disable-scroll": true,
-      "all-outputs": true,
-      "format": "{icon}",
-      "persistent-workspaces": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": [],
-        "9": [],
-        // "10":[]
-      }
-    },
     "mpris": {
       "format": "<small>{player_icon} {title} [{position}/{length}]</small>",
       "format-paused": "<small>{status_icon} <i>{title} [{position}/{length}]</i></small>",
@@ -149,6 +127,7 @@
     "clock": {
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
       "format": "<small>{:%H:%M}</small>",
+      "timezone": "America/Indiana/Indianapolis",
       "calendar": {
         "mode": "month",
         "mode-mon-col": 3,
@@ -313,7 +292,7 @@
       "format-alt": "<small>{icon} {volume}%</small>",
       "format-bluetooth": "<small>󰂰 {volume}</small>",
       "format-bluetooth-muted": "<small>󰂲 {format_source}</small>",
-      "format-muted": "<small>󰝟 Muted</small>",
+      "format-muted": "<small>󰝟</small>",
       // "format-source": " {volume}%",
       // "format-source-muted": "",
       "format-icons": {
@@ -331,10 +310,12 @@
       },
       "tooltip-format": "{desc}: {volume}%",
       "on-click-right": "pavucontrol",
-      // "on-click-middle": "amixer set Master 1+ toggle > /dev/null",
-      "on-click-middle": "~/.local/bin/scripts/statusbar/volumecontrol mute",
-      "on-scroll-up": "~/.local/bin/scripts/statusbar/volumecontrol up",
-      "on-scroll-down": "~/.local/bin/scripts/statusbar/volumecontrol down"
+      // "on-click-middle": "~/.local/bin/scripts/statusbar/volumecontrol mute",
+      // "on-scroll-up": "~/.local/bin/scripts/statusbar/volumecontrol up",
+      // "on-scroll-down": "~/.local/bin/scripts/statusbar/volumecontrol down"
+      "on-click-middle": "amixer set Master 1+ toggle > /dev/null",
+      "on-scroll-up": "amixer set Master 5%+ > /dev/null",
+      "on-scroll-down": "amixer set Master 5%- > /dev/null"
     },
     "pulseaudio/slider": {
       "min": 0,
