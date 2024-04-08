@@ -32,7 +32,8 @@ start_arch_updates() {
     "Arch\AUR updates" \
     "Starting Arch and AUR updates" 
 
-  alacritty -e yay -Syu
+  # alacritty -e yay -Syu
+  alacritty -e sudo dnf update
 
 }
 
@@ -44,7 +45,7 @@ start_flatpak_updates() {
     "Flatpak updates" \
     "Starting Flatpak updates"
 
-  alacritty -e flatpak update -y
+  alacritty -e flatpak update
 }
 
 

@@ -2,7 +2,7 @@
     /* `otf-font-awesome` is required to be installed for icons */
     border: none;
     border-radius: 0;
-    font-family: NotoSans Nerd Font;
+    font-family: NotoSans Nerd Font,Noto Sans;
     font-size: 20px;
     transition-duration: 0s;
     padding: 0 4px;
@@ -12,7 +12,8 @@ window#waybar {
     background: alpha(@theme_bg_color, 0.80);
     /* border-radius: 6; */
     color: @theme_fg_color;
-    border-radius: 6;
+    /* border-radius: 6; */
+    padding: 0 0;
 }
 
 tooltip {
@@ -28,6 +29,9 @@ tooltip {
 
 #backlight-slider trough {
   min-width: 80px;
+}
+#workspaces {
+  margin-bottom: 4px; 
 }
 #workspaces button {
   padding: 0 0.05em;
@@ -50,15 +54,8 @@ tooltip {
   color: @error_color;
 }
 
-#window,
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+#window {
+  margin-bottom: 4px;
 }
 
 @keyframes blink {
@@ -107,6 +104,9 @@ box.module button:hover {
   font-size: 16px;
 }
 
+#tray {
+  padding: 0 0px;
+}
 #tray > .passive {
   -gtk-icon-effect: dim;
 }

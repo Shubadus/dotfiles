@@ -1,9 +1,9 @@
 [
   {
     "layer": "top", // Waybar at top layer
-    "margin-top": 4,
-    "margin-left": 4,
-    "margin-right": 4,
+    // "margin-top": 4,
+    // "margin-left": 4,
+    // "margin-right": 4,
     "modules-left": [
       "hyprland/workspaces",
       "hyprland/window"
@@ -79,7 +79,7 @@
     // Hyprland
     "hyprland/workspaces": {
       "all-outputs": true,
-      "active-only": true,
+      // "active-only": true,
       "format": "{icon}",
       "format-icons": {
         // "1": "󰾔",
@@ -116,8 +116,8 @@
       }
     },
     "tray": {
-      // "reverse-direction": true
-      // "spacing": 4
+      "reverse-direction": true,
+      "spacing": 0
     },
     "clock": {
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
