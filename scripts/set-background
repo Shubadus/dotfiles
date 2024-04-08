@@ -1,13 +1,18 @@
 #!/bin/bash
-wallpaper=~/.local/share/wallpaper
-lockscreen=~/.local/share/lockscreen
+background_dir=~/.local/share/wallpaper
+wallpaper="$background_dir/wallpaper"
+lockscreen="$background_dir/lockscreen"
 session=$(echo $XDG_SESSION_TYPE)
+
+if [ ! -d $background_dir ]; then
+  mkdir $background_dir
+fi
 
 if [[ -z $@ ]]; then
   exit
 else
   cp "$@" $wallpaper
-  convert $wallpaper -blur 0x30 $lockscreen
+  convert $wallpaper -blur 0x10 $lockscreen
 fi
 
 if [[ $session == "x11" ]]; then

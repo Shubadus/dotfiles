@@ -4,19 +4,19 @@ import = ["/home/cshumer/.config/alacritty/themes/breeze.toml"]
 size = 11
 
 [font.bold]
-family = "NotoSansM Nerd Font"
+family = "NotoSansMono NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "NotoSansM Nerd Font"
+family = "NotoSansMono NF"
 style = "Bold Italic"
 
 [font.italic]
-family = "NotoSansM Nerd Font"
+family = "NotoSansMono NF"
 style = "Italic"
 
 [font.normal]
-family = "NotoSansM Nerd Font"
+family = "NotoSansMono NF"
 style = "Regular"
 
 [window]

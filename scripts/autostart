@@ -20,19 +20,15 @@ if [[ $DESKTOP_SESSION == "qtile"* ]]; then
   run dunstctl set-paused false
   # run $set_gtk
 elif [[ $DESKTOP_SESSION == "Hyprland"* ]]; then
-  run dunst
-  run dunstctl set-paused false
-  # run $set_gtk
-else
-  run dunstctl set-paused true
 fi
 
 
 #starting utility applications at boot time
 # run /usr/libexec/polkit-gnome-authentication-agent-1 # Fedora location
-run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Arch location
-run /usr/bin/slimbookbattery --minimize
-run thunar --daemon
+# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Arch location
+run $(locate polkit-gnome-authentication-agent-1)
+# run /usr/bin/slimbookbattery --minimize
+# run thunar --daemon
 # run /usr/bin/1password --silent
 
 # Flatpaks
@@ -46,24 +42,14 @@ if [[ $session == "x11" ]]; then
   run feh --bg-fill $wallpaper
 
 elif [[ $session == "wayland" ]]; then
-  # run foot -s
-  # run swaybg -o '*' -i $wallpaper -m fill
-  # run kanshi
-  # if [[ $DESKTOP_SESSION == "sway"* ]]; then
   run swayidle -w \
     timeout 900 "$lock" \
     timeout 1000 'hyprctl dispatch dpms off' \
     before-sleep 'playerctl pause' \
     before-sleep "$lock" \
     after-resume 'hyprctl dispatch dpms on'
-    # if 
-  # elif [[ $DESKTOP_SESSION == "Hyprland"* ]]; then
-  # run flatpak run org.kde.xwaylandvideobridge
-  # fi
   run xwaylandvideobridge
 fi
-
-run nm-applet --indicator
 
 if pgrep packagekitd; then
   pkill packagekitd

@@ -6,6 +6,7 @@
     "margin-right": 4,
     "modules-left": [
       "hyprland/workspaces",
+      "hyprland/window"
     ],
     "modules-center": [
       "mpris",
@@ -14,8 +15,6 @@
       "custom/arch_updates",
       "custom/flatpak_updates",
       "privacy",
-      "cpu",
-      "memory",
       "tray",
       "group/backlight",
       "battery",
@@ -80,25 +79,21 @@
     // Hyprland
     "hyprland/workspaces": {
       "all-outputs": true,
-      "persistent-workspaces": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": []
-      },
+      "active-only": true,
       "format": "{icon}",
       "format-icons": {
-        "1": "󰾔",
-        "2": "󰈩",
-        "3": "󱃖",
-        "4": "",
-        "5": "󰈚",
-        // "1": "󰖟",
-        // "2": "",
+        // "1": "󰾔",
+        // "2": "󰈩",
+        // "3": "󱃖",
+        // "4": "",
+        // "5": "󰈚",
         // "active": "",
-        "default": ""
+        // "default": ""
       },
+    },
+    "hyprland/window": {
+      "format": "{title}",
+      "max-length": 30,
     },
     "mpris": {
       "format": "<small>{player_icon} {title} [{position}/{length}]</small>",
@@ -164,57 +159,6 @@
       "on-click": "swaync-client -t -sw",
       // "on-click-right": "swaync-client -d -sw",
       "escape": true
-    },
-    "cpu": {
-      "format": "<small>{icon}</small>",
-      "format-alt": "<small>{icon} {}%</small>",
-      "tooltip-format": "CPU: {usage}",
-      "format-icons": [
-        "󰝦",
-        "󰪞",
-        "󰪟",
-        "󰪠",
-        "󰪡",
-        "󰪢",
-        "󰪣",
-        "󰪤",
-        "󰪥"
-      ]
-      // "format-icons": ""
-    },
-    "memory": {
-      "format": "<small>{icon}</small>",
-      "format-alt": "<small>{icon} {}%</small>",
-      "tooltip-format": "Memory: {used:0.1f} GB Used",
-      "format-icons": [
-        "󰝦",
-        "󰪞",
-        "󰪟",
-        "󰪠",
-        "󰪡",
-        "󰪢",
-        "󰪣",
-        "󰪤",
-        "󰪥"
-      ]
-      // "format-icons": ""
-    },
-    "disk": {
-      "format": "<small>{icon}</small>",
-      "format-alt": "<small>{icon} {percentage_used}%</small>",
-      // "tooltip-format": "Free Disk Space: {percentage_free}",
-      "format-icons": [
-        "󰝦",
-        "󰪞",
-        "󰪟",
-        "󰪠",
-        "󰪡",
-        "󰪢",
-        "󰪣",
-        "󰪤",
-        "󰪥"
-      ]
-      // "format-icons": ""
     },
     "backlight": {
       // "device": "acpi_video1",
@@ -310,9 +254,6 @@
       },
       "tooltip-format": "{desc}: {volume}%",
       "on-click-right": "pavucontrol",
-      // "on-click-middle": "~/.local/bin/scripts/statusbar/volumecontrol mute",
-      // "on-scroll-up": "~/.local/bin/scripts/statusbar/volumecontrol up",
-      // "on-scroll-down": "~/.local/bin/scripts/statusbar/volumecontrol down"
       "on-click-middle": "amixer set Master 1+ toggle > /dev/null",
       "on-scroll-up": "amixer set Master 5%+ > /dev/null",
       "on-scroll-down": "amixer set Master 5%- > /dev/null"

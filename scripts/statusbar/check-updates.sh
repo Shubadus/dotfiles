@@ -4,7 +4,8 @@ flatpak_icon=''
 
 get_arch_updates() {
   # yay -Sy
-  count=$(checkupdates | wc -l)
+  # count=$(checkupdates | wc -l)
+  count=$(dnf check-update -q | grep -c '^[a-z0-9]')
   # count=$(yay -Qu | wc -l)
   if [ $count -gt 0 ]; then
     printf '{ "text": "%s", "tooltip": "%s", "class": "", "percentage": "" }' "$arch_icon $count" "$count updates available"

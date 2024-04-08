@@ -1,6 +1,5 @@
 #!/bin/bash
 player_status=$(playerctl status)
-wallpaper=~/.local/share/wallpaper
 was_playing=false
 
 pre_lock() {
