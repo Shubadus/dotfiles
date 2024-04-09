@@ -1,13 +1,13 @@
 #!/bin/bash
-arch_icon='󰏕'
+package_manager_icon='󰏕'
 flatpak_icon=''
 
 case "$1" in
-  * | check-packageman)
+  check-packageman)
     count=$(dnf check-update -q | grep -c '^[a-z0-9]')
     # count=$(yay -Qu | wc -l)
     if [ $count -gt 0 ]; then
-      printf '{ "text": "%s", "tooltip": "%s", "class": "", "percentage": "" }' "$arch_icon $count" "$count updates available"
+      printf '{ "text": "%s", "tooltip": "%s", "class": "", "percentage": "" }' "$package_manager_icon $count" "$count updates available"
     else
       printf '{ "text": "", "tooltip": "", "class": "", "percentage": "" }'
     fi
