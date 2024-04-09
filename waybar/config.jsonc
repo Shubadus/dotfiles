@@ -266,10 +266,11 @@
     "custom/arch_updates": {
       "interval": 43200,
       "format": "<small>{}</small>",
-      "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-arch",
+      "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-packageman",
       "exec-if": "exit 0",
       "return-type": "json",
-      "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-arch; pkill -SIGRTMIN+11 waybar",
+      "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-packageman; pkill -SIGRTMIN+11 waybar",
+      // "on-click": "pypr toggle dropterm_dnf; pkill -SIGRTMIN+11 waybar",
       "signal": 11,
     },
     "custom/flatpak_updates": {
@@ -279,6 +280,7 @@
       "return-type": "json",
       "exec-if": "exit 0",
       "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-flatpak; pkill -SIGRTMIN+12 waybar",
+      // "on-click": "pypr toggle dropterm_flatpak; pkill -SIGRTMIN+12 waybar",
       "signal": 12,
     },
     "wlr/taskbar": {

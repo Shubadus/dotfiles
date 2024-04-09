@@ -4,15 +4,28 @@ plugins = [
   "workspaces_follow_focus"
 ]
 
-# [workspaces_follow_focus]
-
-
-[scratchpads.term]
+[scratchpads.dropterm]
 animation = "fromTop"
-command = "alacritty --class dropterm"
+command = "$TERM --class dropterm"
 class = "dropterm"
-# command = "footclient -a dropterm"
-# lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.dropterm_dnf]
+animation = "fromTop"
+command = "$TERM --class dropterm_dnf -e $HOME/.local/bin/scripts/statusbar/check-updates.sh update-packageman"
+class = "dropterm_dnf"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.dropterm_flatpak]
+animation = "fromTop"
+command = "$TERM --class dropterm_flatpak -e $HOME/.local/bin/scripts/statusbar/check-updates.sh update-flatpak"
+class = "dropterm_flatpak"
+lazy = true
 margin = 40
 size = "80% 60%"
 unfocus = "hide"
@@ -29,7 +42,6 @@ unfocus = "hide"
 animation = "fromTop"
 class = "Spotify"
 command = "spotify"
-# command = "flatpak run com.spotify.Client"
 lazy = true
 margin = 40
 size = "80% 60%"
@@ -56,7 +68,6 @@ unfocus = "hide"
 animation = "fromTop"
 command = "alacritty --class sysmonitor -e btop"
 class = "sysmonitor"
-# command = "footclient -a sysmonitor -e btop"
 lazy = true
 margin = 40
 size = "80% 60%"
@@ -66,9 +77,7 @@ unfocus = "hide"
 animation = "fromTop"
 command = "alacritty --class ranger -e ranger"
 class = "ranger"
-# command = "footclient -a ranger -e ranger"
 lazy = true
 margin = 40
 size = "80% 60%"
 unfocus = "hide"
-

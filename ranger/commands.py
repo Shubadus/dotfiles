@@ -11,12 +11,14 @@ from __future__ import (absolute_import, division, print_function)
 
 # You can import any python module as needed.
 import os
+import time
 
 import subprocess
 import json
 import atexit
 import socket
 from pathlib import Path
+from subprocess import Popen, PIPE, run
 
 import logging
 logger = logging.getLogger(__name__)
@@ -83,6 +85,40 @@ class MPVImageDisplayer(ImageDisplayer):
             logger.exception(traceback.format_exc())
             sys.exit(1)
         logger.info('SUCCESS')
+
+@register_image_displayer("imv")
+class IMVImageDisplayer(ImageDisplayer):
+    """
+    Implementation of ImageDisplayer using imv
+    """
+    is_initialized = False
+
+    def __init__(self):
+        self.process = None
+
+    def initialize(self):
+        """ start imv """
+        if (self.is_initialized and self.process.poll() is None and
+                not self.process.stdin.closed):
+            return
+
+        self.process = Popen(['imv'], cwd=self.working_dir,
+                             stdin=PIPE, universal_newlines=True)
+        self.is_initialized = True
+        time.sleep(1)
+
+    def draw(self, path, start_x, start_y, width, height):
+        self.initialize()
+        run(['imv-msg', str(self.process.pid), 'close'])
+        run(['imv-msg', str(self.process.pid), 'open', path])
+
+    def clear(self, start_x, start_y, width, height):
+        self.initialize()
+        run(['imv-msg', str(self.process.pid), 'close'])
+
+    def quit(self):
+        if self.is_initialized and self.process.poll() is None:
+            self.process.terminate()
 
 
 # Any class that is a subclass of "Command" will be integrated into ranger as a
