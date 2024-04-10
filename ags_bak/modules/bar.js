@@ -1,3 +1,4 @@
+
 const hyprland = await Service.import("hyprland")
 const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
@@ -13,25 +14,53 @@ const date = Variable("", {
 // so to make a reuseable widget, make it a function
 // then you can simply instantiate one by calling it
 
-function Workspaces() {
-  const activeId = hyprland.active.workspace.bind("id")
-  const workspaces = hyprland.bind("workspaces")
-    // for (let 1 = 0; i < workspaces.length; i++) {
-    //   const ws = workspaces[i];
-    //   if (workspaces[i
-    // }
-    .as(ws => ws.map(({ id }) => Widget.Button({
-      on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
-      child: Widget.Label(`${id}`),
-      class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
-    })).sort())
+// function Workspaces() {
+//   const activeId = hyprland.active.workspace.bind("id")
+//   const workspaces = hyprland.bind("workspaces")
+//     // for (let 1 = 0; i < workspaces.length; i++) {
+//     //   const ws = workspaces[i];
+//     //   if (workspaces[i
+//     // }
+//     .as(ws => ws.map(({ id }) => Widget.Button({
+//       on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
+//       child: Widget.Label(`${id}`),
+//       class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
+//     })).sort())
 
-  return Widget.Box({
-    class_name: "workspaces",
-    children: workspaces,
+//   return Widget.Box({
+//     class_name: "workspaces",
+//     children: workspaces,
+//   })
+// }
+
+function Workspaces() {
+  // const focusedTitle = Widget.Label({
+  //   label: hyprland.active.client.bind('title'),
+  //   visible: hyprland.active.client.bind('address')
+  //     .as(addr => !!addr),
+  // })
+
+  const activeId = hyprland.active.workspace.bind("id")
+  const dispatch = ws => hyprland.messageAsync(`dispatch workspace ${ws}`);
+
+  return Widget.EventBox({
+    onScrollUp: () => dispatch('+1'),
+    onScrollDown: () => dispatch('-1'),
+    child: Widget.Box({
+      children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
+        attribute: i,
+        class_name: activeId.as(id => `${id === i ? "focused" : ""}`),
+        label: `${i}`,
+        onClicked: () => dispatch(i),
+      })),
+
+      // remove this setup hook if you want fixed number of buttons
+      setup: self => self.hook(hyprland, () => self.children.forEach(btn => {
+        btn.visible = hyprland.workspaces.some(ws => ws.id === btn.attribute);
+      })),
+    }),
   })
 }
-
 
 function ClientTitle() {
   return Widget.Label({
@@ -125,6 +154,7 @@ function Volume() {
 }
 
 
+// TODO: Make Battery Bar reveal on hover
 function BatteryLabel() {
   const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0)
   const icon = battery.bind("percent").as(p =>
@@ -134,17 +164,25 @@ function BatteryLabel() {
     class_name: "battery",
     visible: battery.bind("available"),
     children: [
-      Widget.Icon({
-        icon: icon,
-        // tooltip-text: value
-      })
-      // Widget.LevelBar({
-      //   widthRequest: 100,
-      //   bar_mode: "discrete",
-      //   vpack: "center",
-      //   visible: false,
-      //   value,
-      // }),
+      Widget.Button({
+        onHover: () => { },
+        child: Widget.Icon({
+          icon: icon,
+          // tooltip-text: value
+        }),
+      }),
+      Widget.Revealer({
+        // class_name: 'battery-reveal',
+        transition: 'slide_right',
+        reveal_child: false,
+        child: Widget.LevelBar({
+          widthRequest: 100,
+          bar_mode: "discrete",
+          vpack: "center",
+          visible: false,
+          value,
+        }),
+      }),
     ],
   })
 }
@@ -199,18 +237,17 @@ function Right() {
   })
 }
 
-export function Bar(monitor = 0) {
-  return Widget.Window({
-    name: `bar-${monitor}`, // name has to be unique
-    class_name: "bar",
-    monitor,
-    layer: 'top',
-    anchor: ["top", "left", "right"],
-    exclusivity: "exclusive",
-    child: Widget.CenterBox({
-      start_widget: Left(),
-      center_widget: Center(),
-      end_widget: Right(),
-    }),
-  })
-}
+export default (monitor = 0) => Widget.Window({
+  name: `bar-${monitor}`, // name has to be unique
+  class_name: "bar",
+  monitor,
+  layer: 'top',
+  anchor: ["top", "left", "right"],
+  // margins: [4, 4],
+  exclusivity: "exclusive",
+  child: Widget.CenterBox({
+    start_widget: Left(),
+    center_widget: Center(),
+    end_widget: Right(),
+  }),
+})
