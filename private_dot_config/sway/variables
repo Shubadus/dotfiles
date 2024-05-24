@@ -1,0 +1,9 @@
+# set $term alacritty
+set $term foot
+set $browser MOZ_ENABLE_WAYLAND=1 firefox
+set $filemanager thunar
+set $editor foot -e neovim
+# set $launcher nwg-drawer
+set $launcher wofi
+set $exit wlogout
+# set $exit nwg-bar -p center -a middle -i 48 -s preset-1.css

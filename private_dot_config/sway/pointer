@@ -1,0 +1,5 @@
+input "1133:16505:Logitech_G_Pro" {
+  natural_scroll disabled
+  scroll_factor 1.0
+  left_handed disabled
+}

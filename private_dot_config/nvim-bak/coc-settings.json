@@ -1,0 +1,16 @@
+{
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.enableHighlightLineNumber": true,
+	"diagnostic.floatConfig": {
+		"focusable": false
+	},
+	"codeLens.enable": true,
+	"suggest.detailMaxLength": 60,
+	"suggest.enablePreview": true,
+	"suggest.noselect": false,
+	"typescript.format.enabled": true,
+  "javascript.referencesCodeLens.enable": false,
+  "Lua.telemetry.enable": true
+	//"coc.preferences.formatOnSaveFiletypes": ["py"]
+}

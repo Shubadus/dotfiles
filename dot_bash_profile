@@ -1,0 +1,17 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+export PATH="$HOME/.local/share/npm/bin:$PATH"
+export QT_STYLE_OVERRIDE="gtk2"
+export GTK_THEME=Materia-dark-compact
+export GTK_USE_PORTAL=1
+export QT_QPA_PLATFORMTHEME="gtk2"
+export vi=(command -v lvim)
+export vim=(command -v lvim)
+export nvim=(command -v lvim)

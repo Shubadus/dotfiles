@@ -1,0 +1,83 @@
+[pyprland]
+plugins = [
+  "scratchpads",
+  "workspaces_follow_focus"
+]
+
+[scratchpads.dropterm]
+animation = "fromTop"
+command = "$TERM --class dropterm"
+class = "dropterm"
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.dropterm_dnf]
+animation = "fromTop"
+command = "$TERM --class dropterm_dnf -e $HOME/.local/bin/scripts/statusbar/check-updates.sh update-packageman"
+class = "dropterm_dnf"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.dropterm_flatpak]
+animation = "fromTop"
+command = "$TERM --class dropterm_flatpak -e $HOME/.local/bin/scripts/statusbar/check-updates.sh update-flatpak"
+class = "dropterm_flatpak"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.vpn]
+animation = "fromTop"
+command = "/opt/cisco/anyconnect/bin/vpnui"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.spotify]
+animation = "fromTop"
+class = "Spotify"
+command = "spotify"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.network_manager]
+animation = "fromTop"
+command = "nm-connection-editor"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.audio]
+animation = "fromTop"
+command = "pavucontrol"
+class = "pavucontrol"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.sysmonitor]
+animation = "fromTop"
+command = "alacritty --class sysmonitor -e btop"
+class = "sysmonitor"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"
+
+[scratchpads.ranger]
+animation = "fromTop"
+command = "alacritty --class ranger -e ranger"
+class = "ranger"
+lazy = true
+margin = 40
+size = "80% 60%"
+unfocus = "hide"

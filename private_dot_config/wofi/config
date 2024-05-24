@@ -1,0 +1,10 @@
+show=drun
+allow_images=true
+# lines=15
+# dynamic_lines=true
+insensitive=true
+no_actions=true
+single_click=true
+location=top
+# yoffset=32 # Needed for qtile
+# yoffset=4

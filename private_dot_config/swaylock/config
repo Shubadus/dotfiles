@@ -1,0 +1,15 @@
+ignore-empty-password
+daemonize
+# clock
+# indicator
+# fade-in=0.02
+font=NotoSans Regular
+
+image=~/.local/share/wallpaper/lockscreen
+# datestr=%x
+# text-color=FFFFFF
+# text-caps-lock-color=FFFFFF
+# image=/usr/share/backgrounds/archlinux/gritty.png
+
+# indicator-x-position=60
+# indicator-y-position=60

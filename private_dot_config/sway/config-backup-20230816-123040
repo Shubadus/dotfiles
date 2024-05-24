@@ -1,0 +1,206 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+# Read `man 5 sway` for a complete reference. include "~/.config/sway/config.d/*" #############################################################
+# General Variables
+##############################################################
+# Logo key. Use Mod1 for Alt.
+set $wallpaper ~/Pictures/wallpapers/nature.jpg
+set $opacity 0.80
+
+##############################################################
+# Key Variables
+##############################################################
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+##############################################################
+# Program Variables
+##############################################################
+
+### Turn off screen on lid closed
+set $laptop eDP-1
+bindswitch lid:on output $laptop disable
+bindswitch lid:off output $laptop enable
+
+##############################################################
+# Options
+##############################################################
+xwayland enable
+focus_follows_mouse no
+focus_on_window_activation smart
+smart_borders on
+# smart_gaps on
+popup_during_fullscreen smart
+default_border pixel 2
+gaps inner 4
+
+###############################################
+# Sway Colors
+###############################################
+# Colors are Breeze Dark
+client.focused #3daee9 #232629 #eff0f1 #804453 #3daee9
+# client.focused_inactive #3daee9 #232629 #eff0f1 #804453 #3daee9
+# client.focused #3daee9 #232629 #eff0f1 #804453 #3daee9
+client.urgent #804453 #232629 #eff0f1 #804453 #3daee9
+
+# Set wallpaper
+output * bg $wallpaper fill
+
+# idle timeout to automatically lock the screen
+# exec swayidle -w \
+#   timeout 900 $lock \
+#   timeout 1000 'swaymsg "output * dpms off"' \
+#   before-sleep 'playerctl pause' \
+#   timeout 15 if pgrep -x $lock; then swaymsg "output * dpms off"; fi \
+#   resume 'swaymsg "output * dpms on"' \
+#   before-sleep $lock \
+#
+##############################################################
+# Keybinds
+##############################################################
+  # Terminal Applications
+  bindsym $mod+Return exec $term
+  bindsym $mod+Shift+Return exec $term -e ranger
+  bindsym Control+Shift+Escape exec $term -e htop
+
+  # Spawn password manager
+  bindsym Control+Shift+Space exec $passman
+
+  # Kill focused window
+  bindsym $mod+Shift+q kill
+
+  # Start your launcher
+  bindsym $mod+Shift+d exec $menu
+
+  # Start powerbar app
+  bindsym $mod+x exec $powerbar
+
+  bindsym Control+Shift+L exec $lock
+
+  # Programs 
+  bindsym $mod+Shift+b exec $browser
+  bindsym $mod+Shift+s exec $screenshot
+
+  # Floating Window Behavior
+  floating_modifier $mod normal
+
+  # Reload the configuration file
+  bindsym $mod+Shift+r reload
+
+  # Exit sway (logs you out of your Wayland session)
+  bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+  # Audio Controls
+  # Media Player Controls
+  bindsym --locked XF86AudioPlay exec playerctl play-pause
+  bindsym --locked XF86AudioNext exec playerctl next
+  bindsym --locked XF86AudioPrev exec playerctl previous
+
+  # Pactl volume controls
+  # bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+  # bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+  # bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+  bindsym XF86AudioRaiseVolume exec $volumecontrol_up
+  bindsym XF86AudioLowerVolume exec $volumecontrol_down
+  bindsym XF86AudioMute exec $volumecontrol_mute
+
+  # Brightness Controls
+  bindsym --locked XF86MonBrightnessUp exec --no-startup-id light -A 10
+  bindsym --locked XF86MonBrightnessDown exec --no-startup-id light -U 10
+
+##############################################################
+# Moving around:
+##############################################################
+
+  # Move your focus around
+  bindsym $mod+$left focus left
+  bindsym $mod+$down focus down
+  bindsym $mod+$up focus up
+  bindsym $mod+$right focus right
+
+  bindsym Alt+$left focus output left 
+  bindsym Alt+$right focus output right
+
+  # Move the focused window with the same, but add Shift
+  bindsym $mod+Shift+$left move left
+  bindsym $mod+Shift+$down move down
+  bindsym $mod+Shift+$up move up
+  bindsym $mod+Shift+$right move right
+##############################################################
+# Workspaces:
+##############################################################
+# Switch to workspace
+  bindsym $mod+1 workspace number 1
+  bindsym $mod+2 workspace number 2
+  bindsym $mod+3 workspace number 3
+  bindsym $mod+4 workspace number 4
+  bindsym $mod+5 workspace number 5
+  bindsym $mod+6 workspace number 6
+  bindsym $mod+7 workspace number 7
+  bindsym $mod+8 workspace number 8
+  bindsym $mod+9 workspace number 9
+  bindsym $mod+0 workspace number 10
+  # Move focused container to workspace
+  bindsym $mod+Shift+1 move container to workspace number 1
+  bindsym $mod+Shift+2 move container to workspace number 2
+  bindsym $mod+Shift+3 move container to workspace number 3
+  bindsym $mod+Shift+4 move container to workspace number 4
+  bindsym $mod+Shift+5 move container to workspace number 5
+  bindsym $mod+Shift+6 move container to workspace number 6
+  bindsym $mod+Shift+7 move container to workspace number 7
+  bindsym $mod+Shift+8 move container to workspace number 8
+  bindsym $mod+Shift+9 move container to workspace number 9
+  bindsym $mod+Shift+0 move container to workspace number 10
+
+  bindsym $mod+Alt+$left move workspace to output left
+  bindsym $mod+Alt+$right move workspace to output right
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+##############################################################
+# Layout stuff:
+##############################################################
+  # You can "split" the current object of your focus with
+  # $mod+b or $mod+v, for horizontal and vertical splits
+  # Make the current focus fullscreen
+  bindsym $mod+f fullscreen
+
+  # Toggle the current focus between tiling and floating mode
+  bindsym $mod+Shift+space floating toggle
+
+  # Swap focus between the tiling area and the floating area
+  bindsym $mod+space focus mode_toggle
+
+  # Move focus to the parent container
+  bindsym $mod+a focus parent
+
+##############################################################
+# Scratchpad:
+##############################################################
+# TODO: Look at using Sway and SwayMsg to emulate qtile's scratchpad functionality.
+  # Sway has a "scratchpad", which is a bag of holding for windows.
+  # You can send windows there and get them back later.
+
+  # Move the currently focused window to the scratchpad
+  bindsym $mod+Shift+minus move scratchpad
+
+  # Show the next scratchpad window or hide the focused scratchpad window.
+  # If there are multiple scratchpad windows, this command cycles through them.
+  bindsym $mod+minus scratchpad show
+
+##############################################################
+# Resizing containers:
+##############################################################
+  bindsym $mod+Control+$left resize shrink width 10px
+  bindsym $mod+Control+$down resize grow height 10px
+  bindsym $mod+Control+$up resize shrink height 10px
+  bindsym $mod+Control+$right resize grow width 10px
+
+##############################################################
+# include /etc/sway/config.d/*
