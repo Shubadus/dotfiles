@@ -15,4 +15,4 @@ export QT_QPA_PLATFORMTHEME="gtk2"
 export EDITOR=lvim
 alias vi=lvim
 alias vim=lvim
-export nvim=lvim
+alias nvim=lvim
