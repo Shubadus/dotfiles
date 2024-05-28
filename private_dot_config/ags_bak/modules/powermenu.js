@@ -1,4 +1,4 @@
-const WINDOW_NAME = "powerbar"
+const WINDOW_NAME = "powermenu"
 
 function generateButton(action, label) {
   return Widget.Button({
@@ -30,7 +30,7 @@ const buttonBox = Widget.Box({
   vertical: true
 })
 
-export const powerbar = Widget.Window({
+export default () => Widget.Window({
   name: WINDOW_NAME,
     anchor: ["top", "right"],
   setup: self => self.keybind("Escape", () => {

@@ -1,5 +1,5 @@
 const { query } = await Service.import("applications")
-const WINDOW_NAME = "applauncher"
+const WINDOW_NAME = "launcher"
 
 /** @param {import('resource:///com/github/Aylur/ags/service/applications.js').Application} app */
 const AppItem = app => Widget.Button({
@@ -92,7 +92,7 @@ const Applauncher = ({ width = 500, height = 500, spacing = 12 }) => {
 }
 
 // there needs to be only one instance
-export const applauncher = Widget.Window({
+export default () => Widget.Window({
     name: WINDOW_NAME,
     setup: self => self.keybind("Escape", () => {
         App.closeWindow(WINDOW_NAME)

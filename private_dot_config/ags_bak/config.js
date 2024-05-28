@@ -3,8 +3,8 @@
 import Gdk from "gi://Gdk"
 import Bar from "./modules/bar.js";
 import { NotificationPopups } from "./modules/bar_widgets/notification.js";
-import { powerbar } from "./modules/powerbar.js";
-import { applauncher } from "./modules/applauncher.js";
+import powermenu from "./modules/powermenu.js";
+import launcher from "./modules/launcher.js";
 
 // TODO: Move into separate place
 const range = (length, start = 1) => Array.from({ length }, (_, i) => i + start);
@@ -17,8 +17,8 @@ App.config({
   style: "./style.css",
   windows: [
     forMonitors(Bar),
-    powerbar,
-    applauncher,
+    powermenu(),
+    launcher(),
     NotificationPopups(0)
   ],
 });

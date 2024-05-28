@@ -70,7 +70,7 @@ const options = mkOptions(OPTIONS, {
             start: opt<Array<import("widget/bar/Bar").BarWidget>>([
                 "launcher",
                 "workspaces",
-                "taskbar",
+                // "taskbar",
                 "expander",
                 "messages",
             ]),
@@ -81,7 +81,7 @@ const options = mkOptions(OPTIONS, {
                 "media",
                 "expander",
                 "systray",
-                "colorpicker",
+                // "colorpicker",
                 "screenrecord",
                 "system",
                 "battery",
@@ -114,11 +114,11 @@ const options = mkOptions(OPTIONS, {
         workspaces: {
             workspaces: opt(7),
         },
-        taskbar: {
-            iconSize: opt(0),
-            monochrome: opt(true),
-            exclusive: opt(false),
-        },
+        // taskbar: {
+        //     iconSize: opt(0),
+        //     monochrome: opt(true),
+        //     exclusive: opt(false),
+        // },
         messages: {
             action: opt(() => App.toggleWindow("datemenu")),
         },
