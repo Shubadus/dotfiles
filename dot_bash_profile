@@ -9,7 +9,6 @@ fi
 
 export PATH="$HOME/.local/share/npm/bin:$PATH"
 export QT_STYLE_OVERRIDE="gtk2"
-export GTK_THEME=Materia-dark-compact
 export GTK_USE_PORTAL=1
 export QT_QPA_PLATFORMTHEME="gtk2"
 export EDITOR=lvim
