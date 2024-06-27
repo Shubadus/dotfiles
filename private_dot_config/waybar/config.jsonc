@@ -7,8 +7,6 @@
     "modules-left": [
       "hyprland/workspaces",
       "sway/workspaces",
-      "hyprland/window",
-      "sway/window",
     ],
     "modules-center": [
       "mpris",
@@ -89,8 +87,11 @@
         // "3": "󱃖",
         // "4": "",
         // "5": "󰈚",
-        // "active": "",
-        // "default": ""
+        "active": "",
+        "default": ""
+      },
+      "persistent-workspaces": {
+        "*": 8,
       },
     },
     "hyprland/window": {
