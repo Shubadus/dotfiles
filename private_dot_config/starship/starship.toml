@@ -10,7 +10,7 @@ add_newline = false
 # Disable the package module, hiding it from the prompt completely
 [os]
 disabled = false
-format = "$symbol "
+format = "[$symbol]($style)"
 symbols.Arch = "󰣇"
 symbols.Fedora = ""
 
