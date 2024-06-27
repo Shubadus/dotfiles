@@ -1,7 +1,7 @@
 show=drun
 allow_images=true
 # lines=15
-# dynamic_lines=true
+dynamic_lines=true
 insensitive=true
 no_actions=true
 single_click=true

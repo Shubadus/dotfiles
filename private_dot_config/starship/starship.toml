@@ -1,11 +1,14 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = '''
-[┌](bold green)$username$directory$rust$package$os$time$all
-[└─>](bold green) '''
+format = """ 
+[┌>](bold green)$all
+[└─>](bold green) """
 # Inserts a blank line between shell prompts
 add_newline = false
+
+[character]
+disabled = true
 
 # Disable the package module, hiding it from the prompt completely
 [os]
@@ -17,7 +20,7 @@ Arch = "󰣇"
 Fedora = ""
 
 [package]
-disabled = true
+# disabled = true
 
 [time]
 disabled = false
@@ -31,6 +34,9 @@ show_always = true
 
 [python]
 symbol = ""
+
+[golang]
+symbol = "󰟓"
 
 [nix_shell]
 impure_msg = '[impure shell](bold red)'
@@ -47,5 +53,5 @@ disabled = false
 disabled = false
 ssh_only = true
 
-[container]
-format = '[$symbol \[$name\]]($style) '
+[line_break]
+disabled = true
