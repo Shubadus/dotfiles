@@ -43,12 +43,6 @@ style = 'bold green'
 symbol = '󱥠'
 disabled = false
 
-[username]
-style_user = 'white bold'
-format = 'user: [$user]($style) '
-disabled = false
-show_always = true
-
 [hostname]
 disabled = false
 ssh_only = true
