@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = '''
-[┌](bold green)$username$directory$rust$package$os$time
+[┌](bold green)$username$directory$rust$package$os$time$all
 [└─>](bold green) '''
 # Inserts a blank line between shell prompts
 add_newline = false
