@@ -10,9 +10,11 @@ add_newline = false
 # Disable the package module, hiding it from the prompt completely
 [os]
 disabled = false
-format = "[$symbol]($style)"
-symbols.Arch = "󰣇"
-symbols.Fedora = ""
+format = "[$symbol]($style) "
+
+[os.symbols]
+Arch = "󰣇"
+Fedora = ""
 
 [package]
 disabled = true
@@ -29,3 +31,27 @@ show_always = true
 
 [python]
 symbol = ""
+
+[nix_shell]
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = 'via [☃️ $state( \($name\))](bold blue)'
+
+[sudo]
+style = 'bold green'
+symbol = '󱥠'
+disabled = false
+
+[username]
+style_user = 'white bold'
+format = 'user: [$user]($style) '
+disabled = false
+show_always = true
+
+[hostname]
+disabled = false
+ssh_only = true
+
+[container]
+format = '[$symbol \[$name\]]($style) '
