@@ -12,6 +12,7 @@ add_newline = false
 disabled = false
 format = "$symbol "
 symbols.Arch = "󰣇"
+symbols.Fedora = ""
 
 [package]
 disabled = true
@@ -25,3 +26,6 @@ style_root = 'black bold'
 format = '[$user]($style) '
 disabled = false
 show_always = true
+
+[python]
+symbol = ""
