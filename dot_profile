@@ -1,0 +1,9 @@
+PATH="$HOME/node_modules/.bin:$HOME/bin:$PATH"
+
+export EDITOR="lvim"
+export PATH
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+alias vi="lvim"
+alias vim="lvim"
+alias nvim="lvim"
