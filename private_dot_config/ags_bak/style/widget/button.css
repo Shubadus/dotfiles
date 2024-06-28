@@ -1,0 +1,11 @@
+button {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+
+  /* background-color: alpha(@theme_bg_color, 0.80); */
+}
+
+button:active {
+    background-color: theme_selected_bg_color;
+}

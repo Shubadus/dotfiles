@@ -23,4 +23,14 @@ App.config({
   ],
 });
 
+// Utils.monitorFile(
+
+//   function() {
+//     const css = "./style.css"
+//     App.resetCss()
+//     App.applyCss()
+//   }
+
+// )
+
 export { };

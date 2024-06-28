@@ -1,3 +1,4 @@
+import PanelButton from "../buttons.js"
 const hyprland = await Service.import("hyprland")
 
 const activeId = hyprland.active.workspace.bind("id")

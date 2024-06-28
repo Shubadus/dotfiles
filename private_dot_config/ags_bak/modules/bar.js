@@ -4,6 +4,7 @@
   import Network from "./bar_widgets/network_indicator.js";
   import Volume from "./bar_widgets/volume.js";
   import Workspaces from "./bar_widgets/hyprland/workspaces.js";
+  // import PanelButton from "./bar_widgets/buttons.js";
 
   // const notifications = await Service.import("notifications")
   const mpris = await Service.import("mpris")
