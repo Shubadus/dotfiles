@@ -1,25 +1,28 @@
 * {
+  all: unset;
 	background-image: none;
 }
 window {
-	/* background-color: rgba(12, 12, 12, 0.7); */
 	background-color: alpha(@theme_bg_color, 0.9);
 }
 button {
-  /* color: @theme_unselected_bg_color; */
+  font-size: 24px;
   color: @theme_selected_bg_color;
-	background-color: @theme_bg_color;
+	background-color: alpha(@theme_bg_color, 0.9);
 	border-style: solid;
 	border-width: 2px;
+  border-radius: 8px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 25%;
+  margin: 2px;
+  padding: 4px;
 }
 
 button:focus, button:active, button:hover {
   color: @theme_bg_color;
-	background-color: @theme_selected_bg_color;
-	outline-style: none;
+	background-color: alpha(@theme_selected_bg_color, 0.9);
+	/* outline-style: none; */
 }
 
 #lock {
@@ -40,6 +43,7 @@ button:focus, button:active, button:hover {
 
 #shutdown {
     background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    /* background-image: image(url("/usr/share/icons/Papirus/symbolic/actions/system-shutdown-symbolic.svg"), url("/usr/share/icons/Papirus/64x64/apps/system-shutdown.svg")); */
 }
 
 #reboot {
