@@ -1,5 +1,5 @@
 {
-    "label" : "lock",
+    "label": "󰍁",
     "action" : "gtklock",
     "text" : "Lock",
     "keybind" : "l"
