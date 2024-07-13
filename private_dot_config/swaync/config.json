@@ -1,4 +1,5 @@
 {
+  "$schema": "/etc/xdg/swaync/configSchema.json",
   "positionX": "center",
   "positionY": "top",
   "widgets": [
@@ -32,6 +33,24 @@
       "label": "󰃠"
     },
     "buttons-grid": {
+      "actions": [
+        {
+          "label": "󰗼",
+          "command": "loginctl terminate-user $USER"
+        },
+        {
+          "label": "󰍁",
+          "command": "loginctl lock-session"
+        },
+        {
+          "label": "󰜉",
+          "command": "systemctl reboot"
+        },
+        {
+          "label": "",
+          "command": "systemctl shutdown"
+        },
+      ]
     }
   }
 }
