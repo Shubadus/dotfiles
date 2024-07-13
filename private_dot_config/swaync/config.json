@@ -31,7 +31,7 @@
     "volume": {
       "label": "",
       "show-per-app": true,
-      "show-per-app-icon": true,
+      "show-per-app-icon": true
     },
     "backlight": {
       "label": "󰃠"
