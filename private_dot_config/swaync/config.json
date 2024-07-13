@@ -1,19 +1,37 @@
 {
-  "layer": "top",
-  "control-center-layer": "top",
-  "fit-to-screen": false,
+  "positionX": "center",
+  "positionY": "top",
   "widgets": [
     "title",
+    "buttons-grid",
     "dnd",
-    "inhibitors",
     "backlight",
     "volume",
     "mpris",
     "notifications"
   ],
-  "volume": {
-    "show-per-app": true,
-    "show-per-app-icon": true,
-
+  "widget-config": {
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "Clear"
+    },
+    "dnd": {
+      "text": "Do Not Disturb"
+    },
+    "mpris": {
+      "image-size": 10,
+      "image-radius": 4
+    },
+    "volume": {
+      "label": "",
+      "show-per-app": true,
+      "show-per-app-icon": true,
+    },
+    "backlight": {
+      "label": "󰃠"
+    },
+    "buttons-grid": {
+    }
   }
 }
