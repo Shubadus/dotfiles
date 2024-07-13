@@ -1,8 +1,8 @@
 show=drun
 allow_images=true
 allow_markup=true
-# lines=10
-# dynamic_lines=true
+lines=7
+dynamic_lines=true
 insensitive=true
 no_actions=true
 single_click=true

@@ -47,6 +47,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.). (X11 only)
+    transparency = 90
 
 
     # Draw a line of "separator_height" pixel height between two
@@ -175,7 +176,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = "Tela-blue-dark, Tela-dark, Adwaita, breeze-dark, breeze"
+    icon_theme = "Tela-blue-dark, Tela-dark, Papirus, Adwaita, breeze-dark, breeze"
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
@@ -254,7 +255,7 @@
     # layout changes.
     force_xinerama = false
 
-    background = "#212121" 
+    background = "#212121f0" 
     foreground = "#f1ffff"
     frame_color = "#8AB4F8"
     ### mouse
