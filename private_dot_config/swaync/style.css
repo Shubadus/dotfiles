@@ -1,5 +1,5 @@
 @define-color cc-bg alpha(@theme_bg_color, 0.80);
-@define-color noti-border-color rgba(255, 255, 255, 0.15);
+@define-color noti-border-color alpha(@theme_selected_bg_color, 0.80);
 /* @define-color noti-bg rgba(48, 48, 48, 0.8); */
 @define-color noti-bg alpha(@theme_bg_color, 0.80);
 @define-color noti-bg-opaque rgb(48, 48, 48);
@@ -14,6 +14,11 @@
 @define-color text-color rgb(255, 255, 255);
 @define-color text-color-disabled rgb(150, 150, 150);
 @define-color bg-selected rgb(0, 128, 255);
+* {
+  font-family: "Noto Sans NerdFont";
+  font-weight: bold;
+}
+
 .notification-row {
   outline: none;
 }
