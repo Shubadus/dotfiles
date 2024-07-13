@@ -4,8 +4,10 @@
 @define-color noti-bg alpha(@theme_bg_color, 0.80);
 @define-color noti-bg-opaque rgb(48, 48, 48);
 @define-color noti-bg-darker rgb(38, 38, 38);
-@define-color noti-bg-hover rgb(56, 56, 56);
-@define-color noti-bg-hover-opaque rgb(56, 56, 56);
+/* @define-color noti-bg-hover rgb(56, 56, 56); */
+@define-color noti-bg-hover alpha(@theme_selected_bg_color, 0.80);
+/* @define-color noti-bg-hover-opaque rgb(56, 56, 56); */
+@define-color noti-bg-hover-opaque alpha(@theme_selected_bg_color, 0.80);
 @define-color noti-bg-focus rgba(68, 68, 68, 0.6);
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
