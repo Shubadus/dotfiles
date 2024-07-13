@@ -1,25 +1,20 @@
 #window {
-  background-color: alpha(@theme_bg_color, 0.9);
   border-radius: 0 0 10px 10px;
+  background-color: alpha(@theme_bg_color; 0.8);
 }
-#outer-box
-#expander-box
+#expander-box,
+#outer-box,
 #scroll {
-  background-color: alpha(@theme_bg_color, 0.9);
+  /* background-color: alpha(@theme_bg_color, 0.8); */
   border-radius: 12px;
 }
 
 #entry:selected {
-  /* color: @theme_selected_fg_color; */
   border: 2px solid @theme_selected_bg_color;
   border-radius: 12px;
-  /* background-color: alpha(@theme_selected_bg_color, 0.9); */
 }
 
-/* #outer-box { */
-/* } */
-
 #input {
-  background-color: alpha(@theme_bg_color, 1);
+  background-color: alpha(@theme_bg_color, 0.8);
   border-radius: 12px;
 }

@@ -1,4 +1,19 @@
 {
   "layer": "top",
-  "cssPriority": "user"
+  "control-center-layer": "top",
+  "fit-to-screen": false,
+  "widgets": [
+    "title",
+    "dnd",
+    "inhibitors",
+    "backlight",
+    "volume",
+    "mpris",
+    "notifications"
+  ],
+  "volume": {
+    "show-per-app": true,
+    "show-per-app-icon": true,
+
+  }
 }

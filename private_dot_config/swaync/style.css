@@ -292,7 +292,8 @@
 
 .blank-window {
   /* Window behind control center and on all other monitors */
-  background: transparent;
+  /* background: transparent; */
+  background: none;
 }
 
 .floating-notifications {
