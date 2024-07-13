@@ -36,6 +36,8 @@ tooltip {
 #workspaces button {
   padding: 0 0.05em;
   color: @theme_fg_color;
+  /* margin: .25em; */
+  /* font-size: 12px; */
 }
 
 #workspaces button.empty {
