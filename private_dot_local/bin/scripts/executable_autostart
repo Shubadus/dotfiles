@@ -1,0 +1,58 @@
+#!/bin/bash
+
+function run {
+  if ! pgrep -f $1 > /dev/null ; then
+    $@ &
+  fi
+}
+
+script_path=~/.local/bin/scripts
+session=$(echo $XDG_SESSION_TYPE)
+wallpaper=~/.local/share/wallpaper
+lock="$script_path/lock"
+set_gtk="$script_path/set-gtk-theme"
+
+#Find out your monitor name with xrandr or arandr (save and you get this line)
+
+#  Pause dunst, mostly we use this for DEs with built-in notification managers.
+if [[ $DESKTOP_SESSION == "qtile"* ]]; then
+  run dunst
+  run dunstctl set-paused false
+  # run $set_gtk
+elif [[ $DESKTOP_SESSION == "Hyprland"* ]]; then
+fi
+
+
+#starting utility applications at boot time
+# run /usr/libexec/polkit-gnome-authentication-agent-1 # Fedora location
+# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Arch location
+run $(locate polkit-gnome-authentication-agent-1)
+# run /usr/bin/slimbookbattery --minimize
+# run thunar --daemon
+# run /usr/bin/1password --silent
+
+# Flatpaks
+run flatpak run org.remmina.Remmina -i
+
+if [[ $session == "x11" ]]; then
+  xset +dpms dpms 150 300 300
+  run xss-lock --transfer-sleep-lock -- $lock
+  autorandr -c
+  run picom
+  run feh --bg-fill $wallpaper
+
+elif [[ $session == "wayland" ]]; then
+  run swayidle -w \
+    timeout 900 "$lock" \
+    timeout 1000 'hyprctl dispatch dpms off' \
+    before-sleep 'playerctl pause' \
+    before-sleep "$lock" \
+    after-resume 'hyprctl dispatch dpms on'
+  run xwaylandvideobridge
+fi
+
+if pgrep packagekitd; then
+  pkill packagekitd
+fi
+
+exit 0

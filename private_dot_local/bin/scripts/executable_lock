@@ -1,0 +1,31 @@
+#!/bin/bash
+player_status=$(playerctl status)
+was_playing=false
+
+pre_lock() {
+  if [[ $player_status == "Playing" ]]; then
+    was_playing=true
+    playerctl pause
+  fi
+}
+
+post_lock() {
+  if $was_playing; then
+    playerctl play
+  fi
+}
+
+lock() {
+  swaylock
+  sleep 15
+  if [[ $XDG_CURRENT_DESKTOP == "Hyprland"* ]] ; then
+    if [[ $(pgrep swaylock) ]] ; then
+      hyprctl dispatch dpms off
+    fi
+  fi
+}
+
+pre_lock
+lock
+post_lock
+exit 0
