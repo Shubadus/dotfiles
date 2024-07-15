@@ -15,12 +15,15 @@
       "custom/arch_updates",
       "custom/flatpak_updates",
       "tray",
+      "pulseaudio",
+      "network",
       "battery",
       "custom/power",
     ],
     "custom/power": {
       "format": "",
-      "on-click": "wlogout"
+      "on-click": "wlogout",
+      "tooltip-format": "Exit the session"
     },
     // Hyprland
     "hyprland/workspaces": {
@@ -51,19 +54,6 @@
       "format": "{title}",
       "max-length": 30,
     },
-    "mpris": {
-      "format": "<small>{player_icon} {title} [{position}/{length}]</small>",
-      "format-paused": "<small>{status_icon} <i>{title} [{position}/{length}]</i></small>",
-      "interval": 1,
-      "player-icons": {
-        "default": "",
-        "mpv": "🎵"
-      },
-      "status-icons": {
-        "paused": "󰏥"
-      },
-      // "ignored-players": ["firefox"]
-    },
     "idle_inhibitor": {
       "format": "<small>{icon}</small>",
       "format-icons": {
@@ -72,8 +62,9 @@
       }
     },
     "tray": {
+      "icon-size": 18,
       "reverse-direction": true,
-      "spacing": 0
+      "spacing": 6
     },
     "clock": {
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -239,9 +230,6 @@
       // "on-click": "pypr toggle dropterm_flatpak; pkill -SIGRTMIN+12 waybar",
       "signal": 12,
     },
-    "wlr/taskbar": {
-      "all-outputs": false,
-    },
     "custom/notification": {
       "tooltip": false,
       "format": "{icon}",
@@ -304,5 +292,5 @@
       "on-click-right": "swaync-client -d -sw",
       "escape": true
     },
-  }
+  },
 ]

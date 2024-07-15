@@ -1,3 +1,4 @@
+/* GTK variable reference https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss */
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     border: none;
@@ -5,11 +6,12 @@
     font-family: NotoSans Nerd Font,Noto Sans;
     font-size: 18px;
     transition-duration: 0s;
-    padding: 0 4px;
+    padding: 0 0;
 }
 
 window#waybar {
-    background: alpha(@theme_bg_color, 0.80);
+    /* background: alpha(@theme_bg_color, 0.80); */
+    background: none;
     /* border-radius: 6; */
     color: @theme_fg_color;
     /* border-radius: 6; */
@@ -23,6 +25,11 @@ tooltip {
     border-radius: 6;
 }
 
+tooltip label {
+    padding: 6px;
+    /* margin: 8px; */
+}
+
 #pulseaudio-slider trough {
   min-width: 80px;
 }
@@ -30,11 +37,14 @@ tooltip {
 #backlight-slider trough {
   min-width: 80px;
 }
-#workspaces {
-  margin-bottom: 4px; 
+
+#clock {
+  font-size: 20px;
 }
+
 #workspaces button {
-  padding: 0 0.05em;
+  font-size: 10px;
+  padding: 0 4px;
   color: @theme_fg_color;
 }
 
@@ -79,16 +89,39 @@ box.module button:hover {
     background: @theme_bg_color;
 }
 
+#taskbar {
+  margin: 2px 4px;
+}
+
 #taskbar button.active {
-  background-color: @theme_selected_bg_color;
+  border: 2px solid @theme_selected_bg_color;
+  border-radius: 6;
+
+  /* background-color: @theme_selected_bg_color; */
+}
+
+#custom-check_updates {
+  padding: 0 0 0 2px;
 }
 
 #custom-check_updates.reboot {
   background-color: alpha(@warning_color, 0.80);
 }
 
+#custom-power {
+  font-size: 16px;
+}
+
+#network {
+  padding: 0 6px 0 4px;
+}
+
 #network.disconnected {
     background-color: alpha(@warning_color, 0.80);
+}
+
+#pulseaudio {
+  padding: 0 6px 0 2px;
 }
 
 #pulseaudio.muted {
@@ -105,8 +138,9 @@ box.module button:hover {
 }
 
 #tray {
-  padding: 0 0px;
+  padding: 0 4px;
 }
+
 #tray > .passive {
   -gtk-icon-effect: dim;
 }
@@ -124,4 +158,13 @@ box.module button:hover {
 #idle_inhibitor.activated {
     background-color: alpha(@theme_selected_bg_color, 0.80);
     color: @theme_selected_fg_color;
+}
+
+.modules-left,
+.modules-right,
+.modules-center {
+  background: alpha(@theme_bg_color, 0.90);
+  margin: 4px 4px;
+  padding: 2px 12px;
+  border-radius: 6;
 }

@@ -3,7 +3,7 @@ package_manager_icon='󰏕'
 flatpak_icon=''
 
 case "$1" in
-  check-packageman)
+  check-packagemgr)
     count=$(dnf check-update -q | grep -c '^[a-z0-9]')
     # count=$(yay -Qu | wc -l)
     if [ $count -gt 0 ]; then
@@ -21,7 +21,7 @@ case "$1" in
       printf '{ "text": "", "tooltip": "", "class": "", "percentage": "" }'
     fi
   ;;
-  update-packageman)
+  update-packagemgr)
     notify-send \
       -a "Package-manager-updates" \
       -c update \
