@@ -7,6 +7,8 @@
   "control-center-margin-bottom": 4,
   "control-center-width": 400,
   "control-center-height": 400,
+  "hide-on-action": false,
+  "notification-2fa-action": true,
   "positionX": "center",
   "positionY": "top",
   "widgets": [

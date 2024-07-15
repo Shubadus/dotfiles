@@ -3,7 +3,7 @@
     border: none;
     border-radius: 0;
     font-family: NotoSans Nerd Font,Noto Sans;
-    font-size: 20px;
+    font-size: 18px;
     transition-duration: 0s;
     padding: 0 4px;
 }
@@ -36,8 +36,6 @@ tooltip {
 #workspaces button {
   padding: 0 0.05em;
   color: @theme_fg_color;
-  /* margin: .25em; */
-  /* font-size: 12px; */
 }
 
 #workspaces button.empty {
@@ -103,7 +101,7 @@ box.module button:hover {
 }
 
 #custom-notification {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 #tray {

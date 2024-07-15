@@ -10,71 +10,17 @@
     ],
     "modules-center": [
       "clock",
-      "mpris",
     ],
     "modules-right": [
       "custom/arch_updates",
       "custom/flatpak_updates",
-      "privacy",
       "tray",
-      "group/backlight",
       "battery",
-      "group/audio",
-      "group/group-power"
+      "custom/power",
     ],
-    "group/group-power": {
-      "orientation": "inherit",
-      "drawer": {
-        "transition-duration": 500,
-        "children-class": "not-power",
-        "transition-left-to-right": false,
-      },
-      "modules": [
-        "custom/power", // First element is the "group leader" and won't ever be hidden
-        "custom/quit",
-        "custom/lock",
-        "custom/reboot",
-      ]
-    },
-    "custom/quit": {
-      "format": "󰗼",
-      "tooltip": false,
-      "on-click": "loginctl terminate-user $USER"
-    },
-    "custom/lock": {
-      "format": "󰍁",
-      "tooltip": false,
-      "on-click": "loginctl lock-session"
-    },
-    "custom/reboot": {
-      "format": "󰜉",
-      "tooltip": false,
-      "on-click": "systemctl reboot"
-    },
     "custom/power": {
       "format": "",
-      "tooltip": false,
-      "on-click": "systemctl shutdown"
-    },
-    "group/audio": {
-      "orientation": "inherit",
-      "drawer": {
-        "transition-left-to-right": true,
-      },
-      "modules": [
-        "backlight",
-        "backlight/slider",
-      ]
-    },
-    "group/backlight": {
-      "orientation": "inherit",
-      "drawer": {
-        "transition-left-to-right": true,
-      },
-      "modules": [
-        "pulseaudio",
-        "pulseaudio/slider",
-      ]
+      "on-click": "wlogout"
     },
     // Hyprland
     "hyprland/workspaces": {
@@ -91,7 +37,14 @@
         "default": ""
       },
       "persistent-workspaces": {
-        "*":8,
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
       },
     },
     "hyprland/window": {
