@@ -13,6 +13,7 @@
   "positionY": "top",
   "widgets": [
     "title",
+    "menubar#Power",
     "buttons-grid",
     "dnd",
     "backlight",
@@ -43,6 +44,12 @@
     },
     "menubar#Power": {
       "label": "Power",
+      "action": [
+        {
+          "label": "",
+          "command": "systemctl shutdown"
+        }
+      ],
       "buttons": {
         "actions": [
           {
