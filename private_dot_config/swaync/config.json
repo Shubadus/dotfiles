@@ -13,7 +13,7 @@
   "positionY": "top",
   "widgets": [
     "title",
-    "menubar#Power",
+    "menubar",
     "buttons-grid",
     "dnd",
     "backlight",
