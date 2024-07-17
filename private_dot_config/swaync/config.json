@@ -40,10 +40,14 @@
       "show-per-app-icon": true
     },
     "backlight": {
-      "label": "󰃠"
+      "label": "󰃠",
+      "min": 10
     },
     "menubar": {
-      "menubar#Power": {
+      "menu#Power": {
+        "label": "",
+      },
+      "buttons#Power": {
         "label": "Power",
         "actions": [
           {
