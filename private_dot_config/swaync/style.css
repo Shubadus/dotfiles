@@ -19,6 +19,10 @@
   font-weight: bold;
 }
 
+.button {
+  background: @noti-bg;
+}
+
 .notification-row {
   outline: none;
 }
@@ -479,6 +483,17 @@
   padding: 4px 8px 8px 8px;
   margin: 0px 8px 8px 8px;
   border-radius: 12px;
+}
+
+.widget-menubar>box>.menu-button-bar>button {
+  /* border: 1px solid @noti-border-color; */
+  background: @noti-bg;
+  margin: 0px 8px 8px 8px;
+}
+
+.widget-menubar>box>.menu-button-bar>flowbox>flowboxchild>button {
+  background: @noti-bg;
+  margin: 0px 8px 8px 8px;
 }
 
 /* Backlight widget */

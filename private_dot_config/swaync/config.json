@@ -1,5 +1,6 @@
 {
   "layer": "overlay",
+  "cssPriority": "user",
   "control-center-layer": "top",
   "layer-shell": true,
   "fit-to-screen": false,
@@ -12,9 +13,8 @@
   "positionX": "center",
   "positionY": "top",
   "widgets": [
+    "menubar#Power",
     "title",
-    "menubar",
-    "buttons-grid",
     "dnd",
     "backlight",
     "volume",
@@ -43,11 +43,9 @@
       "label": "󰃠",
       "min": 10
     },
-    "menubar": {
-      "menu#Power": {
-        "label": "Power"
-      },
-      "buttons#Power": {
+    "menubar#Power": {
+      "menu#power-buttons": {
+        "label": "",
         "actions": [
           {
             "label": "󰗼",
@@ -67,26 +65,6 @@
           }
         ]
       }
-    },
-    "buttons-grid": {
-      "actions": [
-        {
-          "label": "󰗼",
-          "command": "loginctl terminate-user $USER"
-        },
-        {
-          "label": "󰍁",
-          "command": "loginctl lock-session"
-        },
-        {
-          "label": "󰜉",
-          "command": "systemctl reboot"
-        },
-        {
-          "label": "",
-          "command": "systemctl shutdown"
-        }
-      ]
     }
   }
 }
