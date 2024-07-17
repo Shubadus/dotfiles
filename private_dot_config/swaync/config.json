@@ -45,10 +45,9 @@
     },
     "menubar": {
       "menu#Power": {
-        "label": "",
+        "label": "Power"
       },
       "buttons#Power": {
-        "label": "Power",
         "actions": [
           {
             "label": "󰗼",
