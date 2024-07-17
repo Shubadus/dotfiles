@@ -1,5 +1,5 @@
 #window {
-  border-radius: 0 0 10px 10px;
+  border-radius: 12px;
   background-color: alpha(@theme_bg_color; 0.8);
 }
 #expander-box,

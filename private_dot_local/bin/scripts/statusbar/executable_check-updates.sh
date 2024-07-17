@@ -13,7 +13,7 @@ case "$1" in
     fi
   ;;
   check-flatpak)
-    count=$(flatpak remote-ls --updates | wc -l)
+    count=$(flatpak remote-ls --updates --app | wc -l)
 
     if [ $count -gt 0 ]; then
       printf '{ "text": "%s", "tooltip": "%s", "class": "", "percentage": "" }' "$flatpak_icon $count" "$count updates available"
