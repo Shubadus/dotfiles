@@ -10,8 +10,8 @@
 }
 
 window#waybar {
-    /* background: alpha(@theme_bg_color, 0.80); */
-    background: none;
+    background: alpha(@theme_bg_color, 0.80);
+    /* background: none; */
     /* border-radius: 6; */
     color: @theme_fg_color;
     /* border-radius: 6; */
@@ -160,11 +160,11 @@ box.module button:hover {
     color: @theme_selected_fg_color;
 }
 
-.modules-left,
-.modules-right,
-.modules-center {
-  background: alpha(@theme_bg_color, 0.90);
-  margin: 4px 4px;
-  padding: 2px 12px;
-  border-radius: 6;
-}
+/* .modules-left, */
+/* .modules-right, */
+/* .modules-center { */
+/*   background: alpha(@theme_bg_color, 0.90); */
+/*   margin: 4px 4px; */
+/*   padding: 2px 12px; */
+/*   border-radius: 6; */
+/* } */
