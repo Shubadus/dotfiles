@@ -160,11 +160,11 @@ box.module button:hover {
     color: @theme_selected_fg_color;
 }
 
-/* .modules-left, */
-/* .modules-right, */
-/* .modules-center { */
+.modules-left,
+.modules-right,
+.modules-center {
 /*   background: alpha(@theme_bg_color, 0.90); */
-/*   margin: 4px 4px; */
+  margin: 1px 8px;
 /*   padding: 2px 12px; */
 /*   border-radius: 6; */
-/* } */
+}
