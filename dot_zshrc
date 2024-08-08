@@ -1,0 +1,6 @@
+export EDITOR=lvim
+export VISUAL="$EDITOR"
+export PATH=$PATH:~/.local/bin
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+eval "$(starship init zsh)"
+
