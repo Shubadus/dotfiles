@@ -1,7 +1,0 @@
-require('plugins')
-require('lsp')
-require('config')
-require('indent')
-require('keymaps')
-require('lline')
-require('telescope')

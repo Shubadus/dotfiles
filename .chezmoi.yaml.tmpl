@@ -1,0 +1,7 @@
+{{ $email := promptString "email" -}}
+
+data:
+  email: {{ $email | quote }}
+git:
+  autoPush: true
+sourceDir: ~/.local/share/chezmoi/

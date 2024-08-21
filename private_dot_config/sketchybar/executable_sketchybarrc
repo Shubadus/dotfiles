@@ -12,7 +12,11 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=26 blur_radius=30 color=0x40000000 topmost=on
+# Macbook display size
+sketchybar --bar position=top height=35 blur_radius=30 color=0x40000000 topmost=on
+
+# External display size
+# sketchybar --bar position=top height=30 blur_radius=30 color=0x40000000 topmost=on
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -67,8 +71,6 @@ sketchybar --add item chevron left \
            --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
 
-sketchybar --add item clock center \
-           --set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
 ##### Adding Right Items #####
 # In the same way as the left items we can add items to the right side.
 # Additional position (e.g. center) are available, see:
@@ -80,12 +82,23 @@ sketchybar --add item clock center \
 # volume is registered. More info about the event system can be found here:
 # https://felixkratz.github.io/SketchyBar/config/events
 
-sketchybar --add item volume right \
+sketchybar --add item net right \
+           --set net script="$PLUGIN_DIR/network.sh" updates=on label.drawing=off \
+           --subscribe net wifi_change \
+           --add item clock right \
+           --set clock update_freq=10 icon= script="$PLUGIN_DIR/clock.sh" \
+           --add item volume right \
            --set volume script="$PLUGIN_DIR/volume.sh" \
            --subscribe volume volume_change \
            --add item battery right \
            --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
            --subscribe battery system_woke power_source_change
+           # --add item power right \
+           # --set power update_freq=120 icon= script="$PLUGIN_DIR/power.sh"
+
+
+# sketchybar --add alias "Control Center,WiFi" right
+# sketchybar --add alias "Control Center,Battery" right
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update

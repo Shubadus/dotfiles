@@ -1,6 +1,20 @@
-export EDITOR=lvim
+# Setup NVIM
+if command -v nvim &> /dev/null; then
+  export EDITOR=nvim
+  alias vi=nvim
+  alias vim=nvim
+fi
+
+# Env exports
 export VISUAL="$EDITOR"
 export PATH=$PATH:~/.local/bin
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-eval "$(starship init zsh)"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 
+# Aliases
+
+# Sourcing other files
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+eval "$(starship init zsh)"
