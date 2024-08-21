@@ -3,5 +3,8 @@
 data:
   email: {{ $email | quote }}
 git:
+  autoAdd: true
+  autoCommit: true
   autoPush: true
-sourceDir: ~/.local/share/chezmoi/
+mode: symlink
+watch: true

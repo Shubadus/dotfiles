@@ -16,5 +16,4 @@ export PATH="/opt/homebrew/sbin:$PATH"
 # Sourcing other files
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-
 eval "$(starship init zsh)"
