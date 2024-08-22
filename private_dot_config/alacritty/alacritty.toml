@@ -1,4 +1,5 @@
 # import = ["/home/cshumer/.config/alacritty/themes/breeze.toml"]
+import = ["$HOME/.config/alacritty/themes/nord.toml"]
 
 [font]
 size = 11
