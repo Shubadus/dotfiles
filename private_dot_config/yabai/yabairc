@@ -11,44 +11,44 @@ sudo yabai --load-sa
 #
 
 # global settings
-yabai -m config                                 \
-    external_bar                 all:34:0       \
-    menubar_opacity              0.0            \
-    mouse_follows_focus          on             \
-    focus_follows_mouse          on             \
-    display_arrangement_order    default        \
-    window_origin_display        focused        \
-    window_placement             second_child   \
-    window_zoom_persist          on             \
-    window_shadow                on             \
-    window_animation_duration    0.0            \
-    window_animation_easing      ease_out_circ  \
-    window_opacity_duration      0.0            \
-    active_window_opacity        1.0            \
-    normal_window_opacity        0.90           \
-    window_opacity               off            \
-    insert_feedback_color        0xffd75f5f     \
-    split_ratio                  0.60           \
-    split_type                   auto           \
-    auto_balance                 off            \
-    top_padding                  4              \
-    bottom_padding               4              \
-    left_padding                 4              \
-    right_padding                4              \
-    window_gap                   04             \
-    layout                       bsp            \
-    mouse_modifier               fn             \
-    mouse_action1                move           \
-    mouse_action2                resize         \
-    mouse_drop_action            swap
+yabai -m config \
+  external_bar all:34:0 \
+  menubar_opacity 1.0 \
+  mouse_follows_focus on \
+  focus_follows_mouse on \
+  display_arrangement_order default \
+  window_origin_display focused \
+  window_placement second_child \
+  window_zoom_persist on \
+  window_shadow on \
+  window_animation_duration 0.0 \
+  window_animation_easing ease_out_circ \
+  window_opacity_duration 0.0 \
+  active_window_opacity 1.0 \
+  normal_window_opacity 0.90 \
+  window_opacity off \
+  insert_feedback_color 0xffd75f5f \
+  split_ratio 0.60 \
+  split_type auto \
+  auto_balance off \
+  top_padding 4 \
+  bottom_padding 4 \
+  left_padding 4 \
+  right_padding 4 \
+  window_gap 04 \
+  layout bsp \
+  mouse_modifier fn \
+  mouse_action1 move \
+  mouse_action2 resize \
+  mouse_drop_action swap
 
 # Signals
 yabai -m signal --add event=application_activated \
-                      app="^Kitty$"               \
-                      action="yabai -m config border_blur on"
+  app="^Kitty$" \
+  action="yabai -m config border_blur on"
 yabai -m signal --add event=application_deactivated \
-                      app="^Kitty$"               \
-                      action="yabai -m config border_blur off"
+  app="^Kitty$" \
+  action="yabai -m config border_blur off"
 
 # Space Labels
 yabai -m space 1 --label 1 --display 1
@@ -81,8 +81,8 @@ yabai -m rule --add app="^Microsoft Outlook$" space=6
 yabai -m rule --add app="^Discord$" space=7
 
 # Scratchpad Rules
-yabai -m rule --add app="^kitty$" title="^btop$" scratchpad=btop grid=4:5:1:0:3:2
-yabai -m rule --add app="^kitty$" title="^scratchterm$" scratchpad=scratchterm grid=4:5:1:0:3:2
+yabai -m rule --add app="^alacritty$" title="^btop$" scratchpad=btop grid=4:5:1:0:3:2
+yabai -m rule --add app="^alacritty$" title="^scratchterm$" scratchpad=scratchterm grid=4:5:1:0:3:2
 
 borders width=5.0 &
 osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'

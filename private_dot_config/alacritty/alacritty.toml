@@ -25,5 +25,6 @@ family = "Hack Nerd Font"
 style = "Regular"
 
 [window]
-opacity = 0.8
+blur = true
 # decorations = "Transparent"
+opacity = 0.8
