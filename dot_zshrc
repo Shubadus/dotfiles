@@ -10,6 +10,7 @@ export VISUAL="$EDITOR"
 export PATH=$PATH:~/.local/bin
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Aliases
 
@@ -17,3 +18,8 @@ export PATH="/opt/homebrew/sbin:$PATH"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(starship init zsh)"
+
+# >>>> Vagrant command completion (start)
+# fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/zsh $fpath)
+# compinit
+# <<<<  Vagrant command completion (end)
