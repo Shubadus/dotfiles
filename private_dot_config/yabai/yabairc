@@ -13,7 +13,7 @@ sudo yabai --load-sa
 # global settings
 yabai -m config \
   external_bar all:34:0 \
-  menubar_opacity 1.0 \
+  menubar_opacity 0.0 \
   mouse_follows_focus on \
   focus_follows_mouse on \
   display_arrangement_order default \
@@ -67,6 +67,7 @@ yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
 yabai -m rule --add app="^Calculator$" manage=off grid=4:4:1:1:2:2
 yabai -m rule --add app="^Calendar$" manage=off grid=4:4:1:1:2:2
+yabai -m rule --add app="^Microsoft Edge$" title="^Picture in Picture$" manage=off grid 5:5:5:5:1:1
 # yabai -m rule --add app="^Microsoft Teams$" manage=off
 # yabai -m rule --add title="^Chat|Connect|Teams|Activity|Calendar|Calls|OneDrive \| * \| Microsoft Teams$" manage=on
 
@@ -81,8 +82,9 @@ yabai -m rule --add app="^Microsoft Outlook$" space=6
 yabai -m rule --add app="^Discord$" space=7
 
 # Scratchpad Rules
-yabai -m rule --add app="^alacritty$" title="^btop$" scratchpad=btop grid=4:5:1:0:3:2
-yabai -m rule --add app="^alacritty$" title="^scratchterm$" scratchpad=scratchterm grid=4:5:1:0:3:2
+yabai -m rule --add app="^alacritty$" title="^btop$" scratchpad=btop grid=5:5:1:0:3:3
+yabai -m rule --add app="^alacritty$" title="^scratchterm$" scratchpad=scratchterm grid=5:5:1:0:3:3
+yabai -m rule --add app="^kitty$" title="^ranger$" scratchpad=ranger grid=5:5:1:0:3:3
 
 borders width=5.0 &
 osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
