@@ -67,7 +67,9 @@ yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
 yabai -m rule --add app="^Calculator$" manage=off grid=4:4:1:1:2:2
 yabai -m rule --add app="^Calendar$" manage=off grid=4:4:1:1:2:2
-yabai -m rule --add app="^Microsoft Edge$" title="^Picture in Picture$" manage=off grid 5:5:5:5:1:1
+# yabai -m rule --add app="^Microsoft Edge$" title="^Picture in Picture$" manage=off grid=5:5:5:0:1:1
+yabai -m rule --add title="^Picture-in-Picture$" manage=off grid=5:5:5:5:1:1 sticky=on display=2
+yabai -m rule --apply title="^Picture-in-Picture$" manage=off grid=5:5:5:5:1:1 sticky=on display=2
 # yabai -m rule --add app="^Microsoft Teams$" manage=off
 # yabai -m rule --add title="^Chat|Connect|Teams|Activity|Calendar|Calls|OneDrive \| * \| Microsoft Teams$" manage=on
 
