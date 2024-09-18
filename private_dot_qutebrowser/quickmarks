@@ -1,0 +1,7 @@
+cases https://vocera.lightning.force.com/lightning/o/Case/list?filterName=My_Queue
+calls https://login.mypurecloud.com/?rid=aff_60iw10OKddgJHTfJzwELSW1e4mG6GO1lmwQeLAY#/authenticate-adv/org/stryker
+cafi http://cafiweb.vocera.local/signin
+wiki https://vocera.atlassian.net/wiki/home
+work repo https://bitbucket.org/vocera/solutionslab/src/master/
+ansible https://docs.ansible.com/ansible/latest/index.html
+vagrant https://developer.hashicorp.com/vagrant/docs
