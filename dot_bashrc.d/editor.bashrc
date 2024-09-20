@@ -1,3 +1,4 @@
-alias vi="lvim"
-alias vim="lvim"
-alias nvim="lvim"
+alias vi="nvim"
+alias vim="nvim"
+alias nvim="nvim"
+export EDITOR="nvim"
