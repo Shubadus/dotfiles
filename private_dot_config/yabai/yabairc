@@ -71,7 +71,7 @@ yabai -m rule --add app="^Calendar$" manage=off grid=4:4:1:1:2:2
 yabai -m rule --add title="^Picture-in-Picture$" manage=off grid=5:5:5:5:1:1 sticky=on display=2
 yabai -m rule --apply title="^Picture-in-Picture$" manage=off grid=5:5:5:5:1:1 sticky=on display=2
 # yabai -m rule --add app="^Microsoft Teams$" manage=off
-# yabai -m rule --add title="^Chat|Connect|Teams|Activity|Calendar|Calls|OneDrive \| * \| Microsoft Teams$" manage=on
+yabai -m rule --add app="^Microsoft Teams$" title!="^(Chat|Connect|Teams|Activity|Calendar|Calls|OneDrive) \| * \| Microsoft Teams$" manage=off grid=7:7:5:5:5:5 space=6
 
 yabai -m rule --add app="^Remote Desktop Manager$" space=3
 

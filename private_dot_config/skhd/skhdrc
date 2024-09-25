@@ -73,7 +73,6 @@ f12: yabai -m window --toggle scratchterm || alacritty --title scratchterm
 ctrl + shift - escape: yabai -m window --toggle btop || alacritty --title btop --command btop
 cmd + shift - return: yabai -m window --toggle ranger || kitty -e ranger ~
 
-# alt - t: open "Kitty"
-cmd - t: alacritty
+cmd - t: alacritty || kitty
 cmd - d: osascript -e 'tell app "Launchpad" to open'
-# cmd + shift - return: kitty -e ranger ~
+cmd - b: qutebrowser
