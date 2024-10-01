@@ -11,13 +11,84 @@ from __future__ import (absolute_import, division, print_function)
 
 # You can import any python module as needed.
 import os
+import atexit
+import logging
+import socket
+import subprocess
+import sys
+import traceback
+from pathlib import Path
 
 # You always need to import ranger.api.commands here to get the Command class:
 from ranger.api.commands import Command
+from ranger.ext.img_display import ImageDisplayer, register_image_displayer
 
+
+logger = logging.getLogger(__name__)
+
+
+@register_image_displayer("mpv")
+class MPVImageDisplayer(ImageDisplayer):
+    """Implementation of ImageDisplayer using mpv, a general media viewer.
+    Opens media in a separate X window.
+
+    mpv 0.25+ needs to be installed for this to work.
+    """
+
+    def _send_command(self, path, sock):
+
+        message = '{"command": ["raw","loadfile",%s]}\n' % json.dumps(path)
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.connect(str(sock))
+        logger.info('-> ' + message)
+        s.send(message.encode())
+        message = s.recv(1024).decode()
+        logger.info('<- ' + message)
+
+    def _launch_mpv(self, path, sock):
+
+        proc = subprocess.Popen([
+            * os.environ.get("MPV", "mpv").split(),
+            "--no-terminal",
+            "--force-window",
+            "--input-ipc-server=" + str(sock),
+            "--image-display-duration=inf",
+            "--loop-file=inf",
+            "--no-osc",
+            "--no-input-default-bindings",
+            "--keep-open",
+            "--idle",
+            "--",
+            path,
+        ])
+
+        @atexit.register
+        def cleanup():
+            proc.terminate()
+            sock.unlink()
+
+    def draw(self, path, start_x, start_y, width, height):
+
+        path = os.path.abspath(path)
+        cache = Path(os.environ.get("XDG_CACHE_HOME", "~/.cache")).expanduser()
+        cache = cache / "ranger"
+        cache.mkdir(exist_ok=True)
+        sock = cache / "mpv.sock"
+
+        try:
+            self._send_command(path, sock)
+        except (ConnectionRefusedError, FileNotFoundError):
+            logger.info('LAUNCHING ' + path)
+            self._launch_mpv(path, sock)
+        except Exception as e:
+            logger.exception(traceback.format_exc())
+            sys.exit(1)
+        logger.info('SUCCESS')
 
 # Any class that is a subclass of "Command" will be integrated into ranger as a
 # command.  Try typing ":my_edit<ENTER>" in ranger!
+
+
 class my_edit(Command):
     # The so-called doc-string of the class will be visible in the built-in
     # help that is accessible by typing "?c" inside ranger.

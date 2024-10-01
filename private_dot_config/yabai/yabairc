@@ -89,6 +89,7 @@ yabai -m rule --add app="^alacritty$" title="^scratchterm$" scratchpad=scratchte
 yabai -m rule --add app="^kitty$" title="^ranger$" scratchpad=ranger grid=5:5:1:0:3:3
 
 borders width=5.0 &
-osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+sketchybar --reload
+# osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
 
 echo "yabai configuration loaded.."
