@@ -71,9 +71,9 @@ cmd - p : yabai -m window --toggle sticky --toggle pip
 # Scratchpad
 f12: yabai -m window --toggle scratchterm || alacritty --title scratchterm
 ctrl + shift - escape: yabai -m window --toggle btop || alacritty --title btop --command btop
-# cmd + shift - return: yabai -m window --toggle ranger || kitty -e ranger ~
-
+ctrl + shift - space: yabai -m window --toggle bitwarden || osascript -e 'tell app "Bitwarden" to open'
 cmd - e: yabai -m window --toggle ranger || kitty -e ranger ~
+
 cmd - t: alacritty || kitty
 cmd - d: osascript -e 'tell app "Launchpad" to open'
 cmd - b: qutebrowser

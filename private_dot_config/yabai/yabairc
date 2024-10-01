@@ -8,7 +8,6 @@
 #  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
-#
 
 # global settings
 yabai -m config \
@@ -25,7 +24,7 @@ yabai -m config \
   window_animation_easing ease_out_circ \
   window_opacity_duration 0.0 \
   active_window_opacity 1.0 \
-  normal_window_opacity 0.90 \
+  normal_window_opacity 1.0 \
   window_opacity off \
   insert_feedback_color 0xffd75f5f \
   split_ratio 0.60 \
@@ -63,23 +62,25 @@ yabai -m space 9 --label 9 --display 2
 yabai -m space 10 --label 10 --display 2
 
 # Window Rules
-yabai -m rule --add app="^System Preferences$" manage=off
-yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
-yabai -m rule --add app="^Calculator$" manage=off grid=4:4:1:1:2:2
-yabai -m rule --add app="^Calendar$" manage=off grid=4:4:1:1:2:2
-# yabai -m rule --add app="^Microsoft Edge$" title="^Picture in Picture$" manage=off grid=5:5:5:0:1:1
+yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|Music)$" manage=off grid=7:7:1:1:5:5
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off grid=7:7:1:1:5:5
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off grid=7:7:1:1:5:5
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off grid=7:7:1:1:5:5
+yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off grid=7:7:1:1:5:5
+
+# Space 1 Rules
+yabai -m rule --add app="^(qutebrowser|Microsoft Edge|Safari)" space=1
+
+# Space 2 Rules
 yabai -m rule --add title="^Picture-in-Picture$" manage=off grid=5:5:5:5:1:1 sticky=on display=2
 yabai -m rule --apply title="^Picture-in-Picture$" manage=off grid=5:5:5:5:1:1 sticky=on display=2
-# yabai -m rule --add app="^Microsoft Teams$" manage=off
-yabai -m rule --add app="^Microsoft Teams$" title!="^(Chat|Connect|Teams|Activity|Calendar|Calls|OneDrive) \| * \| Microsoft Teams$" manage=off grid=7:7:5:5:5:5 space=6
 
 yabai -m rule --add app="^Remote Desktop Manager$" space=3
 
 yabai -m rule --add app="^Obsidian$" space=4
 
-yabai -m rule --add app="^MSTeams$" space=6
-yabai -m rule --add app="^Microsoft Teams$" space=6
-yabai -m rule --add app="^Microsoft Outlook$" space=6
+yabai -m rule --add app="^(MSTeams|Microsoft Teams|Microsoft Outlook)$" space=6
+yabai -m rule --add app="^Microsoft Teams$" title!="^((Chat|Connect|Teams|Activity|Calendar|Calls|OneDrive) \| * \| Microsoft Teams)$" manage=off grid=7:7:1:1:5:5 space=6
 
 yabai -m rule --add app="^Discord$" space=7
 
@@ -87,9 +88,9 @@ yabai -m rule --add app="^Discord$" space=7
 yabai -m rule --add app="^alacritty$" title="^btop$" scratchpad=btop grid=5:5:1:0:3:3
 yabai -m rule --add app="^alacritty$" title="^scratchterm$" scratchpad=scratchterm grid=5:5:1:0:3:3
 yabai -m rule --add app="^kitty$" title="^ranger$" scratchpad=ranger grid=5:5:1:0:3:3
+yabai -m rule --add app="^Bitwarden$" scratchpad=bitwarden grid=5:5:1:0:3:3
 
 borders width=5.0 &
-sketchybar --reload
-# osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
 
 echo "yabai configuration loaded.."
