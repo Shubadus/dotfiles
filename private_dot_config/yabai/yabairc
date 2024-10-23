@@ -91,6 +91,6 @@ yabai -m rule --add app="^kitty$" title="^ranger$" scratchpad=ranger grid=5:5:1:
 yabai -m rule --add app="^Bitwarden$" scratchpad=bitwarden grid=5:5:1:0:3:3
 
 borders width=5.0 &
-osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+osascript -e 'tell application id "tracesOf.Uebersicht" to refresh' || osascript -e 'tell application id "tracesOf.Uebersicht" to open'
 
 echo "yabai configuration loaded.."
