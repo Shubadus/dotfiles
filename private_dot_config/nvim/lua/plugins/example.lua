@@ -11,13 +11,15 @@
 return {
   -- add gruvbox
   { "shaunsingh/nord.nvim" },
+  { "marko-cerovac/material.nvim" },
 
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nord",
-    },
+      colorscheme = "material",
+      -- material_style = "darker"
+    }
   },
 
   -- change trouble config

@@ -90,7 +90,8 @@ yabai -m rule --add app="^alacritty$" title="^scratchterm$" scratchpad=scratchte
 yabai -m rule --add app="^kitty$" title="^ranger$" scratchpad=ranger grid=5:5:1:0:3:3
 yabai -m rule --add app="^Bitwarden$" scratchpad=bitwarden grid=5:5:1:0:3:3
 
-borders width=5.0 &
+borders active_color=0xffa7abcc width=5.0 & #inactive_color=0xff3a3b3c width=5.0 &
+# borders width=5.0 &
 osascript -e 'tell application id "tracesOf.Uebersicht" to refresh' || osascript -e 'tell application id "tracesOf.Uebersicht" to open'
 
 echo "yabai configuration loaded.."
