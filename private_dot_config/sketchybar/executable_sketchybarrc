@@ -5,10 +5,7 @@
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
-# Colors
-text="0xffffffff"
-active="0xff2BAFC9"
-background="0xcc000000"
+source "$CONFIG_DIR/resources.sh"
 
 
 ##### Bar Appearance #####
@@ -23,7 +20,7 @@ sketchybar --bar \
   position=top \
   height=32 \
   blur_radius=14 \
-  color=$background \
+  color=$BACKGROUND \
   topmost=window
 
 # External display size
@@ -39,11 +36,11 @@ default=(
   padding_right=1
   icon.font="Hack Nerd Font:Bold:14.0"
   label.font="Hack Nerd Font:Bold:14.0"
-  icon.color=$text
-  label.color=$text
+  icon.color=$TEXT
+  label.color=$TEXT
   icon.padding_right=6
   label.padding_right=6
-  popup.background.color=$background
+  popup.background.color=$BACKGROUND
 )
 sketchybar --default "${default[@]}"
 
@@ -54,8 +51,8 @@ for sid in $(aerospace list-workspaces --all); do
     sketchybar --add item space.$sid left \
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
-        background.color=$active \
-        background.border_color=$text \
+        background.color=$ACTIVE \
+        background.border_color=$TEXT \
         background.corner_radius=5 \
         background.height=20 \
         background.drawing=off \
@@ -86,7 +83,7 @@ done
 # https://felixkratz.github.io/SketchyBar/config/events
 
 sketchybar --add item net right \
-           --set net script="$PLUGIN_DIR/network.sh" updates=on label.drawing=off \
+           --set net script="$PLUGIN_DIR/network.sh" updates=on label.drawing=on \
            --subscribe net wifi_change \
            --add item clock right \
            --set clock update_freq=10 icon= script="$PLUGIN_DIR/clock.sh" \
