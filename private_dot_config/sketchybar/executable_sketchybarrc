@@ -5,6 +5,12 @@
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
+# Colors
+text="0xffffffff"
+active="0xff2BAFC9"
+background="0xcc000000"
+
+
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
 # These are only some of the options available. For all options see:
@@ -16,8 +22,8 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 sketchybar --bar \
   position=top \
   height=32 \
-  blur_radius=30 \
-  color=0xff000000 \
+  blur_radius=14 \
+  color=$background \
   topmost=window
 
 # External display size
@@ -29,16 +35,15 @@ sketchybar --bar \
 # https://felixkratz.github.io/SketchyBar/config/items
 
 default=(
-  padding_left=2
-  padding_right=2
-  icon.font="Hack Nerd Font:Bold:16.0"
+  padding_left=1
+  padding_right=1
+  icon.font="Hack Nerd Font:Bold:14.0"
   label.font="Hack Nerd Font:Bold:14.0"
-  icon.color=0xffffffff
-  label.color=0xffffffff
-  icon.padding_left=2
-  icon.padding_right=2
-  label.padding_left=2
-  label.padding_right=2
+  icon.color=$text
+  label.color=$text
+  icon.padding_right=6
+  label.padding_right=6
+  popup.background.color=$background
 )
 sketchybar --default "${default[@]}"
 
@@ -49,13 +54,13 @@ for sid in $(aerospace list-workspaces --all); do
     sketchybar --add item space.$sid left \
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
-        background.color=0xff2BAFC9\
-        background.border_color=0xffffffff \
+        background.color=$active \
+        background.border_color=$text \
         background.corner_radius=5 \
         background.height=20 \
         background.drawing=off \
         label="$sid" \
-        click_script="aerospace workspace $sid"
+        click_script="aerospace workspace $sid" \
         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
 
