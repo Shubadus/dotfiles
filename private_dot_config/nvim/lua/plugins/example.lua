@@ -13,9 +13,9 @@ return {
   { "shaunsingh/nord.nvim" },
   {
     "marko-cerovac/material.nvim",
-    require("material").setup({
-      lualine_style = "stealth",
-    })
+    opts = {
+      lualine_style = "stealth"
+    }
   },
 
   -- Configure LazyVim to load gruvbox
