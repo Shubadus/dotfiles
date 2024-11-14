@@ -18,7 +18,7 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(starship init zsh)"
-
+tmux
 # >>>> Vagrant command completion (start)
 # fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/zsh $fpath)
 # compinit
