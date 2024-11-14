@@ -25,7 +25,6 @@ fi
 unset rc
 
 eval "$(starship init bash)"
-# tmux
 # fastfetch
 # >>>> Vagrant command completion (start)
 # . /opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/bash/completion.sh

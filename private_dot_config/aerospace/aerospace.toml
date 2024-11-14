@@ -120,9 +120,9 @@ alt-tab =        'workspace-back-and-forth'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 
-alt-t =          "exec-and-forget kitty -1 ~"
-ctrl-shift-esc = "exec-and-forget kitty -1 btop"
-alt-enter =      "exec-and-forget kitty -1 ranger ~"
+alt-t =          "exec-and-forget kitty -1 -d ~ tmux"
+ctrl-shift-esc = "exec-and-forget kitty -1 -d ~ btop"
+alt-enter =      "exec-and-forget kitty -1 -d ~ ranger"
 
 # 'service' binding mode declaration.
 # See: httrs://nikitabobko.github.io/AeroSpace/guide#binding-modes
