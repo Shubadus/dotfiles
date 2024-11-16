@@ -1,6 +1,5 @@
 alias vi="nvim"
 alias vim="nvim"
-alias nvim="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export MANPAGER="$(which nvim) +Man!"

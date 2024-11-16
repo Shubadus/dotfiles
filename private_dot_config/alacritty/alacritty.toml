@@ -1,3 +1,4 @@
+[general]
 import = [
   "/opt/homebrew/lib/node_modules/alacritty-themes/themes/github_dark.toml"
 ]
