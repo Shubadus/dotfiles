@@ -14,7 +14,7 @@ unfocus = "hide"
 
 [scratchpads.dropterm_dnf]
 animation = "fromTop"
-command = "$TERM --class dropterm_dnf -e $HOME/.local/bin/scripts/statusbar/check-updates.sh update-packageman"
+command = "$TERM --class dropterm_dnf $HOME/.local/bin/scripts/statusbar/check-updates.sh update-packageman"
 class = "dropterm_dnf"
 lazy = true
 margin = 40
@@ -23,7 +23,7 @@ unfocus = "hide"
 
 [scratchpads.dropterm_flatpak]
 animation = "fromTop"
-command = "$TERM --class dropterm_flatpak -e $HOME/.local/bin/scripts/statusbar/check-updates.sh update-flatpak"
+command = "$TERM --class dropterm_flatpak $HOME/.local/bin/scripts/statusbar/check-updates.sh update-flatpak"
 class = "dropterm_flatpak"
 lazy = true
 margin = 40
@@ -66,7 +66,7 @@ unfocus = "hide"
 
 [scratchpads.sysmonitor]
 animation = "fromTop"
-command = "$TERM --class sysmonitor -e btop"
+command = "$TERM --class sysmonitor btop"
 class = "sysmonitor"
 lazy = true
 margin = 40
@@ -75,7 +75,7 @@ unfocus = "hide"
 
 [scratchpads.ranger]
 animation = "fromTop"
-command = "$TERM --class ranger -e ranger"
+command = "$TERM --class ranger ranger"
 class = "ranger"
 lazy = true
 margin = 40
