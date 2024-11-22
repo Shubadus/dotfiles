@@ -6,7 +6,7 @@ plugins = [
 
 [scratchpads.dropterm]
 animation = "fromTop"
-command = "$TERM --class dropterm"
+command = "$TERM --class dropterm -e tmux"
 class = "dropterm"
 margin = 40
 size = "80% 60%"
