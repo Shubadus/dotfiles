@@ -20,7 +20,7 @@ exec-on-workspace-change = [
   '/bin/bash',
   '-c',
   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-  '~/.local/bin/scripts/aerospace/on-ws-change.sh'
+  '/home/cshumer/.local/bin/scripts/aerospace/on-ws-change.sh'
 ]
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
@@ -35,6 +35,7 @@ outer.right =      4
 
 [mode.main.binding]
 alt-f =          "fullscreen"
+alt-shift-f =    "macos-native-fullscreen"
 alt-q =          "close"
 
 cmd-h =          "focus-monitor left"
