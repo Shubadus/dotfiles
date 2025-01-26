@@ -42,29 +42,6 @@
     "backlight": {
       "label": "󰃠",
       "min": 10
-    },
-    "menubar#Power": {
-      "menu#power-buttons": {
-        "label": "",
-        "actions": [
-          {
-            "label": "󰗼",
-            "command": "loginctl terminate-user $USER"
-          },
-          {
-            "label": "󰍁",
-            "command": "loginctl lock-session"
-          },
-          {
-            "label": "󰜉",
-            "command": "systemctl reboot"
-          },
-          {
-            "label": "",
-            "command": "systemctl shutdown"
-          }
-        ]
-      }
     }
   }
 }

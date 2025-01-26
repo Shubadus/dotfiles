@@ -17,6 +17,8 @@
 * {
   font-family: "Noto Sans NerdFont";
   font-weight: bold;
+  /*background: none;*/
+  /*background-color: transparent*/
 }
 
 .button {
@@ -304,7 +306,7 @@
 .blank-window {
   /* Window behind control center and on all other monitors */
   /* background: transparent; */
-  background: none;
+  background: transparent;
 }
 
 .floating-notifications {
@@ -379,11 +381,12 @@
 
 .widget-mpris .widget-mpris-player {
   padding: 8px;
-  padding: 16px;
+  /*padding: 16px;*/
   margin: 16px 20px;
-  background-color: @mpris-album-art-overlay;
+  /*background-color: @mpris-album-art-overlay;*/
   border-radius: 12px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+  border: 1px solid @noti-border-color;
 }
 
 .widget-mpris .widget-mpris-player button:hover {
@@ -438,10 +441,15 @@
   /* style given to the active toggle button */
 }
 
+.widget-menubar {
+  padding: 8px
+}
 /* Menubar widget */
 .widget-menubar > box > .menu-button-bar > button {
-  border: none;
+  /*border: none;*/
   background: transparent;
+  border: 1px solid @noti-border-color;
+  border-radius: 12px;
 }
 
 /* .AnyName { Name defined in config after #
