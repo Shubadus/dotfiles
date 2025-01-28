@@ -54,6 +54,12 @@ return {
   -- disable trouble
   { "folke/trouble.nvim", enabled = false },
 
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
   -- override nvim-cmp and add cmp-emoji
   {
     "hrsh7th/nvim-cmp",
