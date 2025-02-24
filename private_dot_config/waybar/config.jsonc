@@ -9,14 +9,17 @@
       "sway/workspaces",
     ],
     "modules-center": [
-      "clock",
+      "clock"
+      // "mpris"
     ],
     "modules-right": [
+      "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
       "tray",
-      "pulseaudio",
-      "network",
+      "group/pulseaudio",
+      // "pulseaudio",
+      // "network",
       "battery",
       "custom/power",
     ],
@@ -48,11 +51,28 @@
         "6": [],
         "7": [],
         "8": [],
-      },
+        "9": [],
+        "10": []
+      }
     },
     "hyprland/window": {
       "format": "{title}",
-      "max-length": 30,
+      "max-length": 30
+    },
+    "mpris": {
+      "format-playing": "| <small>{player_icon} {dynamic}</small>",
+      "format-paused": "| <small>{status_icon} {dynamic}</small>",
+      "title-len": 40,
+      "player-icons": {
+        "default": "",
+        "mpv": "🎵"
+      },
+      "status-icons": {
+        "paused": ""
+      },
+      // "ignored-players": [
+      // "firefox",
+      // ]
     },
     "idle_inhibitor": {
       "format": "<small>{icon}</small>",
@@ -174,7 +194,7 @@
           "󰤥",
           "󰤨"
         ],
-        "ethernet": "󰈀",
+        "ethernet": "󰈀"
       }
     },
     "pulseaudio": {
@@ -209,6 +229,17 @@
       "min": 0,
       "max": 100,
       "orientation": "horizontal"
+    },
+    "group/pulseaudio": {
+      "orientation": "inherit",
+      "drawer": {
+        "children-class": "audio-group-drawer",
+        // "click-to-reveal": true,
+      },
+      "modules": [
+        "pulseaudio",
+        "pulseaudio/slider"
+      ]
     },
     "custom/arch_updates": {
       "interval": 43200,
@@ -271,26 +302,6 @@
           "tooltip-icon-size": 24
         }
       ]
-    },
-    "custom/notification": {
-      "tooltip": false,
-      "format": "{icon}",
-      "format-icons": {
-        "notification": "<span foreground='red'><sup></sup></span>",
-        "none": "",
-        "dnd-notification": "<span foreground='red'><sup></sup></span>",
-        "dnd-none": "",
-        "inhibited-notification": "<span foreground='red'><sup></sup></span>",
-        "inhibited-none": "",
-        "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-        "dnd-inhibited-none": ""
-      },
-      "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click": "swaync-client -t -sw",
-      "on-click-right": "swaync-client -d -sw",
-      "escape": true
-    },
-  },
+    }
+  }
 ]

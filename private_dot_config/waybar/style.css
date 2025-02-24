@@ -19,7 +19,7 @@ window#waybar {
 }
 
 tooltip {
-    background: alpha(@theme_bg_color, 0.80);
+    background: @theme_bg_color;
     color: @theme_fg_color;
     border: 1px solid @theme_selected_bg_color;
     border-radius: 6;
@@ -28,6 +28,15 @@ tooltip {
 tooltip label {
     padding: 6px;
     /* margin: 8px; */
+}
+
+#mpris {
+  font-size: 16px;
+  padding: 0 4px;
+}
+
+#group-audio-drawer {
+  margin: 0px;
 }
 
 #pulseaudio-slider trough {
@@ -138,6 +147,7 @@ box.module button:hover {
 }
 
 #tray {
+  /*-gtk-icon-source: builtin;*/
   padding: 0 4px;
 }
 
@@ -157,18 +167,21 @@ box.module button:hover {
 }
 
 #tray menu {
-    background-color: alpha(@theme_bg_color, 0.80);
-    /*padding: 0 2px;*/
+    background-color: alpha(@theme_bg_color, 1.00);
+    border: 1px solid @theme_selected_bg_color;
+    padding: 4px 6px;
+    border-radius: 6;
 }
 
 #tray menuitem {
-    border: 1px solid alpha(@theme_bg_color, 0.00);
+    /*border: 1px solid alpha(@theme_bg_color, 1.00);*/
     padding: 0 6px;
 }
 
 #tray menuitem:hover {
-    color: @theme_selected_bg_color;
-    border: 1px solid @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+    background-color: alpha(@theme_selected_bg_color, 0.70);
+    /*border: 1px solid alpha(@theme_selected_bg_color, 0.70);*/
     padding: 0 6px;
 }
 

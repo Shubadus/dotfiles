@@ -11,4 +11,4 @@ location=top
 width=20%
 prompt=Search for apps
 # yoffset=32 # Needed for qtile
-yoffset=150
+yoffset=4

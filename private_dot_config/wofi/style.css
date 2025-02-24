@@ -1,20 +1,31 @@
-#window {
-  border-radius: 12px;
+* {
   background-color: alpha(@theme_bg_color; 0.8);
+  border-radius: 12px;
+  /*background: alpha(@theme_bg_color; 0.9);*/
 }
+/*#window {*/
+/*  border-radius: 12px;*/
+/*  /*background-color: alpha(@theme_bg_color; 0.8);*/*/
+/*}*/
 #expander-box,
 #outer-box,
-#scroll {
-  /* background-color: alpha(@theme_bg_color, 0.8); */
-  border-radius: 12px;
-}
-
+/*#scroll {*/
+/*  /* background-color: alpha(@theme_bg_color, 0.8); */*/
+/*  border-radius: 12px;*/
+/*}*/
+#entry {
+  font-size: 32px; 
+},
 #entry:selected {
+  /*background: transparent;*/
   border: 2px solid @theme_selected_bg_color;
   border-radius: 12px;
 }
 
 #input {
-  background-color: alpha(@theme_bg_color, 0.8);
+  /*background-color: alpha(@theme_bg_color, 0.8);*/
+  font-size: 18px
   border-radius: 12px;
+  padding: 4px 2px;
+  /*margin: 4px 0;*/
 }
