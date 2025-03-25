@@ -20,7 +20,7 @@ exec-on-workspace-change = [
   '/bin/bash',
   '-c',
   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-  '/home/cshumer/.local/bin/scripts/aerospace/on-ws-change.sh'
+  '$HOME/.local/bin/scripts/aerospace/pip.sh'
 ]
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
@@ -34,8 +34,8 @@ outer.top =        [{ monitor.built-in = 4 }, 36]
 outer.right =      4
 
 [mode.main.binding]
-alt-f =          "fullscreen"
-alt-shift-f =    "macos-native-fullscreen"
+alt-m =          "fullscreen"
+alt-f =          "macos-native-fullscreen"
 alt-q =          "close"
 
 cmd-h =          "focus-monitor left"
@@ -85,6 +85,36 @@ alt-t =          "exec-and-forget kitty -1 -d ~ tmux"
 ctrl-shift-esc = "exec-and-forget kitty -1 -d ~ btop"
 alt-enter =      "exec-and-forget kitty -1 -d ~ ranger"
 
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = ['layout floating']
+check-further-callbacks = true
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefoxdeveloperedition'
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = ['layout floating']
+check-further-callbacks = true
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = 'Picture-in-picture'
+run = ['layout floating']
+check-further-callbacks = true
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+if.window-title-regex-substring = 'Picture-in-picture'
+run = ['layout floating']
+check-further-callbacks = true
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.edgemac'
+if.window-title-regex-substring = 'Picture in Picture'
+run = ['layout floating']
+check-further-callbacks = true
 # Window Rules
 # [[on-window-detected]]
 # if.app-id = 'org.alacritty'
