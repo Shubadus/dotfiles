@@ -9,10 +9,10 @@
 /*}*/
 #expander-box,
 #outer-box,
-/*#scroll {*/
-/*  /* background-color: alpha(@theme_bg_color, 0.8); */*/
-/*  border-radius: 12px;*/
-/*}*/
+#scroll {
+  /* background-color: alpha(@theme_bg_color, 0.8); */
+  border-radius: 12px;
+},
 #entry {
   font-size: 32px; 
 },

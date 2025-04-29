@@ -37,7 +37,7 @@
     "hyprland/workspaces": {
       "all-outputs": true,
       // "active-only": true,
-      "format": "<span>{icon}</span>",
+      "format": "<span size='12pt'>{icon}</span>",
       "format-icons": {
         // "1": "󰾔",
         // "2": "󰈩",
@@ -58,7 +58,10 @@
         "8": [],
         "9": [],
         "10": []
-      }
+      },
+      "on-click": "~/.local/bin/scripts/dispatch.sh {name}",
+      "on-scroll-up": "~/.local/bin/scripts/dispatch.sh r-1",
+      "on-scroll-down": "~/.local/bin/scripts/dispatch.sh r+1",
     },
     "hyprland/window": {
       "format": "{title}",
@@ -147,7 +150,8 @@
     "memory": {
       "interval": 30,
       "format": "<span size='smaller'> </span> {}%",
-      "max-length": 10
+      "max-length": 10,
+      "on-click": "pypr toggle sysmonitor"
     },
     "battery": {
       "states": {

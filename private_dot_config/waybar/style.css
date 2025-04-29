@@ -11,7 +11,7 @@
 
 window#waybar {
     background: alpha(@theme_bg_color, 0.80);
-    /* background: none; */
+    background: none;
     /* border-radius: 6; */
     color: @theme_fg_color;
     /* border-radius: 6; */
@@ -70,7 +70,11 @@ tooltip label {
 }
 
 #workspaces button.active {
-  color: @theme_selected_bg_color;
+  background: @theme_selected_bg_color;
+  border-radius: 8px;
+  /* color: @theme_selected_bg_color; */
+  color: @theme_bg_color;
+  margin: 1px 0;
 }
 
 #workspaces button.urgent {
@@ -112,20 +116,22 @@ box.module button:hover {
   /* background-color: @theme_selected_bg_color; */
 }
 
-#custom-check_updates {
-  padding: 0 0 0 2px;
+#custom-arch_updates,
+#custom-flatpak_updates{
+    padding: 0 0 0 8px;
 }
 
 #custom-check_updates.reboot {
-  background-color: alpha(@warning_color, 0.80);
+    background-color: alpha(@warning_color, 0.80);
 }
 
 #custom-power {
-  font-size: 16px;
+    font-size: 16px;
+    padding: 0 4px 0 0;
 }
 
 #network {
-  padding: 0 6px 0 4px;
+    padding: 0 4px 0 4px;
 }
 
 #network.disconnected {
@@ -133,7 +139,7 @@ box.module button:hover {
 }
 
 #pulseaudio {
-  padding: 0 6px 0 2px;
+    padding: 0 6px 0 2px;
 }
 
 #pulseaudio.muted {
@@ -146,21 +152,21 @@ box.module button:hover {
 }
 
 #custom-notification {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 #tray {
-  /*-gtk-icon-source: builtin;*/
-  padding: 0 4px;
+    /*-gtk-icon-source: builtin;*/
+    /* padding: 0 2px; */
 }
 
 #tray > .passive {
-  -gtk-icon-effect: dim;
+    -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: alpha(@warning_color, 0.80);
+    -gtk-icon-effect: highlight;
+    background-color: alpha(@warning_color, 0.80);
 }
 
 #tray menu * {
@@ -189,8 +195,8 @@ box.module button:hover {
 }
 
 #idle_inhibitor {
-  color: @theme_selected_fg_color;
-  background-color: alpha(@theme_fg_color, 0.80);
+    color: @theme_selected_fg_color;
+    background-color: alpha(@theme_fg_color, 0.80);
 }
 
 #idle_inhibitor.activated {
@@ -198,11 +204,21 @@ box.module button:hover {
     color: @theme_selected_fg_color;
 }
 
+#custom-separator {
+    padding:0;
+    margin: 0 5px;
+      /* color: @theme_selected_fg_color; */
+}
+
+#modules {
+    padding:4;
+}
+
 .modules-left,
 .modules-right,
 .modules-center {
-/*   background: alpha(@theme_bg_color, 0.90); */
-  margin: 1px 8px;
-/*   padding: 2px 12px; */
-/*   border-radius: 6; */
+    background: alpha(@theme_bg_color, 0.90);
+    margin: 1px 8px;
+    padding: 2px 8px;
+    border-radius: 6;
 }
