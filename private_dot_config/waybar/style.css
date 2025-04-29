@@ -27,7 +27,6 @@ tooltip {
 
 tooltip label {
     padding: 6px;
-    /* margin: 8px; */
 }
 
 #mpris {
@@ -36,6 +35,11 @@ tooltip label {
 }
 
 #group-audio-drawer {
+  margin: 0px;
+  padding: 0;
+}
+
+#pulseaudio {
   margin: 0px;
 }
 
@@ -105,7 +109,6 @@ box.module button:hover {
 #taskbar button.active {
   border: 2px solid @theme_selected_bg_color;
   border-radius: 6;
-
   /* background-color: @theme_selected_bg_color; */
 }
 

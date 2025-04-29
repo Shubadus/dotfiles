@@ -5,26 +5,31 @@
     // "margin-left": 4,
     // "margin-right": 4,
     "modules-left": [
-      "hyprland/workspaces",
-      "sway/workspaces",
-    ],
-    "modules-center": [
-      "clock"
-      // "mpris"
-    ],
-    "modules-right": [
+      "clock",
+      "custom/separator",
+      "memory",
+      "custom/separator",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
+    ],
+    "modules-center": [
+      "hyprland/workspaces",
+      "sway/workspaces",
+    ],
+    "modules-right": [
       "tray",
+      "custom/separator",
       "group/pulseaudio",
+      "custom/separator",
       // "pulseaudio",
-      // "network",
+      "network",
       "battery",
+      "custom/separator",
       "custom/power",
     ],
     "custom/power": {
-      "format": "",
+      "format": "<span> </span>",
       "on-click": "wlogout",
       "tooltip-format": "Exit the session"
     },
@@ -32,15 +37,15 @@
     "hyprland/workspaces": {
       "all-outputs": true,
       // "active-only": true,
-      "format": "{icon}",
+      "format": "<span>{icon}</span>",
       "format-icons": {
         // "1": "󰾔",
         // "2": "󰈩",
         // "3": "󱃖",
         // "4": "",
         // "5": "󰈚",
-        "active": "",
-        "default": ""
+        // "active": "",
+        // "default": ""
       },
       "persistent-workspaces": {
         "1": [],
@@ -60,8 +65,8 @@
       "max-length": 30
     },
     "mpris": {
-      "format-playing": "| <small>{player_icon} {dynamic}</small>",
-      "format-paused": "| <small>{status_icon} {dynamic}</small>",
+      "format-playing": "<span size='smaller'>{player_icon} {dynamic}</span>",
+      "format-paused": "<span size='smaller'>{status_icon} {dynamic}</span>",
       "title-len": 40,
       "player-icons": {
         "default": "",
@@ -75,7 +80,7 @@
       // ]
     },
     "idle_inhibitor": {
-      "format": "<small>{icon}</small>",
+      "format": "<span size='smaller'>{icon}</span>",
       "format-icons": {
         "activated": "",
         "deactivated": ""
@@ -88,7 +93,7 @@
     },
     "clock": {
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
-      "format": "<small>{:%H:%M}</small>",
+      "format": "<span size='smaller'>{:%H:%M}</span>",
       "timezone": "America/Indiana/Indianapolis",
       "calendar": {
         "mode": "month",
@@ -124,7 +129,7 @@
       "exec-if": "which swaync-client",
       "exec": "swaync-client -swb",
       "on-click": "swaync-client -t -sw",
-      // "on-click-right": "swaync-client -d -sw",
+      "on-click-right": "swaync-client -d -sw",
       "escape": true
     },
     "backlight": {
@@ -139,13 +144,18 @@
         "󰃠"
       ]
     },
+    "memory": {
+      "interval": 30,
+      "format": "<span size='smaller'> </span> {}%",
+      "max-length": 10
+    },
     "battery": {
       "states": {
         "warning": 30,
         "critical": 15
       },
-      "format": "<small>{icon}</small>",
-      "format-alt": "<small>{icon} {capacity}%</small>",
+      "format": "<span size='smaller'>{icon}</span>",
+      "format-alt": "<span size='smaller'>{icon} {ipaddr}</span>",
       // "format-good": "", // An empty format will hide the module
       "format-full": "", //"󰂄",
       "format-icons": {
@@ -179,13 +189,14 @@
     },
     "network": {
       // "interface": "wlp2*", // (Optional) To force the use of this interface
-      "format-wifi": "<small>{icon}</small>",
-      "format-ethernet": "<small>{icon}</small>",
+      "format-wifi": "<span size='smaller'>{icon}</span>",
+      "format-ethernet": "<span size='smaller'>{icon}</span>",
       "tooltip-format": "{essid}: {signalStrength}%",
-      // "tooltip-format": "{ifname} via {gwaddr}",
-      "format-linked": "<small>{ifname} (No IP)</small>",
-      "format-disconnected": "<small>󰅛</small>",
-      "format-alt": "<small>{icon}  {essid}: {signalStrength}%</small>",
+      "tooltip-format-ethernet": "Connected via Ethernet: {ipaddr}",
+      "tooltip-format-disconnected": "Not connected",
+      "format-linked": "<span size='smaller'>{ifname} (No IP)</span>",
+      "format-disconnected": "<span size='smaller'>󰅛</span>",
+      "format-alt": "<span size='smaller'>{icon} {ipaddr}</span>",
       // "format-alt": "{ifname}: {ipaddr}/{cidr}",
       "format-icons": {
         "wifi": [
@@ -195,15 +206,16 @@
           "󰤨"
         ],
         "ethernet": "󰈀"
-      }
+      },
+      "on-click-right": "nm-connection-editor"
     },
     "pulseaudio": {
       "scroll-step": 5, // %, can be a float
-      "format": "<small>{icon}</small>",
-      "format-alt": "<small>{icon} {volume}%</small>",
-      "format-bluetooth": "<small>󰂰 {volume}</small>",
-      "format-bluetooth-muted": "<small>󰂲 {format_source}</small>",
-      "format-muted": "<small>󰝟</small>",
+      "format": "<span size='smaller'>{icon}</span>",
+      "format-alt": "<span size='smaller'>{icon} {volume}%</span>",
+      "format-bluetooth": "<span size='smaller'>󰂰 {volume}</span>",
+      "format-bluetooth-muted": "<span size='smaller'>󰂲 {format_source}</span>",
+      "format-muted": "<span size='smaller'>󰝟</span>",
       // "format-source": " {volume}%",
       // "format-source-muted": "",
       "format-icons": {
@@ -228,7 +240,7 @@
     "pulseaudio/slider": {
       "min": 0,
       "max": 100,
-      "orientation": "horizontal"
+      "orientation": "horizontal",
     },
     "group/pulseaudio": {
       "orientation": "inherit",
@@ -239,11 +251,11 @@
       "modules": [
         "pulseaudio",
         "pulseaudio/slider"
-      ]
+      ],
     },
     "custom/arch_updates": {
       "interval": 43200,
-      "format": "<small>{}</small>",
+      "format": "<span size='smaller'>{}</span>",
       "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-packageman",
       "exec-if": "exit 0",
       "return-type": "json",
@@ -253,7 +265,7 @@
     },
     "custom/flatpak_updates": {
       "interval": 43200,
-      "format": "<small>{}</small>",
+      "format": "<span size='smaller'>{}</span>",
       "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-flatpak",
       "return-type": "json",
       "exec-if": "exit 0",
@@ -280,6 +292,11 @@
       "on-click": "swaync-client -t -sw",
       "on-click-right": "swaync-client -d -sw",
       "escape": true
+    },
+    "custom/separator": {
+      "format": "<span>|</span>",
+      "interval": "once",
+      "tooltip": false
     },
     "privacy": {
       "icon-spacing": 4,
