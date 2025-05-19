@@ -21,7 +21,7 @@
       "tray",
       "custom/separator",
       "group/pulseaudio",
-      "custom/separator",
+      // "custom/separator",
       // "pulseaudio",
       "network",
       "battery",
@@ -96,7 +96,7 @@
     },
     "clock": {
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
-      "format": "<span size='smaller'>{:%H:%M}</span>",
+      "format": "<span size='smaller'>{:%b %Od - %H:%M}</span>",
       "timezone": "America/Indiana/Indianapolis",
       "calendar": {
         "mode": "month",
@@ -219,7 +219,7 @@
       "format-alt": "<span size='smaller'>{icon} {volume}%</span>",
       "format-bluetooth": "<span size='smaller'>󰂰 {volume}</span>",
       "format-bluetooth-muted": "<span size='smaller'>󰂲 {format_source}</span>",
-      "format-muted": "<span size='smaller'>󰝟</span>",
+      "format-muted": "<span size='smaller'></span>",
       // "format-source": " {volume}%",
       // "format-source-muted": "",
       "format-icons": {

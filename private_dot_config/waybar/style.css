@@ -66,7 +66,7 @@ tooltip label {
 }
 
 #workspaces button.visible {
-  color: @theme_fg_color;
+  color: @theme_selected_bg_color;
 }
 
 #workspaces button.active {
@@ -143,8 +143,12 @@ box.module button:hover {
 }
 
 #pulseaudio.muted {
-    background-color: alpha(@theme_selected_bg_color, 0.80);
+    background-color: alpha(@error_color, 0.80);
     color: @theme_fg_color;
+}
+
+#pulseaudio-slider slider {
+    border-radius: 12
 }
 
 #temperature.critical {
@@ -219,6 +223,6 @@ box.module button:hover {
 .modules-center {
     background: alpha(@theme_bg_color, 0.90);
     margin: 1px 8px;
-    padding: 2px 8px;
+    padding: 2px 4px;
     border-radius: 6;
 }
