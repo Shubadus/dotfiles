@@ -9,6 +9,8 @@
       "custom/separator",
       "memory",
       "custom/separator",
+      "custom/notification",
+      "custom/separator",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
@@ -30,7 +32,7 @@
     ],
     "custom/power": {
       "format": "<span> </span>",
-      "on-click": "wlogout",
+      "on-click": "~/.config/wofi/powermenu/powermenu.sh",
       "tooltip-format": "Exit the session"
     },
     // Hyprland
@@ -59,9 +61,9 @@
         "9": [],
         "10": []
       },
-      "on-click": "~/.local/bin/scripts/dispatch.sh {name}",
-      "on-scroll-up": "~/.local/bin/scripts/dispatch.sh r-1",
-      "on-scroll-down": "~/.local/bin/scripts/dispatch.sh r+1",
+      "on-click": "hyprctl dispatch workspace {name}",
+      "on-scroll-up": "hyprctl dispatch workspace -1",
+      "on-scroll-down": "hyprctl dispatch workspace +1",
     },
     "hyprland/window": {
       "format": "{title}",
@@ -118,22 +120,22 @@
         "on-scroll-up": "shift_up",
         "on-scroll-down": "shift_down"
       },
-      "format-icons": {
-        "notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
-        "none": "{:%a, %b %d %H:%M}",
-        "dnd-notification": "<{:%a, %b %d %H:%M}span foreground='red'><sup></sup></span>",
-        "dnd-none": "{:%a, %b %d %H:%M}",
-        "inhibited-notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
-        "inhibited-none": "{:%a, %b %d %H:%M}",
-        "dnd-inhibited-notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
-        "dnd-inhibited-none": "{:%a, %b %d %H:%M}"
-      },
-      "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click": "swaync-client -t -sw",
-      "on-click-right": "swaync-client -d -sw",
-      "escape": true
+      // "format-icons": {
+      //   "notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
+      //   "none": "{:%a, %b %d %H:%M}",
+      //   "dnd-notification": "<{:%a, %b %d %H:%M}span foreground='red'><sup></sup></span>",
+      //   "dnd-none": "{:%a, %b %d %H:%M}",
+      //   "inhibited-notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
+      //   "inhibited-none": "{:%a, %b %d %H:%M}",
+      //   "dnd-inhibited-notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
+      //   "dnd-inhibited-none": "{:%a, %b %d %H:%M}"
+      // },
+      // "return-type": "json",
+      // "exec-if": "which swaync-client",
+      // "exec": "swaync-client -swb",
+      // "on-click": "swaync-client -t -sw",
+      // "on-click-right": "swaync-client -d -sw",
+      // "escape": true
     },
     "backlight": {
       // "device": "acpi_video1",
@@ -258,7 +260,7 @@
       ],
     },
     "custom/arch_updates": {
-      "interval": 43200,
+      "interval": 300,
       "format": "<span size='smaller'>{}</span>",
       "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-packageman",
       "exec-if": "exit 0",
@@ -268,7 +270,7 @@
       "signal": 11,
     },
     "custom/flatpak_updates": {
-      "interval": 43200,
+      "interval": 300,
       "format": "<span size='smaller'>{}</span>",
       "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-flatpak",
       "return-type": "json",

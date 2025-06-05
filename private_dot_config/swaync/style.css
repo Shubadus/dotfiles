@@ -1,19 +1,5 @@
-@define-color cc-bg alpha(@theme_bg_color, 0.90);
-@define-color noti-border-color alpha(@theme_selected_bg_color, 0.90);
-/* @define-color noti-bg rgba(48, 48, 48, 0.8); */
-@define-color noti-bg alpha(@theme_bg_color, 0.90);
-@define-color noti-bg-opaque rgb(48, 48, 48);
-@define-color noti-bg-darker rgb(38, 38, 38);
-/* @define-color noti-bg-hover rgb(56, 56, 56); */
-@define-color noti-bg-hover alpha(@theme_selected_bg_color, 0.90);
-/* @define-color noti-bg-hover-opaque rgb(56, 56, 56); */
-@define-color noti-bg-hover-opaque alpha(@theme_selected_bg_color, 0.90);
-@define-color noti-bg-focus alpha(@theme_selected_bg_color, 0.90);
-@define-color noti-close-bg rgba(255, 255, 255, 0.1);
-@define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
-@define-color text-color @theme_fg_color;
-@define-color text-color-disabled rgb(150, 150, 150);
-@define-color bg-selected alpha(@theme_selected_bg_color, 0.90);
+@import url("colors.css");
+
 * {
   font-family: "Noto Sans NerdFont";
   font-weight: bold;

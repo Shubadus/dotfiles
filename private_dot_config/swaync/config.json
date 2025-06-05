@@ -1,7 +1,7 @@
 {
   "layer": "overlay",
   "cssPriority": "user",
-  "control-center-layer": "top",
+  "control-center-layer": "overlay",
   "layer-shell": true,
   "fit-to-screen": true,
   "control-center-margin-top": 4,

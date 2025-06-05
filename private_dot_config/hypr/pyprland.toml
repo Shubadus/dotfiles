@@ -6,36 +6,10 @@ plugins = [
 
 [scratchpads.dropterm]
 animation = "fromTop"
-command = "$TERM --class dropterm -e tmux"
+command = "alacritty --class dropterm -e tmux"
 class = "dropterm"
 margin = 40
-size = "80% 60%"
-unfocus = "hide"
-
-[scratchpads.dropterm_dnf]
-animation = "fromTop"
-command = "$TERM --class dropterm_dnf $HOME/.local/bin/scripts/statusbar/check-updates.sh -e update-packageman"
-class = "dropterm_dnf"
-lazy = true
-margin = 40
-size = "80% 60%"
-unfocus = "hide"
-
-[scratchpads.dropterm_flatpak]
-animation = "fromTop"
-command = "$TERM --class dropterm_flatpak $HOME/.local/bin/scripts/statusbar/check-updates.sh -e update-flatpak"
-class = "dropterm_flatpak"
-lazy = true
-margin = 40
-size = "80% 60%"
-unfocus = "hide"
-
-[scratchpads.vpn]
-animation = "fromTop"
-command = "/opt/cisco/anyconnect/bin/vpnui"
-lazy = true
-margin = 40
-size = "80% 60%"
+size = "80% 65%"
 unfocus = "hide"
 
 [scratchpads.spotify]
@@ -44,7 +18,7 @@ class = "Spotify"
 command = "spotify"
 lazy = true
 margin = 40
-size = "80% 60%"
+size = "80% 65%"
 unfocus = "hide"
 
 [scratchpads.network_manager]
@@ -52,7 +26,7 @@ animation = "fromTop"
 command = "nm-connection-editor"
 lazy = true
 margin = 40
-size = "80% 60%"
+size = "80% 65%"
 unfocus = "hide"
 
 [scratchpads.audio]
@@ -61,23 +35,23 @@ command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
 lazy = true
 margin = 40
-size = "80% 60%"
+size = "80% 65%"
 unfocus = "hide"
 
 [scratchpads.sysmonitor]
 animation = "fromTop"
-command = "$TERM --class sysmonitor -e btop"
+command = "alacritty --class sysmonitor -e btop"
 class = "sysmonitor"
 lazy = true
 margin = 40
-size = "80% 60%"
+size = "80% 65%"
 unfocus = "hide"
 
 [scratchpads.ranger]
 animation = "fromTop"
-command = "$TERM --class ranger -e ranger"
+command = "alacritty --class ranger -e ranger"
 class = "ranger"
 lazy = true
 margin = 40
-size = "80% 60%"
+size = "80% 65%"
 unfocus = "hide"

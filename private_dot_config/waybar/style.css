@@ -1,6 +1,6 @@
 /* GTK variable reference https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss */
+@import url("colors.css");
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     border: none;
     border-radius: 0;
     font-family: NotoSans Nerd Font,Noto Sans;
@@ -10,18 +10,22 @@
 }
 
 window#waybar {
-    background: alpha(@theme_bg_color, 0.80);
+    /* background: alpha(@theme_bg_color, 0.80); */
+    background: alpha(@background, 1.00);
     background: none;
     /* border-radius: 6; */
-    color: @theme_fg_color;
+    /* color: @theme_fg_color; */
+    color: @foreground;
     /* border-radius: 6; */
     padding: 0 0;
 }
 
 tooltip {
-    background: @theme_bg_color;
-    color: @theme_fg_color;
-    border: 1px solid @theme_selected_bg_color;
+    /* background: @theme_bg_color; */
+    /* color: @theme_fg_color; */
+    background: @background;
+    color: @foreground;
+    border: 1px solid @color6;
     border-radius: 6;
 }
 
@@ -43,8 +47,26 @@ tooltip label {
   margin: 0px;
 }
 
+pulseaudio-slider {
+  background: @color6
+}
+
 #pulseaudio-slider trough {
+  background: @color0;
   min-width: 80px;
+}
+#pulseaudio-slider slider {
+  /* min-height: 30px; */
+  /* min-width: 5px; */
+  /* color: @color6; */
+  /* background: @color6; */
+  border-radius: 20px;
+  border:none;
+  box-shadow: none;
+  opacity: 1;
+}
+#pulseaudio-slider highlight {
+  background: @color6;
 }
 
 #backlight-slider trough {
@@ -58,27 +80,33 @@ tooltip label {
 #workspaces button {
   font-size: 10px;
   padding: 0 4px;
-  color: @theme_fg_color;
+  /* color: @theme_fg_color; */
+  color: @foreground;
 }
 
 #workspaces button.empty {
-  color: @unfocused_borders;
+  /* color: @unfocused_borders; */
+  color: @color8;
 }
 
 #workspaces button.visible {
-  color: @theme_selected_bg_color;
+  /* color: @theme_selected_bg_color; */
+  color: @color6;
 }
 
 #workspaces button.active {
-  background: @theme_selected_bg_color;
+  /* background: @theme_selected_bg_color; */
+  background: @color6;
   border-radius: 8px;
   /* color: @theme_selected_bg_color; */
-  color: @theme_bg_color;
+  /* color: @theme_bg_color; */
+  color: @background;
   margin: 1px 0;
 }
 
 #workspaces button.urgent {
-  color: @error_color;
+  /* color: @error_color; */
+  color: @color1;
 }
 
 #window {
@@ -93,8 +121,10 @@ tooltip label {
 }
 
 #battery.critical:not(.charging) {
-    background-color: alpha(@warning_color, 0.80);
-    color: @theme_fg_color;
+    /* background-color: alpha(@warning_color, 0.80); */
+    /* color: @theme_fg_color; */
+    background-color: alpha(@color3, 0.80);
+    color: @foreground;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -103,7 +133,9 @@ tooltip label {
 }
 
 box.module button:hover {
-    background: @theme_bg_color;
+    border-radius: 6;
+    background: linear-gradient(180deg,@color6 ,@background,@background,@background,@background,@color6);
+    color: @foreground;
 }
 
 #taskbar {
@@ -111,7 +143,8 @@ box.module button:hover {
 }
 
 #taskbar button.active {
-  border: 2px solid @theme_selected_bg_color;
+  /* border: 2px solid @theme_selected_bg_color; */
+  /* border: 2px solid @color6; */
   border-radius: 6;
   /* background-color: @theme_selected_bg_color; */
 }
@@ -122,7 +155,8 @@ box.module button:hover {
 }
 
 #custom-check_updates.reboot {
-    background-color: alpha(@warning_color, 0.80);
+    /* background-color: alpha(@warning_color, 0.80); */
+    background-color: alpha(@color3, 0.80);
 }
 
 #custom-power {
@@ -135,7 +169,8 @@ box.module button:hover {
 }
 
 #network.disconnected {
-    background-color: alpha(@warning_color, 0.80);
+    /* background-color: alpha(@warning_color, 0.80); */
+    background-color: alpha(@color3, 0.80);
 }
 
 #pulseaudio {
@@ -143,16 +178,20 @@ box.module button:hover {
 }
 
 #pulseaudio.muted {
-    background-color: alpha(@error_color, 0.80);
-    color: @theme_fg_color;
+    /* background-color: alpha(@error_color, 0.80); */
+    /* color: @theme_fg_color; */
+    background-color: alpha(@color1, 0.80);
+    color: @foreground;
 }
 
 #pulseaudio-slider slider {
-    border-radius: 12
+    border-radius: 12;
+    /* background-color: alpha(@color1, 0.80); */
 }
 
 #temperature.critical {
-    background-color: alpha(@warning_color, 0.80);
+    /* background-color: alpha(@warning_color, 0.80); */
+    background-color: alpha(@color3, 0.80);
 }
 
 #custom-notification {
@@ -160,17 +199,21 @@ box.module button:hover {
 }
 
 #tray {
-    /*-gtk-icon-source: builtin;*/
+    /* -gtk-icon-source: builtin; */
     /* padding: 0 2px; */
 }
 
+#tray > .active {
+}
+
 #tray > .passive {
-    -gtk-icon-effect: dim;
+  -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: alpha(@warning_color, 0.80);
+    /* background-color: alpha(@warning_color, 0.80); */
+    background-color: alpha(@color3, 0.80);
 }
 
 #tray menu * {
@@ -180,8 +223,11 @@ box.module button:hover {
 }
 
 #tray menu {
-    background-color: alpha(@theme_bg_color, 1.00);
-    border: 1px solid @theme_selected_bg_color;
+    color: @color6;
+    /* background-color: alpha(@theme_bg_color, 1.00); */
+    /* border: 1px solid @theme_selected_bg_color; */
+    background-color: alpha(@background, 1.00);
+    border: 1px solid @color6;
     padding: 4px 6px;
     border-radius: 6;
 }
@@ -192,20 +238,26 @@ box.module button:hover {
 }
 
 #tray menuitem:hover {
-    color: @theme_selected_fg_color;
-    background-color: alpha(@theme_selected_bg_color, 0.70);
+    /* color: @theme_selected_fg_color; */
+    /* background-color: alpha(@theme_selected_bg_color, 0.70); */
+    color: @color0;
+    background-color: alpha(@color6, 0.70);
     /*border: 1px solid alpha(@theme_selected_bg_color, 0.70);*/
     padding: 0 6px;
 }
 
 #idle_inhibitor {
-    color: @theme_selected_fg_color;
-    background-color: alpha(@theme_fg_color, 0.80);
+    /* color: @theme_selected_fg_color; */
+    /* background-color: alpha(@theme_fg_color, 0.80); */
+    color: @color0;
+    background-color: alpha(@foreground, 0.80);
 }
 
 #idle_inhibitor.activated {
-    background-color: alpha(@theme_selected_bg_color, 0.80);
-    color: @theme_selected_fg_color;
+    /* background-color: alpha(@theme_selected_bg_color, 0.80); */
+    /* color: @theme_selected_fg_color; */
+    background-color: alpha(@color6, 0.80);
+    color: @foreground;
 }
 
 #custom-separator {
@@ -221,7 +273,8 @@ box.module button:hover {
 .modules-left,
 .modules-right,
 .modules-center {
-    background: alpha(@theme_bg_color, 0.90);
+    /* background: alpha(@theme_bg_color, 0.90); */
+    background: alpha(@background, 0.90);
     margin: 1px 8px;
     padding: 2px 4px;
     border-radius: 6;

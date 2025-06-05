@@ -1,6 +1,9 @@
 [general]
+# import = [
+#   "/opt/homebrew/lib/node_modules/alacritty-themes/themes/github_dark.toml"
+# ]
 import = [
-  "/opt/homebrew/lib/node_modules/alacritty-themes/themes/github_dark.toml"
+  "~/.config/alacritty/colors.toml"
 ]
 
 # import = [
@@ -33,3 +36,6 @@ size = 11
 [window]
 blur = true
 opacity = 0.9
+
+[terminal]
+shell = { program = "rm", args = ["$XDG_RUNTIME_DIR/alacritty.sock"]}
