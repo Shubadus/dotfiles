@@ -2,27 +2,19 @@
 
 * {
   border-radius: 12px;
+  font-size: 20px; 
 }
 #expander-box,
 #outer-box
 {
   background: @background;
-  border-radius: 12px;
-}
-
-#entry {
-  font-size: 20px; 
 }
 
 #entry:selected {
   background: @color6;
   color: @background;
-  border: 2px solid @color6;
-  border-radius: 12px;
 }
 
 #input {
-  font-size: 12px;
-  border-radius: 12px;
   padding: 4px 2px;
 }

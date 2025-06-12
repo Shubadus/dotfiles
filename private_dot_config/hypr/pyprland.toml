@@ -15,7 +15,7 @@ unfocus = "hide"
 [scratchpads.spotify]
 animation = "fromTop"
 class = "Spotify"
-command = "spotify"
+command = "spotify-launcher"
 lazy = true
 margin = 40
 size = "80% 65%"

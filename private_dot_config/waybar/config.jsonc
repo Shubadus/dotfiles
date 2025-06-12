@@ -1,54 +1,35 @@
 [
   {
+    "include": "$HOME/.config/waybar/items/clock.jsonc",
     "layer": "top", // Waybar at top layer
-    // "margin-top": 4,
-    // "margin-left": 4,
-    // "margin-right": 4,
     "modules-left": [
-      "clock",
-      "custom/separator",
+      "group/clock-notify",
+      // "clock",
       "memory",
-      "custom/separator",
-      "custom/notification",
-      "custom/separator",
+      // "custom/notification",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
+      "gamemode",
+      "mpris"
     ],
     "modules-center": [
-      "hyprland/workspaces",
-      "sway/workspaces",
+      "hyprland/workspaces"
     ],
     "modules-right": [
       "tray",
-      "custom/separator",
-      "group/pulseaudio",
-      // "custom/separator",
-      // "pulseaudio",
-      "network",
-      "battery",
-      "custom/separator",
-      "custom/power",
+      "group/menu",
+      "custom/power"
     ],
     "custom/power": {
-      "format": "<span> </span>",
+      "format": "<span></span>",
       "on-click": "~/.config/wofi/powermenu/powermenu.sh",
       "tooltip-format": "Exit the session"
     },
     // Hyprland
     "hyprland/workspaces": {
       "all-outputs": true,
-      // "active-only": true,
-      "format": "<span size='12pt'>{icon}</span>",
-      "format-icons": {
-        // "1": "󰾔",
-        // "2": "󰈩",
-        // "3": "󱃖",
-        // "4": "",
-        // "5": "󰈚",
-        // "active": "",
-        // "default": ""
-      },
+      "format": "{icon}",
       "persistent-workspaces": {
         "1": [],
         "2": [],
@@ -63,32 +44,29 @@
       },
       "on-click": "hyprctl dispatch workspace {name}",
       "on-scroll-up": "hyprctl dispatch workspace -1",
-      "on-scroll-down": "hyprctl dispatch workspace +1",
+      "on-scroll-down": "hyprctl dispatch workspace +1"
     },
     "hyprland/window": {
       "format": "{title}",
       "max-length": 30
     },
     "mpris": {
-      "format-playing": "<span size='smaller'>{player_icon} {dynamic}</span>",
-      "format-paused": "<span size='smaller'>{status_icon} {dynamic}</span>",
+      "format-playing": "{status_icon} {title} - {artist}",
+      "format-paused": "{status_icon} {title} - {artist}",
       "title-len": 40,
       "player-icons": {
-        "default": "",
         "mpv": "🎵"
       },
       "status-icons": {
-        "paused": ""
-      },
-      // "ignored-players": [
-      // "firefox",
-      // ]
+        "paused": "",
+        "playing": ""
+      }
     },
     "idle_inhibitor": {
-      "format": "<span size='smaller'>{icon}</span>",
+      "format": "{icon}",
       "format-icons": {
-        "activated": "",
-        "deactivated": ""
+        "activated": "󰈈",
+        "deactivated": "󰛐"
       }
     },
     "tray": {
@@ -96,51 +74,10 @@
       "reverse-direction": true,
       "spacing": 6
     },
-    "clock": {
-      "tooltip-format": "<tt><small>{calendar}</small></tt>",
-      "format": "<span size='smaller'>{:%b %Od - %H:%M}</span>",
-      "timezone": "America/Indiana/Indianapolis",
-      "calendar": {
-        "mode": "month",
-        "mode-mon-col": 3,
-        "on-scroll": 1,
-        "on-click-right": "mode",
-        "format": {
-          "months": "<span color='#ffead3'><b>{}</b></span>",
-          "days": "<span color='#ecc6d9'><b>{}</b></span>",
-          "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-          "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-          "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-        }
-      },
-      "actions": {
-        "on-click-right": "mode",
-        "on-click-forward": "tz_up",
-        "on-click-backward": "tz_down",
-        "on-scroll-up": "shift_up",
-        "on-scroll-down": "shift_down"
-      },
-      // "format-icons": {
-      //   "notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
-      //   "none": "{:%a, %b %d %H:%M}",
-      //   "dnd-notification": "<{:%a, %b %d %H:%M}span foreground='red'><sup></sup></span>",
-      //   "dnd-none": "{:%a, %b %d %H:%M}",
-      //   "inhibited-notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
-      //   "inhibited-none": "{:%a, %b %d %H:%M}",
-      //   "dnd-inhibited-notification": "{:%a, %b %d %H:%M}<span foreground='red'><sup></sup></span>",
-      //   "dnd-inhibited-none": "{:%a, %b %d %H:%M}"
-      // },
-      // "return-type": "json",
-      // "exec-if": "which swaync-client",
-      // "exec": "swaync-client -swb",
-      // "on-click": "swaync-client -t -sw",
-      // "on-click-right": "swaync-client -d -sw",
-      // "escape": true
-    },
     "backlight": {
       // "device": "acpi_video1",
-      "format": "<small>{icon}</small>",
-      "format-alt": "<small>{icon} {percent}%</small>",
+      "format": "{icon}",
+      "format-alt": "{icon} {percent}%",
       "tooltip-format": "Brightness: {percent}%",
       "format-icons": [
         "󰃝",
@@ -151,18 +88,21 @@
     },
     "memory": {
       "interval": 30,
-      "format": "<span size='smaller'> </span> {}%",
+      "format": " {}%",
       "max-length": 10,
-      "on-click": "pypr toggle sysmonitor"
+      "on-click": "pypr toggle sysmonitor",
+      "states": {
+        "warning": 70,
+        "critical": 85
+      }
     },
     "battery": {
       "states": {
         "warning": 30,
         "critical": 15
       },
-      "format": "<span size='smaller'>{icon}</span>",
-      "format-alt": "<span size='smaller'>{icon} {ipaddr}</span>",
-      // "format-good": "", // An empty format will hide the module
+      "format": "{icon}",
+      "format-alt": "{icon} {ipaddr}",
       "format-full": "", //"󰂄",
       "format-icons": {
         // TODO: Discharge Icons not showing correctly.
@@ -189,21 +129,61 @@
           "󰂋"
         ]
       },
+      "hide-empty-text": true
     },
-    "battery#bat2": {
-      "bat": "BAT2"
+    "battery#mouse": {
+      "bat": "/sys/class/power_supply/hidpp_battery_0/capacity",
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon}",
+      "format-alt": "{icon} {ipaddr}",
+      "format-full": "", //"󰂄",
+      "format-icons": {
+        // TODO: Discharge Icons not showing correctly.
+        "discharging": [
+          "󰁺",
+          "󰁻",
+          "󰁼",
+          "󰁽",
+          "󰁾",
+          "󰁿",
+          "󰂀",
+          "󰂁",
+          "󰂂"
+        ],
+        "charging": [
+          "󰢜",
+          "󰂆",
+          "󰂇",
+          "󰂈",
+          "󰢝",
+          "󰂉",
+          "󰢞",
+          "󰂊",
+          "󰂋"
+        ]
+      },
+      "hide-empty-text": true
+    },
+    "group/batteries": {
+      "orientation": "inherit",
+      "modules": [
+        "battery",
+        "battery#mouse"
+      ],
+      "hide-empty-text": true
     },
     "network": {
-      // "interface": "wlp2*", // (Optional) To force the use of this interface
-      "format-wifi": "<span size='smaller'>{icon}</span>",
-      "format-ethernet": "<span size='smaller'>{icon}</span>",
+      "format-wifi": "{icon}",
+      "format-ethernet": "{icon}",
       "tooltip-format": "{essid}: {signalStrength}%",
       "tooltip-format-ethernet": "Connected via Ethernet: {ipaddr}",
       "tooltip-format-disconnected": "Not connected",
-      "format-linked": "<span size='smaller'>{ifname} (No IP)</span>",
-      "format-disconnected": "<span size='smaller'>󰅛</span>",
-      "format-alt": "<span size='smaller'>{icon} {ipaddr}</span>",
-      // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+      "format-linked": "{ifname} (No IP)",
+      "format-disconnected": "󰅛",
+      "format-alt": "{icon} {ipaddr}",
       "format-icons": {
         "wifi": [
           "󰤯",
@@ -217,13 +197,11 @@
     },
     "pulseaudio": {
       "scroll-step": 5, // %, can be a float
-      "format": "<span size='smaller'>{icon}</span>",
-      "format-alt": "<span size='smaller'>{icon} {volume}%</span>",
-      "format-bluetooth": "<span size='smaller'>󰂰 {volume}</span>",
-      "format-bluetooth-muted": "<span size='smaller'>󰂲 {format_source}</span>",
-      "format-muted": "<span size='smaller'></span>",
-      // "format-source": " {volume}%",
-      // "format-source-muted": "",
+      "format": "{icon}",
+      "format-alt": "{icon} {volume}%",
+      "format-bluetooth": "󰂰 {volume}",
+      "format-bluetooth-muted": "<󰂲 {format_source}",
+      "format-muted": "",
       "format-icons": {
         "headphone": "󰋋",
         "hands-free": "󰋋",
@@ -241,73 +219,83 @@
       "on-click-right": "pavucontrol",
       "on-click-middle": "amixer set Master 1+ toggle > /dev/null",
       "on-scroll-up": "amixer set Master 5%+ > /dev/null",
-      "on-scroll-down": "amixer set Master 5%- > /dev/null"
+      "on-scroll-down": "amixer set Master 5%- > /dev/null",
+      "hide-empty-text": true
     },
     "pulseaudio/slider": {
       "min": 0,
       "max": 100,
       "orientation": "horizontal",
+      "hide-empty-text": true
     },
     "group/pulseaudio": {
       "orientation": "inherit",
       "drawer": {
-        "children-class": "audio-group-drawer",
+        "children-class": "audio-group-drawer"
         // "click-to-reveal": true,
       },
       "modules": [
         "pulseaudio",
         "pulseaudio/slider"
       ],
+      "hide-empty-text": true
+    },
+    "group/menu": {
+      "orientation": "inherit",
+      "modules": [
+        "idle_inhibitor",
+        "group/pulseaudio",
+        // "pulseaudio",
+        "network",
+        "group/batteries"
+      ],
+      "hide-empty-text": true
+    },
+    "group/clock-notify": {
+      "orientation": "inherit",
+      "modules": [
+        "clock",
+        "custom/notification"
+      ],
+      "hide-empty-text": true
     },
     "custom/arch_updates": {
       "interval": 300,
-      "format": "<span size='smaller'>{}</span>",
+      "format": "{}",
       "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-packageman",
       "exec-if": "exit 0",
       "return-type": "json",
       "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-packageman; pkill -SIGRTMIN+11 waybar",
-      // "on-click": "pypr toggle dropterm_dnf; pkill -SIGRTMIN+11 waybar",
       "signal": 11,
+      "hide-empty-text": true
     },
     "custom/flatpak_updates": {
       "interval": 300,
-      "format": "<span size='smaller'>{}</span>",
+      "format": "{}",
       "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-flatpak",
       "return-type": "json",
       "exec-if": "exit 0",
       "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-flatpak; pkill -SIGRTMIN+12 waybar",
-      // "on-click": "pypr toggle dropterm_flatpak; pkill -SIGRTMIN+12 waybar",
       "signal": 12,
+      "hide-empty-text": true
     },
     "custom/notification": {
-      "tooltip": false,
-      "format": "{icon}",
-      "format-icons": {
-        "notification": "󰂚<span foreground='red'><sup></sup></span>",
-        "none": "󰂚",
-        "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
-        "dnd-none": "󰂛",
-        "inhibited-notification": "󰂚<span foreground='red'><sup></sup></span>",
-        "inhibited-none": "󰂚",
-        "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
-        "dnd-inhibited-none": "󰂛"
-      },
+      "tooltip": true,
       "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click": "swaync-client -t -sw",
-      "on-click-right": "swaync-client -d -sw",
-      "escape": true
-    },
-    "custom/separator": {
-      "format": "<span>|</span>",
-      "interval": "once",
-      "tooltip": false
+      "exec": "$HOME/.local/bin/scripts/statusbar/notifications.sh -c; pkill -SIGRTMIN+13 waybar",
+      "on-click": "dunstctl history-pop",
+      "on-click-right": "$HOME/.local/bin/scripts/statusbar/notifications.sh -d; pkill -SIGRTMIN+13 waybar",
+      "on-click-middle": "$HOME/.local/bin/scripts/statusbar/notifications.sh -r; pkill -SIGRTMIN+13 waybar",
+      "interval": 2,
+      "signal": 13,
+      "escape": true,
+      "hide-empty-text": true
     },
     "privacy": {
       "icon-spacing": 4,
       "icon-size": 18,
       "transition-duration": 250,
+      "hide-empty-text": true,
       "modules": [
         {
           "type": "screenshare",
@@ -325,6 +313,19 @@
           "tooltip-icon-size": 24
         }
       ]
-    }
+    },
+    "gamemode": {
+      "format": "{glyph}",
+      // "format-alt": "{glyph} {count}",
+      "glyph": "󰖺",
+      "hide-not-running": true,
+      "use-icon": true,
+      "icon-name": "input-gaming-symbolic",
+      "icon-spacing": 0,
+      "icon-size": 0,
+      "tooltip": true,
+      "tooltip-format": "Games running: {count}",
+      "hide-empty-text": true
+    } // "custom/whitespace": {},
   }
 ]

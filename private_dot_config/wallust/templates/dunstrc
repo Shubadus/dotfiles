@@ -1,0 +1,57 @@
+[global]
+follow = keyboard
+width = (150, 1200)
+height = (75, 300)
+origin = top-right
+offset = (4,4)
+scale = 0
+notification_limit=0
+gap_size = 4
+indicate_hidden = yes
+frame_width = 2
+corner_radius = 12
+padding = 2
+horizontal_padding = 8
+enable_posix_regex = true
+enable_recursive_icon_lookup = true
+font = NotoSans Mono, 14
+line_height = 0
+alignment = left
+stack_duplicates = true
+hide_duplicate_count = false
+icon_theme = "breeze"
+max_icon_size = 64
+markup = full
+#format = "<b>%a</b>\n%s\n%b"
+format = "<b>%s</b>\n%b"
+progress_bar = true
+progress_bar_height = 10
+progress_bar_corner_radius = 4
+progress_bar_frame_width = 1
+separator_height = 2
+ignore_dbusclose = false
+force_xwayland = false
+frame_color = "{{color4}}"
+highlight = "{{color5}}"
+separator_color= "{{foreground}}"
+
+[experimental]
+per_monitor_dpi = false
+
+[urgency_low]
+timeout = 2
+background = "{{background | darken(0.1)}}ee"
+foreground = "{{foreground}}"
+frame_color = "{{color4}}"
+
+[urgency_normal]
+timeout = 3
+background = "{{background | darken(0.1)}}80"
+foreground = "{{foreground}}"
+frame_color = "{{color6}}"
+
+[urgency_critical]
+timeout = 4
+background = "{{background | darken(0.1)}}ee"
+foreground = "{{foreground}}"
+frame_color = "{{color9}}"
