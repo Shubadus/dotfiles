@@ -1,20 +1,13 @@
 #!/bin/bash
-notification_normal="󰂚"
-# notification_alert="󰂚"
-notification_dnd="󰂛"
-
 function get_notifications {
   dnd=$(dunstctl get-pause-level)
   msg_count=$(dunstctl count history)
   if [[ $dnd -eq 100 ]]; then
-    icon=$notification_dnd
-    printf '{"text":"%s", "tooltip":"%s Notifications", "alt":"%s", "class": "dnd"}' "$icon" "$msg_count" "$notification_alert"
+    printf '{"text":"%s", "tooltip":"%s Notifications", "alt":"dnd-none", "class": "dnd"}' "$msg_count" "$msg_count"
   elif [[ $msg_count -gt 0 ]]; then
-    icon=$notification_normal
-    printf '{"text":"%s %s", "tooltip":"%s Notifications", "alt":"%s", "class": "alert"}' "$icon" "$msg_count" "$msg_count" "$notification_alert"
+    printf '{"text":"%s","tooltip":"%s Notifications", "alt":"notification", "class": "alert"}' "$msg_count" "$msg_count"
   else
-    icon=$notification_normal
-    printf '{"text":"%s", "tooltip":"%s Notifications", "alt":"%s"}' "$icon" "$msg_count" "$notification_alert"
+    printf '{"text":"%s","tooltip":"%s Notifications", "alt":"none"}' "$msg_count" "$msg_count"
   fi
 }
 for arg in "$@"; do

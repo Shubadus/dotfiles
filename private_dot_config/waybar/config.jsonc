@@ -1,28 +1,29 @@
 [
   {
-    "include": "$HOME/.config/waybar/items/clock.jsonc",
+    "include": [
+      "$HOME/.config/waybar/items/clock.jsonc",
+      "$HOME/.config/waybar/items/notification.jsonc"
+    ],
     "layer": "top", // Waybar at top layer
     "modules-left": [
       "group/clock-notify",
-      // "clock",
       "memory",
-      // "custom/notification",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
       "gamemode",
-      "mpris"
     ],
     "modules-center": [
       "hyprland/workspaces"
     ],
     "modules-right": [
+      "mpris",
       "tray",
-      "group/menu",
-      "custom/power"
+      "group/menu"
+      // "custom/power"
     ],
     "custom/power": {
-      "format": "<span></span>",
+      "format": "",
       "on-click": "~/.config/wofi/powermenu/powermenu.sh",
       "tooltip-format": "Exit the session"
     },
@@ -245,9 +246,9 @@
       "modules": [
         "idle_inhibitor",
         "group/pulseaudio",
-        // "pulseaudio",
         "network",
-        "group/batteries"
+        "group/batteries",
+        "custom/power"
       ],
       "hide-empty-text": true
     },
@@ -279,18 +280,6 @@
       "signal": 12,
       "hide-empty-text": true
     },
-    "custom/notification": {
-      "tooltip": true,
-      "return-type": "json",
-      "exec": "$HOME/.local/bin/scripts/statusbar/notifications.sh -c; pkill -SIGRTMIN+13 waybar",
-      "on-click": "dunstctl history-pop",
-      "on-click-right": "$HOME/.local/bin/scripts/statusbar/notifications.sh -d; pkill -SIGRTMIN+13 waybar",
-      "on-click-middle": "$HOME/.local/bin/scripts/statusbar/notifications.sh -r; pkill -SIGRTMIN+13 waybar",
-      "interval": 2,
-      "signal": 13,
-      "escape": true,
-      "hide-empty-text": true
-    },
     "privacy": {
       "icon-spacing": 4,
       "icon-size": 18,
@@ -302,11 +291,11 @@
           "tooltip": true,
           "tooltip-icon-size": 24
         },
-        {
-          "type": "audio-out",
-          "tooltip": true,
-          "tooltip-icon-size": 24
-        },
+        // {
+        //   "type": "audio-out",
+        //   "tooltip": true,
+        //   "tooltip-icon-size": 24
+        // },
         {
           "type": "audio-in",
           "tooltip": true,
