@@ -5,13 +5,14 @@
       "$HOME/.config/waybar/items/notification.jsonc"
     ],
     "layer": "top", // Waybar at top layer
+    "height": 30,
     "modules-left": [
       "group/clock-notify",
       "memory",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
-      "gamemode",
+      "gamemode"
     ],
     "modules-center": [
       "hyprland/workspaces"
@@ -52,9 +53,10 @@
       "max-length": 30
     },
     "mpris": {
-      "format-playing": "{status_icon} {title} - {artist}",
-      "format-paused": "{status_icon} {title} - {artist}",
+      "format-playing": "{status_icon} {title}",
+      "format-paused": "{status_icon} {title}",
       "title-len": 40,
+      "tooltip-format": "{dynamic}",
       "player-icons": {
         "mpv": "🎵"
       },
@@ -176,7 +178,13 @@
       ],
       "hide-empty-text": true
     },
+    "group/temp-items": {
+      "orientation": "inherit",
+      "modules": [],
+      "hide-empty-text": true
+    },
     "network": {
+      "format": "{icon}",
       "format-wifi": "{icon}",
       "format-ethernet": "{icon}",
       "tooltip-format": "{essid}: {signalStrength}%",
@@ -186,6 +194,7 @@
       "format-disconnected": "󰅛",
       "format-alt": "{icon} {ipaddr}",
       "format-icons": {
+        "default": "󰈀",
         "wifi": [
           "󰤯",
           "󰤢",

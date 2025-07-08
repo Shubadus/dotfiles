@@ -4,6 +4,9 @@
   border-radius: 12px;
   font-size: 20px; 
 }
+window {
+  background: none
+}
 #expander-box,
 #outer-box
 {
@@ -14,7 +17,23 @@
   background: @color6;
   color: @background;
 }
+#entry:selected #text {
+  color: @background;
+  font-weight: 600;
+}
+#entry.activatable #text{
+  color: @color6;
+}
+
+#img,
+#text {
+  background: none;
+}
 
 #input {
+  color: @background;
   padding: 4px 2px;
+}
+#input:selected {
+  border: 2px solid @color6;
 }

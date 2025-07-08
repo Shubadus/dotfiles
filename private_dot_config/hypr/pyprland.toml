@@ -9,7 +9,7 @@ animation = "fromTop"
 command = "alacritty --class dropterm -e tmux"
 class = "dropterm"
 margin = 40
-size = "80% 65%"
+size = "85% 65%"
 unfocus = "hide"
 
 [scratchpads.spotify]
@@ -18,7 +18,7 @@ class = "Spotify"
 command = "spotify-launcher"
 lazy = true
 margin = 40
-size = "80% 65%"
+size = "80% 70%"
 unfocus = "hide"
 
 [scratchpads.network_manager]
@@ -26,7 +26,7 @@ animation = "fromTop"
 command = "nm-connection-editor"
 lazy = true
 margin = 40
-size = "80% 65%"
+size = "80% 70%"
 unfocus = "hide"
 
 [scratchpads.audio]
@@ -35,7 +35,7 @@ command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
 lazy = true
 margin = 40
-size = "80% 65%"
+size = "80% 70%"
 unfocus = "hide"
 
 [scratchpads.sysmonitor]
@@ -44,7 +44,7 @@ command = "alacritty --class sysmonitor -e btop"
 class = "sysmonitor"
 lazy = true
 margin = 40
-size = "80% 65%"
+size = "80% 70%"
 unfocus = "hide"
 
 [scratchpads.ranger]
@@ -53,5 +53,5 @@ command = "alacritty --class ranger -e ranger"
 class = "ranger"
 lazy = true
 margin = 40
-size = "80% 65%"
+size = "80% 70%"
 unfocus = "hide"

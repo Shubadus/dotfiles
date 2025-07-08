@@ -5,14 +5,14 @@
     border-radius: 0;
     font-family: NotoSans Nerd Font,Noto Sans;
     font-size: 16px;
-    transition-duration: 0s;
-    padding: 0 0;
-    background: none;
+}
+window#waybar>box {
+  padding: 0px 0;
 }
 
 window#waybar {
-    background: none;
-    padding: 0 0;
+    background: alpha(@background, 1.00);
+    /* background: none; */
 }
 
 tooltip label {
@@ -23,13 +23,18 @@ tooltip label {
   padding-right: 8px;
 }
 
+/* Group Styling */
+/* #temp-items, */
 #clock-notify,
+#menu {
+  /* background: shade(@background, 1.60); */
+  padding: 0px 6px;
+  margin: 0px 0px;
+}
+
 #custom-arch_updates,
 #custom-flatpak_updates,
-/* #custom-power, */
 #gamemode,
-#idle_inhibitor,
-#menu,
 #memory,
 #mpris,
 #privacy,
@@ -37,16 +42,28 @@ tooltip label {
 tooltip,
 #tray,
 #workspaces {
-  background: alpha(@background, 0.80);
-  background-color: alpha(@background, 0.80);
-  /* border: 1px solid @color6; */
-  border-radius: 12px;
-  margin-top: 4px;
-  margin-left: 4px;
-  margin-right: 4px;
-  padding: 1px 8px;
-  /* padding-left: 8px; */
-  /* padding-right: 8px; */
+  /* background: shade(@background, 1.65); */
+  padding: 0px 6px;
+  margin: 0px 0px;
+}
+
+#clock-notify {
+  border-bottom: 2px solid @color1;
+}
+#memory {
+  border-bottom: 2px solid @color2;
+}
+#workspaces {
+  border-bottom: 2px solid @color3;
+}
+#mpris{
+  border-bottom: 2px solid @color4;
+}
+#tray {
+  border-bottom: 2px solid @color5;
+}
+#menu{
+  border-bottom: 2px solid @color6;
 }
 
 #custom-power {
@@ -55,7 +72,7 @@ tooltip,
 }
 
 #mpris.paused {
-  color: @color8;
+  color: shade(@foreground, 0.4);
 }
 
 pulseaudio-slider {
@@ -84,12 +101,18 @@ pulseaudio-slider {
   color: @color1;
 }
 
-#clock:hover,
 #custom-notification:hover,
+#clock:hover {
+  color: @color1;
+}
+#memory:hover {
+  color: @color2;
+}
+#mpris:hover {
+  color: @color4;
+}
 #custom-power:hover,
 #idle_inhibitor:hover,
-#memory:hover,
-#mpris:hover,
 #network:hover,
 #pulseaudio:hover
 {
@@ -100,26 +123,27 @@ pulseaudio-slider {
   padding: 0px 5px;
   color: @foreground;
   border-radius: 12px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #workspaces button.empty {
-  color: @color8;
+  color: shade(@foreground, 0.40);
 }
 
 #workspaces button.visible {
-  color: @color6;
+  color: @foreground;
 }
 
 #workspaces button.active {
-  background: @color6;
+  background: @color3;
   border-radius: 12px;
   color: @background;
+  font-weight: bold;
   /* margin: 1px 0; */
-  margin: 4px;
-  padding: 0 16px;
-  /* transition: 0.5s ease-in-out; */
+  margin: 5px 4px;
+  padding: 0px 16px;
+  transition: 0.5s ease-in-out;
 }
 
 #workspaces button.urgent {
@@ -166,8 +190,14 @@ pulseaudio-slider {
 #workspaces button:hover,
 box.module button:hover {
     border-radius: 12px;
-    background: @color6;
+    background: @color3;
     color: @background;
+    font-weight: bold;
+}
+
+#workspaces button:hover {
+    margin: 5px 8px;
+    padding: 0px 16px;
 }
 
 #custom-check_updates.reboot {
@@ -208,7 +238,6 @@ box.module button:hover {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    /* background-color: alpha(@warning_color, 0.80); */
     background-color: alpha(@color3, 0.80);
 }
 
@@ -222,7 +251,7 @@ box.module button:hover {
     color: @color6;
     background-color: alpha(@background, 1.00);
     border: 1px solid @color6;
-    padding: 4px 6px;
+    padding: 6px 6px;
     border-radius: 6;
 }
 
@@ -237,21 +266,21 @@ box.module button:hover {
 }
 
 #idle_inhibitor {
-    padding: 0 0px;
-    padding-bottom: 4px;
+    padding-right: 2px;
+    padding-left: 6px;
+    padding-bottom: 1px;
     color: @foreground;
     background-color: @background;
     background: none
 }
 
 #idle_inhibitor.activated {
-    /* background-color: @color6; */
     color: @color6;
 }
 
 .modules-left {
-  margin-left: 4px;
+  /* margin-left: 4px; */
 }
 .modules-right {
-  margin-right: 4px;
+  /* margin-right: 4px; */
 }
