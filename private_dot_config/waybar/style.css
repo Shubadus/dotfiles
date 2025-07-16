@@ -97,10 +97,14 @@ pulseaudio-slider {
   background: @color6;
 }
 
+#custom-dunst-notification.dnd,
+#custom-swaync-notification.dnd,
 #custom-notification.dnd {
   color: @color1;
 }
 
+#custom-dunst-notification:hover,
+#custom-swaync-notification:hover,
 #custom-notification:hover,
 #clock:hover {
   color: @color1;

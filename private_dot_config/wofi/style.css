@@ -11,15 +11,28 @@ window {
 #outer-box
 {
   background: @background;
+  border: 2px solid shade(@foreground, 0.2);
+}
+
+#entry > * {
+  border: none;
+  border-radius: 25px;
 }
 
 #entry:selected {
+  border: none;
+  min-width: 20px;
   background: @color6;
   color: @background;
+  margin-right: 11px;
 }
 #entry:selected #text {
+  border: none;
   color: @background;
   font-weight: 600;
+}
+#entry.activatable {
+  border: none;
 }
 #entry.activatable #text{
   color: @color6;
@@ -31,8 +44,10 @@ window {
 }
 
 #input {
-  color: @background;
+  /* border: 2px solid @background; */
+  color: @foreground;
   padding: 4px 2px;
+  margin-bottom: 4px;
 }
 #input:selected {
   border: 2px solid @color6;
