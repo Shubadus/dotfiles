@@ -19,6 +19,10 @@ tooltip label {
     padding: 6px;
 }
 
+tooltip {
+  background: alpha(@background, 0.85);
+}
+
 #clock {
   padding-right: 8px;
 }
@@ -87,7 +91,7 @@ pulseaudio-slider {
 
 #pulseaudio-slider slider {
   border-radius: 20px;
-  border:none;
+  /* border:none; */
   box-shadow: none;
   opacity: 1;
 }
@@ -97,8 +101,8 @@ pulseaudio-slider {
   background: @color6;
 }
 
-#custom-dunst-notification.dnd,
-#custom-swaync-notification.dnd,
+/* #custom-dunst-notification.dnd, */
+/* #custom-swaync-notification.dnd, */
 #custom-notification.dnd {
   color: @color1;
 }
@@ -252,9 +256,9 @@ box.module button:hover {
 }
 
 #tray menu {
-    color: @color6;
+    color: @color4;
     background-color: alpha(@background, 1.00);
-    border: 1px solid @color6;
+    border: 1px solid @color4;
     padding: 6px 6px;
     border-radius: 6;
 }
@@ -264,8 +268,8 @@ box.module button:hover {
 }
 
 #tray menuitem:hover {
-    color: @color6;
-    background-color: alpha(@color6, 0.70);
+    color: @color4;
+    background-color: alpha(@color4, 0.70);
     padding: 0 6px;
 }
 
