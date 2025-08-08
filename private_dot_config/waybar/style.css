@@ -11,16 +11,18 @@ window#waybar>box {
 }
 
 window#waybar {
-    background: alpha(@background, 1.00);
-    /* background: none; */
+    background: alpha(@background, 0.70);
 }
 
 tooltip label {
     padding: 6px;
+    background: none;
 }
 
 tooltip {
-  background: alpha(@background, 0.85);
+  background: @module_background;
+  border: 1px solid @accent;
+  border-radius: 6px;
 }
 
 #clock {
@@ -31,52 +33,77 @@ tooltip {
 /* #temp-items, */
 #clock-notify,
 #menu {
-  /* background: shade(@background, 1.60); */
-  padding: 0px 6px;
-  margin: 0px 0px;
+  background: @module_background;
+  border-radius: 6;
+  padding: 0px 8px;
+  margin: 4px 4px;
 }
 
+#clock,
+#custom-dunst-notification,
 #custom-arch_updates,
 #custom-flatpak_updates,
+#custom-waybar-scrolling-mpris,
 #gamemode,
 #memory,
 #mpris,
 #privacy,
 #taskbar,
-tooltip,
 #tray,
+#window,
 #workspaces {
-  /* background: shade(@background, 1.65); */
-  padding: 0px 6px;
-  margin: 0px 0px;
+  background: @module_background;
+  border-radius: 6;
+  animation-name: static;
+  padding: 0px 8px;
+  margin: 4px 4px;
 }
 
-#clock-notify {
-  border-bottom: 2px solid @color1;
-}
-#memory {
-  border-bottom: 2px solid @color2;
-}
-#workspaces {
-  border-bottom: 2px solid @color3;
-}
-#mpris{
-  border-bottom: 2px solid @color4;
-}
-#tray {
-  border-bottom: 2px solid @color5;
-}
-#menu{
-  border-bottom: 2px solid @color6;
-}
+/* #clock-notify { */
+/*   border-bottom: 2px solid @color1; */
+/* } */
+/* #custom-dunst-notification { */
+/*   border-bottom: 2px solid @color4; */
+/* } */
+/* #clock { */
+/*   border-bottom: 2px solid @color1; */
+/* } */
+/* #memory { */
+/*   border-bottom: 2px solid @color2; */
+/* } */
+/* #workspaces { */
+/*   border-bottom: 2px solid @color4; */
+/* } */
+/* #mpris{ */
+/*   border-bottom: 2px solid @color3; */
+/* } */
+/* #tray { */
+/*   border-bottom: 2px solid @color5; */
+/* } */
+/* #menu{ */
+/*   border-bottom: 2px solid @color6; */
+/* } */
 
 #custom-power {
-  padding-left: 8px;
-  padding-right: 4px;
+  color: @module_background;
+  background: @color1;
+  padding: 0px 10px;
+  margin: 4px 0;
+  border-radius: 6;
+  border: 1px solid @module_background;
+  /* margin: 8px 0px; */
+  /* padding-left: 8px; */
+  /* padding-right: 4px; */
+}
+#custom-power:hover {
+  background: @module_background;
+  color: @color1;
+  border: 1px solid @color1;
 }
 
+#custom-waybar-scrolling-mpris.paused,
 #mpris.paused {
-  color: shade(@foreground, 0.4);
+  color: @dimtext;
 }
 
 pulseaudio-slider {
@@ -85,12 +112,15 @@ pulseaudio-slider {
 
 #backlight-slider trough,
 #pulseaudio-slider trough {
-  background: @color0;
+  background: @inactive;
   min-width: 80px;
 }
 
 #pulseaudio-slider slider {
-  border-radius: 20px;
+  background: @puck;
+  border-radius: 40px;
+  border: none;
+  padding: 1.5px;
   /* border:none; */
   box-shadow: none;
   opacity: 1;
@@ -101,25 +131,23 @@ pulseaudio-slider {
   background: @color6;
 }
 
-/* #custom-dunst-notification.dnd, */
-/* #custom-swaync-notification.dnd, */
-#custom-notification.dnd {
-  color: @color1;
-}
-
 #custom-dunst-notification:hover,
 #custom-swaync-notification:hover,
-#custom-notification:hover,
+#custom-notification:hover {
+  color: @notifications;
+}
 #clock:hover {
-  color: @color1;
+  color: @clock;
 }
 #memory:hover {
-  color: @color2;
+  color: @ram;
 }
+
+#custom-waybar-scrolling-mpris:hover,
 #mpris:hover {
-  color: @color4;
+  color: @media;
 }
-#custom-power:hover,
+
 #idle_inhibitor:hover,
 #network:hover,
 #pulseaudio:hover
@@ -129,27 +157,30 @@ pulseaudio-slider {
 
 #workspaces button {
   padding: 0px 5px;
-  color: @foreground;
+  color: shade(@accent, 0.65);
   border-radius: 12px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 5px 2px;
+  padding: 0px 1px;
 }
 
 #workspaces button.empty {
-  color: shade(@foreground, 0.40);
+  color: @inactive;
 }
 
 #workspaces button.visible {
-  color: @foreground;
+  background: @accent;
+  color: @module_background;
+  border: 1px solid @accent;
+  font-weight: bold;
 }
 
 #workspaces button.active {
-  background: @color3;
+  background: @accent;
   border-radius: 12px;
-  color: @background;
+  color: @module_background;
   font-weight: bold;
   /* margin: 1px 0; */
-  margin: 5px 4px;
+  margin: 5px 2px;
   padding: 0px 16px;
   transition: 0.5s ease-in-out;
 }
@@ -176,6 +207,7 @@ pulseaudio-slider {
 
 #gamemode {
   color: @color2;
+  padding: 0px 10px;
 }
 
 @keyframes blink {
@@ -188,24 +220,24 @@ pulseaudio-slider {
 #battery.critical:not(.charging) {
     background-color: alpha(@color3, 0.80);
     color: @foreground;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    /* animation-name: blink; */
+    /* animation-duration: 0.5s; */
+    /* animation-timing-function: linear; */
+    /* animation-iteration-count: infinite; */
+    /* animation-direction: alternate; */
 }
 
-#workspaces button:hover,
-box.module button:hover {
+#workspaces button:hover{
+/* box.module button:hover { */
     border-radius: 12px;
-    background: @color3;
-    color: @background;
+    background: @accent;
+    color: @module_background;
     font-weight: bold;
 }
 
 #workspaces button:hover {
-    margin: 5px 8px;
-    padding: 0px 16px;
+    margin: 5px 2px;
+    padding: 0px 1px;
 }
 
 #custom-check_updates.reboot {
@@ -256,21 +288,21 @@ box.module button:hover {
 }
 
 #tray menu {
-    color: @color4;
-    background-color: alpha(@background, 1.00);
-    border: 1px solid @color4;
+    color: @foreground;
+    background-color: alpha(@module_background, 1.00);
+    border: 1px solid @accent;
     padding: 6px 6px;
     border-radius: 6;
 }
 
 #tray menuitem {
-    padding: 0 6px;
+    padding: 0;
 }
 
 #tray menuitem:hover {
-    color: @color4;
-    background-color: alpha(@color4, 0.70);
-    padding: 0 6px;
+    color: @background;
+    background-color: alpha(@accent, 0.70);
+    padding: 0;
 }
 
 #idle_inhibitor {
@@ -278,8 +310,9 @@ box.module button:hover {
     padding-left: 6px;
     padding-bottom: 1px;
     color: @foreground;
-    background-color: @background;
-    background: none
+    /* background-color: @background; */
+    /* background: @background; */
+    /* background: none */
 }
 
 #idle_inhibitor.activated {
@@ -287,8 +320,8 @@ box.module button:hover {
 }
 
 .modules-left {
-  /* margin-left: 4px; */
+  margin-left: 4px;
 }
 .modules-right {
-  /* margin-right: 4px; */
+  margin-right: 4px;
 }

@@ -1,14 +1,16 @@
 [
   {
     "include": [
-      "$HOME/.config/waybar/items/clock.jsonc",
-      "$HOME/.config/waybar/items/notification.jsonc"
+      "$HOME/.config/waybar/items/modules.jsonc"
     ],
     "layer": "top", // Waybar at top layer
     "height": 30,
     "modules-left": [
-      "group/clock-notify",
+      "clock",
+      // "group/clock-notify",
       "memory",
+      "custom/dunst-notification",
+      "hyprland/window",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
@@ -19,13 +21,16 @@
     ],
     "modules-right": [
       "mpris",
+      // "custom/waybar-scrolling-mpris",
+      // "custom/ScrollMPRIS"
       "tray",
-      "group/menu"
-      // "custom/power"
+      "group/menu",
+      "custom/power"
     ],
     "custom/power": {
       "format": "",
-      "on-click": "~/.config/wofi/powermenu/powermenu.sh",
+      // "on-click": "~/.config/wofi/powermenu/powermenu.sh",
+      "on-click": "~/.local/bin/scripts/powermenu",
       "tooltip-format": "Exit the session"
     },
     // Hyprland
@@ -49,27 +54,20 @@
       "on-scroll-down": "hyprctl dispatch workspace +1"
     },
     "hyprland/window": {
-      "format": "{title}",
-      "max-length": 30
-    },
-    "mpris": {
-      "format-playing": "{status_icon} {title}",
-      "format-paused": "{status_icon} {title}",
-      "title-len": 40,
-      "tooltip-format": "{dynamic}",
-      "player-icons": {
-        "mpv": "🎵"
-      },
-      "status-icons": {
-        "paused": "",
-        "playing": ""
+      "format": "{}",
+      "max-length": 20,
+      "icon": true,
+      "hide-empty-text": true,
+      "separate-outputs": true,
+      "rewrite": {
+        "": " Desktop"
       }
     },
     "idle_inhibitor": {
       "format": "{icon}",
       "format-icons": {
-        "activated": "󰈈",
-        "deactivated": "󰛐"
+        "activated": "󰒳",
+        "deactivated": "󰒲"
       }
     },
     "tray": {
@@ -88,16 +86,6 @@
         "󰃟",
         "󰃠"
       ]
-    },
-    "memory": {
-      "interval": 30,
-      "format": " {}%",
-      "max-length": 10,
-      "on-click": "pypr toggle sysmonitor",
-      "states": {
-        "warning": 70,
-        "critical": 85
-      }
     },
     "battery": {
       "states": {
@@ -241,8 +229,9 @@
     "group/pulseaudio": {
       "orientation": "inherit",
       "drawer": {
-        "children-class": "audio-group-drawer"
-        // "click-to-reveal": true,
+        "transition-duration": 500,
+        "children-class": "audio-group-drawer",
+        // "click-to-reveal": true
       },
       "modules": [
         "pulseaudio",
@@ -252,12 +241,17 @@
     },
     "group/menu": {
       "orientation": "inherit",
+      // "drawer": {
+      // "transition-duration": 500,
+      // "children-class": "not-power",
+      // "transition-left-to-right": false,
+      // "click-to-reveal": true
+      // },
       "modules": [
         "idle_inhibitor",
         "group/pulseaudio",
         "network",
         "group/batteries",
-        "custom/power"
       ],
       "hide-empty-text": true
     },
@@ -265,28 +259,28 @@
       "orientation": "inherit",
       "modules": [
         "clock",
-        // "custom/notification"
-        "custom/swaync-notification"
+        "custom/dunst-notification"
+        // "custom/swaync-notification"
       ],
       "hide-empty-text": true
     },
     "custom/arch_updates": {
       "interval": 300,
       "format": "{}",
-      "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-packageman",
+      "exec": "$HOME/.local/bin/scripts/statusbar/updates.py -p pacman -c",
       "exec-if": "exit 0",
       "return-type": "json",
-      "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-packageman; pkill -SIGRTMIN+11 waybar",
+      "on-click": "$HOME/.local/bin/scripts/statusbar/updates.py -p pacman -u -t 'alacritty --class float -e'",
       "signal": 11,
       "hide-empty-text": true
     },
     "custom/flatpak_updates": {
       "interval": 300,
       "format": "{}",
-      "exec": "$HOME/.local/bin/scripts/statusbar/check-updates.sh check-flatpak",
+      "exec": "$HOME/.local/bin/scripts/statusbar/updates.py -p flatpak -c",
       "return-type": "json",
       "exec-if": "exit 0",
-      "on-click": "$HOME/.local/bin/scripts/statusbar/check-updates.sh update-flatpak; pkill -SIGRTMIN+12 waybar",
+      "on-click": "$HOME/.local/bin/scripts/statusbar/updates.py -p flatpak -u -t 'alacritty --class float -e'",
       "signal": 12,
       "hide-empty-text": true
     },

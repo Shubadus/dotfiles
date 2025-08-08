@@ -2,12 +2,12 @@
 function get_notifications {
   dnd=$(dunstctl get-pause-level)
   msg_count=$(dunstctl count history)
-  if [[ $dnd -eq 100 ]]; then
-    printf '{"text":"%s", "tooltip":"%s Notifications", "alt":"dnd-none", "class": "dnd"}' "$msg_count" "$msg_count"
+  if [[ $dnd -gt 0 ]]; then
+    printf '{"text":"", "tooltip":"%s Notifications", "alt":"dnd-none", "class": "dnd"}' "$msg_count" "$msg_count"
   elif [[ $msg_count -gt 0 ]]; then
-    printf '{"text":"%s","tooltip":"%s Notifications", "alt":"notification", "class": "alert"}' "$msg_count" "$msg_count"
+    printf '{"text":"%s","tooltip":"%s Notifications", "alt":"notification", "class": "alert"}' " $msg_count" "$msg_count"
   else
-    printf '{"text":"%s","tooltip":"%s Notifications", "alt":"none"}' "$msg_count" "$msg_count"
+    printf '{"text":"","tooltip":"%s Notifications", "alt":"none"}' "$msg_count" "$msg_count"
   fi
 }
 for arg in "$@"; do
@@ -23,8 +23,11 @@ for arg in "$@"; do
     dunstctl history-pop
     ;;
   -d | --toggle-dnd)
-    # swaync-client --toggle-dnd
-    dunstctl set-paused toggle
+    if [[ $(dunstctl get-pause-level) -gt 0 ]]; then
+      dunstctl set-pause-level 0
+      break
+    fi
+    dunstctl set-pause-level 1
     ;;
   -r | --remove-history)
     dunstctl history-clear
