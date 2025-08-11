@@ -35,7 +35,7 @@ size = 11
 
 [window]
 blur = true
-opacity = 0.9
+opacity = 0.8
 
 [terminal]
 shell = { program = "rm", args = ["$XDG_RUNTIME_DIR/alacritty.sock"]}
