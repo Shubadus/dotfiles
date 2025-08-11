@@ -1,1 +1,31 @@
-{}
+{
+  "custom/flatpak_updates": {
+    "icon": "",
+    "label": "{}",
+    "tooltip": "{} Flatpak update(s) available",
+    "truncationSize": -1,
+    "execute": "flatpak remote-ls --updates --app | wc -l | awk '{ if ($1 == 0) { print \"\" } else { print $1 } }'",
+    "executeOnAction": "echo ",
+    "interval": 1440000,
+    "hideOnEmpty": true,
+    "actions": {
+      "onLeftClick": "$HOME/.local/bin/scripts/alacritty-server.sh \"flatpak update\" \"flatpak_updates\""
+    }
+  },
+  "custom/restart": {
+    "icon": "",
+    "tooltip": "{}",
+    "truncationSize": -1,
+    "execute": "needrestart -k | grep 'Pending kernel upgrade!' | awk '{ if ($0 ~ \"upgrade!\") { print \"Reboot required to apply kernel update.\" } else { print \"\" }}'",
+    "interval": 1440000,
+    "hideOnEmpty": true
+  },
+  "custom/gamemode": {
+    "icon": "󰸼",
+    "tooltip": "{}",
+    "truncationSize": -1,
+    "execute": "gamemodelist -a | awk 'NR==1 {RS=\"\"; next} {print $6}'",
+    "interval": 1440000,
+    "hideOnEmpty": true
+  }
+}

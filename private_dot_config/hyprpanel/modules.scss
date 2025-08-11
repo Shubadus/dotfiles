@@ -1,0 +1,19 @@
+@include styleModule(
+    // class name
+    "cmodule-restart",
+    // styling properties
+    (
+        'icon-color': #D81765,
+        'inner-spacing': 0em,
+    )
+);
+@include styleModule(
+    // class name
+    "cmodule-gamemode",
+    // styling properties
+    (
+        'icon-color': #97D01A,
+        'inner-spacing': 0em,
+    )
+);
+
