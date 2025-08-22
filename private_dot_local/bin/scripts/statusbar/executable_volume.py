@@ -24,35 +24,38 @@ def _get_volume() -> int:
     return int(volumes[0])
 
 
-def toggle_mute():
+def _is_mute():
+    is_mute = _call_amixer(['get', 'Master'])
+    return bool('[off]' in is_mute)
 
-    # function is_mute {
-    # amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off >/dev/null
-    # }
-    # dunstify -i "audio-volume-muted" -r 5556 -u normal " Volume: Muted" " $bar" -a "volume" -c "volume"
-    pass
+
+def toggle_mute():
+    _call_amixer(['set', 'Master', '1+', 'toggle'])
 
 
 def up():
-    subprocess.run(['amixer', 'set', 'Master', 'on'])
-    subprocess.run(['amixer', 'sset', 'Master', f'{STEP}%+'])
-    pass
+    _call_amixer(['set', 'Master', 'on'])
+    _call_amixer(['sset', 'Master', f'{STEP}%+'])
 
 
 def down():
-    subprocess.run(['amixer', 'set', 'Master', 'on'])
-    subprocess.run(['amixer', 'sset', 'Master', f'{STEP}%-'])
-    pass
+    _call_amixer(['set', 'Master', 'on'])
+    _call_amixer(['sset', 'Master', f'{STEP}%-'])
 
 
-def show():
+def show(body='Volume: '):
     volume = _get_volume()
-    bar = ''.join('─' for x in range(floor(volume/5)))
-    icon = "audio-volume-low"
-    if volume > 66:
-        icon="audio-volume-high"
-    elif volume > 34 and volume < 65:
-        icon="audio-volume-medium"
+    if _is_mute():
+        icon = 'audio-volume-off'
+        bar = ''
+        volume = ''
+    else:
+        bar = ''.join('─' for x in range(floor(volume/5)))
+        icon = "audio-volume-low"
+        if volume > 66:
+            icon="audio-volume-high"
+        elif volume > 34 and volume < 65:
+            icon="audio-volume-medium"
     command = [
         'notify-send',
         '-r', '5556',
@@ -60,7 +63,7 @@ def show():
         f'-i', f'{icon}',
         '-a', 'volume',
         '-c', 'volume',
-        f'Volume: {volume}',
+        f'{body} {volume}',
         f'{bar}'
     ]
     print(' '.join(command))
@@ -69,7 +72,7 @@ def show():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-v, --volume", dest='volume', choices=['up', 'down'])
+    parser.add_argument("-v, --volume", dest='volume', choices=['up', 'down', 'mute'])
 
     args = parser.parse_args()
 
@@ -79,6 +82,10 @@ def main():
     elif args.volume == 'down':
         down()
         return show()
+    elif args.volume == 'mute':
+        toggle_mute()
+        if _is_mute():
+            return show(body='Volume: Muted ')
     show()
 
 
