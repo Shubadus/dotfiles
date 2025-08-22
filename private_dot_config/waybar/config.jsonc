@@ -6,11 +6,12 @@
     "layer": "top", // Waybar at top layer
     "height": 30,
     "modules-left": [
+      "custom/wm_menu",
       "clock",
       // "group/clock-notify",
       "memory",
       "custom/dunst-notification",
-      "hyprland/window",
+      // "hyprland/window",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
@@ -21,8 +22,6 @@
     ],
     "modules-right": [
       "mpris",
-      // "custom/waybar-scrolling-mpris",
-      // "custom/ScrollMPRIS"
       "tray",
       "group/menu",
       "custom/power"
@@ -32,6 +31,12 @@
       // "on-click": "~/.config/wofi/powermenu/powermenu.sh",
       "on-click": "~/.local/bin/scripts/powermenu",
       "tooltip-format": "Exit the session"
+    },
+    "custom/wm_menu": {
+      "format": "󰣇",
+      // "on-click": "~/.config/wofi/powermenu/powermenu.sh",
+      "on-click": "~/.local/bin/scripts/wm_menu.py",
+      "tooltip-format": "Show a dmenu-based menu"
     },
     // Hyprland
     "hyprland/workspaces": {
@@ -93,8 +98,8 @@
         "critical": 15
       },
       "format": "{icon}",
-      "format-alt": "{icon} {ipaddr}",
-      "format-full": "", //"󰂄",
+      "format-alt": "{icon}",
+      "format-full": "",
       "format-icons": {
         // TODO: Discharge Icons not showing correctly.
         "discharging": [
@@ -123,39 +128,32 @@
       "hide-empty-text": true
     },
     "battery#mouse": {
-      "bat": "/sys/class/power_supply/hidpp_battery_0/capacity",
+      // "bat": "/sys/class/power_supply/hidpp_battery_0/capacity",
+      "bat": "hidpp_battery_0",
+      "adapter": "hidpp_battery_2",
       "states": {
+        "full": 100,
         "warning": 30,
         "critical": 15
       },
+      "interval": 60,
       "format": "{icon}",
-      "format-alt": "{icon} {ipaddr}",
-      "format-full": "", //"󰂄",
-      "format-icons": {
-        // TODO: Discharge Icons not showing correctly.
-        "discharging": [
-          "󰁺",
-          "󰁻",
-          "󰁼",
-          "󰁽",
-          "󰁾",
-          "󰁿",
-          "󰂀",
-          "󰂁",
-          "󰂂"
-        ],
-        "charging": [
-          "󰢜",
-          "󰂆",
-          "󰂇",
-          "󰂈",
-          "󰢝",
-          "󰂉",
-          "󰢞",
-          "󰂊",
-          "󰂋"
-        ]
-      },
+      "format-alt": "{icon} {capacity}%",
+      "format-full": "",
+      "format-discharging-full": "{icon}",
+      "tooltip-format-discharging": "Discharging: {capacity}%, {time} til empty",
+      "tooltip-format-charging": "Charging: {capacity}%, {time} til full",
+      "format-icons": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂"
+      ],
       "hide-empty-text": true
     },
     "group/batteries": {
@@ -252,6 +250,7 @@
         "group/pulseaudio",
         "network",
         "group/batteries",
+        "power-profiles-daemon"
       ],
       "hide-empty-text": true
     },
@@ -319,6 +318,17 @@
       "tooltip": true,
       "tooltip-format": "Games running: {count}",
       "hide-empty-text": true
-    } // "custom/whitespace": {},
+    }, // "custom/whitespace": {},
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    }
   }
 ]

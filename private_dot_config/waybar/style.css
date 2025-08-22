@@ -1,5 +1,26 @@
 /* GTK variable reference https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss */
-@import url("colors.css");
+@import url("style/audio.css");
+@import url("style/backlight.css");
+@import url("style/battery.css");
+@import url("style/clock.css");
+@import url("style/colors.css");
+@import url("style/gamemode.css");
+@import url("style/idle.css");
+@import url("style/memory.css");
+@import url("style/menu.css");
+@import url("style/mpris.css");
+@import url("style/network.css");
+@import url("style/notification.css");
+@import url("style/privacy.css");
+@import url("style/power.css");
+@import url("style/power_profile.css");
+@import url("style/temp.css");
+@import url("style/tooltip.css");
+@import url("style/tray.css");
+@import url("style/updates.css");
+@import url("style/workspaces.css");
+
+/* General Bar Styling */
 * {
     border: none;
     border-radius: 0;
@@ -11,47 +32,11 @@ window#waybar>box {
 }
 
 window#waybar {
-    background: alpha(@background, 0.85);
+    background: alpha(@background, 0.80);
 }
 
-tooltip label {
-    padding: 6px;
-    background: none;
-}
-
-tooltip {
-  background: @module_background;
-  border: 1px solid @accent;
-  border-radius: 6px;
-}
-
-#clock {
-  padding-right: 8px;
-}
-
-/* Group Styling */
-/* #temp-items, */
-#clock-notify,
-#menu {
-  background: @module_background;
-  border-radius: 6;
-  padding: 0px 8px;
-  margin: 4px 4px;
-}
-
-#clock,
-#custom-dunst-notification,
-#custom-arch_updates,
-#custom-flatpak_updates,
-#custom-waybar-scrolling-mpris,
-#gamemode,
-#memory,
-#mpris,
-#privacy,
-#taskbar,
-#tray,
-#window,
-#workspaces {
+label.module,
+box.module {
   background: @module_background;
   border-radius: 6;
   animation-name: static;
@@ -59,269 +44,9 @@ tooltip {
   margin: 4px 4px;
 }
 
-/* #clock-notify { */
-/*   border-bottom: 2px solid @color1; */
+/* .modules-left { */
+/*   margin-left: 4px; */
 /* } */
-/* #custom-dunst-notification { */
-/*   border-bottom: 2px solid @color4; */
+/* .modules-right { */
+/*   margin-right: 4px; */
 /* } */
-/* #clock { */
-/*   border-bottom: 2px solid @color1; */
-/* } */
-/* #memory { */
-/*   border-bottom: 2px solid @color2; */
-/* } */
-/* #workspaces { */
-/*   border-bottom: 2px solid @color4; */
-/* } */
-/* #mpris{ */
-/*   border-bottom: 2px solid @color3; */
-/* } */
-/* #tray { */
-/*   border-bottom: 2px solid @color5; */
-/* } */
-/* #menu{ */
-/*   border-bottom: 2px solid @color6; */
-/* } */
-
-#custom-power {
-  color: @module_background;
-  background: @color1;
-  padding: 0px 10px;
-  margin: 4px 0;
-  border-radius: 6;
-  border: 1px solid @module_background;
-  /* margin: 8px 0px; */
-  /* padding-left: 8px; */
-  /* padding-right: 4px; */
-}
-#custom-power:hover {
-  background: @module_background;
-  color: @color1;
-  border: 1px solid @color1;
-}
-
-#custom-waybar-scrolling-mpris.paused,
-#mpris.paused {
-  color: @dimtext;
-}
-
-pulseaudio-slider {
-  background: @color6
-}
-
-#backlight-slider trough,
-#pulseaudio-slider trough {
-  background: @inactive;
-  min-width: 80px;
-}
-
-#pulseaudio-slider slider {
-  background: @puck;
-  border-radius: 40px;
-  border: none;
-  padding: 1.5px;
-  /* border:none; */
-  box-shadow: none;
-  opacity: 1;
-}
-
-#backlight-slider highlight,
-#pulseaudio-slider highlight {
-  background: @color6;
-}
-
-#custom-dunst-notification:hover,
-#custom-swaync-notification:hover,
-#custom-notification:hover {
-  color: @notifications;
-}
-#clock:hover {
-  color: @clock;
-}
-#memory:hover {
-  color: @ram;
-}
-
-#custom-waybar-scrolling-mpris:hover,
-#mpris:hover {
-  color: @media;
-}
-
-#idle_inhibitor:hover,
-#network:hover,
-#pulseaudio:hover
-{
-  color: @color6;
-}
-
-#workspaces button {
-  padding: 0px 5px;
-  color: shade(@accent, 0.65);
-  border-radius: 12px;
-  margin: 5px 2px;
-  padding: 0px 1px;
-}
-
-#workspaces button.empty {
-  color: @inactive;
-}
-
-#workspaces button.visible {
-  background: @accent;
-  color: @module_background;
-  border: 1px solid @accent;
-  font-weight: bold;
-}
-
-#workspaces button.active {
-  background: @accent;
-  border-radius: 12px;
-  color: @module_background;
-  font-weight: bold;
-  /* margin: 1px 0; */
-  margin: 5px 2px;
-  padding: 0px 16px;
-  transition: 0.5s ease-in-out;
-}
-
-#workspaces button.urgent {
-  color: @color1;
-}
-
-#memory.critical {
-  color: @color1
-}
-
-#memory.warning {
-  color: @color3
-}
-
-#privacy-item.screenshare {
-  color: @color1
-}
-
-#privacy-item.audio-in{
-  color: @color3
-}
-
-#gamemode {
-  color: @color2;
-  padding: 0px 10px;
-}
-
-@keyframes blink {
-    to {
-        background-color: @background;
-        color: @foreground;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: alpha(@color3, 0.80);
-    color: @foreground;
-    /* animation-name: blink; */
-    /* animation-duration: 0.5s; */
-    /* animation-timing-function: linear; */
-    /* animation-iteration-count: infinite; */
-    /* animation-direction: alternate; */
-}
-
-#workspaces button:hover{
-/* box.module button:hover { */
-    border-radius: 12px;
-    background: @accent;
-    color: @module_background;
-    font-weight: bold;
-}
-
-#workspaces button:hover {
-    margin: 5px 2px;
-    padding: 0px 1px;
-}
-
-#custom-check_updates.reboot {
-  color: @color2;
-    /* background-color: alpha(@warning_color, 0.80); */
-    /* background-color: alpha(@color3, 0.80); */
-}
-
-#pulseaudio,
-#network {
-  padding: 0px 4px;
-}
-
-#network.disconnected {
-    background-color: alpha(@color3, 0.80);
-}
-
-#pulseaudio.muted {
-    background-color: alpha(@color1, 0.80);
-    color: @foreground;
-}
-
-#pulseaudio-slider slider {
-    border-radius: 12;
-}
-
-#temperature.critical {
-    background-color: alpha(@color3, 0.80);
-}
-
-
-#tray > .active {
-}
-
-#tray > .passive {
-  -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: alpha(@color3, 0.80);
-}
-
-#tray menu * {
-    background: none;
-    border-radius: 6;
-    box-shadow: none;
-}
-
-#tray menu {
-    color: @foreground;
-    background-color: alpha(@module_background, 1.00);
-    border: 1px solid @accent;
-    padding: 6px 6px;
-    border-radius: 6;
-}
-
-#tray menuitem {
-    padding: 0;
-}
-
-#tray menuitem:hover {
-    color: @background;
-    background-color: alpha(@accent, 0.70);
-    padding: 0;
-}
-
-#idle_inhibitor {
-    padding-right: 2px;
-    padding-left: 6px;
-    padding-bottom: 1px;
-    color: @foreground;
-    /* background-color: @background; */
-    /* background: @background; */
-    /* background: none */
-}
-
-#idle_inhibitor.activated {
-    color: @color6;
-}
-
-.modules-left {
-  margin-left: 4px;
-}
-.modules-right {
-  margin-right: 4px;
-}

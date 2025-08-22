@@ -21,6 +21,15 @@ margin = 48
 size = "80% 70%"
 unfocus = "hide"
 
+[scratchpads.ytmdesktop]
+animation = "fromTop"
+class = "YouTube Music Desktop App"
+command = "flatpak run app.ytmdesktop.ytmdesktop"
+lazy = true
+margin = 48
+size = "80% 70%"
+unfocus = "hide"
+
 [scratchpads.network_manager]
 animation = "fromTop"
 command = "nm-connection-editor"
