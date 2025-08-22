@@ -1,0 +1,12 @@
+#custom-dunst-notification:hover,
+#custom-swaync-notification:hover,
+#custom-notification:hover {
+  color: @notifications;
+}
+
+#clock-notify {
+  background: @module_background;
+  border-radius: 6;
+  padding: 0px 8px;
+  margin: 4px 4px;
+}

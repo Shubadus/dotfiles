@@ -1,0 +1,12 @@
+#network {
+  padding: 0px 0px;
+}
+
+#network.disconnected {
+    background-color: alpha(@color3, 0.80);
+}
+
+#network:hover {
+  color: @color6
+}
+

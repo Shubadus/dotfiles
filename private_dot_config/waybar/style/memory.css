@@ -1,0 +1,12 @@
+#memory:hover {
+  color: @ram;
+}
+
+#memory.critical {
+  color: @color1
+}
+
+#memory.warning {
+  color: @color3
+}
+

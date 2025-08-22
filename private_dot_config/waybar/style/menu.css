@@ -1,0 +1,24 @@
+#custom-wm_menu {
+  font-size: 20;
+  font-weight: bold;
+  background: @module_background;
+  color: @color4;
+  border-radius: 6;
+  animation-name: static;
+  padding: 0px 6px;
+  margin: 4px 4px;
+  border: 2px solid @module_background;
+}
+
+#custom-wm_menu:hover {
+  border: 2px solid @color4;
+}
+
+/* This is the grouping module for modules on the right side of the bar */
+/* TODO: Rename this and move to another folder */
+#menu {
+  background: @module_background;
+  border-radius: 6;
+  padding: 0px 8px;
+  margin: 4px 4px;
+}

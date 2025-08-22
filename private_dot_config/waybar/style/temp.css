@@ -1,0 +1,3 @@
+#temperature.critical {
+    background-color: alpha(@color3, 0.80);
+}

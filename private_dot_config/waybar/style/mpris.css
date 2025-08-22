@@ -1,0 +1,9 @@
+#custom-waybar-scrolling-mpris.paused,
+#mpris.paused {
+  color: @dimtext;
+}
+
+#custom-waybar-scrolling-mpris:hover,
+#mpris:hover {
+  color: @media;
+}

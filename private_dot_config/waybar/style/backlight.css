@@ -1,0 +1,9 @@
+#backlight-slider trough{
+  background: @inactive;
+  min-width: 80px;
+}
+
+#backlight-slider highlight {
+  background: @color6;
+}
+

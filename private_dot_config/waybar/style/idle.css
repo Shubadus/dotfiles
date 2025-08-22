@@ -1,0 +1,14 @@
+#idle_inhibitor {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 1px;
+    color: @foreground;
+}
+
+#idle_inhibitor.activated {
+    color: @color6;
+}
+
+#idle_inhibitor:hover {
+    color: @color6;
+}

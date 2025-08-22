@@ -1,0 +1,36 @@
+#tray > .active {
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: alpha(@color3, 0.80);
+}
+
+#tray menu * {
+    background: none;
+    border-radius: 6;
+    box-shadow: none;
+}
+
+#tray menu {
+    color: @foreground;
+    background-color: alpha(@module_background, 1.00);
+    border: 1px solid @accent;
+    padding: 6px 6px;
+    border-radius: 6;
+}
+
+#tray menuitem {
+    padding: 0;
+}
+
+#tray menuitem:hover {
+    color: @background;
+    background-color: alpha(@accent, 0.70);
+    padding: 0;
+}
+

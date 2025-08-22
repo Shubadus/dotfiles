@@ -1,0 +1,13 @@
+#batteries:hover {
+  color: @color6;
+}
+
+#battery {
+  padding: 0px 0px;
+}
+
+#battery.critical:not(.charging) {
+    background-color: alpha(@color3, 0.80);
+    color: @foreground;
+}
+

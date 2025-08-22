@@ -1,0 +1,13 @@
+#custom-power {
+  font-size: 20;
+  font-weight: bold;
+  color: @color1;
+  background: @module_background;
+  padding: 0px 6px;
+  margin: 4px 4px;
+  border-radius: 6;
+  border: 2px solid @module_background;
+}
+#custom-power:hover {
+  border: 2px solid @color1;
+}

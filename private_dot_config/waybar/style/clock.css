@@ -1,0 +1,6 @@
+#clock {
+  padding-right: 8px;
+}
+#clock:hover {
+  color: @clock;
+}
