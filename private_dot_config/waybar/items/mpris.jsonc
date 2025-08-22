@@ -1,0 +1,15 @@
+{
+  "mpris": {
+    "format-playing": "<span foreground='#97D01A'>{status_icon}</span> {title}",
+    "format-paused": "<span foreground='#719C14'>{status_icon}</span> {title}",
+    "title-len": 40,
+    "tooltip-format": "{dynamic}",
+    "player-icons": {
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "",
+      "playing": ""
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "clock": {
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format": "<span foreground='#AC7B99'>󰃭</span> {:%b %Od - %H:%M}",
+    "timezone": "America/Indiana/Indianapolis",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#95E6CB'><b>{}</b></span>",
+        "days": "<span color='#B3B1AD'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#C2D94C'><b>{}</b></span>",
+        "today": "<span color='#FF3333'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "custom/dunst-notification": {
+    "tooltip": true,
+    "return-type": "json",
+    "exec": "$HOME/.local/bin/scripts/dmenu-dunst.py -c",
+    "on-click": "$HOME/.local/bin/scripts/dmenu-dunst.py -s",
+    "on-click-right": "$HOME/.local/bin/scripts/dmenu-dunst.py -d",
+    "on-click-middle": "$HOME/.local/bin/scripts/dmenu-dunst.py -r",
+    "interval": 3,
+    "escape": true,
+    // "hide-empty-text": true,
+    "format": "<span foreground='#C2D94C'>{icon}</span> {text}",
+    "format-icons": {
+      "notification": "󰂚",
+      "none": "󰂚",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰂛"
+    }
+  },
+  "custom/swaync-notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='#FF3333'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='#FF3333'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='#FF3333'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='#FF3333'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "memory": {
+    "interval": 30,
+    "format": "<span foreground='#FF613A'></span> {}%",
+    "max-length": 10,
+    "on-click": "pypr toggle sysmonitor",
+    "states": {
+      "warning": 70,
+      "critical": 85
+    }
+  },
+  "mpris": {
+    "format-playing": "<span foreground='#C2D94C'>{status_icon} {player_icon}</span> {player}",
+    "format-paused": "<span foreground='#92A339'>{status_icon} {player_icon}</span> {player}",
+    "title-len": 40,
+    "tooltip-format": "{title}\n{album}\n{artist}\n{status_icon}{position}/{length}",
+    "player-icons": {
+      "mpv": "",
+      "brave": "󰖟",
+      "spotify": ""
+    },
+    "status-icons": {
+      "paused": "",
+      "playing": ""
+    }
+  },
+}

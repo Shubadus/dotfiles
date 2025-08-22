@@ -1,0 +1,24 @@
+{
+  "network": {
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "{icon}",
+    "tooltip-format": "{essid}: {signalStrength}%",
+    "tooltip-format-ethernet": "Connected via Ethernet: {ipaddr}",
+    "tooltip-format-disconnected": "Not connected",
+    "format-linked": "{ifname} (No IP)",
+    "format-disconnected": "󰅛",
+    "format-alt": "{icon} {ipaddr}",
+    "format-icons": {
+      "default": "󰈀",
+      "wifi": [
+        "󰤯",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+      ],
+      "ethernet": "󰈀"
+    },
+    "on-click-right": "nm-connection-editor"
+  }
+}

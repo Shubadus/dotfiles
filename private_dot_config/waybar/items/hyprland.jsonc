@@ -1,0 +1,32 @@
+{
+  // Hyprland
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{icon}",
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": []
+    },
+    "on-click": "hyprctl dispatch workspace {name}",
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1"
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 20,
+    "icon": true,
+    "hide-empty-text": true,
+    "separate-outputs": true,
+    "rewrite": {
+      "": " Desktop"
+    }
+  }
+}

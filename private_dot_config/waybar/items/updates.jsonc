@@ -1,0 +1,22 @@
+{
+  "custom/arch_updates": {
+    "interval": 300,
+    "format": "{}",
+    "exec": "$HOME/.local/bin/scripts/statusbar/updates.py -p pacman -c",
+    "exec-if": "exit 0",
+    "return-type": "json",
+    "on-click": "$HOME/.local/bin/scripts/statusbar/updates.py -p pacman -u -t 'alacritty --class float -e'",
+    "signal": 11,
+    "hide-empty-text": true
+  },
+  "custom/flatpak_updates": {
+    "interval": 300,
+    "format": "{}",
+    "exec": "$HOME/.local/bin/scripts/statusbar/updates.py -p flatpak -c",
+    "return-type": "json",
+    "exec-if": "exit 0",
+    "on-click": "$HOME/.local/bin/scripts/statusbar/updates.py -p flatpak -u -t 'alacritty --class float -e'",
+    "signal": 12,
+    "hide-empty-text": true
+  }
+}

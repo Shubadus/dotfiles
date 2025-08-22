@@ -1,0 +1,48 @@
+{
+  "pulseaudio": {
+    "scroll-step": 5, // %, can be a float
+    "format": "{icon}",
+    "format-alt": "{icon} {volume}%",
+    "format-bluetooth": "󰂰 {volume}",
+    "format-bluetooth-muted": "<󰂲 {format_source}",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋋",
+      "headset": "󰋋",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "tooltip-format": "{desc}: {volume}%",
+    "on-click-right": "pavucontrol",
+    "on-click-middle": "amixer set Master 1+ toggle > /dev/null",
+    "on-scroll-up": "amixer set Master 5%+ > /dev/null",
+    "on-scroll-down": "amixer set Master 5%- > /dev/null",
+    "hide-empty-text": true
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal",
+    "hide-empty-text": true
+  },
+  "group/pulseaudio": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "audio-group-drawer"
+      // "click-to-reveal": true
+    },
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider"
+    ],
+    "hide-empty-text": true
+  }
+}

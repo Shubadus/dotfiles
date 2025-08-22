@@ -1,0 +1,74 @@
+{
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}",
+    "format-alt": "{icon}",
+    "format-full": "",
+    "format-icons": {
+      // TODO: Discharge Icons not showing correctly.
+      "discharging": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂"
+      ],
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋"
+      ]
+    },
+    "hide-empty-text": true
+  },
+  "battery#mouse": {
+    // "bat": "/sys/class/power_supply/hidpp_battery_0/capacity",
+    "bat": "hidpp_battery_0",
+    "adapter": "hidpp_battery_2",
+    "states": {
+      "full": 100,
+      "warning": 30,
+      "critical": 15
+    },
+    "interval": 60,
+    "format": "{icon}",
+    "format-alt": "{icon} {capacity}%",
+    "format-full": "",
+    "format-discharging-full": "{icon}",
+    "tooltip-format-discharging": "Discharging: {capacity}%, {time} til empty",
+    "tooltip-format-charging": "Charging: {capacity}%, {time} til full",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂"
+    ],
+    "hide-empty-text": true
+  },
+  "group/batteries": {
+    "orientation": "inherit",
+    "modules": [
+      "battery",
+      "battery#mouse"
+    ],
+    "hide-empty-text": true
+  }
+}

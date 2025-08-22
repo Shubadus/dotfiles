@@ -1,7 +1,13 @@
 [
   {
     "include": [
-      "$HOME/.config/waybar/items/modules.jsonc"
+      "$HOME/.config/waybar/items/audio.jsonc",
+      "$HOME/.config/waybar/items/battery.jsonc",
+      "$HOME/.config/waybar/items/hyprland.jsonc",
+      "$HOME/.config/waybar/items/modules.jsonc",
+      "$HOME/.config/waybar/items/network.jsonc",
+      "$HOME/.config/waybar/items/power_profiles.jsonc",
+      "$HOME/.config/waybar/items/updates.jsonc",
     ],
     "layer": "top", // Waybar at top layer
     "height": 30,
@@ -38,36 +44,6 @@
       "on-click": "~/.local/bin/scripts/wm_menu.py",
       "tooltip-format": "Show a dmenu-based menu"
     },
-    // Hyprland
-    "hyprland/workspaces": {
-      "all-outputs": true,
-      "format": "{icon}",
-      "persistent-workspaces": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": [],
-        "9": [],
-        "10": []
-      },
-      "on-click": "hyprctl dispatch workspace {name}",
-      "on-scroll-up": "hyprctl dispatch workspace -1",
-      "on-scroll-down": "hyprctl dispatch workspace +1"
-    },
-    "hyprland/window": {
-      "format": "{}",
-      "max-length": 20,
-      "icon": true,
-      "hide-empty-text": true,
-      "separate-outputs": true,
-      "rewrite": {
-        "": " Desktop"
-      }
-    },
     "idle_inhibitor": {
       "format": "{icon}",
       "format-icons": {
@@ -92,149 +68,9 @@
         "󰃠"
       ]
     },
-    "battery": {
-      "states": {
-        "warning": 30,
-        "critical": 15
-      },
-      "format": "{icon}",
-      "format-alt": "{icon}",
-      "format-full": "",
-      "format-icons": {
-        // TODO: Discharge Icons not showing correctly.
-        "discharging": [
-          "󰁺",
-          "󰁻",
-          "󰁼",
-          "󰁽",
-          "󰁾",
-          "󰁿",
-          "󰂀",
-          "󰂁",
-          "󰂂"
-        ],
-        "charging": [
-          "󰢜",
-          "󰂆",
-          "󰂇",
-          "󰂈",
-          "󰢝",
-          "󰂉",
-          "󰢞",
-          "󰂊",
-          "󰂋"
-        ]
-      },
-      "hide-empty-text": true
-    },
-    "battery#mouse": {
-      // "bat": "/sys/class/power_supply/hidpp_battery_0/capacity",
-      "bat": "hidpp_battery_0",
-      "adapter": "hidpp_battery_2",
-      "states": {
-        "full": 100,
-        "warning": 30,
-        "critical": 15
-      },
-      "interval": 60,
-      "format": "{icon}",
-      "format-alt": "{icon} {capacity}%",
-      "format-full": "",
-      "format-discharging-full": "{icon}",
-      "tooltip-format-discharging": "Discharging: {capacity}%, {time} til empty",
-      "tooltip-format-charging": "Charging: {capacity}%, {time} til full",
-      "format-icons": [
-        "󰁺",
-        "󰁻",
-        "󰁼",
-        "󰁽",
-        "󰁾",
-        "󰁿",
-        "󰂀",
-        "󰂁",
-        "󰂂"
-      ],
-      "hide-empty-text": true
-    },
-    "group/batteries": {
-      "orientation": "inherit",
-      "modules": [
-        "battery",
-        "battery#mouse"
-      ],
-      "hide-empty-text": true
-    },
     "group/temp-items": {
       "orientation": "inherit",
       "modules": [],
-      "hide-empty-text": true
-    },
-    "network": {
-      "format": "{icon}",
-      "format-wifi": "{icon}",
-      "format-ethernet": "{icon}",
-      "tooltip-format": "{essid}: {signalStrength}%",
-      "tooltip-format-ethernet": "Connected via Ethernet: {ipaddr}",
-      "tooltip-format-disconnected": "Not connected",
-      "format-linked": "{ifname} (No IP)",
-      "format-disconnected": "󰅛",
-      "format-alt": "{icon} {ipaddr}",
-      "format-icons": {
-        "default": "󰈀",
-        "wifi": [
-          "󰤯",
-          "󰤢",
-          "󰤥",
-          "󰤨"
-        ],
-        "ethernet": "󰈀"
-      },
-      "on-click-right": "nm-connection-editor"
-    },
-    "pulseaudio": {
-      "scroll-step": 5, // %, can be a float
-      "format": "{icon}",
-      "format-alt": "{icon} {volume}%",
-      "format-bluetooth": "󰂰 {volume}",
-      "format-bluetooth-muted": "<󰂲 {format_source}",
-      "format-muted": "",
-      "format-icons": {
-        "headphone": "󰋋",
-        "hands-free": "󰋋",
-        "headset": "󰋋",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": [
-          "",
-          "",
-          ""
-        ]
-      },
-      "tooltip-format": "{desc}: {volume}%",
-      "on-click-right": "pavucontrol",
-      "on-click-middle": "amixer set Master 1+ toggle > /dev/null",
-      "on-scroll-up": "amixer set Master 5%+ > /dev/null",
-      "on-scroll-down": "amixer set Master 5%- > /dev/null",
-      "hide-empty-text": true
-    },
-    "pulseaudio/slider": {
-      "min": 0,
-      "max": 100,
-      "orientation": "horizontal",
-      "hide-empty-text": true
-    },
-    "group/pulseaudio": {
-      "orientation": "inherit",
-      "drawer": {
-        "transition-duration": 500,
-        "children-class": "audio-group-drawer",
-        // "click-to-reveal": true
-      },
-      "modules": [
-        "pulseaudio",
-        "pulseaudio/slider"
-      ],
       "hide-empty-text": true
     },
     "group/menu": {
@@ -261,26 +97,6 @@
         "custom/dunst-notification"
         // "custom/swaync-notification"
       ],
-      "hide-empty-text": true
-    },
-    "custom/arch_updates": {
-      "interval": 300,
-      "format": "{}",
-      "exec": "$HOME/.local/bin/scripts/statusbar/updates.py -p pacman -c",
-      "exec-if": "exit 0",
-      "return-type": "json",
-      "on-click": "$HOME/.local/bin/scripts/statusbar/updates.py -p pacman -u -t 'alacritty --class float -e'",
-      "signal": 11,
-      "hide-empty-text": true
-    },
-    "custom/flatpak_updates": {
-      "interval": 300,
-      "format": "{}",
-      "exec": "$HOME/.local/bin/scripts/statusbar/updates.py -p flatpak -c",
-      "return-type": "json",
-      "exec-if": "exit 0",
-      "on-click": "$HOME/.local/bin/scripts/statusbar/updates.py -p flatpak -u -t 'alacritty --class float -e'",
-      "signal": 12,
       "hide-empty-text": true
     },
     "privacy": {
@@ -319,16 +135,5 @@
       "tooltip-format": "Games running: {count}",
       "hide-empty-text": true
     }, // "custom/whitespace": {},
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-      "tooltip": true,
-      "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
-      }
-    }
   }
 ]
