@@ -4,63 +4,60 @@ plugins = [
   "workspaces_follow_focus"
 ]
 
-[scratchpads.dropterm]
+[pyprland.variables]
+term = "foot --app-id"
+term_launch = "-e"
+
+[scratchpads.default.monitor.DP-1]
 animation = "fromTop"
-command = "alacritty --class dropterm -e tmux"
-class = "dropterm"
 margin = 48
-size = "85% 65%"
+size = "75% 60%"
 unfocus = "hide"
 
-[scratchpads.spotify]
+[scratchpads.default.monitor.DP-3]
 animation = "fromTop"
+margin = 48
+size = "85% 75%"
+unfocus = "hide"
+
+[scratchpads.dropterm]
+command = "[term] dropterm -e tmux"
+class = "dropterm"
+use = "default"
+
+[scratchpads.spotify]
 class = "Spotify"
 command = "spotify-launcher"
 lazy = true
-margin = 48
-size = "80% 70%"
-unfocus = "hide"
+use = "default"
 
 [scratchpads.ytmdesktop]
-animation = "fromTop"
 class = "YouTube Music Desktop App"
-command = "flatpak run app.ytmdesktop.ytmdesktop"
+title = "YouTube Music Desktop App"
+command = "youtube-music-desktop-app"
 lazy = true
-margin = 48
-size = "80% 70%"
-unfocus = "hide"
+use = "default"
+# skip_windowrules = ["aspect", "workspace"]
 
 [scratchpads.network_manager]
-animation = "fromTop"
 command = "nm-connection-editor"
 lazy = true
-margin = 48
-size = "80% 70%"
-unfocus = "hide"
+use = "default"
 
 [scratchpads.audio]
-animation = "fromTop"
 command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
 lazy = true
-margin = 48
-size = "80% 70%"
-unfocus = "hide"
+use = "default"
 
 [scratchpads.sysmonitor]
-animation = "fromTop"
-command = "alacritty --class sysmonitor -e btop"
+command = "[term] sysmonitor -e btop"
 class = "sysmonitor"
 lazy = true
-margin = 48
-size = "80% 70%"
-unfocus = "hide"
+use = "default"
 
 [scratchpads.ranger]
-animation = "fromTop"
-command = "alacritty --class ranger -e ranger"
+command = "[term] ranger -e ranger"
 class = "ranger"
 lazy = true
-margin = 48
-size = "80% 70%"
-unfocus = "hide"
+use = "default"
