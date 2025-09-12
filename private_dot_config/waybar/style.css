@@ -1,20 +1,20 @@
 /* GTK variable reference https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss */
-/* @import url("style/audio.css"); */
+@import url("style/audio.css");
 @import url("style/backlight.css");
-/* @import url("style/battery.css"); */
+@import url("style/battery.css");
 @import url("style/clock.css");
 @import url("style/colors.css");
 @import url("style/gamemode.css");
-/* @import url("style/idle.css"); */
+@import url("style/idle.css");
 @import url("style/memory.css");
 @import url("style/menu.css");
 @import url("style/mpris.css");
 @import url("style/needrestart.css");
-/* @import url("style/network.css"); */
+@import url("style/network.css");
 @import url("style/notification.css");
 @import url("style/privacy.css");
 @import url("style/power.css");
-/* @import url("style/power_profile.css"); */
+@import url("style/power_profile.css");
 @import url("style/temp.css");
 @import url("style/tooltip.css");
 @import url("style/tray.css");
@@ -25,7 +25,7 @@
 /* General Bar Styling */
 * {
     border: none;
-    border-radius: 0;
+    border-radius: 0px;
     font-family: NotoSans Nerd Font,Noto Sans;
     font-size: 16px;
     min-height: 0;
@@ -39,30 +39,31 @@ window#waybar>box {
 }
 
 #waybar.bar {
-  background: alpha(@background, 1.00);
+  background: @background;
 }
 
-/* #temp-items, */
 label.module,
 box.module {
-  background: @background;
-  border-radius: 6;
+  background: none;
+  /* background: @background; */
+  border-radius: 6px;
   animation-name: static;
 }
 
 .modules-left,
 .modules-right,
 .modules-center {
-  background: @background;
-  border-radius: 6;
+  border-radius: 6px;
   /* Uncomment margin-top and padding when background alpha value is set to 0 */
+  background: none;
+  /* background: @background; */
    /* margin-top: 4px;  */
   /* padding: 0px 8px; */
 }
 
 .modules-left {
-  margin-left: 2px;
+  margin-left: 4px;
 }
 .modules-right {
-  margin-right: 2px;
+  margin-right: 4px;
 }

@@ -37,7 +37,7 @@
       "idle_inhibitor",
       "group/audio",
       "network",
-      // "group/batteries",
+      "group/batteries",
       "power-profiles-daemon",
       "custom/power"
     ],
@@ -61,7 +61,7 @@
     "tray": {
       "icon-size": 16,
       "reverse-direction": true,
-      "spacing": 10
+      "spacing": 6
     },
     "backlight": {
       // "device": "acpi_video1",
