@@ -1,23 +1,25 @@
+{%- set colorful = false -%}
+
 {%- if background < foreground -%}
 {% set border = background | lighten(0.2) -%}
 {% set card = background | lighten(0.05) -%}
-{% set module_background = background | lighten(0.10) -%}
+{% set module_background = background | lighten(0.075) -%}
 {% set disabled = color0 | blend(color15) | darken(0.4) -%}
 {% set inactive = color0 | blend(color15) | darken(0.4) -%}
 {% set hover = background | lighten(0.10) -%}
 {% set puck = background | lighten(0.25) -%}
-{% set feinttext = foreground | darken(0.3) -%}
-{% set dimtext = foreground | darken(0.4) -%}
+{% set feinttext = foreground | darken(0.1) -%}
+{% set dimtext = foreground | darken(0.2) -%}
 {% else -%}
 {% set border = background | darken(0.25) -%}
 {% set card = background | darken(0.075) -%}
-{% set module_background = background | darken(0.10) -%}
+{% set module_background = background | darken(0.075) -%}
 {% set disabled = background | darken(0.075) -%}
 {% set inactive = background | darken(0.10) -%}
 {% set hover = background | darken(0.10) -%}
 {% set puck = background | darken(0.25) -%}
-{% set feinttext = foreground | lighten(0.3) -%}
-{% set dimtext = foreground | lighten(0.4) -%}
+{% set feinttext = foreground | lighten(0.1) -%}
+{% set dimtext = foreground | lighten(0.2) -%}
 {% endif -%}
 {% set accent = color4 -%}
 {% set battery = color1 | blend(color3) -%}
@@ -62,37 +64,3 @@
 {% set windowtitle = color1 -%}
 {% set workspaces = color4 -%}
 {% set worldclock = color1 | blend(color4) -%}
-
-@define-color cursor            {{cursor}};
-@define-color background        {{background}};
-@define-color foreground        {{foreground}};
-@define-color color0            {{color0 }};
-@define-color color1            {{color1 }};
-@define-color color2            {{color2 }};
-@define-color color3            {{color3 }};
-@define-color color4            {{color4 }};
-@define-color color5            {{color5 }};
-@define-color color6            {{color6 }};
-@define-color color7            {{color7 }};
-@define-color color8            {{color8 }};
-@define-color color9            {{color9 }};
-@define-color color10           {{color10}};
-@define-color color11           {{color11}};
-@define-color color12           {{color12}};
-@define-color color13           {{color13}};
-@define-color color14           {{color14}};
-@define-color color15           {{color15}};
-@define-color border            {{border}};
-@define-color card              {{card}};
-@define-color module_background {{module_background}};
-@define-color disabled          {{disabled}};
-@define-color inactive          {{inactive}};
-@define-color hover             {{hover}};
-@define-color puck              {{puck}};
-@define-color feinttext         {{feinttext}};
-@define-color dimtext           {{dimtext}};
-@define-color accent            {{accent}};
-@define-color ram               {{ram}};
-@define-color clock             {{clock}};
-@define-color media             {{media}};
-@define-color notifications     {{notifications}};

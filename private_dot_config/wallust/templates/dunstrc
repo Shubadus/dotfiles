@@ -1,7 +1,7 @@
 [global]
 follow = keyboard
-width = (150, 1200)
-height = (75, 300)
+width = (250, 500)
+height = (75, 200)
 origin = top-right
 offset = (4,4)
 scale = 0
@@ -19,20 +19,23 @@ line_height = 0
 alignment = left
 stack_duplicates = true
 hide_duplicate_count = false
-icon_theme = "breeze"
+icon_theme = "Papirus"
+show_indicators = true
+dmenu = fuzzel -p dunst
 max_icon_size = 64
 markup = full
 #format = "<b>%a</b>\n%s\n%b"
-format = "<b>%s</b>\n%b"
+format = "<b>%s</b>\t%p\n%b"
 progress_bar = true
-progress_bar_height = 10
-progress_bar_corner_radius = 4
-progress_bar_frame_width = 1
+progress_bar_height = 20
+progress_bar_corner_radius = 8
+progress_bar_frame_width = 2
+progress_bar_horizontal_alignment = right
 separator_height = 2
 ignore_dbusclose = false
 force_xwayland = false
 frame_color = "{{color4}}"
-highlight = "{{color5}}"
+highlight = "{{color4}}"
 separator_color= "{{foreground}}"
 
 [experimental]
@@ -40,18 +43,27 @@ per_monitor_dpi = false
 
 [urgency_low]
 timeout = 2
-background = "{{background | darken(0.1)}}ee"
+background = "{{background | darken(0.1)}}{{ 100 | alpha_hexa }}"
 foreground = "{{foreground}}"
 frame_color = "{{color4}}"
 
 [urgency_normal]
 timeout = 3
-background = "{{background | darken(0.1)}}80"
+background = "{{background | darken(0.1)}}{{ 100 | alpha_hexa }}"
 foreground = "{{foreground}}"
-frame_color = "{{color6}}"
+frame_color = "{{color4}}"
 
 [urgency_critical]
 timeout = 4
-background = "{{background | darken(0.1)}}ee"
+background = "{{background | darken(0.1)}}{{ 100 | alpha_hexa }}"
 foreground = "{{foreground}}"
 frame_color = "{{color9}}"
+
+[ignore_volume]
+appname = "volume"
+override_pause_level = 70
+history_ignore=yes
+
+[kde_connect]
+appname = "KDE Connect"
+set_stack_tag = "kde"

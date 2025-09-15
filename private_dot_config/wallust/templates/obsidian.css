@@ -1,0 +1,32 @@
+.theme-dark {
+        --background-primary: {{background}} !important;
+        --background-primary-alt: {{background | lighten(0.025)}} !important;
+        --background-secondary: {{background | lighten(0.025)}} !important;
+        --titlebar-background: {{background | lighten(0.1) }} !important;
+        --titlebar-background-focused: {{background | lighten(0.1) }} !important;
+        --status-bar-background: {{background | lighten(0.1) }} !important;
+        --ribbon-background: {{background | lighten(0.1) }} !important;
+        --background-modifier-form-field: {{background | lighten(0.025)}} !important;
+        --background-modifier-border-focus: {{color4}}33 !important;
+        --divider-color: {{color4}}33 !important;
+        --background-modifier-cover: {{background | lighten(0.025)}} !important;
+        --prompt-border-color: {{color4}}33 !important;
+        --layer-1: {{color4}}33 !important;
+        --background-modifier-border: {{color4}}77 !important;
+        --interactive-normal: var(--layer-1) !important;
+        --text-faint: {{ foreground }}77 !important;
+        --background-modifier-border-hover: {{color4}}33 !important;
+        --indentation-guide-color: {{color4}}33 !important;
+        --indentation-guide-color-active: {{color4}}77 !important;
+        --tab-container-background: {{ background | lighten(0.5) }} !important;
+        --prompt-border-color: {{ color4 }} !important;
+        --prompt-border-width: 2px;
+}
+
+.theme-dark .nav-folder-title-content::before {
+        color: {{color4}}77 !important;
+}
+
+body {
+  --tab-stacked-pane-width: 100%;
+}

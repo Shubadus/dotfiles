@@ -1,59 +1,56 @@
 # -*- conf -*-
 # Wallust theme
-
-[cursor]
-color = {{ cursor }}
-
 [colors]
-background = {{ background }}
-foreground = {{ foreground }}
+alpha=0.80
+background={{ background | strip }}
+foreground={{ foreground | strip }}
 
 #black
-regular0 = {{ color0 }}
+regular0={{ color0 | strip }}
 
 #red
-regular1 = {{ color1 }}
+regular1={{ color1 | strip }}
 
 #green
-regular2 = {{ color2 }}
+regular2={{ color2 | strip }}
 
 #yellow
-regular3 = {{ color3 }}
+regular3={{ color3 | strip }}
 
 #blue
-regular4 = {{ color4 }}
+regular4={{ color4 | strip }}
 
 #magenta
-regular5 = {{ color5 }}
+regular5={{ color5 | strip }}
 
 #cyan
-regular6 = {{ color6 }}
+regular6={{ color6 | strip }}
 
 #white/grey
-regular7 = {{ color7 }}
+regular7={{ color7 | strip }}
 
 
 
 #grey/black
-bright0 = {{ color8 }}
+bright0={{ color8 | strip }}
 
 #red
-bright1 = {{ color9 }}
+bright1={{ color9 | strip }}
 
 #green
-bright2 = {{ color10 }}
+bright2={{ color10 | strip }}
 
 #yellow
-bright3 = {{ color11 }}
+bright3={{ color11 | strip }}
 
 #blue
-bright4 = {{ color12 }}
+bright4={{ color12 | strip }}
 
 #pink
-bright5 = {{ color13 }}
+bright5={{ color13 | strip }}
 
 #cyan
-bright6 = {{ color14 }}
+bright6={{ color14 | strip }}
 
 #grey
-bright7 = {{ color15 }}
+bright7={{ color15 | strip }}

@@ -36,23 +36,25 @@ palette = "dark"
 #saturation = 35
 
 # Alpha value for templating, by default 100 (no other use whatsoever)
-#alpha = 100
+alpha = 100
 
 [templates]
-# NOTE: prefer '' over "" for paths, avoids escaping.
-# template: A RELATIVE path that points to `~/.config/wallust/template` (depends on platform)
-# target: ABSOLUTE path in which to place a file with generated templated values.
-# ¡ If either one is a directory, then both SHOULD be one. !
-# zathura = { template = 'zathura', target = '~/.config/zathura/zathurarc' }
-waybar         = { src = 'colors.css', dst = '~/.config/waybar/colors.css'}
-hypr           = { src = "hyprland.conf", dst = "~/.config/hypr/hyprland.conf.d/colors.conf" }
-alacritty      = { src = 'alacritty-colors.toml', dst = '~/.config/alacritty/colors.toml' }
-xres           = { src = "Xresources", dst = "~/.config/Xresources" }
-wofi           = { src = "colors.css", dst = "~/.config/wofi/colors.css" }
-wofi-powermenu = { src = "colors.css", dst = "~/.config/wofi/powermenu/colors.css" }
-themix         = { src = "themix.yaml", dst = "~/.themes/themix_export.yaml" }
-dunst          = { src = "dunstrc", dst = "~/.config/dunst/dunstrc" }
-waybar-clock   = { src = "waybar-clock.jsonc", dst = "~/.config/waybar/items/clock.jsonc"}
-# foot = { template = 'foot-theme', target = '~/.config/foot/theme' }
-# swaync         = { src = "swaync-colors.css", dst = "~/.config/swaync/colors.css"}
-# swayosd        = { src = "colors.scss", dst = "~/.config/swayosd/colors.scss" }
+alacritty         = { src = 'alacritty-colors.toml', dst = '~/.config/alacritty/colors.toml' }
+chromium          = { src = "chromium_colors.sh", dst = "~/.local/bin/scripts/window_manager/chromium_colors.sh" }
+dunst             = { src = "dunstrc", dst = "~/.config/dunst/dunstrc" }
+foot              = { template = 'foot-theme', target = '~/.config/foot/theme.ini' }
+fuzzel            = { src = "fuzzel-colors.ini", dst="~/.config/fuzzel/colors.ini"}
+gtk               = { src = 'gtk', dst = '/tmp/wallust-gtk'}
+hypr              = { src = "hyprland.conf", dst = "~/.config/hypr/hyprland.conf.d/colors.conf" }
+hyprlock          = { src = "hyprlock.conf", dst = "~/.config/hypr/hyprlock.conf" }
+hyprpanel         = { src = "hyprpanel/hyprpanel_theme.j2", dst = "/tmp/hyprpanel_theme.json"}
+hyprpanel-modules = { src = "hyprpanel/hyprpanel_modules_theme.scss", dst = "~/.config/hyprpanel/modules.scss"}
+obsidian          = { src = "obsidian.css", dst="~/Documents/Obsidian - Work/.obsidian/snippets/theme.css"}
+xres              = { src = "Xresources", dst = "~/.config/Xresources" }
+spotify           = { src = "spotify-color.ini", dst = "~/.config/spicetify/Themes/Wallust/color.ini"}
+waybar            = { src = 'colors.css', dst = '~/.config/waybar/style/colors.css'}
+waybar-clock      = { src = "waybar/clock.jsonc", dst = "~/.config/waybar/items/clock.jsonc"}
+waybar-memory     = { src = "waybar/memory.jsonc", dst = "~/.config/waybar/items/memory.jsonc"}
+waybar-mpris      = { src = "waybar/mpris.jsonc", dst = "~/.config/waybar/items/mpris.jsonc"}
+waybar-notification = { src = "waybar/notification.jsonc", dst = "~/.config/waybar/items/notification.jsonc"}
+waybar-updates    = { src = 'waybar/updates.jsonc', dst = '~/.config/waybar/items/updates.jsonc'}

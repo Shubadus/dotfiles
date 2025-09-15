@@ -1,0 +1,21 @@
+{% set notifications = color2 -%}
+{
+  "custom/dunst-notification": {
+    "tooltip": true,
+    "return-type": "json",
+    "exec": "$HOME/.local/bin/scripts/window_manager/dmenu-dunst.py -c",
+    "on-click": "$HOME/.local/bin/scripts/window_manager/dmenu-dunst.py -s",
+    "on-click-right": "$HOME/.local/bin/scripts/window_manager/dmenu-dunst.py -d",
+    "on-click-middle": "$HOME/.local/bin/scripts/window_manager/dmenu-dunst.py -r",
+    "interval": 3,
+    "escape": true,
+    // "hide-empty-text": true,
+    "format": "<span foreground='{{ notifications }}'>{icon}</span> {text}",
+    "format-icons": {
+      "notification": "󰂚",
+      "none": "󰂚",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰂛"
+    }
+  }
+}
