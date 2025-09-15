@@ -1,23 +1,58 @@
 {
   // Hyprland
   "hyprland/workspaces": {
-    "all-outputs": true,
-    "format": "{icon}",
-    "persistent-workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": [],
-      "6": [],
-      "7": [],
-      "8": [],
-      "9": [],
-      "10": []
+    "workspace-taskbar": {
+      "enable": true,
+      // Format of the windows in the taskbar. Default: "{icon}". Allowed variables: {icon}, {title}
+      "format": "{icon}",
+      "format-empty": "",
+      // Icon size in pixels. Default: 16
+      "icon-size": 16,
+      "update-active-window": true,
+      // Either the name of an installed icon theme or an array of themes (ordered by priority). If not set, the default icon theme is used.
+      // Orientation of the taskbar ("horizontal" or "vertical"). Default: "horizontal".
+      "on-click-window": "",
+      "orientation": "horizontal",
+      "ignore-list": [
+        ""
+      ],
+      "hide-empty-text": true,
     },
-    "on-click": "hyprctl dispatch workspace {name}",
-    "on-scroll-up": "hyprctl dispatch workspace -1",
-    "on-scroll-down": "hyprctl dispatch workspace +1"
+    "window-rewrite": {
+      "class<.*brave-browser.*>": "󰖟",
+      "chromium": "󰖟",
+      "class<.*runelite.*>": "󰖟",
+      "title<.*youtube.*>": "", // Windows whose titles contain "youtube"
+      "foot": "",
+      "title<.*Discord.*>": "",
+      "class<.*teams.*>": "󰊻",
+      // "": ""
+    },
+    // "format": "{icon}",
+    "format": "{icon} {windows}", // Use with workspace-taskbar setting
+    // "format-empty": "{icon}"
+    // "format-icons": {
+    //   "urgent": "",
+    //   "active": "",
+    //   "default": ""
+    // },
+    "format-window-separator": " ",
+    "move-to-monitor": true,
+    "persistent-workspaces": {
+      // "1": [],
+      // "2": [],
+      // "3": [],
+      // "4": [],
+      // "5": [],
+      // "6": [],
+      // "7": [],
+      // "8": [],
+      // "9": [],
+      // "10": []
+    },
+    "on-scroll-up": "~/.local/bin/scripts/window_manager/hyprland_dispatch.sh -1",
+    "on-scroll-down": "~/.local/bin/scripts/window_manager/hyprland_dispatch.sh +1",
+    "hide-empty-text": true,
   },
   "hyprland/window": {
     "format": "{}",
@@ -26,7 +61,8 @@
     "hide-empty-text": true,
     "separate-outputs": true,
     "rewrite": {
-      "": " Desktop"
+      "": " Desktop",
+      // "class<brave-browser>": "Nothing"
     }
   }
 }

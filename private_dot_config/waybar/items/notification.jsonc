@@ -2,39 +2,19 @@
   "custom/dunst-notification": {
     "tooltip": true,
     "return-type": "json",
-    "exec": "$HOME/.local/bin/scripts/statusbar/notifications.sh -c",
-    "on-click": "$HOME/.local/bin/scripts/dmenu-dunst.py",
-    "on-click-right": "$HOME/.local/bin/scripts/statusbar/notifications.sh -d",
-    "on-click-middle": "$HOME/.local/bin/scripts/statusbar/notifications.sh -r",
+    "exec": "$HOME/.local/bin/scripts/window_manager/dmenu-dunst.py -c",
+    "on-click": "$HOME/.local/bin/scripts/window_manager/dmenu-dunst.py -s",
+    "on-click-right": "$HOME/.local/bin/scripts/window_manager/dmenu-dunst.py -d",
+    "on-click-middle": "$HOME/.local/bin/scripts/window_manager/dmenu-dunst.py -r",
     "interval": 3,
     "escape": true,
     // "hide-empty-text": true,
-    "format": "<span foreground='#97D01A'>{icon}</span>{text}",
+    "format": "<span foreground='#C2D94C'>{icon}</span> {text}",
     "format-icons": {
       "notification": "󰂚",
       "none": "󰂚",
       "dnd-notification": "󰂛",
       "dnd-none": "󰂛"
     }
-  },
-  "custom/swaync-notification": {
-    "tooltip": false,
-    "format": "{icon}",
-    "format-icons": {
-      "notification": "<span foreground='#D81765'><sup></sup></span>",
-      "none": "",
-      "dnd-notification": "<span foreground='#D81765'><sup></sup></span>",
-      "dnd-none": "",
-      "inhibited-notification": "<span foreground='#D81765'><sup></sup></span>",
-      "inhibited-none": "",
-      "dnd-inhibited-notification": "<span foreground='#D81765'><sup></sup></span>",
-      "dnd-inhibited-none": ""
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
   }
 }

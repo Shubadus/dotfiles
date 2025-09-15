@@ -1,49 +1,35 @@
 #workspaces {
-  padding: 0px 8px;
-  margin: 4px 4px;
+  margin: 4px 2px;
 }
 
 #workspaces button {
-  padding: 0px 5px;
-  color: shade(@accent, 1.0);
-  border-radius: 12px;
-  margin: 5px 2px;
-  padding: 0px 1px;
+  padding: 1px 4px;
+  color: @foreground;
+  border-radius: 8px;
+  border: 2px solid alpha(@background, 0.00);
+  margin: 0px 2px;
 }
 
 #workspaces button.empty {
   color: @inactive;
 }
 
+#workspaces .taskbar-window:hover,
+#workspaces button:hover,
+#workspaces button.active,
 #workspaces button.visible {
-  background: @accent;
-  color: @module_background;
-  border: 1px solid @accent;
+  color: @accent;
   font-weight: bold;
+  border: 2px solid @accent;
 }
 
+#workspaces button:hover,
 #workspaces button.active {
   background: @accent;
-  border-radius: 12px;
-  color: @module_background;
-  font-weight: bold;
-  margin: 5px 2px;
-  padding: 0px 16px;
-  transition: 0.5s ease-in-out;
+  color: @background;
+  /* color: @accent; */
 }
 
 #workspaces button.urgent {
   color: @color1;
-}
-
-#workspaces button:hover{
-    border-radius: 12px;
-    background: @accent;
-    color: @module_background;
-    font-weight: bold;
-}
-
-#workspaces button:hover {
-    margin: 5px 2px;
-    padding: 0px 1px;
 }

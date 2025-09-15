@@ -1,3 +1,6 @@
-#custom-check_updates.reboot {
-  color: @color2;
+#custom-arch_updates:hover {
+  color: @color4;
+}
+#custom-flatpak_updates:hover {
+  color: @clock;
 }

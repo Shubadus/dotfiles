@@ -1,8 +1,9 @@
-#gamemode {
-  color: @color2;
-  /* padding: 0px 10px; */
+
+#custom-needrestart{
   /* background: @module_background; */
   border-radius: 6px;
   animation-name: static;
-  /* margin: 4px 2px; */
+  padding: 0px 8px;
+  margin: 4px 2px;
+  color: @color1;
 }

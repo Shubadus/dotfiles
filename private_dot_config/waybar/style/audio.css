@@ -21,13 +21,12 @@
   color: @color6
 }
 
-#pulseaudio {
+#audio {
   padding: 0px 0px;
 }
 
 #pulseaudio.muted {
-    background-color: alpha(@color1, 0.80);
-    color: @foreground;
+    color: @color1;
 }
 
 #pulseaudio-slider slider {

@@ -1,11 +1,15 @@
 {
   "mpris": {
-    "format-playing": "<span foreground='#97D01A'>{status_icon}</span> {title}",
-    "format-paused": "<span foreground='#719C14'>{status_icon}</span> {title}",
-    "title-len": 40,
-    "tooltip-format": "{dynamic}",
+    "format-playing": "<span foreground='#C2D94C'>{status_icon} {player_icon}</span> {title}",
+    "format-paused": "<span foreground='#92A339'>{status_icon} {player_icon}</span> {title}",
+    "format-stopped": "<span foreground='#616D26'>{status_icon}</span> No Media",
+    "title-len": 25,
+    //"tooltip-format": "<span foreground='#C2D94C'>{title}</span>\n<span foreground='#95E6CB'>{album}</span>\n<span foreground='#FFEE99'>{artist}</span>\n<span foreground='#C2D94C'>{status_icon}</span>{position}/{length}",
+    "tooltip-format": "{title}\n{album}\n{artist}\n{status_icon}{position}/{length}",
     "player-icons": {
-      "mpv": "🎵"
+      "mpv": "",
+      "brave": "󰖟",
+      "spotify": ""
     },
     "status-icons": {
       "paused": "",

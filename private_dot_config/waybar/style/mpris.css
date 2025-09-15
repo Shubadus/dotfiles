@@ -1,4 +1,5 @@
 #custom-waybar-scrolling-mpris.paused,
+#mpris.stopped,
 #mpris.paused {
   color: @dimtext;
 }

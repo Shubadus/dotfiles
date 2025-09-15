@@ -1,3 +1,7 @@
+#privacy {
+  border-radius: 6px;
+  animation-name: static;
+}
 #privacy-item.screenshare {
   color: @color1
 }

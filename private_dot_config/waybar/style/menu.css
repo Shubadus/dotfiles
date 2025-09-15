@@ -1,24 +1,51 @@
-#custom-wm_menu {
-  font-size: 20;
-  font-weight: bold;
-  background: @module_background;
-  color: @color4;
-  border-radius: 6;
-  animation-name: static;
-  padding: 0px 6px;
-  margin: 4px 4px;
-  border: 2px solid @module_background;
-}
-
-#custom-wm_menu:hover {
-  border: 2px solid @color4;
-}
-
 /* This is the grouping module for modules on the right side of the bar */
 /* TODO: Rename this and move to another folder */
 #menu {
-  background: @module_background;
-  border-radius: 6;
-  padding: 0px 8px;
-  margin: 4px 4px;
+  background: @background;
+  border-radius: 6px;
 }
+
+#batteries:hover,
+#idle_inhibitor:hover,
+#network:hover,
+#power-profiles-daemon:hover,
+#pulseaudio:hover {
+    color: @color6;
+}
+#network.disconnected {
+    background-color: alpha(@color3, 0.80);
+}
+#pulseaudio-slider {
+}
+
+#pulseaudio-slider trough {
+  background-color: @inactive;
+  min-width: 80px;
+}
+
+#pulseaudio-slider slider {
+  background-color: @color6;
+  box-shadow: none;
+  padding: 0px;
+  opacity: 1;
+  border-radius: 30px;
+}
+
+#pulseaudio-slider highlight {
+  background-color: @color6;
+  padding: 2px;
+}
+
+#pulseaudio.muted {
+    color: @color1;
+}
+
+#idle_inhibitor.activated {
+    color: @color6;
+}
+
+#battery.critical:not(.charging) {
+    background-color: alpha(@color3, 0.80);
+    color: @foreground;
+}
+

@@ -1,0 +1,12 @@
+{
+  "custom/needrestart": {
+    "exec": "needrestart -k | grep 'Pending kernel upgrade!' && echo 'Reboot required to apply kernel upgrade'",
+    "return-type": "text",
+    "interval": 60,
+    // "exec-if": 0,
+    "format": "",
+    "tooltip": "{}",
+    "hide-if-empty": true,
+    "on-click": "$HOME/.local/bin/scripts/wm_menu.py --logout_menu"
+  }
+}

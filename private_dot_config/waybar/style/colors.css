@@ -19,7 +19,7 @@
 @define-color color15           #B3B1AD;
 @define-color border            #3B3E43;
 @define-color card              #161A20;
-@define-color module_background #1A1B1B;
+@define-color module_background #22262C;
 @define-color disabled          #383A3A;
 @define-color inactive          #383A3A;
 @define-color hover             #22262C;
@@ -31,4 +31,3 @@
 @define-color clock             #AC7B99;
 @define-color media             #C2D94C;
 @define-color notifications     #C2D94C;
-

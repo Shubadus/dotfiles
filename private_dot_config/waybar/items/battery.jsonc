@@ -37,7 +37,7 @@
   "battery#mouse": {
     // "bat": "/sys/class/power_supply/hidpp_battery_0/capacity",
     "bat": "hidpp_battery_0",
-    "adapter": "hidpp_battery_2",
+    "adapter": "hidpp_battery_3",
     "states": {
       "full": 100,
       "warning": 30,
@@ -47,6 +47,7 @@
     "format": "{icon}",
     "format-alt": "{icon} {capacity}%",
     "format-full": "",
+    "format-charging": "{icon}",
     "format-discharging-full": "{icon}",
     "tooltip-format-discharging": "Discharging: {capacity}%, {time} til empty",
     "tooltip-format-charging": "Charging: {capacity}%, {time} til full",

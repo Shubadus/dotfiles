@@ -1,7 +1,7 @@
 {
   "memory": {
     "interval": 30,
-    "format": "<span foreground='#EC6033'></span> {}%",
+    "format": "<span foreground='#FF613A'></span> {}%",
     "max-length": 10,
     "on-click": "pypr toggle sysmonitor",
     "states": {

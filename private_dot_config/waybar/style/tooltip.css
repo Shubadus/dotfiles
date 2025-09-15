@@ -1,11 +1,10 @@
 tooltip label {
-    padding: 6px;
-    background: none;
+  padding: 6px;
 }
 
 tooltip {
-  background: @module_background;
-  border: 1px solid @accent;
-  border-radius: 6px;
+  /* background: @module_background; */
+  border: 2px solid @accent;
+  border-radius: 8px;
 }
 
