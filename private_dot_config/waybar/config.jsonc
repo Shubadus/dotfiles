@@ -12,16 +12,16 @@
       "$HOME/.config/waybar/items/notification.jsonc",
       "$HOME/.config/waybar/items/power_profiles.jsonc",
       "$HOME/.config/waybar/items/updates.jsonc",
+      "$HOME/.config/waybar/items/weather.jsonc",
     ],
     "name": "bar",
     "layer": "top", // Waybar at top layer
-    "spacing": 8,
     "modules-left": [
       "custom/wm_menu",
       "clock",
       "memory",
       "custom/dunst-notification",
-      // "hyprland/window",
+      "custom/weather",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
@@ -37,8 +37,8 @@
       "idle_inhibitor",
       "group/audio",
       "network",
-      "group/batteries",
       "power-profiles-daemon",
+      "group/batteries",
       "custom/power"
     ],
     "custom/power": {
@@ -53,15 +53,17 @@
     },
     "idle_inhibitor": {
       "format": "{icon}",
+      "tooltip-format-activated": "Blocking sleep",
+      "tooltip-format-deactivated": "Allowing sleep",
       "format-icons": {
-        "activated": "󰒳",
-        "deactivated": "󰒲"
+        "activated": "󰅶",
+        "deactivated": "󰅶"
       }
     },
     "tray": {
       "icon-size": 16,
       "reverse-direction": true,
-      "spacing": 6
+      "spacing": 12
     },
     "backlight": {
       // "device": "acpi_video1",

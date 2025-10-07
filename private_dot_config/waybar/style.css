@@ -39,15 +39,17 @@ window#waybar>box {
 }
 
 #waybar.bar {
-  background: @background;
+  background: alpha(@background, 0.85);
 }
 
-label.module,
-box.module {
+.module{
+/* *.module { */
+  /* Swap background when waybar.bar background alpha value is set to 0 */
   background: none;
   /* background: @background; */
   border-radius: 6px;
   animation-name: static;
+  margin: 0px 8px;
 }
 
 .modules-left,
@@ -58,7 +60,7 @@ box.module {
   background: none;
   /* background: @background; */
    /* margin-top: 4px;  */
-  /* padding: 0px 8px; */
+  padding: 0px;
 }
 
 .modules-left {
