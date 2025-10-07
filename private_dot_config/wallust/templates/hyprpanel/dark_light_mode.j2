@@ -1,0 +1,20 @@
+{%- if background < foreground -%}
+{% set border = background | lighten(0.2) -%}
+{% set button_text = background -%}
+{% set card = background | lighten(0.065) -%}
+{% set module_background = background | lighten(0.05) -%}
+{% set disabled = foreground | darken(0.60) -%}
+{% set inactive = foreground | darken(0.50) -%}
+{% set hover = foreground | darken(0.9) -%}
+{% set puck = foreground | darken(0.50) -%}
+{% else -%}
+{% set border = background | darken(0.2) -%}
+{% set button_text = foreground -%}
+{% set card = background | darken(0.065) -%}
+{% set module_background = background | darken(0.05) -%}
+{% set disabled = background | darken(0.60) -%}
+{% set inactive = background | darken(0.50) -%}
+{% set hover = background | darken(0.20) -%}
+{% set puck = background | darken(0.25) -%}
+{% endif -%}
+

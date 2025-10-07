@@ -1,0 +1,13 @@
+/*
+ * Author: Shubadus
+ * Inject custom CSS when using AdwSteamGtk app
+ * Add the following to your wallust config
+ * steam = { src = "steam.css", dst = "~/.var/app/io.github.Foldex.AdwSteamGtk/config/AdwSteamGtk/custom.css"}
+ * To load the 
+*/
+:root
+{
+  --adw-accent-bg-rgb: {{ background | rgb }};
+  --adw-accent-fg-rgb: {{ foreground | rgb }};
+  --adw-accent-rgb: {{ color4 | rgb }};
+}

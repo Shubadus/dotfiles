@@ -1,0 +1,98 @@
+{# NOTE: wallust.toml needs to include this -#}
+{# hyprpanel = { src = "hyprpanel_theme.j2", dst = "~/.config/hyprpanel/wallust_theme.json" -#}
+{# To load the theme into hyprpanel, run: -#}
+{# hyprpanel ut ~/config/hyprpanel/wallust_theme.json -#}
+{# To automatically load the theme with hyprland, add this line -#}
+{# exec = hyprpanel ut $HOME/.config/hyprpanel/wallust_theme.json -#}
+
+{#- Have module text match colors of modules/buttons by setting to true -#}
+{#- options: lite, normal, full -#}
+{%- set colorstyle = 'normal' -%}
+
+{#- TODO: Set up jinja template to control the  -#}
+
+{#- NOTE: By default, wallust will check in the template directory, -#}
+{# so you will need to include any subfolders to find included templates -#}
+
+{% include 'hyprpanel/dark_light_mode.j2' -%}
+{% include 'hyprpanel/module_colors.j2' -%}
+{
+{% if colorstyle == 'full' -%}
+  {% include 'hyprpanel/full_color_style.j2' %}
+{% elif colorstyle == 'normal' -%}
+  {% include 'hyprpanel/normal_color_style.j2' %}
+{% elif colorstyle == 'lite' -%}
+  {% include 'hyprpanel/lite_color_style.j2' %}
+{% endif -%}
+    {% include 'hyprpanel/modules/basic_modules.j2' %}
+    {% include 'hyprpanel/modules/battery.j2' %}
+    {% include 'hyprpanel/modules/bluetooth.j2' %}
+    {% include 'hyprpanel/modules/clock.j2' %}
+    {% include 'hyprpanel/modules/dashboard.j2' %}
+    {% include 'hyprpanel/modules/media.j2' %}
+    {% include 'hyprpanel/modules/network.j2' %}
+    {% include 'hyprpanel/modules/notifications.j2' %}
+    {% include 'hyprpanel/modules/power.j2' %}
+    {% include 'hyprpanel/modules/volume.j2' %}
+    {% include 'hyprpanel/modules/workspaces.j2' %}
+  "theme.bar.menus.menu.systray.dropdownmenu.divider": "{{ background }}",
+  "theme.bar.menus.menu.systray.dropdownmenu.text": "{{ foreground }}",
+  "theme.bar.menus.menu.systray.dropdownmenu.background": "{{ background }}",
+  "theme.bar.menus.tooltip.text": "{{ foreground }}",
+  "theme.bar.menus.tooltip.background": "{{ background }}",
+  "theme.bar.menus.dropdownmenu.divider": "{{ background }}",
+  "theme.bar.menus.dropdownmenu.text": "{{ foreground }}",
+  "theme.bar.menus.dropdownmenu.background": "{{ background }}",
+  "theme.bar.menus.slider.puck": "{{ puck }}",
+  "theme.bar.menus.slider.backgroundhover": "{{ hover }}",
+  "theme.bar.menus.slider.background": "{{ module_background }}",
+  "theme.bar.menus.slider.primary": "{{ accent }}",
+  "theme.bar.menus.progressbar.background": "{{ background }}",
+  "theme.bar.menus.progressbar.foreground": "{{ accent }}",
+  "theme.bar.menus.iconbuttons.active": "{{ accent }}",
+  "theme.bar.menus.iconbuttons.passive": "{{ background | lighten(0.25) }}",
+  "theme.bar.menus.buttons.text": "{{ button_text }}",
+  "theme.bar.menus.buttons.disabled": "{{ disabled }}",
+  "theme.bar.menus.buttons.active": "{{ accent }}{{ 95 | alpha_hexa }}",
+  "theme.bar.menus.buttons.default": "{{ accent }}",
+  "theme.bar.menus.check_radio_button.active": "{{ accent | darken(0.1) }}",
+  "theme.bar.menus.check_radio_button.background": "{{ background }}",
+  "theme.bar.menus.switch.puck": "{{ puck }}",
+  "theme.bar.menus.switch.disabled": "{{ disabled }}",
+  "theme.bar.menus.switch.enabled": "{{ accent }}{{ 95 | alpha_hexa }}",
+  "theme.bar.menus.icons.active": "{{ accent }}",
+  "theme.bar.menus.icons.passive": "{{ foreground }}",
+  "theme.bar.menus.listitems.active": "{{ accent }}",
+  "theme.bar.menus.listitems.passive": "{{ foreground }}",
+  "theme.bar.menus.popover.border": "{{ accent }}",
+  "theme.bar.menus.popover.background": "{{ background }}",
+  "theme.bar.menus.label": "{{ accent }}",
+  "theme.bar.menus.feinttext": "{{ foreground }}{{ 70 | alpha_hexa }}",
+  "theme.bar.menus.dimtext": "{{ foreground }}{{ 55 | alpha_hexa }}",
+  "theme.bar.menus.text": "{{ foreground }}",
+  "theme.bar.menus.border.color": "{{ accent }}",
+  "theme.bar.menus.cards": "{{ card }}",
+  "theme.bar.menus.background": "{{ background }}",
+  "theme.bar.buttons.systray.background": "{{ module_background }}",
+  "theme.bar.buttons.systray.border": "{{ systray }}",
+  "theme.bar.buttons.icon": "{{ background }}",
+  "theme.bar.buttons.hover": "{{ accent }}",
+  "theme.bar.buttons.icon_background": "{{ accent }}",
+  "theme.bar.buttons.background": "{{ module_background }}",
+  "theme.bar.buttons.style": "default",
+  "theme.bar.background": "{{ background }}",
+  "theme.osd.label": "{{ osd }}",
+  "theme.osd.icon": "{{ background }}",
+  "theme.osd.bar_overflow_color": "{{ osd | darken(0.1) }}",
+  "theme.osd.bar_empty_color": "{{ background | lighten(0.1) }}",
+  "theme.osd.bar_color": "{{ osd }}",
+  "theme.osd.icon_container": "{{ osd }}",
+  "theme.osd.bar_container": "{{ background }}",
+  "theme.bar.buttons.systray.customIcon": "{{ foreground }}",
+  "theme.bar.border.color": "{{ accent }}", 
+  "theme.bar.buttons.borderColor": "{{ accent }}",
+  "theme.bar.buttons.systray.hover": "{{ hover }}",
+  "theme.bar.buttons.windowtitle.hover": "{{ background | lighten(0.2) }}",
+  "theme.osd.border.color": "{{ accent }}"
+}
+{#- vim: ft=jinja #}

@@ -4,15 +4,17 @@
 {% set media_song = color2 -%}
 {
   "mpris": {
-    "format-playing": "<span foreground='{{ color2 }}'>{status_icon} {player_icon}</span> {title}",
-    "format-paused": "<span foreground='{{ color2 | darken(0.25) }}'>{status_icon} {player_icon}</span> {title}",
-    "format-stopped": "<span foreground='{{ color2 | darken(0.5) }}'>{status_icon}</span> No Media",
+    "format-playing": "<span foreground='{{ color2 }}'>{player_icon}</span> {title}",
+    "format-paused": "<span foreground='{{ color2 | darken(0.25) }}'>{player_icon}</span> {title}",
+    "format-stopped": "<span foreground='{{ color2 | darken(0.5) }}'>{player_icon}</span> No Media",
     "title-len": 25,
     //"tooltip-format": "<span foreground='{{ color2 }}'>{title}</span>\n<span foreground='{{ color6 }}'>{album}</span>\n<span foreground='{{ color5 }}'>{artist}</span>\n<span foreground='{{ color2 }}'>{status_icon}</span>{position}/{length}",
-    "tooltip-format": "{title}\n{album}\n{artist}\n{status_icon}{position}/{length}",
+    "tooltip-format": "{title}\n{album}\n{artist}\n{status_icon}\t{position}/{length}",
     "player-icons": {
       "mpv": "",
       "brave": "󰖟",
+      "chromium": "󰖟",
+      "plasma-browser-integration": "",
       "spotify": ""
     },
     "status-icons": {

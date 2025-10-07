@@ -1,0 +1,17 @@
+{
+  "custom/weather": {
+    "exec": "~/.local/bin/scripts/window_manager/weather.py Auburn,IN",
+    "return-type": "json",
+    "format": "{icon} {text}",
+    "tooltip": true,
+    "interval": 3600,
+    "on-click": "~/.local/bin/scripts/window_manager/weather.py Auburn,IN -F",
+    "format-icons": {
+      "sunny": "<span foreground='{{ color3 }}'>󰖙</span>",
+      "cloudy": "<span foreground='{{ color6 }}'>󰖐</span>",
+      "clear": "<span foreground='{{ color4 }}'>󰖙</span>",
+      "rain": "<span foreground='{{ color4 }}'>󰖖</span>",
+      "windy": "<span foreground='{{ color7 }}'>󰖝</span>"
+    }
+  }
+}
