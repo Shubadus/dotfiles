@@ -1,0 +1,36 @@
+[config]
+reload_apps = true
+
+[templates.alacritty]
+input_path = '~/.config/matugen/templates/alacritty.toml'
+output_path = '~/.config/alacritty/colors.toml'
+
+[templates.vesktop]
+input_path = '~/.config/matugen/templates/midnight-discord.css'
+output_path = '~//.var/app/dev.vencord.Vesktop/config/vesktop/themes/midnight-discord.css'
+
+[templates.starship]
+input_path = '~/.config/matugen/templates/starship-colors.toml'
+output_path = '~/.config/starship/starship.toml'
+
+[templates.fuzzel]
+input_path = '~/.config/matugen/templates/fuzzel.ini'
+output_path = '~/.config/fuzzel/colors.ini'
+
+[templates.ytmdeskop]
+input_path = '~/.config/matugen/templates/ytmdesktop.css'
+output_path = '~/.config/YouTube Music Desktop App/style.css'
+
+[templates.chromium]
+input_path = '~/.config/matugen/templates/chromium-colors.sh'
+output_path = '~/.local/bin/scripts/window_manager/chromium_colors.sh'
+post_hook = '~/.local/bin/scripts/window_manager/apply_chromium.sh'
+
+[templates.obsidian]
+input_path = '~/.config/matugen/templates/obsidian.css'
+output_path = '~/Documents/Obsidian - Work/.obsidian/snippets/theme.css'
+
+[templates.steam]
+input_path = '~/.config/matugen/templates/steam.css'
+output_path = '~/.var/app/io.github.Foldex.AdwSteamGtk/config/AdwSteamGtk/custom.css'
+post_hook = 'flatpak run io.github.Foldex.AdwSteamGtk -i >/dev/null 2>&1'

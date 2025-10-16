@@ -1,0 +1,33 @@
+
+.theme-dark {
+        --background-primary: {{colors.surface.default.hex}} !important;
+        --background-primary-alt: {{colors.surface_container_high.default.hex}} !important;
+        --background-secondary: {{colors.surface_container_low.default.hex}} !important;
+        --titlebar-background: {{colors.surface_container_high.default.hex }} !important;
+        --titlebar-background-focused: {{colors.surface_container_high.default.hex }} !important;
+        --status-bar-background: {{colors.surface_container_high.default.hex }} !important;
+        --ribbon-background: {{colors.surface_container_high.default.hex }} !important;
+        --background-modifier-form-field: {{colors.primary_container.default.hex}} !important;
+        --background-modifier-border-focus: {{colors.primary.default.hex}}33 !important;
+        --divider-color: {{colors.primary.default.hex}}33 !important;
+        --background-modifier-cover: {{colors.primary_container.default.hex}} !important;
+        --prompt-border-color: {{colors.primary.default.hex}}33 !important;
+        --layer-1: {{colors.primary.default.hex}}33 !important;
+        --background-modifier-border: {{colors.primary.default.hex}}77 !important;
+        --interactive-normal: var(--layer-1) !important;
+        --text-faint: {{ colors.on_surface.default.hex }}77 !important;
+        --background-modifier-border-hover: {{colors.surface_container_high.default.hex}}33 !important;
+        --indentation-guide-color: {{colors.primary.default.hex}}33 !important;
+        --indentation-guide-color-active: {{colors.primary.default.hex}}77 !important;
+        --tab-container-background: {{ colors.surface_container.default.hex }} !important;
+        --prompt-border-color: {{ colors.primary.default.hex }} !important;
+        --prompt-border-width: 2px;
+}
+
+.theme-dark .nav-folder-title-content::before {
+        color: {{colors.primary.default.hex}}77 !important;
+}
+
+body {
+  --tab-stacked-pane-width: 100%;
+}
