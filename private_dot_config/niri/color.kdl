@@ -1,0 +1,9 @@
+layout {
+  border {
+    active-color "#ffc87f"
+    inactive-color "#505050"
+
+    // Color of the border around windows that request your attention.
+    urgent-color "#9b0000"
+  }
+}

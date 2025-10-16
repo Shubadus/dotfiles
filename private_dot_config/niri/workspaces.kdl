@@ -1,0 +1,50 @@
+workspace "term"
+window-rule {
+  match app-id="^Alacritty$"
+  match app-id="^com.system76.CosmicTerm$"
+  match app-id="^foot$"
+  match app-id="^org.wezfurlong.wezterm$"
+
+  open-on-workspace "term"
+}
+
+workspace "work"
+window-rule {
+  match title="^Genesys.*$"
+  match title="^Salesforce.*$"
+
+  open-on-workspace "work"
+}
+
+workspace "remote"
+window-rule {
+  match app-id="RemoteDesktopManager"
+
+  open-on-workspace "remote"
+}
+
+workspace "net" {
+  open-on-output "DP-3"
+}
+window-rule {
+  match app-id="^chromium$"
+  open-on-workspace "net"
+}
+
+workspace "games"
+window-rule {
+  match app-id="^steam$"
+  match app-id="^net.lutris.Lutris$"
+
+  open-on-workspace "games"
+}
+
+workspace "comms" {
+  open-on-output "DP-3"
+}
+window-rule {
+  match title="^Outlook.*$"
+  match title="^*Microsoft Teams.*$"
+  match app-id="^com.github.IsmaelMartinez.teams_for_linux$"
+  open-on-workspace "comms"
+}

@@ -1,0 +1,189 @@
+// https://github.com/YaLTeR/niri/wiki/Configuration
+layout {
+    gaps 8
+center-focused-column "never"
+    background-color "transparent"
+
+    // preset-column-widths {
+    //     proportion 0.33333
+    //     proportion 0.5
+    //     proportion 0.66667
+    // }
+
+    default-column-width { proportion 0.66667; }
+
+    focus-ring { 
+        width 2
+        active-color "#7FBBB3"
+        inactive-color "#272E33"
+
+        urgent-color "#E67E80"
+    }
+
+    border {
+      off
+    }
+
+    struts {
+        // left 16 
+        // right 16
+        // top 16
+        // bottom 16
+    }
+}
+
+spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+spawn-at-startup "kdeconnect-indicator"
+spawn-at-startup "/usr/libexec/polkit-gnome-authentication-agent-1"
+spawn-at-startup "wl-paste --type text --watch cliphist store"
+spawn-at-startup "wl-paste --type image --watch cliphist store"
+spawn-at-startup "dms" "run"
+// spawn-at-startup "waybar"
+// spawn-at-startup "hypridle"
+// spawn-at-startup "swww-daemon"
+// spawn-at-startup "dunst"
+// spawn-at-startup "~/.local/bin/scripts/window_manager/apply_gtk_theme.sh"
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+
+environment {
+  GDK_BACKEND "wayland"
+  // QT_STYLE_OVERRIDE "kvantum"
+  QT_QPA_PLATFORM "wayland;xcb"
+  QT_QPA_PLATFORMTHEME "gtk3"
+  QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+  SDL_VIDEODRIVER "wayland"
+  CLUTTER_BACKEND "wayland"
+  _JAVA_AWT_WM_NONREPARENTING "1"
+}
+
+animations {
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    slowdown 0.65
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // match title="^Picture-in-Picture$"
+    match title="^[Pp]icture[ -]in[ -][Pp]icture$"
+    default-column-width { proportion 0.40; }
+    default-window-height { proportion 0.42; }
+    default-floating-position x=8 y=8 relative-to="bottom-right"
+    // block-out-from "screen-capture"
+    block-out-from "screencast"
+
+    open-floating true
+}
+
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast" }
+}
+
+window-rule {
+    match app-id=r#"^vesktop$"#
+
+    block-out-from "screen-capture"
+    open-on-workspace "comms"
+}
+
+window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+    draw-border-with-background false
+}
+
+window-rule {
+    // match is-floating=true
+    // baba-is-float true
+}
+
+layer-rule {
+  match namespace="^launcher$"
+  match namespace="^.*notification.*$"
+  match namespace="^swww-daemon$"
+
+  block-out-from "screencast"
+  // opacity 0.95
+}
+
+// Put wallpaper in backdrop and make overview transparent for consistent look
+layer-rule {
+  match namespace="^quickshell$"
+
+  place-within-backdrop true
+  // opacity 0.95
+}
+
+overview {
+  workspace-shadow {
+    // off
+  }
+}
+
+cursor {
+  xcursor-theme "breeze_cursors"
+  xcursor-size 24
+}
+
+
+window-rule {
+  match app-id="float"
+  match app-id="org.kde.kdeconnect.app"
+  match app-id="nwg-look"
+  match app-id="qt6ct"
+  match app-id="qt5ct"
+  match app-id="zoom"
+  match title="gtk*"
+  match app-id="org.kde.kcalc"
+  match app-id="nm-connection-editor"
+  match app-id="org.kde.polkit-kde-authentication-agent-1"
+  match app-id="polkit-gnome-authentication-agent-1"
+  // match app-id="steam"
+  match title="Special Offers"
+  match title="Friends List"
+  match title="Steam Settings"
+  match title="Steam Dialog"
+  match title="^*noVNC*$"
+
+  open-floating true
+  default-column-width { }
+  default-window-height { }
+}
+
+window-rule {
+  // match app-id="steam_app*"
+  match app-id="[Gg]amescope"
+
+  open-fullscreen true 
+  // Enable VRR for Steam Games
+  // variable-refresh-rate true
+}
+
+window-rule {
+  match app-id="steam_app*"
+  match app-id="[Ss]team"
+  match app-id="[Gg]amescope"
+  // match title="[Yy]ou[Tt]ube"
+
+  block-out-from "screencast"
+}
+
+
+xwayland-satellite {
+  path "xwayland-satellite"
+}
+
+include "binds.kdl"
+include "displays.kdl"
+include "input.kdl"
+include "workspaces.kdl"
+include "dms/colors.kdl"

@@ -9,6 +9,7 @@
       "$HOME/.config/waybar/items/mpris.jsonc",
       "$HOME/.config/waybar/items/needrestart.jsonc",
       "$HOME/.config/waybar/items/network.jsonc",
+      "$HOME/.config/waybar/items/niri.jsonc",
       "$HOME/.config/waybar/items/notification.jsonc",
       "$HOME/.config/waybar/items/power_profiles.jsonc",
       "$HOME/.config/waybar/items/updates.jsonc",
@@ -19,9 +20,10 @@
     "modules-left": [
       "custom/wm_menu",
       "clock",
-      "memory",
       "custom/dunst-notification",
       "custom/weather",
+      "memory",
+      "niri/window",
       "privacy",
       "custom/arch_updates",
       "custom/flatpak_updates",
@@ -29,7 +31,8 @@
       "gamemode"
     ],
     "modules-center": [
-      "hyprland/workspaces"
+      "hyprland/workspaces",
+      "niri/workspaces"
     ],
     "modules-right": [
       "mpris",

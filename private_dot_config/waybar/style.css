@@ -19,6 +19,7 @@
 @import url("style/tooltip.css");
 @import url("style/tray.css");
 @import url("style/updates.css");
+@import url("style/window.css");
 @import url("style/workspaces.css");
 @import url("style/wm_menu.css");
 
@@ -30,6 +31,11 @@
     font-size: 16px;
     min-height: 0;
 }
+
+*:hover {
+  color: alpha(@foreground, 0.50);
+}
+
 window#waybar>box {
   padding: 0px 0px;
 }
@@ -39,7 +45,7 @@ window#waybar>box {
 }
 
 #waybar.bar {
-  background: alpha(@background, 0.85);
+  background: alpha(@background, 1.85);
 }
 
 .module{

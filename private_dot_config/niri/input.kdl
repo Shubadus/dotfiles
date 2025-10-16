@@ -1,0 +1,24 @@
+input {
+    keyboard {
+        xkb {
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        disabled-on-external-mouse
+    }
+
+    mouse {
+        accel-profile "flat"
+    }
+
+    trackpoint {
+    }
+
+    warp-mouse-to-focus
+
+    focus-follows-mouse max-scroll-amount="0%"
+}

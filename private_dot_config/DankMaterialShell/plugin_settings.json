@@ -1,0 +1,54 @@
+{
+  "dankActions": {
+    "enabled": true,
+    "variants": [
+      {
+        "icon": "",
+        "displayText": "",
+        "displayCommand": "flatpak remote-ls --updates | wc -l",
+        "clickCommand": "$HOME/.local/bin/scripts/window_manager/updates.py -p flatpak -u -t 'alacritty --class float -e'",
+        "middleClickCommand": "",
+        "rightClickCommand": "",
+        "updateInterval": 600,
+        "showIcon": true,
+        "showText": true,
+        "id": "variant_1760305860533",
+        "name": "Flatpak updates"
+      },
+      {
+        "icon": "󰯅",
+        "displayText": "",
+        "displayCommand": "~/.local/bin/scripts/strykervpn.sh -s",
+        "clickCommand": "~/.local/bin/scripts/strykervpn.sh -t",
+        "middleClickCommand": "",
+        "rightClickCommand": "",
+        "updateInterval": 5,
+        "showIcon": true,
+        "showText": true,
+        "id": "variant_1760529599899",
+        "name": "Stryker VPN"
+      }
+    ]
+  },
+  "dankBatteryAlerts": {
+    "enabled": false
+  },
+  "powerUsagePlugin": {
+    "enabled": true
+  },
+  "wallpaperShufflerPlugin": {
+    "enabled": true,
+    "wallpaperPath": "~/Pictures/Wallpapers"
+  },
+  "worldClock": {
+    "enabled": false
+  },
+  "dankHooks": {
+    "enabled": false,
+    "wallpaperPath": ""
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "="
+  }
+}
