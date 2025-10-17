@@ -7,89 +7,51 @@ dmenu() {
     --dmenu \
     --minimal-lines \
     --anchor=$anchor \
-    --width=$width \
     --namespace=$namespace
-  # --hide-prompt \
 }
 
 browser() {
-  chromium $@
+  xdg-open $@
 }
+
 terminal() {
-  case "$TERMINAL" in
-  *foot*) exec foot --app-id=float -e bash -c "$@" ;;
-  *alacritty*) exec alacritty --class=float -e bash -c "$@" ;;
-  *ghostty*) exec ghostty --class=float -e bash -c "$@" ;;
-  esac
-}
-
-audio_menu() {
-  result=$(dmenu "Toggle Mute\nVolume Up\nVolume Down\nPavucontrol")
-  case "$result" in
-  *Mute*) $HOME/.local/bin/scripts/statusbar/volume.py -v mute ;;
-  *Set*) $HOME/.local/bin/scripts/statusbar/volume.py -v up ;;
-  *Pavucontrol*) exec pavucontrol ;;
-  *) menu ;;
-  esac
-}
-
-flatpak_menu() {
-  case $(dmenu "Update\nList Installed\nList Repos") in
-  *Update*) terminal "flatpak update; read -p 'Press Enter to Close'" ;;
-  *Installed*) terminal "flatpak list --app --columns=name,version; read -p 'Press Enter to Close'" ;;
-  *Repos*) terminal "flatpak remotes --columns=title,url | less" ;;
-  *) packages_menu ;;
-  esac
+  if [[ $(whereis foot) ]]; then
+    exec foot --app-id=float -e bash -c "$@"
+  elif [[ $(whereis alacritty) ]]; then
+    exec alacritty --class=float -e bash -c "$@"
+  elif [[ $(whereis ghostty) ]]; then
+    exec ghostty --class=float -e bash -c "$@"
+  fi
 }
 
 packages_menu() {
-  case $(dmenu "Pacman\AUR\nFlatpak") in
-  *Pacman*) pacman_menu ;;
-  *Flatpak*) flatpak_menu ;;
+  case $(dmenu "Pacman - List\nPacman - Update\nFlatpak - List\nFlatpak - Update\nFlatpak - Repos") in
+  *Pacman*List*) terminal "yay -Qe | less" ;;
+  *Pacman*Update*) terminal "yay; read -p 'Press Enter to Close'" ;;
+  *Flatpak*Update*) terminal "flatpak update; read -p 'Press Enter to Close'" ;;
+  *Flatpak*List*) terminal "flatpak list --app --columns=name,version | less -R" ;; #; read -p 'Press Enter to Close'" ;;
+  *Flatpak*Repos*) terminal "flatpak remotes --columns=title,url | less -R" ;;
   *) menu ;;
-  esac
-}
-
-pacman_menu() {
-  case $(dmenu "Update\nList Installed") in
-  *Update*) terminal "yay; read -p 'Press Enter to Close'" ;;
-  *Installed*) terminal "yay -Qe | less" ;;
-  *) packages_menu ;;
   esac
 }
 
 power_menu() {
-  result=$(exec $HOME/.local/bin/scripts/powermenu)
+  result=$(exec $HOME/.local/bin/scripts/window_manager/powermenu.sh)
   if [[ "$?" -ne 0 ]]; then
     echo "powermenu script manually exited, returning back to main menu"
     menu
   fi
 }
 
-network_menu() {
-  case $(dmenu "Settings\n") in
-  *) menu ;;
-  esac
-}
-
 theme_menu() {
   case $(dmenu "Set Theme\nSet Background") in
-  *Theme*)
-    local theme_list=$(wallust -s theme list | sed "s/- //;s/\s\(.*\)//;s/^.*\w\:.*//;s/list//")
-    selection=$(dmenu "$theme_list")
-    echo "$selection"
-    if [[ $selection ]]; then
-      exec wallust -s theme "$selection"
-    fi
-    ;;
-  *Background*) exec $HOME/.local/bin/scripts/window_manager/set-background.sh ;;
   *) menu ;;
   esac
 }
 
 web_search_menu() {
-  result=$(dmenu "Youtube\nMaps")
-  case $result in
+  result="$(dmenu "Youtube\nMaps")"
+  case "$result" in
   *Youtube*)
     result=$(fuzzel --dmenu --prompt-only="YT Videos: " | sed "s/ /+/")
     if [[ "$result" ]]; then
@@ -103,19 +65,28 @@ web_search_menu() {
     fi
     ;;
   "") menu ;;
-  *) xdg-open "https://google.com/search?q=$(echo "$result" | sed "s/ /+/")" ;;
+  *) xdg-open "https://google.com/search?q=$(echo "$result" | sed "s/ /+/g")" ;;
   esac
 }
 
 menu() {
-  case "$(dmenu "Audio\nCalc\nNetwork\nPackages\nPower\nTheme\nWeb Search")" in
-  *Audio*) audio_menu ;;
+  case $(dmenu "Calculator\nPackages\nSet Theme\nSet Background\nWeb Search") in
   *Packages*) packages_menu ;;
-  *Power*) power_menu ;;
-  *Network*) network_menu ;;
-  *Theme*) theme_menu ;;
+  *Theme*)
+    result=$(exec $HOME/.local/bin/scripts/window_manager/set-theme.sh)
+    if [[ "$?" -ne 0 ]]; then
+      menu
+    fi
+    ;;
+  *Background*)
+    result=$(exec $HOME/.local/bin/scripts/window_manager/set-background.sh)
+    if [[ "$?" -ne 0 ]]; then
+      menu
+    fi
+    ;;
+  # *Theme*) theme_menu ;;
   *Web*) web_search_menu ;;
-  *Calc*) notify-send $(echo "$(fuzzel --dmenu --prompt-only="Calc: ")" | bc -l) ;;
+  *Calculator*) notify-send $(echo "$(fuzzel --dmenu --prompt-only="Calc: ")" | bc -l) ;;
   esac
 }
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-options="  Shutdown\n󰒲  Suspend\n   Restart\n󰌾   Lock\n   Logout\n󰤄   Hibernate\n   Cancel"
+options="  Shutdown\n󰒲  Suspend\n  Restart\n󰌾  Lock\n  Logout\n󰤄  Hibernate\n  Cancel"
 rofi_command="fuzzel --dmenu -w 11 --minimal-lines -a top-right --hide-prompt"
 case "$(echo -e "$options" | $rofi_command)" in
 *Shutdown*) exec systemctl poweroff ;;
