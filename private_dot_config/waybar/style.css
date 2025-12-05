@@ -1,27 +1,5 @@
 /* GTK variable reference https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss */
-@import url("style/audio.css");
-@import url("style/backlight.css");
-@import url("style/battery.css");
-@import url("style/clock.css");
 @import url("style/colors.css");
-@import url("style/gamemode.css");
-@import url("style/idle.css");
-@import url("style/memory.css");
-@import url("style/menu.css");
-@import url("style/mpris.css");
-@import url("style/needrestart.css");
-@import url("style/network.css");
-@import url("style/notification.css");
-@import url("style/privacy.css");
-@import url("style/power.css");
-@import url("style/power_profile.css");
-@import url("style/temp.css");
-@import url("style/tooltip.css");
-@import url("style/tray.css");
-@import url("style/updates.css");
-@import url("style/window.css");
-@import url("style/workspaces.css");
-@import url("style/wm_menu.css");
 
 /* General Bar Styling */
 * {
@@ -29,16 +7,12 @@
     border-radius: 0px;
     font-family: NotoSans Nerd Font,Noto Sans;
     font-size: 16px;
-    min-height: 0;
+    padding: 0;
+    margin: 0;
 }
 
-*:hover {
-  color: alpha(@foreground, 0.50);
-}
-
-window#waybar>box {
-  padding: 0px 0px;
-}
+/* window#waybar>box { */
+/* } */
 
 #waybar {
   background: none
@@ -46,27 +20,88 @@ window#waybar>box {
 
 #waybar.bar {
   background: alpha(@background, 1.85);
+  padding: 4px 0px;
 }
 
-.module{
-/* *.module { */
-  /* Swap background when waybar.bar background alpha value is set to 0 */
+#batteries {
   background: none;
-  /* background: @background; */
+  border-radius: 6px;
+}
+
+.module {
+  color: @on_surface;
+  background: none;
   border-radius: 6px;
   animation-name: static;
-  margin: 0px 8px;
 }
 
-.modules-left,
-.modules-right,
-.modules-center {
-  border-radius: 6px;
-  /* Uncomment margin-top and padding when background alpha value is set to 0 */
+.module.activated {
+  color: @primary;
+}
+
+tooltip * {
+  font-family: NotoSans Nerd Font M,Noto Sans Mono;
+  font-size: 14px;
   background: none;
-  /* background: @background; */
-   /* margin-top: 4px;  */
-  padding: 0px;
+  background-color: transparent;
+  border: none;
+  padding: 2px;
+  border-radius: 8px;
+  color: @on_surface;
+}
+
+tooltip {
+  background-color: @surface_container;
+  border: 2px solid @surface_container_highest;
+  border-radius: 8px;
+}
+
+/* menu { */
+/*   color: @on_surface; */
+/*   background: @surface; */
+/*   border-radius: 6px */
+/* } */
+/**/
+/* menuitem { */
+/*   border-radius: 6px */
+/* } */
+/**/
+/**/
+
+#privacy,
+#custom-dunst-notification.alert,
+#custom-needrestart {
+  color: @error;
+}
+
+#custom-wm_menu,
+#clock,
+#custom-dunst-notification,
+#custom-weather,
+#memory,
+#custom-arch_updates,
+#custom-aur_updates,
+#custom-flatpak_updates,
+#custom-updates,
+#custom-needrestart,
+#privacy,
+#gamemode,
+#workspaces,
+#mpris,
+#tray,
+#custom-vpn,
+#idle_inhibitor,
+#system,
+#custom-power {
+  border: 1px solid @surface_container_highest;
+  border-radius: 6px;
+  background: @surface_container;
+  /* vertical */
+  /* padding: 0px 8px; */
+  /* margin: 6px 4px; */
+  /* horizontal */
+  padding: 4px 2px;
+  margin: 4px 6px;
 }
 
 .modules-left {
@@ -75,3 +110,14 @@ window#waybar>box {
 .modules-right {
   margin-right: 4px;
 }
+
+*:hover {
+  color: alpha(@on_surface, 0.50);
+}
+
+@import url("style/power.css");
+@import url("style/battery.css");
+@import url("style/tray.css");
+@import url("style/workspaces.css");
+@import url("style/wm_menu.css");
+@import url("style/system_group.css");

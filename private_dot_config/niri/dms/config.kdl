@@ -1,0 +1,48 @@
+spawn-at-startup "dms" "run"
+
+include "colors.kdl"
+
+// Put wallpaper in backdrop and make overview transparent for consistent look
+layer-rule {
+  match namespace="^quickshell$"
+  // match namespace="dms:blurwallpaper"
+
+  place-within-backdrop true
+  // opacity 0.95
+}
+
+binds {
+  Alt+Space hotkey-overlay-title="Application Launcher" {
+    spawn "dms" "ipc" "call" "spotlight" "toggle";
+  }
+  Ctrl+Shift+Escape hotkey-overlay-title="Task Manager" {
+    spawn "dms" "ipc" "call" "processlist" "toggle";
+  }
+  Ctrl+Shift+L hotkey-overlay-title="Lock Screen" {
+    spawn "dms" "ipc" "call" "lock" "lock";
+  }
+  Mod+X hotkey-overlay-title="Power Menu" {
+    spawn "dms" "ipc" "call" "powermenu" "toggle";
+  }
+  XF86AudioRaiseVolume allow-when-locked=true {
+    spawn "dms" "ipc" "call" "audio" "increment" "3";
+  }
+  XF86AudioLowerVolume allow-when-locked=true {
+    spawn "dms" "ipc" "call" "audio" "decrement" "3";
+  }
+  XF86AudioMute allow-when-locked=true {
+    spawn "dms" "ipc" "call" "audio" "mute";
+  }
+  XF86AudioMicMute allow-when-locked=true {
+    spawn "dms" "ipc" "call" "audio" "micmute";
+  }
+  XF86MonBrightnessUp allow-when-locked=true {
+    spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
+  }
+  // You can override the default device for e.g. keyboards by adding the device name to the last param
+  XF86MonBrightnessDown allow-when-locked=true {
+    spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
+  }
+
+  // Mod+M { spawn-sh "niri msg action maximize-column; dms ipc call bar toggle"; }
+}

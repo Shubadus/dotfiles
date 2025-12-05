@@ -1,9 +1,37 @@
 layout {
-  border {
-    active-color "#ffc87f"
-    inactive-color "#505050"
+    background-color "transparent"
 
-    // Color of the border around windows that request your attention.
-    urgent-color "#9b0000"
+    focus-ring {
+        active-color   "#a4c9fe"
+        inactive-color "#8d9199"
+        urgent-color   "#ffb4ab"
+    }
+
+    border {
+        active-color   "#a4c9fe"
+        inactive-color "#32353a"
+        urgent-color   "#ffb4ab"
+    }
+
+    shadow {
+        color "#00000070"
+    }
+
+    tab-indicator {
+        active-color   "#a4c9fe"
+        inactive-color "#00315c"
+        urgent-color   "#ffb4ab"
+    }
+
+    insert-hint {
+        color "#a4c9fe80"
+    }
+}
+
+overview {
+  workspace-shadow {
+    color "#bcc7db"
   }
 }
+
+

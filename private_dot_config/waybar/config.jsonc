@@ -7,27 +7,31 @@
       "$HOME/.config/waybar/items/hyprland.jsonc",
       "$HOME/.config/waybar/items/memory.jsonc",
       "$HOME/.config/waybar/items/mpris.jsonc",
-      "$HOME/.config/waybar/items/needrestart.jsonc",
       "$HOME/.config/waybar/items/network.jsonc",
       "$HOME/.config/waybar/items/niri.jsonc",
       "$HOME/.config/waybar/items/notification.jsonc",
-      "$HOME/.config/waybar/items/power_profiles.jsonc",
       "$HOME/.config/waybar/items/updates.jsonc",
       "$HOME/.config/waybar/items/weather.jsonc",
+      "$HOME/.config/waybar/items/vpn.jsonc",
+      "$HOME/.config/waybar/items/system_group.jsonc"
     ],
     "name": "bar",
     "layer": "top", // Waybar at top layer
+    "position": "left",
     "modules-left": [
       "custom/wm_menu",
       "clock",
       "custom/dunst-notification",
       "custom/weather",
       "memory",
-      "niri/window",
-      "privacy",
-      "custom/arch_updates",
-      "custom/flatpak_updates",
+      // "niri/window",
+      // "wlr/taskbar",
+      // "custom/arch_updates",
+      // "custom/aur_updates",
+      // "custom/flatpak_updates",
+      "custom/updates",
       "custom/needrestart",
+      "privacy",
       "gamemode"
     ],
     "modules-center": [
@@ -38,15 +42,24 @@
       "mpris",
       "tray",
       "idle_inhibitor",
-      "group/audio",
-      "network",
-      "power-profiles-daemon",
-      "group/batteries",
+      "custom/vpn",
+      // "group/audio",
+      // "network",
+      // "group/batteries",
+      "group/system",
       "custom/power"
     ],
     "custom/power": {
       "format": "",
       "on-click": "~/.local/bin/scripts/window_manager/powermenu.sh",
+      // "menu": "on-click",
+      // "menu-file": "~/.config/waybar/items/power_menu.xml",
+      // "menu-actions": {
+      //   "shutdown": "shutdown",
+      //   "reboot": "reboot",
+      //   "suspend": "systemctl suspend",
+      //   "hibernate": "systemctl hibernate",
+      // },
       "tooltip-format": "Exit the session"
     },
     "custom/wm_menu": {
@@ -59,14 +72,14 @@
       "tooltip-format-activated": "Blocking sleep",
       "tooltip-format-deactivated": "Allowing sleep",
       "format-icons": {
-        "activated": "󰅶",
-        "deactivated": "󰅶"
+        "activated": "󰒳",
+        "deactivated": "󰒲"
       }
     },
     "tray": {
       "icon-size": 16,
       "reverse-direction": true,
-      "spacing": 12
+      "spacing": 6
     },
     "backlight": {
       // "device": "acpi_video1",
@@ -81,8 +94,8 @@
       ]
     },
     "privacy": {
-      // "icon-spacing": 2,
-      "icon-size": 18,
+      "icon-spacing": 2,
+      "icon-size": 16,
       "transition-duration": 250,
       "hide-empty-text": true,
       "modules": [

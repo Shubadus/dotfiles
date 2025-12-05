@@ -1,0 +1,39 @@
+spawn-at-startup "qs" "-c" "noctalia-shell"
+
+layer-rule {
+  match namespace="^quickshell-overview$"
+  place-within-backdrop true
+  // opacity 0.95
+}
+
+binds {
+  Alt+Space hotkey-overlay-title="Application Launcher" {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"
+  }
+  Ctrl+Shift+L hotkey-overlay-title="Lock Screen" {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"
+  }
+  Mod+X hotkey-overlay-title="Power Menu" {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"
+  }
+  XF86AudioRaiseVolume allow-when-locked=true {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"
+  }
+  XF86AudioLowerVolume allow-when-locked=true {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"
+  }
+  XF86AudioMute allow-when-locked=true {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"
+  }
+  XF86AudioMicMute allow-when-locked=true {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteInput"
+  }
+  XF86MonBrightnessUp allow-when-locked=true {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"
+  }
+  // You can override the default device for e.g. keyboards by adding the device name to the last param
+  XF86MonBrightnessDown allow-when-locked=true {
+    spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"
+  }
+}
+

@@ -16,6 +16,15 @@ window-rule {
   open-on-workspace "work"
 }
 
+window-rule {
+  match title="^Salesforce.*$"
+  default-column-width { proportion 0.6667; }
+}
+window-rule {
+  match title="^Genesys.*$"
+  default-column-width { proportion 0.3333; }
+}
+
 workspace "remote"
 window-rule {
   match app-id="RemoteDesktopManager"
@@ -35,6 +44,7 @@ workspace "games"
 window-rule {
   match app-id="^steam$"
   match app-id="^net.lutris.Lutris$"
+  match title="RuneLite"
 
   open-on-workspace "games"
 }
@@ -46,5 +56,26 @@ window-rule {
   match title="^Outlook.*$"
   match title="^*Microsoft Teams.*$"
   match app-id="^com.github.IsmaelMartinez.teams_for_linux$"
+  match app-id=r#"^vesktop$"#
+
+  block-out-from "screencast"
   open-on-workspace "comms"
+}
+window-rule {
+  match title="^*Microsoft Teams.*$"
+  match app-id="^com.github.IsmaelMartinez.teams_for_linux$"
+  default-column-width { proportion 0.67; }
+}
+window-rule {
+  match title="^Outlook.*$"
+  default-column-width { proportion 0.33; }
+}
+
+workspace "music" {
+  open-on-output "DP-3"
+}
+window-rule {
+  match app-id="^Youtube Music Desktop App$"
+  block-out-from "screencast"
+  open-on-workspace "music"
 }

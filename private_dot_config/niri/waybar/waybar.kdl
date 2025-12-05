@@ -1,0 +1,17 @@
+spawn-at-startup "waybar" // &> ~/.local/share/waybar.log"
+spawn-at-startup "hypridle"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "dunst"
+spawn-at-startup "~/.local/bin/scripts/window_manager/apply_gtk_theme.sh"
+
+binds {
+    Alt+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Ctrl+Shift+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "~/.local/bin/scripts/window_manager/volume.py" "-v" "up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "~/.local/bin/scripts/window_manager/volume.py" "-v" "down"; }
+    XF86AudioMute        allow-when-locked=true { spawn "~/.local/bin/scripts/window_manager/volume.py" "-v" "mute"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    Mod+X           { spawn "~/.local/bin/scripts/window_manager/powermenu.sh"; }
+}
