@@ -3,10 +3,10 @@
     "enabled": true,
     "variants": [
       {
-        "icon": "",
+        "icon": "terminal",
         "displayText": "",
-        "displayCommand": "flatpak remote-ls --updates | wc -l",
-        "clickCommand": "$HOME/.local/bin/scripts/window_manager/updates.py -p flatpak -u -t 'alacritty --class float -e'",
+        "displayCommand": "flatpak remote-ls --apps | wc -l",
+        "clickCommand": "alacritty --class float -e bash -c 'flatpak update -y; read'",
         "middleClickCommand": "",
         "rightClickCommand": "",
         "updateInterval": 600,
@@ -18,7 +18,7 @@
       {
         "icon": "󰯅",
         "displayText": "",
-        "displayCommand": "~/.local/bin/scripts/strykervpn.sh -s",
+        "displayCommand": "[[ $(pgrep gpclient) ]] && echo \"On\" || echo \"Off\"",
         "clickCommand": "~/.local/bin/scripts/strykervpn.sh -t",
         "middleClickCommand": "",
         "rightClickCommand": "",
@@ -27,11 +27,24 @@
         "showText": true,
         "id": "variant_1760529599899",
         "name": "Stryker VPN"
+      },
+      {
+        "icon": "package",
+        "displayText": "",
+        "displayCommand": "checkupdates | wc -l",
+        "clickCommand": "alacritty --class float -e bash -c 'yay; read'",
+        "middleClickCommand": "",
+        "rightClickCommand": "",
+        "updateInterval": 600,
+        "showIcon": true,
+        "showText": true,
+        "id": "variant_1761269799484",
+        "name": "Arch Update"
       }
     ]
   },
   "dankBatteryAlerts": {
-    "enabled": false
+    "enabled": true
   },
   "powerUsagePlugin": {
     "enabled": true
@@ -50,5 +63,52 @@
   "calculator": {
     "enabled": true,
     "trigger": "="
+  },
+  "niriWindows": {
+    "enabled": true
+  },
+  "commandRunner": {
+    "enabled": true,
+    "terminal": "foot",
+    "history": [
+      "ranger",
+      "ls ~/.config",
+      "flatpak update",
+      "btop",
+      "yay",
+      "cmatrix",
+      "nwg-look",
+      "cmatric",
+      "flatpak update -y"
+    ]
+  },
+  "webSearch": {
+    "enabled": true,
+    "searchEngines": []
+  },
+  "wallpaperBing": {
+    "enabled": false
+  },
+  "wallpaperDiscovery": {
+    "enabled": true,
+    "api_unsplash": "Tez5IPN36th0lvTLn-vON546PNCFzUeaj3-OsJn53dM",
+    "downloadLocation": "~/Pictures/wallpapers",
+    "lastWallpaperUsed": "pexels",
+    "api_pexels": "PWh5f6Y8fM8js0Mwt1fWSQfBinYeuskIfriDyKeu8hPn1Yutwhshgxhc"
+  },
+  "alarmClock": {
+    "enabled": false
+  },
+  "linuxWallpaperEngine": {
+    "enabled": false,
+    "monitorScenes": {
+      "DP-1": "2447928310"
+    }
+  },
+  "dankPomodoroTimer": {
+    "enabled": true
+  },
+  "displaySettings": {
+    "enabled": true
   }
 }

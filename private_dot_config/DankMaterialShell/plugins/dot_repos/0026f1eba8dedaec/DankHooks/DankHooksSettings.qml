@@ -44,6 +44,14 @@ PluginSettings {
         }
 
         StringSetting {
+            settingKey: "monitorWallpaper"
+            label: "Per-Monitor Wallpapers Changed"
+            description: "Hook: onMonitorWallpapersChanged | Value: JSON object with all monitors (e.g., '{\"eDP-1\":\"/path1.jpg\",\"DP-2\":\"/path2.jpg\"}')"
+            placeholder: "/path/to/monitor-wallpaper-hook.sh"
+            defaultValue: ""
+        }
+
+        StringSetting {
             settingKey: "lightMode"
             label: "Light/Dark Mode Changed"
             description: "Hook: onLightModeChanged | Value: 'light' or 'dark'"
@@ -101,6 +109,46 @@ PluginSettings {
             label: "Power Adapter Changed"
             description: "Hook: onBatteryPluggedInChanged | Value: 'plugged-in' or 'on-battery'"
             placeholder: "/path/to/power-hook.sh"
+            defaultValue: ""
+        }
+
+        StringSetting {
+            settingKey: "hookPowerRequestLock"
+            label: "Lock Screen Event Triggered"
+            description: "Hook: onLockRequested | Value: empty"
+            placeholder: "/path/to/sessionlock-hook.sh"
+            defaultValue: ""
+        }
+
+        StringSetting {
+            settingKey: "hookPowerMonitorOff"
+            label: "Monitor Off Event Triggered"
+            description: "Hook: onRequestMonitorOff | Value: empty"
+            placeholder: "/path/to/monitoroff-hook.sh"
+            defaultValue: ""
+        }
+
+        StringSetting {
+            settingKey: "hookPowerMonitorOn"
+            label: "Monitor On Event Triggered"
+            description: "Hook: onRequestMonitorOn | Value: empty"
+            placeholder: "/path/to/monitoron-hook.sh"
+            defaultValue: ""
+        }
+
+        StringSetting {
+            settingKey: "hookPowerSuspend"
+            label: "Suspend Event Triggered"
+            description: "Hook: onRequestSuspend | Value: empty"
+            placeholder: "/path/to/suspend-hook.sh"
+            defaultValue: ""
+        }
+
+        StringSetting {
+            settingKey: "hookResumeFromSleep"
+            label: "Resume From Sleep Event Triggered"
+            description: "Hook: onResumeFromSleep | Value: empty"
+            placeholder: "/path/to/resumeFromSleep-hook.sh"
             defaultValue: ""
         }
 

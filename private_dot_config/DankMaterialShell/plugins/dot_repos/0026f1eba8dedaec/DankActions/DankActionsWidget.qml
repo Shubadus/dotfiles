@@ -256,7 +256,6 @@ PluginComponent {
                     color: Theme.surfaceText
                     anchors.horizontalCenter: parent.horizontalCenter
                     visible: root.showText && root.currentOutput
-                    rotation: 90
                 }
             }
         }
