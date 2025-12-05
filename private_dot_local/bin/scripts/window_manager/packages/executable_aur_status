@@ -1,0 +1,5 @@
+#!/bin/bash
+# INFO: Currently just checking if the AUR statusClass is Success for other scripts
+curl https://status.archlinux.org/api/getMonitorList/vmM5ruWEAB | jq '.data[] | select(.name=="AUR").statusClass'
+
+# vimft: bash

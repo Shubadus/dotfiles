@@ -18,11 +18,13 @@ def _print_waybar(alt: str = '', text: str = '', tooltip: str = '', class_text: 
     }))
 
 
-def get_history_count(dnd: bool = False):
+def get_history_count():
     dnd = bool(int(subprocess.run(['dunstctl', 'get-pause-level'], capture_output=True).stdout))
     message_count = int(subprocess.run(['dunstctl', 'count', 'history'], capture_output=True).stdout)
-    if dnd:
-        _print_waybar(tooltip=f'{message_count}', alt='dnd-none', class_text='dnd')
+    if dnd and message_count > 0:
+        _print_waybar(tooltip=f'{message_count} Notifications', alt='dnd-notification', class_text='alert')
+    elif dnd:
+        _print_waybar(tooltip=f'{message_count} Notifications', alt='dnd-none', class_text='dnd')
     elif message_count > 0:
         _print_waybar(text=f'{message_count}',tooltip=f'{message_count} Notifications', alt='notification', class_text='alert')
     else:
@@ -66,7 +68,7 @@ def display_notifications():
         print(longest_name)
         process.extend([
             '--width',
-            f'{longest_name - 10}',
+            f'50',
             '--hide-prompt'
         ])
     selection = subprocess.run(process, input="\n".join(summaries), capture_output=True, text=True).stdout

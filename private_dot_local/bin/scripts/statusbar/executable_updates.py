@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 import argcomplete
 import argparse
+import itertools
 import json
 import subprocess
+
+from typing import Optional
 
 
 class Ansi:
@@ -16,84 +19,96 @@ class Ansi:
 
 icons = {
     'pacman': '󰏕',
+    'aur': '󰏕',
     'flatpak': ''
 }
 
 
-def check_updates(package_manager: str) -> str | None:
+def output_result(update_count, update_body: str):
+        module = {}
+        if subprocess.run(('pgrep', 'hyprpanel'), capture_output=True).stdout.strip():
+            module.update({
+                'updates': f'{update_body}',
+                'count': f'{update_count}'
+            })
+        elif subprocess.run(('pgrep', 'waybar'), capture_output=True).stdout.strip():
+            module.update({
+                'text': f'{update_count}',
+                'tooltip': f'{update_body}',
+                'class': '',
+                'percentage': ''
+            })
+        else:
+            module = update_count
+        print(json.dumps(module))
+
+
+def check_updates(package_manager: str) -> list[str]:
     match package_manager:
         case 'dnf':
             # return subprocess.run(['checkupdates'], text=True, capture_output=True).stdout
-            return
+            return ['']
         case 'flatpak':
-            result = subprocess.run(['flatpak', 'remote-ls', '--updates', '--app'], text=True, capture_output=True).stdout.strip()
-            final_result = []
-            for update in result.split('\n'):
-                update_items = update.split('\t')
-                if len(update_items) < 3:
-                    return
-                final_result.append(': Version '.join([update_items[i] for i in (0, 2)]))
-
-            return '\n'.join(final_result)
+            result = subprocess.run(('flatpak', 'remote-ls', '--updates', '--app'), text=True, capture_output=True).stdout.strip()
+            return [x.split('\t')[0] for x in result.split('\n')]
         case 'pacman':
-            return subprocess.run(['checkupdates'], text=True, capture_output=True).stdout.strip()
+            result = subprocess.run(['checkupdates'], text=True, capture_output=True).stdout.strip()
+            return [x.split(' ')[0] for x in result.split('\n')]
+        case 'aur':
+            result = subprocess.run(['yay', '-Qua'], text=True, capture_output=True).stdout.strip()
+            return [x.split('')[0] for x in result.split('\n')]
+        case _:
+            return ['']
 
-
-def run_updates(package_manager: str, terminal: str) -> None:
-    process_args = terminal.split()
-    match package_manager:
-        case 'dnf':
-            return
-        case 'flatpak':
-            process_args.extend(['flatpak', 'update'])
-        case 'pacman':
-            process_args.extend(['yay'])
-    result = subprocess.run(process_args)
-    result.check_returncode()
-
-
-def send_notification(app_name: str, summary: str, message: str) -> None:
-    result = subprocess.run([
-        'notify-send',
-        '-a', app_name,
-        '-c', 'update',
-        '-u', 'normal',
-        summary,
-        message
-    ])
-    result.check_returncode()
 
 
 def main():
+    # NOTE: For some reason, this outputs nothing, needs investigated
+    arch_updates = []
+    flatpak_updates = []
+    final_updates = []
+    update_body = ""
+    update_count = 0
+    max_count = 10
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-p, --package_manager', dest='package_manager', choices=['flatpak', 'pacman'], help="Which package manager to run this script against")
-    parser.add_argument('-c, --check', dest='check', action='store_true', help="Check only for updates and exit")
-    parser.add_argument('-u, --update', dest='update', action='store_true', help="Run updates via your terminal of choice and exit")
-    parser.add_argument('-t, --terminal', dest='terminal', type=str, nargs='?', help="Specify the command for the terminal you want to run this script")
+    flatpak_updates= check_updates(package_manager='flatpak')
+    flatpak_updates_count=len(flatpak_updates)
 
-    argcomplete.autocomplete(parser)
+    arch_updates = check_updates(package_manager='pacman')
+    arch_updates_count=len(arch_updates)
 
-    args = parser.parse_args()
-    if args.check:
-        updates = check_updates(package_manager=args.package_manager)
-        if updates:
-            update_count = len(updates.split('\n'))
-            # send_notification(args.package_manager.capitalize(), summary=f'{args.package_manager.capitalize()} Updates', message=f'{update_count} Updates available') 
-            # updates = ['\n\t']
-            waybar_module = {
-                'text': f'{icons.get(args.package_manager)} {update_count}',
-                'tooltip': f'{updates}',
-                'class': '',
-                'percentage': ''
-            }
-            print(json.dumps(waybar_module))
-    if args.update:
-        if not args.terminal:
-            print(f'{Ansi.RED}error{Ansi.RESET}: cannot run updates without a {Ansi.UNDERLINE}{Ansi.BOLD}terminal{Ansi.RESET} specified')
-            parser.print_help()
-        run_updates(package_manager=args.package_manager, terminal=args.terminal)
+    # TODO: There is a bug in this logic where an empty return from the check updates function
+    # is counted towards the value and gives a false positive on updates being available.
+    # Right now, it's waiting until there's at least 2 package updates before anything will show.
+    if flatpak_updates_count > 1 or arch_updates_count > 1:
+        update_count += arch_updates_count + flatpak_updates_count
+        if flatpak_updates_count > max_count:
+            flatpak_updates = flatpak_updates[:max_count+1]
+            flatpak_updates.append(f'+ {flatpak_updates_count-max_count} more...')
+        if arch_updates_count > max_count:
+            arch_updates = arch_updates[:max_count+1]
+            arch_updates.append(f'+ {arch_updates_count-max_count} more...')
 
+        package_updates = list(itertools.zip_longest(flatpak_updates, arch_updates, fillvalue="  "))
+
+        updates = [
+            ['Flatpak Updates', 'Pacman Updates'],
+            ['---------------', '--------------'],
+        ]
+        for update in package_updates:
+            updates.append(list(update))
+
+        col_widths = [max(len(str(item)) for item in col) for col in zip(*updates)]
+
+        for row in updates:
+            final_updates.append(f" | ".join(str(item).ljust(col_widths[i]) for i, item in enumerate(row)))
+        update_body = '\n'.join(final_updates)
+
+    else:
+        update_body = ""
+        update_count = ""
+
+    output_result(update_count, update_body)
 
 
 if __name__ == '__main__':

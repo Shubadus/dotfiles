@@ -10,10 +10,6 @@ dmenu() {
     --namespace=$namespace
 }
 
-browser() {
-  xdg-open $@
-}
-
 terminal() {
   if [[ $(whereis foot) ]]; then
     exec foot --app-id=float -e bash -c "$@"
@@ -24,13 +20,35 @@ terminal() {
   fi
 }
 
-packages_menu() {
-  case $(dmenu "Pacman - List\nPacman - Update\nFlatpak - List\nFlatpak - Update\nFlatpak - Repos") in
-  *Pacman*List*) terminal "yay -Qe | less" ;;
-  *Pacman*Update*) terminal "yay; read -p 'Press Enter to Close'" ;;
-  *Flatpak*Update*) terminal "flatpak update; read -p 'Press Enter to Close'" ;;
-  *Flatpak*List*) terminal "flatpak list --app --columns=name,version | less -R" ;; #; read -p 'Press Enter to Close'" ;;
-  *Flatpak*Repos*) terminal "flatpak remotes --columns=title,url | less -R" ;;
+arch_packages() {
+  case $(dmenu "Pacman Add\nAUR Add\nRemove\n") in
+  *Pacman*Add*) terminal ~/.local/bin/scripts/window_manager/packages/pacman_install ;;
+  *AUR*Add*) terminal ~/.local/bin/scripts/window_manager/packages/aur_install ;;
+  *Remove*) terminal ~/.local/bin/scripts/window_manager/packages/pacman_remove ;;
+  *) packages ;;
+  esac
+}
+
+flatpak_packages() {
+  case $(dmenu "Add\nRemove\n") in
+  *Pacman*Add*) terminal ~/.local/bin/scripts/window_manager/packages/pacman_install ;;
+  *AUR*Add*) terminal ~/.local/bin/scripts/window_manager/packages/aur_install ;;
+  *Remove*) terminal ~/.local/bin/scripts/window_manager/packages/pacman_remove ;;
+  *) packages ;;
+  esac
+}
+
+packages() {
+  # case $(dmenu "󰣇  Pacman - List\n󰣇  Pacman - Update\n  Flatpak - List\n  Flatpak - Update\n  Flatpak - Repos") in
+  case $(dmenu "󰣇  Arch\n  Flatpak\n󰣇  Update\n") in
+  *Arch*) arch_packages ;;
+  *Flatpak*) flatpak_packages ;;
+  *Update*)
+    result=$(terminal ~/.local/bin/scripts/update.sh)
+    if [[ "$?" -ne 0 ]]; then
+      packages
+    fi
+    ;;
   *) menu ;;
   esac
 }
@@ -43,37 +61,77 @@ power_menu() {
   fi
 }
 
-theme_menu() {
-  case $(dmenu "Set Theme\nSet Background") in
+web_search_menu() {
+  result="$(dmenu "󰗃  Youtube\n󰗵  Google Maps")"
+  case "$result" in
+  *Youtube*)
+    result=$(fuzzel --dmenu --prompt-only="󰗃 " | sed "s/ /+/")
+    if [[ "$result" ]]; then
+      xdg-open "https://youtube.com/results?search_query=$result"
+    else
+      web_search_menu
+    fi
+    ;;
+  *Maps*)
+    result=$(fuzzel --dmenu --prompt-only="󰗵 " | sed "s/,/%2C/")
+    if [[ "$result" ]]; then
+      xdg-open "https://google.com/maps/dir/?api=1&destination=$result"
+    else
+      web_search_menu
+    fi
+    ;;
+  "") util_menu ;;
+  *) xdg-open "https://google.com/search?q=$(echo "$result" | sed "s/ /+/g")" ;;
+  esac
+}
+niri_menu() {
+  case $(dmenu " Focus Window\n List Windows\n󰍺 List Monitors") in
+  *Focus*Window*)
+    result=$(~/.local/bin/scripts/window_manager/niri/niri_windows.py)
+    if [[ "$?" -ne 0 ]]; then
+      niri_menu
+    fi
+    ;;
+  *List*Windows*)
+    terminal "niri msg windows | less"
+    ;;
+  *List*Monitors*)
+    terminal "niri msg outputs | less"
+    ;;
   *) menu ;;
   esac
 }
 
-web_search_menu() {
-  result="$(dmenu "Youtube\nMaps")"
-  case "$result" in
-  *Youtube*)
-    result=$(fuzzel --dmenu --prompt-only="YT Videos: " | sed "s/ /+/")
-    if [[ "$result" ]]; then
-      xdg-open "https://youtube.com/results?search_query=$result"
+util_menu() {
+  prompt="󰃬  Calculator\n󰜏  Web Search"
+  result=$(dmenu "$prompt")
+  case $result in
+  *Calculator*)
+    result=$(notify-send $(echo "$(fuzzel --dmenu --prompt-only="Calc: ")" | bc -l))
+    if [[ "$?" -ne 0 ]]; then
+      util_menu
     fi
     ;;
-  *Maps*)
-    result=$(fuzzel --dmenu --prompt-only="Destination: " | sed "s/,/%2C/")
-    if [[ "$result" ]]; then
-      xdg-open "https://google.com/maps/dir/?api=1&destination=$result"
+  *Web*Search*)
+    web_search_menu
+    if [[ "$?" -ne 0 ]]; then
+      util_menu
     fi
     ;;
-  "") menu ;;
-  *) xdg-open "https://google.com/search?q=$(echo "$result" | sed "s/ /+/g")" ;;
+  *) menu ;;
   esac
 }
 
 menu() {
-  case $(dmenu "Calculator\nPackages\nSet Theme\nSet Background\nWeb Search") in
-  *Packages*) packages_menu ;;
-  *Theme*)
-    result=$(exec $HOME/.local/bin/scripts/window_manager/set-theme.sh)
+  if [[ "$XDG_CURRENT_DESKTOP" -eq "niri" ]]; then
+    prompt="󰏓  Packages\n  Niri\n󰸉  Set Background\n  Utils"
+  elif [[ "$XDG_CURRENT_DESKTOP" -eq "hyprland" ]]; then
+    prompt="󰏓  Packages\n  Hyprland\n󰸉  Set Background\n  Utils"
+  fi
+  result=$(dmenu "$prompt")
+  case $result in
+  *Packages*)
+    result=$(packages)
     if [[ "$?" -ne 0 ]]; then
       menu
     fi
@@ -84,9 +142,31 @@ menu() {
       menu
     fi
     ;;
-  # *Theme*) theme_menu ;;
-  *Web*) web_search_menu ;;
-  *Calculator*) notify-send $(echo "$(fuzzel --dmenu --prompt-only="Calc: ")" | bc -l) ;;
+  *Settings*)
+    result=$(settings_menu)
+    if [[ "$?" -ne 0 ]]; then
+      menu
+    fi
+    ;;
+  *Niri*) niri_menu ;;
+  *Hyprland*)
+    result=$(~/.local/bin/scripts/window_manager/niri/niri_windows.py)
+    if [[ "$?" -ne 0 ]]; then
+      menu
+    fi
+    ;;
+  *Utils*) util_menu ;;
+  *=*)
+    calc=${result/"="/""}
+    calc_result=$(echo "$calc" | bc -l)
+    wl-copy "$calc_result"
+    notify-send -a "Menu" "Calculator Result: $calc_result" "Saved to clipboard."
+    ;;
+  !*)
+    web_search=${result/"!"/""}
+    web_search=${web_search/" "/"+"}
+    xdg-open "https://google.com/search?q=$web_search"
+    ;;
   esac
 }
 

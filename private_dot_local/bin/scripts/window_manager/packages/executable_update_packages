@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Updating Flatpak packages"
+flatpak update -y
+
+echo "Updating Arch packages"
+sudo pacman -Syu --noconfirm
+
+if [[ "$(./aur_status)" =~ "success" ]]; then
+  echo "Updating AUR packages"
+  yay -Syu
+else
+  echo "AUR is down, skipping AUR updates"
+fi
+
+# vimft: bash
