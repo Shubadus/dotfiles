@@ -1,0 +1,18 @@
+{
+  "custom/weather": {
+    "exec": "~/.local/bin/scripts/window_manager/weather.py",
+    "return-type": "json",
+    "format": "{icon} <span size='small' rise='2pt'>{text}</span>",
+    "tooltip": true,
+    "interval": 3600,
+    "on-click": "~/.local/bin/scripts/window_manager/weather.py -F",
+    "format-icons": {
+      "sunny": "<span foreground='{{ color3 }}'>󰖙</span>",
+      "cloudy": "<span foreground='{{ color6 }}'>󰖐</span>",
+      "clear": "<span foreground='{{ color4 }}'>󰖙</span>",
+      "rain": "<span foreground='{{ color4 }}'>󰖖</span>",
+      "windy": "<span foreground='{{ color7 }}'>󰖝</span>",
+      "mist": "<span foreground='{{ color7 }}'>󰼰</span>"
+    }
+  }
+}

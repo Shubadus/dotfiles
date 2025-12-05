@@ -1,0 +1,25 @@
+{% set media = color2 -%}
+{% set media_album = color6 -%}
+{% set media_artist = color5 -%}
+{% set media_song = color2 -%}
+{
+  "mpris": {
+    "format-playing": "{player_icon} {title}",
+    "format-paused": "{player_icon} {title}",
+    "format-stopped": "{player_icon} No Media",
+    "title-len": 25,
+    //"tooltip-format": "<span foreground='{{ color2 }}'>{title}</span>\n<span foreground='{{ color6 }}'>{album}</span>\n<span foreground='{{ color5 }}'>{artist}</span>\n<span foreground='{{ color2 }}'>{status_icon}</span>{position}/{length}",
+    "tooltip-format": "{title}\n{album}\n{artist}\n{status_icon}\t{position}/{length}",
+    "player-icons": {
+      "mpv": "",
+      "brave": "󰖟",
+      "chromium": "󰖟",
+      "plasma-browser-integration": "",
+      "spotify": ""
+    },
+    "status-icons": {
+      "paused": "",
+      "playing": ""
+    }
+  }
+}

@@ -9,7 +9,7 @@ layout {
 
     border {
         active-color   "{{colors.primary.default.hex}}"
-        inactive-color "{{colors.outline.default.hex}}"
+        inactive-color "{{colors.surface_container_highest.default.hex}}"
         urgent-color   "{{colors.error.default.hex}}"
     }
 
@@ -19,7 +19,7 @@ layout {
 
     tab-indicator {
         active-color   "{{colors.primary.default.hex}}"
-        inactive-color "{{colors.outline.default.hex}}"
+        inactive-color "{{colors.on_primary.default.hex}}"
         urgent-color   "{{colors.error.default.hex}}"
     }
 
@@ -27,3 +27,11 @@ layout {
         color "{{colors.primary.default.hex}}80"
     }
 }
+
+overview {
+  workspace-shadow {
+    color "{{colors.secondary.default.hex}}"
+  }
+}
+
+

@@ -1,0 +1,13 @@
+{% set ram = color1 | blend(color3) -%}
+{
+  "memory": {
+    "interval": 30,
+    "format": " {}%",
+    "max-length": 10,
+    "on-click": "pypr toggle sysmonitor",
+    "states": {
+      "warning": 70,
+      "critical": 85
+    }
+  }
+}

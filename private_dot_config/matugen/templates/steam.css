@@ -13,23 +13,23 @@
   --adw-accent-rgb: {{ colors.primary.default.red }},{{ colors.primary.default.green }},{{ colors.primary.default.blue }};
 
 	/* destructive-action buttons */
-	--adw-destructive-bg-rgb: 192, 28, 40;
-	--adw-destructive-fg-rgb: {{ colors.on_surface.default.red }},{{ colors.on_surface.default.green }},{{ colors.on_surface.default.blue}};
-	--adw-destructive-rgb: 255, 123, 99;
+	--adw-destructive-bg-rgb: {{ colors.error.default.red }},{{ colors.error.default.green }},{{ colors.error.default.blue}};
+	--adw-destructive-fg-rgb: {{ colors.on_error.default.red }},{{ colors.on_error.default.green }},{{ colors.on_error.default.blue}};
+	--adw-destructive-rgb: {{ colors.error.default.red }},{{ colors.error.default.green }},{{ colors.error.default.blue}};
 
 	/* Levelbars, entries, labels and infobars. These don't need text colors */
-	--adw-success-bg-rgb: 38, 162, 105;
-	--adw-success-fg-rgb: {{ colors.on_surface.default.red }},{{ colors.on_surface.default.green }},{{ colors.on_surface.default.blue}};
-	--adw-success-rgb: 143, 240, 164;
+	--adw-success-bg-rgb: {{ colors.tertiary.default.red }},{{ colors.tertiary.default.green }},{{ colors.tertiary.default.blue}};
+	--adw-success-fg-rgb: {{ colors.on_tertiary.default.red }},{{ colors.on_tertiary.default.green }},{{ colors.on_tertiary.default.blue}};
+	--adw-success-rgb: {{ colors.tertiary.default.red }},{{ colors.tertiary.default.green }},{{ colors.tertiary.default.blue}};
 
-	--adw-warning-bg-rgb: 205, 147, 9;
-	--adw-warning-fg-rgb: {{ colors.on_surface.default.red }},{{ colors.on_surface.default.green }},{{ colors.on_surface.default.blue}};
+	--adw-warning-bg-rgb: {{ colors.secondary.default.red }},{{ colors.secondary.default.green }},{{ colors.secondary.default.blue}};
+	--adw-warning-fg-rgb: {{ colors.on_secondary.default.red }},{{ colors.on_secondary.default.green }},{{ colors.on_secondary.default.blue}};
 	--adw-warning-fg-a: 0.8;
-	--adw-warning-rgb: 248, 228, 92;
+	--adw-warning-rgb: {{ colors.secondary.default.red }},{{ colors.secondary.default.green }},{{ colors.secondary.default.blue}};
 
 	--adw-error-bg-rgb: {{ colors.error.default.red }},{{ colors.error.default.green }},{{ colors.error.default.blue}};
 	--adw-error-fg-rgb: {{ colors.on_error.default.red }},{{ colors.on_error.default.green }},{{ colors.on_error.default.blue}};
-	--adw-error-rgb: 255, 123, 99;
+	--adw-error-rgb: {{ colors.error.default.red }},{{ colors.error.default.green }},{{ colors.error.default.blue}};
 
 	/* Window */
 	--adw-window-bg-rgb: {{ colors.background.default.red }},{{ colors.background.default.green }},{{ colors.background.default.blue }};
@@ -42,9 +42,9 @@
 	/* Header bar, search bar, tab bar */
 	--adw-headerbar-bg-rgb: {{ colors.background.default.red }},{{ colors.background.default.green }},{{ colors.background.default.blue }};
 	--adw-headerbar-fg-rgb: {{ colors.on_surface.default.red }},{{ colors.on_surface.default.green }},{{ colors.on_surface.default.blue}};
-	--adw-headerbar-border-rgb: 255, 255, 255;
+	--adw-headerbar-border-rgb: {{ colors.outline.default.red }},{{ colors.outline.default.green }},{{ colors.outline.default.blue }};
 	--adw-headerbar-backdrop-rgb: var(--adw-window-bg-rgb);
-	--adw-headerbar-shade-rgb: 0, 0, 6;
+	--adw-headerbar-shade-rgb: {{ colors.shadow.default.red }},{{ colors.shadow.default.green }},{{ colors.shadow.default.blue }};
 	--adw-headerbar-shade-a: 0.36;
 	--adw-headerbar-darker-shade-rgb: {{ colors.shadow.default.red }},{{ colors.shadow.default.green }},{{ colors.shadow.default.blue }};
 	--adw-headerbar-darker-shade-a: 0.9;
@@ -56,9 +56,9 @@
 	--adw-sidebar-shade-rgb: {{ colors.shadow.default.red }},{{ colors.shadow.default.green }},{{ colors.shadow.default.blue }};
 	--adw-sidebar-shade-a: 0.25;
 
-	--adw-secondary-sidebar-bg-rgb: {{ colors.background.default.red }},{{ colors.background.default.green }},{{ colors.background.default.blue }};
-	--adw-secondary-sidebar-fg-rgb: {{ colors.on_surface.default.red }},{{ colors.on_surface.default.green }},{{ colors.on_surface.default.blue}};
-	--adw-secondary-sidebar-backdrop-rgb: 37, 37, 41;
+	--adw-secondary-sidebar-bg-rgb: {{ colors.secondary.default.red }},{{ colors.secondary.default.green }},{{ colors.secondary.default.blue }};
+	--adw-secondary-sidebar-fg-rgb: {{ colors.on_secondary.default.red }},{{ colors.on_secondary.default.green }},{{ colors.on_secondary.default.blue}};
+	--adw-secondary-sidebar-backdrop-rgb: {{ colors.secondary.default.red }},{{ colors.secondary.default.green }},{{ colors.secondary.default.blue }};
 	--adw-secondary-sidebar-shade-rgb: {{ colors.shadow.default.red }},{{ colors.shadow.default.green }},{{ colors.shadow.default.blue }};
 	--adw-secondary-sidebar-shade-a: 0.25;
 
@@ -93,7 +93,36 @@
 	--adw-shade-a: 0.25;
 
 	/* Skin-specific */
-	--adw-user-offline-rgb: 128, 128, 128;
-	--adw-user-online-rgb: 120, 174, 237;
-	--adw-user-ingame-rgb: 143, 240, 164;
+	--adw-user-offline-rgb: {{ colors.outline.default.red }},{{ colors.outline.default.green }},{{ colors.outline.default.blue }};
+	--adw-user-online-rgb: {{ colors.primary.default.red }},{{ colors.primary.default.green }},{{ colors.primary.default.blue }};
+	--adw-user-ingame-rgb: {{ colors.tertiary.default.red }},{{ colors.tertiary.default.green }},{{ colors.tertiary.default.blue}};
+
+  /* buttons */
+  --adw-focus-border: inset 0 0 0 2px rgba(var(--adw-accent-rgb), var(--adw-focus-border-opacity));
+	--adw-focus-border-thin: inset 0 0 0 1px rgba(var(--adw-accent-rgb), var(--adw-focus-border-opacity));
+	--adw-focus-border-outlined: inset 0 0 0 2px rgba(var(--adw-accent-rgb), var(--adw-focus-border-opacity)), inset 0 0 0 3px rgb(var(--adw-window-bg-rgb));
+
+	--adw-button-transition: box-shadow 200ms var(--adw-base-transition-curve), background 200ms var(--adw-base-transition-curve), color 200ms var(--adw-base-transition-curve);
+
+	--adw-button-suggested-fg: rgb(var(--adw-accent-fg-rgb));
+	--adw-button-suggested-bg: linear-gradient(0deg, rgb(var(--adw-accent-bg-rgb)), rgb(var(--adw-accent-bg-rgb))) transparent;
+	--adw-button-suggested-overlay-hover: rgba(var(--adw-accent-fg-rgb), 0.1);
+	--adw-button-suggested-overlay-active: rgba(0, 0, 0, 0.2);
+
+	--adw-button-radius: 9px;
+	--adw-button-pill-radius: 9999px;
+
+	--adw-button-bg-opacity: 0.1;
+	--adw-button-bg-opacity-hover: 0.15;
+	--adw-button-bg-opacity-active: 0.3;
+	--adw-button-checked-bg-opacity: 0.3;
+	--adw-button-checked-bg-opacity-hover: 0.35;
+	--adw-button-checked-bg-opacity-active: 0.4;
+
+	--adw-button-osd-fg: rgba(255, 255, 255, 0.9);
+	--adw-button-osd-fg-hover: rgb(255, 255, 255);
+	--adw-button-osd-fg-active: rgb(255, 255, 255);
+	--adw-button-osd-bg: rgba(0, 0, 0, 0.8);
+	--adw-button-osd-bg-hover: rgba(38, 38, 38, 0.8);
+	--adw-button-osd-bg-active: rgba(64, 64, 64, 0.8);
 }

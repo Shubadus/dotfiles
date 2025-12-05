@@ -1,0 +1,29 @@
+{
+  "clock": {
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    // "format": "<span size='small' rise='2pt' >{:%H\n<span overline=\"single\">%M</span>}</span>",
+    "format": "<span size='small' rise='2pt' >{:%m\n%d<span overline=\"single\">\n</span><span color='{{ colors.primary.default.hex }}'>%H\n%M</span>}</span>",
+    // "format-alt": "<span size='small' rise='2pt' >{:%m\n<span overline=\"single\">%d</span>\n%H\n<span <span overline=\"single\">%M</span>}</span>",
+    "timezone": "America/Indiana/Indianapolis",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='{{ colors.secondary.default.hex }}'><b>{}</b></span>",
+        "days": "<span color='{{ colors.on_surface.default.hex }}'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='{{ colors.tertiary.default.hex }}'><b>{}</b></span>",
+        "today": "<span color='{{ colors.primary.default.hex }}'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  }
+}

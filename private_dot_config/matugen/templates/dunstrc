@@ -1,0 +1,63 @@
+[global]
+follow = keyboard
+width = (250, 500)
+height = (75, 200)
+origin = top-right
+offset = (4,4)
+scale = 0
+notification_limit=0
+gap_size = 4
+indicate_hidden = yes
+frame_width = 2
+corner_radius = 12
+padding = 2
+horizontal_padding = 8
+enable_posix_regex = true
+enable_recursive_icon_lookup = true
+font = NotoSans Mono, 14
+line_height = 0
+alignment = left
+stack_duplicates = true
+hide_duplicate_count = false
+icon_theme = Papirus
+show_indicators = true
+dmenu = fuzzel --dmenu -p dunst
+max_icon_size = 64
+markup = full
+#format = "<b>%a</b>\n%s\n%b"
+format = "<b>%s</b>\t%p\n%b"
+progress_bar = true
+progress_bar_height = 20
+progress_bar_corner_radius = 8
+progress_bar_frame_width = 2
+progress_bar_horizontal_alignment = right
+separator_height = 2
+ignore_dbusclose = false
+force_xwayland = false
+background = "{{colors.surface_container.default.hex}}"
+foreground = "{{colors.on_surface.default.hex}}"
+frame_color = "{{colors.surface_container_highest.default.hex}}"
+highlight = "{{colors.primary.default.hex}}"
+
+[experimental]
+per_monitor_dpi = false
+
+[urgency_low]
+timeout = 3
+
+[urgency_normal]
+timeout = 6
+
+[urgency_critical]
+timeout = 0
+frame_color = "{{colors.error.default.hex}}"
+highlight = "{{colors.error.default.hex}}"
+
+[ignore_volume]
+appname = "volume"
+override_pause_level = 70
+history_ignore=yes
+
+[kde_connect]
+appname = "KDE Connect"
+set_stack_tag = "kde"
