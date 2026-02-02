@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import qs.Common
 import qs.Services
 import qs.Widgets
@@ -13,7 +14,91 @@ PluginComponent {
     property int longBreakDuration: pluginData.longBreakDuration || 15
     property bool autoStartBreaks: pluginData.autoStartBreaks ?? false
     property bool autoStartPomodoros: pluginData.autoStartPomodoros ?? false
+    property bool autoSetDND: pluginData.autoSetDND ?? false
+    property var last7DaysData: []
+    property string currentDateKey: ""
 
+    onPluginServiceChanged: {
+        if (pluginService) {
+            currentDateKey = formatDateKey(new Date())
+            globalCompletedPomodoros.set(pluginService.loadPluginData("dankPomodoroTimer", "completedPomodoros-" + currentDateKey, 0))
+            loadLast7Days()
+        }
+    }
+
+    Timer {
+        id: dateCheckTimer
+        interval: 60000
+        repeat: true
+        running: true
+        onTriggered: {
+            const newDateKey = formatDateKey(new Date())
+            if (newDateKey !== root.currentDateKey) {
+                root.currentDateKey = newDateKey
+                if (pluginService) {
+                    globalCompletedPomodoros.set(pluginService.loadPluginData("dankPomodoroTimer", "completedPomodoros-" + newDateKey, 0))
+                    loadLast7Days()
+                }
+            }
+        }
+    }
+
+    function formatDateKey(date) {
+        const year = date.getFullYear()
+        const month = (date.getMonth() + 1).toString().padStart(2, '0')
+        const day = date.getDate().toString().padStart(2, '0')
+        return year + "-" + month + "-" + day
+    }
+
+    function loadLast7Days() {
+        if (!pluginService) return
+
+        let data = []
+        const today = new Date()
+        const todayKey = formatDateKey(today)
+
+        for (let i = 6; i >= 0; i--) {
+            const date = new Date(today)
+            date.setDate(today.getDate() - i)
+            const dateKey = formatDateKey(date)
+            
+            let count = 0
+            if (dateKey === todayKey) {
+                count = globalCompletedPomodoros.value
+            } else {
+                count = pluginService.loadPluginData("dankPomodoroTimer", "completedPomodoros-" + dateKey, 0)
+            }
+
+            data.push({
+                date: dateKey,
+                count: count,
+                dayLabel: i === 0 ? "Today" : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()]
+            })
+        }
+
+        last7DaysData = data
+        cleanupOldData()
+    }
+
+    function cleanupOldData() {
+        if (!pluginService) return
+
+        const today = new Date()
+        const cutoffDate = new Date(today)
+        cutoffDate.setDate(today.getDate() - 7)
+
+        for (let daysAgo = 8; daysAgo <= 30; daysAgo++) {
+            const date = new Date(today)
+            date.setDate(today.getDate() - daysAgo)
+            const dateKey = formatDateKey(date)
+            const key = "completedPomodoros-" + dateKey
+
+            const value = pluginService.loadPluginData("dankPomodoroTimer", key, null)
+            if (value !== null) {
+                pluginService.savePluginData("dankPomodoroTimer", key, undefined)
+            }
+        }
+    }
     onWorkDurationChanged: {
         if (globalTimerState.value === "work" && globalTotalSeconds.value > 0) {
             const newTotal = workDuration * 60
@@ -98,10 +183,18 @@ PluginComponent {
 
         if (globalTimerState.value === "work") {
             globalCompletedPomodoros.set(globalCompletedPomodoros.value + 1)
+            if (pluginService) {
+                const dateKey = formatDateKey(new Date())
+                pluginService.savePluginData("dankPomodoroTimer", "completedPomodoros-" + dateKey, globalCompletedPomodoros.value)
+                loadLast7Days()
+            }
             const isLongBreak = globalCompletedPomodoros.value % 4 === 0
 
             Quickshell.execDetached(["sh", "-c", "notify-send 'Pomodoro Complete' 'Time for a " + (isLongBreak ? "long" : "short") + " break!' -u normal"])
 
+            if (root.autoSetDND) {
+                SessionData.setDoNotDisturb(false)
+            }
             if (isLongBreak) {
                 root.startLongBreak(root.autoStartBreaks)
             } else {
@@ -119,11 +212,18 @@ PluginComponent {
         globalRemainingSeconds.set(globalTotalSeconds.value)
         if (autoStart) {
             globalTimerOwnerId.set(root.instanceId)
+
+            if (root.autoSetDND) {
+                SessionData.setDoNotDisturb(true)
+            }
         }
         globalIsRunning.set(autoStart ?? false)
     }
 
     function startShortBreak(autoStart) {
+        if (globalTimerState.value === "work" && root.autoSetDND) {
+            SessionData.setDoNotDisturb(false)
+        }
         globalTimerState.set("shortBreak")
         globalTotalSeconds.set(root.shortBreakDuration * 60)
         globalRemainingSeconds.set(globalTotalSeconds.value)
@@ -134,6 +234,9 @@ PluginComponent {
     }
 
     function startLongBreak(autoStart) {
+        if (globalTimerState.value === "work" && root.autoSetDND) {
+            SessionData.setDoNotDisturb(false)
+        }
         globalTimerState.set("longBreak")
         globalTotalSeconds.set(root.longBreakDuration * 60)
         globalRemainingSeconds.set(globalTotalSeconds.value)
@@ -148,10 +251,16 @@ PluginComponent {
             globalTimerOwnerId.set(root.instanceId)
         }
         globalIsRunning.set(!globalIsRunning.value)
+        if (root.autoSetDND && globalTimerState.value === "work") {
+            SessionData.setDoNotDisturb(globalIsRunning.value)
+        }
     }
 
     function resetTimer() {
         globalIsRunning.set(false)
+        if (root.autoSetDND && globalTimerState.value === "work") {
+            SessionData.setDoNotDisturb(false)
+        }
         globalRemainingSeconds.set(globalTotalSeconds.value)
     }
 
@@ -162,14 +271,46 @@ PluginComponent {
     }
 
     function getStateColor() {
-        if (globalTimerState.value === "work") return Theme.primary
-        if (globalTimerState.value === "shortBreak") return Theme.success
+        if (globalTimerState.value === "work")
+            return Theme.primary
+        if (globalTimerState.value === "shortBreak")
+            return Theme.info
         return Theme.warning
     }
 
     function getStateIcon() {
-        if (globalTimerState.value === "work") return "work"
+        if (globalTimerState.value === "work")
+            return "work"
         return "coffee"
+    }
+
+    IpcHandler {
+        function resetTimer(): string {
+            root.resetTimer()
+            return "POMDORO_TIME_RESET_SUCCESS"
+        }
+
+        function toggleTimer(): string {
+            root.toggleTimer()
+            return globalIsRunning.value ? "Timer is running" : "Timer is paused"
+        }
+
+        function startWork(): string {
+            root.startWork(true)
+            return "POMODORO_WORK_STARTED"
+        }
+
+        function startShortBreak(): string {
+            root.startShortBreak(true)
+            return "POMODORO_SHORT_BREAK_STARTED"
+        }
+
+        function startLongBreak(): string {
+            root.startLongBreak(true)
+            return "POMODORO_LONG_BREAK_STARTED"
+        }
+
+        target: "pomodoroTimer"
     }
 
     Timer {
@@ -179,7 +320,7 @@ PluginComponent {
         running: true
         onTriggered: {
             if (globalRemainingSeconds.value === 0 && globalTotalSeconds.value === 0) {
-                startWork(false)
+                root.startWork(false)
             }
         }
     }
@@ -232,8 +373,10 @@ PluginComponent {
 
             headerText: "Pomodoro Timer"
             detailsText: {
-                if (globalTimerState.value === "work") return "Focus session • " + globalCompletedPomodoros.value + " completed"
-                if (globalTimerState.value === "shortBreak") return "Short break"
+                if (globalTimerState.value === "work")
+                    return "Focus session • " + globalCompletedPomodoros.value + " completed"
+                if (globalTimerState.value === "shortBreak")
+                    return "Short break"
                 return "Long break"
             }
             showCloseButton: true
@@ -302,8 +445,10 @@ PluginComponent {
 
                             StyledText {
                                 text: {
-                                    if (globalTimerState.value === "work") return "Work"
-                                    if (globalTimerState.value === "shortBreak") return "Short Break"
+                                    if (globalTimerState.value === "work")
+                                        return "Work"
+                                    if (globalTimerState.value === "shortBreak")
+                                        return "Short Break"
                                     return "Long Break"
                                 }
                                 font.pixelSize: Theme.fontSizeMedium
@@ -374,24 +519,30 @@ PluginComponent {
                     }
 
                     Row {
+                        id: quickActionsRow
                         width: parent.width
                         spacing: Theme.spacingS
+
+                        property real buttonWidth: (width - spacing * 2) / 3
 
                         DankButton {
                             text: "Work"
                             iconName: "work"
+                            width: quickActionsRow.buttonWidth
                             onClicked: root.startWork(false)
                         }
 
                         DankButton {
                             text: "Short Break"
                             iconName: "coffee"
+                            width: quickActionsRow.buttonWidth
                             onClicked: root.startShortBreak(false)
                         }
 
                         DankButton {
                             text: "Long Break"
                             iconName: "weekend"
+                            width: quickActionsRow.buttonWidth
                             onClicked: root.startLongBreak(false)
                         }
                     }
@@ -435,9 +586,94 @@ PluginComponent {
                         }
                     }
                 }
+
+                StyledRect {
+                    width: parent.width
+                    height: last7DaysColumn.implicitHeight + Theme.spacingM * 2
+                    radius: Theme.cornerRadius
+                    color: Theme.surfaceContainerHigh
+
+                    Column {
+                        id: last7DaysColumn
+                        anchors.fill: parent
+                        anchors.margins: Theme.spacingM
+                        spacing: Theme.spacingS
+
+                        StyledText {
+                            text: "Last 7 Days"
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceVariantText
+                        }
+
+                        Row {
+                            width: parent.width
+                            spacing: Theme.spacingXS
+                            height: 60
+
+                            Repeater {
+                                model: root.last7DaysData
+
+                                Item {
+                                    width: (parent.width - (parent.spacing * 6)) / 7
+                                    height: parent.height
+
+                                    Column {
+                                        anchors.fill: parent
+                                        spacing: Theme.spacingXS
+
+                                        Item {
+                                            width: parent.width
+                                            height: 40
+
+                                            Rectangle {
+                                                width: parent.width
+                                                height: 2
+                                                anchors.bottom: parent.bottom
+                                                radius: 1
+                                                color: Qt.rgba(root.getStateColor().r, root.getStateColor().g, root.getStateColor().b, 0.2)
+                                            }
+
+                                            Rectangle {
+                                                width: parent.width
+                                                height: {
+                                                    let maxCount = 1
+                                                    for (let i = 0; i < root.last7DaysData.length; i++) {
+                                                        if (root.last7DaysData[i].count > maxCount) {
+                                                            maxCount = root.last7DaysData[i].count
+                                                        }
+                                                    }
+                                                    const barHeight = (modelData.count / maxCount) * (parent.height - 2)
+                                                    return Math.max(barHeight, modelData.count > 0 ? 4 : 0)
+                                                }
+                                                anchors.bottom: parent.bottom
+                                                radius: 2
+                                                color: modelData.dayLabel === "Today" ? root.getStateColor() : Qt.rgba(root.getStateColor().r, root.getStateColor().g, root.getStateColor().b, 0.6)
+
+                                                StyledText {
+                                                    text: modelData.count > 0 ? modelData.count : ""
+                                                    font.pixelSize: Theme.fontSizeXSmall
+                                                    color: Theme.surfaceText
+                                                    anchors.centerIn: parent
+                                                    visible: modelData.count > 0 && parent.height > 12
+                                                }
+                                            }
+                                        }
+
+                                        StyledText {
+                                            text: modelData.dayLabel
+                                            font.pixelSize: Theme.fontSizeXSmall
+                                            color: modelData.dayLabel === "Today" ? Theme.surfaceText : Theme.surfaceVariantText
+                                            horizontalAlignment: Text.AlignHCenter
+                                            width: parent.width
+                                            elide: Text.ElideRight
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-
-    popoutWidth: 400
 }

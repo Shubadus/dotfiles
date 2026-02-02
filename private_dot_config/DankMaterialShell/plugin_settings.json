@@ -40,6 +40,19 @@
         "showText": true,
         "id": "variant_1761269799484",
         "name": "Arch Update"
+      },
+      {
+        "icon": "update",
+        "displayText": "",
+        "displayCommand": "~/.local/bin/scripts/check_updates.sh",
+        "clickCommand": "foot --app-id float -e ~/.local/bin/scripts/update.sh",
+        "middleClickCommand": "",
+        "rightClickCommand": "",
+        "updateInterval": 0,
+        "showIcon": true,
+        "showText": true,
+        "id": "variant_1766019112061",
+        "name": "Updates"
       }
     ]
   },
@@ -71,20 +84,22 @@
     "enabled": true,
     "terminal": "foot",
     "history": [
+      "nwg-look",
       "ranger",
       "ls ~/.config",
       "flatpak update",
       "btop",
       "yay",
       "cmatrix",
-      "nwg-look",
       "cmatric",
       "flatpak update -y"
     ]
   },
   "webSearch": {
     "enabled": true,
-    "searchEngines": []
+    "searchEngines": [],
+    "trigger": "@",
+    "noTrigger": false
   },
   "wallpaperBing": {
     "enabled": false
@@ -110,5 +125,46 @@
   },
   "displaySettings": {
     "enabled": true
+  },
+  "appShortcut": {
+    "enabled": true
+  },
+  "dockerManager": {
+    "enabled": true
+  },
+  "kubernetes": {
+    "enabled": true
+  },
+  "mediaPlayer": {
+    "enabled": true
+  },
+  "displayManager": {
+    "enabled": true,
+    "brightness_DP-3": 100,
+    "brightness_DP-1": 100,
+    "contrast_DP-3": 53.28509221311475
+  },
+  "amdGpuMonitor": {
+    "enabled": true
+  },
+  "sessionPower": {
+    "enabled": true
+  },
+  "dankLauncherKeys": {
+    "enabled": true
+  },
+  "homeAssistantMonitor": {
+    "enabled": true,
+    "hassUrl": "http://192.168.150.30:8123",
+    "hassToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1ODA3YTZjNmNkNWE0YWU0YmM1MGNmMjRhOWNiZTYzMCIsImlhdCI6MTc2OTY1MDY1MywiZXhwIjoyMDg1MDEwNjUzfQ.2oq6aPRdd8PQ7PKzjk_JONmbnU0eAJALRiOhF5Q0Ktg",
+    "entityIds": "climate.sensi_2b3fc3_thermostat, sensor.sensi_2b3fc3_current_temperature, sensor.tripplite_status, sensor.tripplite_battery_charge",
+    "pinnedEntities": [
+      "sensor.sensi_2b3fc3_current_temperature"
+    ],
+    "customIcons": {
+      "sensor.tripplite_battery_charge": "battery_full",
+      "sensor.tripplite_status": "battery_full",
+      "sensor.sensi_2b3fc3_current_temperature": "thermostat"
+    }
   }
 }

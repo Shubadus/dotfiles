@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import qs.Common
 import qs.Services
 import qs.Widgets
@@ -12,31 +11,35 @@ PluginSettings {
     property string editingVariantId: ""
 
     function loadVariantForEditing(variantData) {
-        editingVariantId = variantData.id || ""
-        nameField.text = variantData.name || ""
-        iconField.text = variantData.icon || ""
-        displayTextField.text = variantData.displayText || ""
-        displayCommandField.text = variantData.displayCommand || ""
-        clickCommandField.text = variantData.clickCommand || ""
-        middleClickCommandField.text = variantData.middleClickCommand || ""
-        rightClickCommandField.text = variantData.rightClickCommand || ""
-        updateIntervalField.text = (variantData.updateInterval || 0).toString()
-        showIconToggle.checked = variantData.showIcon !== undefined ? variantData.showIcon : true
-        showTextToggle.checked = variantData.showText !== undefined ? variantData.showText : true
+        editingVariantId = variantData.id || "";
+        nameField.text = variantData.name || "";
+        iconField.text = variantData.icon || "";
+        displayTextField.text = variantData.displayText || "";
+        displayCommandField.text = variantData.displayCommand || "";
+        clickCommandField.text = variantData.clickCommand || "";
+        middleClickCommandField.text = variantData.middleClickCommand || "";
+        rightClickCommandField.text = variantData.rightClickCommand || "";
+        updateIntervalField.text = (variantData.updateInterval || 0).toString();
+        showIconToggle.checked = variantData.showIcon !== undefined ? variantData.showIcon : true;
+        showTextToggle.checked = variantData.showText !== undefined ? variantData.showText : true;
+        visibilityCommandField.text = variantData.visibilityCommand || "";
+        visibilityIntervalField.text = (variantData.visibilityInterval || 0).toString();
     }
 
     function clearForm() {
-        editingVariantId = ""
-        nameField.text = ""
-        iconField.text = ""
-        displayTextField.text = ""
-        displayCommandField.text = ""
-        clickCommandField.text = ""
-        middleClickCommandField.text = ""
-        rightClickCommandField.text = ""
-        updateIntervalField.text = "0"
-        showIconToggle.checked = true
-        showTextToggle.checked = true
+        editingVariantId = "";
+        nameField.text = "";
+        iconField.text = "";
+        displayTextField.text = "";
+        displayCommandField.text = "";
+        clickCommandField.text = "";
+        middleClickCommandField.text = "";
+        rightClickCommandField.text = "";
+        updateIntervalField.text = "0";
+        showIconToggle.checked = true;
+        showTextToggle.checked = true;
+        visibilityCommandField.text = "";
+        visibilityIntervalField.text = "0";
     }
 
     StyledText {
@@ -107,7 +110,8 @@ PluginSettings {
                         placeholderText: "e.g., Power Profile"
                         keyNavigationTab: iconField
                         onFocusStateChanged: hasFocus => {
-                            if (hasFocus) root.ensureItemVisible(nameField)
+                            if (hasFocus)
+                                root.ensureItemVisible(nameField);
                         }
                     }
                 }
@@ -129,7 +133,8 @@ PluginSettings {
                         keyNavigationBacktab: nameField
                         keyNavigationTab: displayTextField
                         onFocusStateChanged: hasFocus => {
-                            if (hasFocus) root.ensureItemVisible(iconField)
+                            if (hasFocus)
+                                root.ensureItemVisible(iconField);
                         }
                     }
                 }
@@ -152,7 +157,8 @@ PluginSettings {
                     keyNavigationBacktab: iconField
                     keyNavigationTab: displayCommandField
                     onFocusStateChanged: hasFocus => {
-                        if (hasFocus) root.ensureItemVisible(displayTextField)
+                        if (hasFocus)
+                            root.ensureItemVisible(displayTextField);
                     }
                 }
             }
@@ -174,7 +180,8 @@ PluginSettings {
                     keyNavigationBacktab: displayTextField
                     keyNavigationTab: clickCommandField
                     onFocusStateChanged: hasFocus => {
-                        if (hasFocus) root.ensureItemVisible(displayCommandField)
+                        if (hasFocus)
+                            root.ensureItemVisible(displayCommandField);
                     }
                 }
 
@@ -204,7 +211,8 @@ PluginSettings {
                     keyNavigationBacktab: displayCommandField
                     keyNavigationTab: middleClickCommandField
                     onFocusStateChanged: hasFocus => {
-                        if (hasFocus) root.ensureItemVisible(clickCommandField)
+                        if (hasFocus)
+                            root.ensureItemVisible(clickCommandField);
                     }
                 }
 
@@ -234,7 +242,8 @@ PluginSettings {
                     keyNavigationBacktab: clickCommandField
                     keyNavigationTab: rightClickCommandField
                     onFocusStateChanged: hasFocus => {
-                        if (hasFocus) root.ensureItemVisible(middleClickCommandField)
+                        if (hasFocus)
+                            root.ensureItemVisible(middleClickCommandField);
                     }
                 }
             }
@@ -256,7 +265,8 @@ PluginSettings {
                     keyNavigationBacktab: middleClickCommandField
                     keyNavigationTab: updateIntervalField
                     onFocusStateChanged: hasFocus => {
-                        if (hasFocus) root.ensureItemVisible(rightClickCommandField)
+                        if (hasFocus)
+                            root.ensureItemVisible(rightClickCommandField);
                     }
                 }
             }
@@ -277,13 +287,77 @@ PluginSettings {
                     placeholderText: "0"
                     text: "0"
                     keyNavigationBacktab: rightClickCommandField
+                    keyNavigationTab: visibilityCommandField
                     onFocusStateChanged: hasFocus => {
-                        if (hasFocus) root.ensureItemVisible(updateIntervalField)
+                        if (hasFocus)
+                            root.ensureItemVisible(updateIntervalField);
                     }
                 }
 
                 StyledText {
                     text: "Automatically re-run display command every N seconds. Set to 0 to disable."
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.surfaceVariantText
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                }
+            }
+
+            Column {
+                width: parent.width
+                spacing: Theme.spacingXS
+
+                StyledText {
+                    text: "Visibility Condition (optional)"
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.surfaceVariantText
+                }
+
+                DankTextField {
+                    id: visibilityCommandField
+                    width: parent.width
+                    placeholderText: "e.g., pgrep -x firefox (exit 0 = show, non-zero = hide)"
+                    keyNavigationBacktab: updateIntervalField
+                    keyNavigationTab: visibilityIntervalField
+                    onFocusStateChanged: hasFocus => {
+                        if (hasFocus)
+                            root.ensureItemVisible(visibilityCommandField);
+                    }
+                }
+
+                StyledText {
+                    text: "Widget shows when command exits 0, hides when non-zero."
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.surfaceVariantText
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                }
+            }
+
+            Column {
+                width: parent.width
+                spacing: Theme.spacingXS
+
+                StyledText {
+                    text: "Visibility Check Interval (seconds, 0 = once on load)"
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.surfaceVariantText
+                }
+
+                DankTextField {
+                    id: visibilityIntervalField
+                    width: parent.width
+                    placeholderText: "0"
+                    text: "0"
+                    keyNavigationBacktab: visibilityCommandField
+                    onFocusStateChanged: hasFocus => {
+                        if (hasFocus)
+                            root.ensureItemVisible(visibilityIntervalField);
+                    }
+                }
+
+                StyledText {
+                    text: "How often to re-check visibility condition. Set to 0 to check only once."
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.surfaceVariantText
                     wrapMode: Text.WordWrap
@@ -307,6 +381,9 @@ PluginSettings {
                     DankToggle {
                         id: showIconToggle
                         checked: true
+                        onToggled: isChecked => {
+                            checked = isChecked;
+                        }
                     }
                 }
 
@@ -322,6 +399,9 @@ PluginSettings {
                     DankToggle {
                         id: showTextToggle
                         checked: true
+                        onToggled: isChecked => {
+                            checked = isChecked;
+                        }
                     }
                 }
             }
@@ -331,14 +411,20 @@ PluginSettings {
                 iconName: root.editingVariantId ? "check" : "add"
                 onClicked: {
                     if (!nameField.text) {
-                        ToastService.showError("Please enter a variant name")
-                        return
+                        ToastService.showError("Please enter a variant name");
+                        return;
                     }
 
-                    var interval = parseInt(updateIntervalField.text) || 0
+                    var interval = parseInt(updateIntervalField.text) || 0;
                     if (interval < 0) {
-                        ToastService.showError("Update interval must be 0 or greater")
-                        return
+                        ToastService.showError("Update interval must be 0 or greater");
+                        return;
+                    }
+
+                    var visInterval = parseInt(visibilityIntervalField.text) || 0;
+                    if (visInterval < 0) {
+                        ToastService.showError("Visibility interval must be 0 or greater");
+                        return;
                     }
 
                     var variantConfig = {
@@ -350,17 +436,19 @@ PluginSettings {
                         rightClickCommand: rightClickCommandField.text || "",
                         updateInterval: interval,
                         showIcon: showIconToggle.checked,
-                        showText: showTextToggle.checked
-                    }
+                        showText: showTextToggle.checked,
+                        visibilityCommand: visibilityCommandField.text || "",
+                        visibilityInterval: visInterval
+                    };
 
                     if (root.editingVariantId) {
-                        variantConfig.name = nameField.text
-                        updateVariant(root.editingVariantId, variantConfig)
+                        variantConfig.name = nameField.text;
+                        updateVariant(root.editingVariantId, variantConfig);
                     } else {
-                        createVariant(nameField.text, variantConfig)
+                        createVariant(nameField.text, variantConfig);
                     }
 
-                    root.clearForm()
+                    root.clearForm();
                 }
             }
         }
@@ -439,11 +527,16 @@ PluginSettings {
 
                                 StyledText {
                                     text: {
-                                        var parts = []
-                                        if (model.displayText) parts.push("Text: " + model.displayText)
-                                        if (model.displayCommand) parts.push("Cmd: " + model.displayCommand)
-                                        if (model.updateInterval && model.updateInterval > 0) parts.push("Update: " + model.updateInterval + "s")
-                                        return parts.join(" | ") || "No display config"
+                                        var parts = [];
+                                        if (model.displayText)
+                                            parts.push("Text: " + model.displayText);
+                                        if (model.displayCommand)
+                                            parts.push("Cmd: " + model.displayCommand);
+                                        if (model.updateInterval && model.updateInterval > 0)
+                                            parts.push("Update: " + model.updateInterval + "s");
+                                        if (model.visibilityCommand)
+                                            parts.push("Vis: " + model.visibilityCommand);
+                                        return parts.join(" | ") || "No display config";
                                     }
                                     font.pixelSize: Theme.fontSizeSmall
                                     color: Theme.surfaceVariantText
@@ -453,11 +546,14 @@ PluginSettings {
 
                                 StyledText {
                                     text: {
-                                        var actions = []
-                                        if (model.clickCommand) actions.push("L: " + model.clickCommand)
-                                        if (model.middleClickCommand) actions.push("M: " + model.middleClickCommand)
-                                        if (model.rightClickCommand) actions.push("R: " + model.rightClickCommand)
-                                        return actions.join(" | ") || "No click actions"
+                                        var actions = [];
+                                        if (model.clickCommand)
+                                            actions.push("L: " + model.clickCommand);
+                                        if (model.middleClickCommand)
+                                            actions.push("M: " + model.middleClickCommand);
+                                        if (model.rightClickCommand)
+                                            actions.push("R: " + model.rightClickCommand);
+                                        return actions.join(" | ") || "No click actions";
                                     }
                                     font.pixelSize: Theme.fontSizeSmall
                                     color: Theme.surfaceVariantText
@@ -490,7 +586,7 @@ PluginSettings {
                                         hoverEnabled: true
                                         cursorShape: Qt.PointingHandCursor
                                         onClicked: {
-                                            root.loadVariantForEditing(model)
+                                            root.loadVariantForEditing(model);
                                         }
                                     }
                                 }
@@ -515,7 +611,7 @@ PluginSettings {
                                         hoverEnabled: true
                                         cursorShape: Qt.PointingHandCursor
                                         onClicked: {
-                                            removeVariant(model.id)
+                                            removeVariant(model.id);
                                         }
                                     }
                                 }

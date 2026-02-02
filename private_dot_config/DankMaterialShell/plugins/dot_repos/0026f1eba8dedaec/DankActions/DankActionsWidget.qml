@@ -1,5 +1,4 @@
 import QtQuick
-import Quickshell
 import Quickshell.Io
 import qs.Common
 import qs.Services
@@ -25,17 +24,20 @@ PluginComponent {
     property string currentOutput: ""
     property bool isLoading: false
 
+    visibilityCommand: variantData?.visibilityCommand || ""
+    visibilityInterval: variantData?.visibilityInterval || 0
+
     onVariantDataChanged: {
-        updatePropertiesFromVariantData()
+        updatePropertiesFromVariantData();
     }
 
     Connections {
         target: PluginService
         function onPluginDataChanged(changedPluginId) {
             if (changedPluginId === "dankActions" && variantId) {
-                const newData = PluginService.getPluginVariantData("dankActions", variantId)
+                const newData = PluginService.getPluginVariantData("dankActions", variantId);
                 if (newData) {
-                    variantData = newData
+                    variantData = newData;
                 }
             }
         }
@@ -43,69 +45,69 @@ PluginComponent {
 
     function updatePropertiesFromVariantData() {
         if (!variantData) {
-            displayIcon = "terminal"
-            displayText = ""
-            displayCommand = ""
-            clickCommand = ""
-            middleClickCommand = ""
-            rightClickCommand = ""
-            updateInterval = 0
-            showIcon = true
-            showText = true
-            currentOutput = ""
-            return
+            displayIcon = "terminal";
+            displayText = "";
+            displayCommand = "";
+            clickCommand = "";
+            middleClickCommand = "";
+            rightClickCommand = "";
+            updateInterval = 0;
+            showIcon = true;
+            showText = true;
+            currentOutput = "";
+            return;
         }
 
-        displayIcon = variantData.icon || "terminal"
-        displayText = variantData.displayText || ""
-        displayCommand = variantData.displayCommand || ""
-        clickCommand = variantData.clickCommand || ""
-        middleClickCommand = variantData.middleClickCommand || ""
-        rightClickCommand = variantData.rightClickCommand || ""
-        updateInterval = variantData.updateInterval || 0
-        showIcon = variantData.showIcon !== undefined ? variantData.showIcon : true
-        showText = variantData.showText !== undefined ? variantData.showText : true
+        displayIcon = variantData.icon || "terminal";
+        displayText = variantData.displayText || "";
+        displayCommand = variantData.displayCommand || "";
+        clickCommand = variantData.clickCommand || "";
+        middleClickCommand = variantData.middleClickCommand || "";
+        rightClickCommand = variantData.rightClickCommand || "";
+        updateInterval = variantData.updateInterval || 0;
+        showIcon = variantData.showIcon !== undefined ? variantData.showIcon : true;
+        showText = variantData.showText !== undefined ? variantData.showText : true;
 
         if (displayCommand) {
-            Qt.callLater(refreshOutput)
+            Qt.callLater(refreshOutput);
         } else {
-            currentOutput = displayText
+            currentOutput = displayText;
         }
         if (updateInterval > 0) {
-            updateTimer.restart()
+            updateTimer.restart();
         }
     }
 
     onDisplayCommandChanged: {
         if (displayCommand) {
-            Qt.callLater(refreshOutput)
+            Qt.callLater(refreshOutput);
         } else {
-            currentOutput = displayText
+            currentOutput = displayText;
         }
     }
 
     onDisplayTextChanged: {
         if (!displayCommand) {
-            currentOutput = displayText
+            currentOutput = displayText;
         }
     }
 
     onUpdateIntervalChanged: {
         if (updateInterval > 0) {
-            updateTimer.restart()
+            updateTimer.restart();
         } else {
-            updateTimer.stop()
+            updateTimer.stop();
         }
     }
 
     Component.onCompleted: {
         if (displayCommand) {
-            Qt.callLater(refreshOutput)
+            Qt.callLater(refreshOutput);
         } else {
-            currentOutput = displayText
+            currentOutput = displayText;
         }
         if (updateInterval > 0) {
-            updateTimer.start()
+            updateTimer.start();
         }
     }
 
@@ -116,27 +118,27 @@ PluginComponent {
         running: false
         onTriggered: {
             if (root.displayCommand) {
-                root.refreshOutput()
+                root.refreshOutput();
             }
         }
     }
 
     function refreshOutput() {
         if (!displayCommand) {
-            currentOutput = displayText
-            return
+            currentOutput = displayText;
+            return;
         }
 
-        isLoading = true
-        displayProcess.running = true
+        isLoading = true;
+        displayProcess.running = true;
     }
 
     function executeCommand(command) {
-        if (!command) return
-
-        isLoading = true
-        actionProcess.command = ["sh", "-c", command]
-        actionProcess.running = true
+        if (!command)
+            return;
+        isLoading = true;
+        actionProcess.command = ["sh", "-c", command];
+        actionProcess.running = true;
     }
 
     Process {
@@ -146,14 +148,14 @@ PluginComponent {
 
         stdout: SplitParser {
             onRead: data => {
-                root.currentOutput = data.trim()
+                root.currentOutput = data.trim();
             }
         }
 
         onExited: (exitCode, exitStatus) => {
-            root.isLoading = false
+            root.isLoading = false;
             if (exitCode !== 0) {
-                console.warn("CustomActions: Display command failed with code", exitCode)
+                console.warn("CustomActions: Display command failed with code", exitCode);
             }
         }
     }
@@ -164,20 +166,20 @@ PluginComponent {
         running: false
 
         onExited: (exitCode, exitStatus) => {
-            root.isLoading = false
+            root.isLoading = false;
             if (exitCode === 0) {
                 if (root.displayCommand) {
-                    root.refreshOutput()
+                    root.refreshOutput();
                 }
             } else {
-                console.warn("CustomActions: Action command failed with code", exitCode)
+                console.warn("CustomActions: Action command failed with code", exitCode);
             }
         }
     }
 
     pillClickAction: () => {
         if (root.clickCommand) {
-            root.executeCommand(root.clickCommand)
+            root.executeCommand(root.clickCommand);
         }
     }
 
@@ -189,11 +191,11 @@ PluginComponent {
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
 
-            onClicked: (mouse) => {
+            onClicked: mouse => {
                 if (mouse.button === Qt.MiddleButton && root.middleClickCommand) {
-                    root.executeCommand(root.middleClickCommand)
+                    root.executeCommand(root.middleClickCommand);
                 } else if (mouse.button === Qt.RightButton && root.rightClickCommand) {
-                    root.executeCommand(root.rightClickCommand)
+                    root.executeCommand(root.rightClickCommand);
                 }
             }
 
@@ -229,11 +231,11 @@ PluginComponent {
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
 
-            onClicked: (mouse) => {
+            onClicked: mouse => {
                 if (mouse.button === Qt.MiddleButton && root.middleClickCommand) {
-                    root.executeCommand(root.middleClickCommand)
+                    root.executeCommand(root.middleClickCommand);
                 } else if (mouse.button === Qt.RightButton && root.rightClickCommand) {
-                    root.executeCommand(root.rightClickCommand)
+                    root.executeCommand(root.rightClickCommand);
                 }
             }
 

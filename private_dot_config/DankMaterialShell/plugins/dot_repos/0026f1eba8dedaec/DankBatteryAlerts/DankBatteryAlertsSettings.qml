@@ -53,6 +53,22 @@ PluginSettings {
         rightIcon: "battery_alert"
     }
 
+    StringSetting {
+        settingKey: "criticalTitle"
+        label: "Critical Title"
+        description: "Notification title for critical alerts"
+        placeholder: "Critical Battery Level"
+        defaultValue: "Critical Battery Level"
+    }
+
+    StringSetting {
+        settingKey: "criticalMessage"
+        label: "Critical Message"
+        description: "Use ${level} for battery percentage"
+        placeholder: "Battery at ${level}% - Connect charger immediately!"
+        defaultValue: "Battery at ${level}% - Connect charger immediately!"
+    }
+
     StyledRect {
         width: parent.width
         height: 1
@@ -82,6 +98,22 @@ PluginSettings {
         maximum: 50
         unit: "%"
         rightIcon: "battery_std"
+    }
+
+    StringSetting {
+        settingKey: "warningTitle"
+        label: "Warning Title"
+        description: "Notification title for warning alerts"
+        placeholder: "Low Battery"
+        defaultValue: "Low Battery"
+    }
+
+    StringSetting {
+        settingKey: "warningMessage"
+        label: "Warning Message"
+        description: "Use ${level} for battery percentage"
+        placeholder: "Battery at ${level}% - Consider charging soon"
+        defaultValue: "Battery at ${level}% - Consider charging soon"
     }
 
     StyledRect {

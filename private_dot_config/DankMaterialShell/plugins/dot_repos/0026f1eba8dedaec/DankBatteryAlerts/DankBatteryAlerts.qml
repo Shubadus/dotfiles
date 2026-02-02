@@ -11,8 +11,12 @@ PluginComponent {
 
     property bool enableCriticalAlert: pluginData.enableCriticalAlert ?? true
     property int criticalThreshold: pluginData.criticalThreshold ?? 10
+    property string criticalTitle: pluginData.criticalTitle || "Critical Battery Level"
+    property string criticalMessage: pluginData.criticalMessage || "Battery at ${level}% - Connect charger immediately!"
     property bool enableWarningAlert: pluginData.enableWarningAlert ?? true
     property int warningThreshold: pluginData.warningThreshold ?? 20
+    property string warningTitle: pluginData.warningTitle || "Low Battery"
+    property string warningMessage: pluginData.warningMessage || "Battery at ${level}% - Consider charging soon"
 
     property bool criticalAlertSent: false
     property bool warningAlertSent: false
@@ -38,16 +42,16 @@ PluginComponent {
 
             if (enableCriticalAlert && level <= criticalThreshold && !criticalAlertSent) {
                 sendNotification(
-                    "Critical Battery Level",
-                    `Battery at ${level}% - Connect charger immediately!`,
+                    criticalTitle,
+                    criticalMessage.replace("${level}", level),
                     "critical",
                     "battery_alert"
                 )
                 criticalAlertSent = true
             } else if (enableWarningAlert && level <= warningThreshold && !warningAlertSent && !criticalAlertSent) {
                 sendNotification(
-                    "Low Battery",
-                    `Battery at ${level}% - Consider charging soon`,
+                    warningTitle,
+                    warningMessage.replace("${level}", level),
                     "normal",
                     "battery_std"
                 )

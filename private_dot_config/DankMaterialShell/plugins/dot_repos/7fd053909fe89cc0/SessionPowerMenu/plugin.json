@@ -1,0 +1,11 @@
+{
+  "id": "sessionPower",
+  "name": "Session Power Menu",
+  "description": "Quick access on the bar to logout, reboot, and shutdown options",
+  "version": "1.0.0",
+  "author": "RonMurphy",
+  "type": "widget",
+  "component": "./PowerMenuWidget.qml",
+  "icon": "power_settings_new",
+  "permissions": []
+}
