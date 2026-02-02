@@ -2,15 +2,15 @@ layout {
     background-color "transparent"
 
     focus-ring {
-        active-color   "#a4c9fe"
-        inactive-color "#8d9199"
-        urgent-color   "#ffb4ab"
+        active-color   "#1a9fff"
+        inactive-color "#55585d"
+        urgent-color   "#f44336"
     }
 
     border {
-        active-color   "#a4c9fe"
-        inactive-color "#32353a"
-        urgent-color   "#ffb4ab"
+        active-color   "#1a9fff"
+        inactive-color "#23262e"
+        urgent-color   "#f44336"
     }
 
     shadow {
@@ -18,19 +18,19 @@ layout {
     }
 
     tab-indicator {
-        active-color   "#a4c9fe"
-        inactive-color "#00315c"
-        urgent-color   "#ffb4ab"
+        active-color   "#1a9fff"
+        inactive-color "#16161e"
+        urgent-color   "#f44336"
     }
 
     insert-hint {
-        color "#a4c9fe80"
+        color "#1a9fff80"
     }
 }
 
 overview {
   workspace-shadow {
-    color "#bcc7db"
+    color "#777a7f"
   }
 }
 

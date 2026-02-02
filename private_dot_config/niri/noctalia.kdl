@@ -1,10 +1,29 @@
 spawn-at-startup "qs" "-c" "noctalia-shell"
 
+window-rule {
+  match app-id="org.pulseaudio.pavucontrol"
+  match app-id="com.saivert.pwvucontrol"
+  match app-id="nm-connection-editor"
+  match app-id="gpauth"
+
+  open-floating true
+  open-focused true
+}
+
 layer-rule {
-  match namespace="^quickshell-overview$"
+  match namespace="^noctalia-overview*"
   place-within-backdrop true
   // opacity 0.95
 }
+
+layer-rule {
+  match namespace="^swww-daemon$"
+  match namespace="^wallpaper$"
+
+  place-within-backdrop false
+  // opacity 0.95
+}
+
 
 binds {
   Alt+Space hotkey-overlay-title="Application Launcher" {
@@ -36,4 +55,5 @@ binds {
     spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"
   }
 }
+
 

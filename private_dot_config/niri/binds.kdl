@@ -2,7 +2,7 @@ binds {
     Mod+Shift+Slash                                            { show-hotkey-overlay; }
 
     Mod+T hotkey-overlay-title="Open Terminal"                 { spawn "foot"; }
-    Mod+E hotkey-overlay-title="Open File Manager"             { spawn "thunar"; }
+    Mod+E hotkey-overlay-title="Open File Manager"             { spawn "nautilus"; }
     Mod+B hotkey-overlay-title="Open Browser"                  { spawn "chromium";}
 
     Ctrl+Shift+Escape repeat=false hotkey-overlay-title="Open SysMonitor"   { spawn-sh "pkill btop || foot --app-id btop -e btop";}
@@ -19,10 +19,10 @@ binds {
     Mod+J                                                      { focus-window-or-workspace-down; }
     Mod+K                                                      { focus-window-or-workspace-up; }
 
-    Mod+Shift+H                                                { move-column-left; }
+    Mod+Shift+H                                                { move-column-left-or-to-monitor-left; }
     // Mod+Shift+J     { move-window-down; }
     // Mod+Shift+K     { move-window-up; }
-    Mod+Shift+L                                                { move-column-right; }
+    Mod+Shift+L                                                { move-column-right-or-to-monitor-right; }
     Mod+Shift+J                                                { move-window-down-or-to-workspace-down; }
     Mod+Shift+K                                                { move-window-up-or-to-workspace-up; }
 

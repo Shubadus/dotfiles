@@ -1,7 +1,5 @@
 spawn-at-startup "dms" "run"
 
-include "colors.kdl"
-
 // Put wallpaper in backdrop and make overview transparent for consistent look
 layer-rule {
   match namespace="^quickshell$"
@@ -46,3 +44,16 @@ binds {
 
   // Mod+M { spawn-sh "niri msg action maximize-column; dms ipc call bar toggle"; }
 }
+
+window-rule {
+  match title="^Settings$"
+  match title="^System Monitor$"
+  match title="^Add Widget$"
+  match title="^Browse Plugins$"
+
+  open-floating true
+
+  default-column-width { proportion 0.4; }
+  default-window-height { proportion 0.7; }
+}
+

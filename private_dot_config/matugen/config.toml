@@ -29,8 +29,7 @@ output_path = '~/.config/YouTube Music Desktop App/style.css'
 [templates.chromium]
 input_path = '~/.config/matugen/templates/chromium-colors.sh'
 output_path = '~/.local/bin/scripts/window_manager/chromium_colors.sh'
-post_hook = 'chmod 755 ~/.local/bin/scripts/window_manager/chromium_colors.sh; ~/.local/bin/scripts/window_manager/chromium_colors.sh'
-# post_hook = '~/.local/bin/scripts/window_manager/apply_chromium.sh'
+post_hook = '~/.local/bin/scripts/window_manager/apply_chromium.sh'
 
 [templates.obsidian]
 input_path = '~/.config/matugen/templates/obsidian.css'

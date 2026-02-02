@@ -1,0 +1,9 @@
+spawn-at-startup "ignis" "init"
+spawn-at-startup "swww-daemon"
+
+binds {
+  Alt+Space { spawn "ignis" "toggle-window" "Launcher"; }
+  Ctrl+Shift+Escape { spawn "ignis" "toggle-window" "PowerMenu"; }
+  Mod+I { spawn "ignis" "toggle-window" "Settings"; }
+  Mod+A { spawn "ignis" "toggle-window" "QuickCenter"; }
+}
