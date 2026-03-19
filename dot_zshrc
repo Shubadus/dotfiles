@@ -23,3 +23,8 @@ eval "$(starship init zsh)"
 # fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/zsh $fpath)
 # compinit
 # <<<<  Vagrant command completion (end)
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/cshumer/.lmstudio/bin"
+# End of LM Studio CLI section
+

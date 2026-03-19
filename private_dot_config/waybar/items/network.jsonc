@@ -1,14 +1,14 @@
 {
   "network": {
-    "format": "{icon}",
-    "format-wifi": "{icon}",
-    "format-ethernet": "{icon}",
+    "format": "<span size='small' rise='2pt'>{icon}</span>",
+    "format-wifi": "<span size='small' rise='2pt'>{icon}</span>",
+    "format-ethernet": "<span size='small' rise='2pt'>{icon}</span>",
     "tooltip-format": "{essid}: {signalStrength}%",
     "tooltip-format-ethernet": "Connected via Ethernet: {ipaddr}",
     "tooltip-format-disconnected": "Not connected",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "󰅛",
-    "format-alt": "{icon} {ipaddr}",
+    // "format-alt": "{icon} {ipaddr}",
     "format-icons": {
       "default": "󰈀",
       "wifi": [
@@ -19,6 +19,6 @@
       ],
       "ethernet": "󰈀"
     },
-    "on-click-right": "nm-connection-editor"
+    "on-click": "pkill nm-connection-e || nm-connection-editor"
   }
 }

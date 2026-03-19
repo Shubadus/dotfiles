@@ -13,11 +13,10 @@
       "$HOME/.config/waybar/items/updates.jsonc",
       "$HOME/.config/waybar/items/weather.jsonc",
       "$HOME/.config/waybar/items/vpn.jsonc",
-      "$HOME/.config/waybar/items/system_group.jsonc"
     ],
     "name": "bar",
     "layer": "top", // Waybar at top layer
-    "position": "left",
+    "position": "top",
     "modules-left": [
       "custom/wm_menu",
       "clock",
@@ -26,9 +25,6 @@
       "memory",
       // "niri/window",
       // "wlr/taskbar",
-      // "custom/arch_updates",
-      // "custom/aur_updates",
-      // "custom/flatpak_updates",
       "custom/updates",
       "custom/needrestart",
       "privacy",
@@ -42,29 +38,19 @@
       "mpris",
       "tray",
       "idle_inhibitor",
-      "custom/vpn",
-      // "group/audio",
-      // "network",
-      // "group/batteries",
-      "group/system",
+      "pulseaudio",
+      "network",
+      "group/batteries",
       "custom/power"
     ],
     "custom/power": {
       "format": "",
-      "on-click": "~/.local/bin/scripts/window_manager/powermenu.sh",
-      // "menu": "on-click",
-      // "menu-file": "~/.config/waybar/items/power_menu.xml",
-      // "menu-actions": {
-      //   "shutdown": "shutdown",
-      //   "reboot": "reboot",
-      //   "suspend": "systemctl suspend",
-      //   "hibernate": "systemctl hibernate",
-      // },
+      "on-click": "pkill fuzzel || ~/.local/bin/scripts/launcher/powermenu.sh",
       "tooltip-format": "Exit the session"
     },
     "custom/wm_menu": {
       "format": "󰣇",
-      "on-click": "~/.local/bin/scripts/window_manager/menu.sh",
+      "on-click": "pkill fuzzel || ~/.local/bin/scripts/launcher/menu.sh",
       "tooltip-format": "Show a dmenu-based menu"
     },
     "idle_inhibitor": {
@@ -95,7 +81,7 @@
     },
     "privacy": {
       "icon-spacing": 2,
-      "icon-size": 16,
+      "icon-size": 12,
       "transition-duration": 250,
       "hide-empty-text": true,
       "modules": [
@@ -104,11 +90,6 @@
           "tooltip": true,
           "tooltip-icon-size": 24
         },
-        // {
-        //   "type": "audio-out",
-        //   "tooltip": true,
-        //   "tooltip-icon-size": 24
-        // },
         {
           "type": "audio-in",
           "tooltip": true,
@@ -128,6 +109,6 @@
       "tooltip": true,
       "tooltip-format": "Games running: {count}",
       "hide-empty-text": true
-    },
-  },
+    }
+  }
 ]

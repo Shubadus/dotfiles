@@ -1,1 +1,1 @@
-alias ls="ls -lhf --color=auto"
+alias ls="ls -1p --color=auto --group-directories-first"

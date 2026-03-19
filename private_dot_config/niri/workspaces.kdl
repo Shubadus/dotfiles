@@ -44,7 +44,7 @@ workspace "games"
 window-rule {
   match app-id="^steam$"
   match app-id="^net.lutris.Lutris$"
-  match title="RuneLite"
+  // match title="RuneLite"
 
   open-on-workspace "games"
 }

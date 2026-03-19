@@ -2,34 +2,34 @@ spawn-at-startup "waybar" // &> ~/.local/share/waybar.log"
 spawn-at-startup "hypridle"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "dunst"
-spawn-at-startup "~/.local/bin/scripts/window_manager/apply_gtk_theme.sh"
+// spawn-at-startup "~/.local/bin/scripts/window_manager/apply_gtk_theme.sh"
+spawn-at-startup "kdeconnect-indicator"
+spawn-at-startup "/usr/libexec/polkit-gnome-authentication-agent-1"
+// spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 
 binds {
     Alt+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Ctrl+Shift+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "~/.local/bin/scripts/window_manager/volume.py" "-v" "up"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "~/.local/bin/scripts/window_manager/volume.py" "-v" "down"; }
-    XF86AudioMute        allow-when-locked=true { spawn "~/.local/bin/scripts/window_manager/volume.py" "-v" "mute"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "~/.local/bin/scripts/utils/volume.py" "-v" "up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "~/.local/bin/scripts/utils/volume.py" "-v" "down"; }
+    XF86AudioMute        allow-when-locked=true { spawn "~/.local/bin/scripts/utils/volume.py" "-v" "mute"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
-    Mod+X           { spawn "~/.local/bin/scripts/window_manager/powermenu.sh"; }
+    Mod+X           { spawn "~/.local/bin/scripts/launcher/powermenu.sh"; }
 }
 
 // Open Apps in the Top-Right for Waybar
 window-rule {
   match app-id="org.pulseaudio.pavucontrol"
+  match app-id="com.saivert.pwvucontrol"
   match app-id="nm-connection-editor"
   match app-id="gpauth"
 
   open-floating true
   open-focused true
 
-  // focus-ring {
-  //   width 2 
-  // }
-
-  default-column-width { proportion 0.2; }
+  default-column-width { proportion 0.25; }
   default-window-height { proportion 0.4; }
 
   default-floating-position x=8 y=8 relative-to="top-right"
@@ -41,12 +41,18 @@ window-rule {
   open-floating true
   open-focused true
 
-  // focus-ring {
-  //   width 2 
-  // }
-
   default-column-width { fixed 1200; }
   default-window-height { fixed 900; }
 
   default-floating-position x=8 y=8 relative-to="top-left"
 }
+
+// Put wallpaper in backdrop and make overview transparent for consistent look
+layer-rule {
+  match namespace="^swww-daemon$"
+  match namespace="^wallpaper$"
+
+  place-within-backdrop true
+  // opacity 0.95
+}
+

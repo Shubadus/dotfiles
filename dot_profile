@@ -4,3 +4,8 @@ export PATH
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 # export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/cshumer/.lmstudio/bin"
+# End of LM Studio CLI section
+

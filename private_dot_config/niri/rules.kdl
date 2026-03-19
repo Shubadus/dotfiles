@@ -61,9 +61,9 @@ window-rule {
 }
 
 window-rule {
-  // match app-id="steam_app*"
-  // match app-id="[Ss]team"
-  // match app-id="[Gg]amescope"
+  match app-id="steam_app*"
+  match app-id="[Ss]team"
+  match app-id="[Gg]amescope"
   match title="[Yy]ou[Tt]ube"
   match app-id="net-runelite-client-RuneLite"
 
@@ -83,8 +83,8 @@ window-rule {
 }
 
 window-rule {
-    // match is-active=false
-    //
-    // opacity 0.75
+    match is-active=false
+
+    // opacity 0.975
     // draw-border-with-background true
 }

@@ -1,0 +1,59 @@
+// DMS Window Rules - Managed by DankMaterialShell
+// Do not edit manually - changes may be overwritten
+
+// @id=wr_1771423482927545114 @name=obsidian
+window-rule {
+    match app-id="^obsidian$"
+    open-on-workspace "work"
+    default-column-width { proportion 0.5; }
+}
+
+// @id=wr_1771534211983473122 @name=chrome-jkpmaehefojjikhcaaljpekkjoeocogg-Default
+window-rule {
+    match app-id="^chrome-jkpmaehefojjikhcaaljpekkjoeocogg-Default$" title="^Genesys.*$"
+    open-on-workspace "work"
+    default-column-width { proportion 0.33; }
+}
+
+// @id=wr_1771534256703358235 @name=chrome-khececcnadfmgjjohefcjppkhfmgjhle-Default
+window-rule {
+    match app-id="^chrome-khececcnadfmgjjohefcjppkhfmgjhle-Default$" title="^Salesforce.*$"
+    open-on-workspace "work"
+    default-column-width { proportion 0.66; }
+}
+
+// @id=wr_1771534296443751061 @name=com.github.IsmaelMartinez.teams_for_linux
+window-rule {
+    match app-id="^com.github.IsmaelMartinez.teams_for_linux$"
+    open-on-workspace "work"
+    default-column-width { proportion 0.5; }
+    block-out-from "screencast"
+}
+
+// @id=wr_1771534489163007056 @name=net-runelite-client-RuneLite
+window-rule {
+    match app-id="^net-runelite-client-RuneLite$"
+    open-on-workspace "games"
+    block-out-from "screencast"
+}
+
+// @id=wr_1771535665064627124 @name=RuneLite Launcher
+window-rule {
+    match title="RuneLite Launcher"
+    open-floating true
+}
+
+// @id=wr_1771536185099549913 @name=chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Default
+window-rule {
+    match app-id="^chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Default$" title="^Outlook.*$"
+    open-on-workspace "work"
+    default-column-width { proportion 0.5; }
+}
+
+// @id=wr_1771845608349472562 @name=float
+window-rule {
+    match app-id="^float$"
+    open-floating true
+    default-column-width { proportion 0.7; }
+    default-window-height { proportion 0.7; }
+}

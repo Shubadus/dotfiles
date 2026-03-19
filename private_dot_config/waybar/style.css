@@ -11,16 +11,14 @@
     margin: 0;
 }
 
-/* window#waybar>box { */
-/* } */
-
 #waybar {
   background: none
 }
 
 #waybar.bar {
-  background: alpha(@background, 1.85);
+  background: alpha(@surface, 1.85);
   padding: 4px 0px;
+  min-height: 30px;
 }
 
 #batteries {
@@ -33,10 +31,48 @@
   background: none;
   border-radius: 6px;
   animation-name: static;
+
+  /* vertical */
+  padding: 0px 6px;
+  margin: 2px 0px;
+
+  /* horizontal */
+  /* padding: 4px 2px; */
+  /* margin: 4px 6px; */
 }
 
-.module.activated {
-  color: @primary;
+#workspaces button {
+  /* vertical */
+  /* margin: 0px 6px; */
+  /* horizontal */
+  margin: 2px 2px;
+  padding: 0px 4px;
+  color: @on_surface;
+}
+
+#workspaces button.empty {
+  color: alpha(@on_surface, 0.50);
+}
+
+#workspaces .taskbar-window:hover,
+#workspaces button:hover,
+#workspaces button.active,
+#workspaces button.visible {
+  color: @surface;
+  background: none;
+  font-weight: bold;
+  /* vertical */
+  /* border-bottom: 2px solid @primary; */
+  /* horizontal */
+  /* border-right: 2px solid @primary; */
+  /* border-left: 2px solid @primary; */
+  /* border: 2px solid @primary; */
+  background: @primary;
+  border-radius: 8px;
+}
+
+#workspaces button.urgent {
+  color: @error;
 }
 
 tooltip * {
@@ -56,52 +92,10 @@ tooltip {
   border-radius: 8px;
 }
 
-/* menu { */
-/*   color: @on_surface; */
-/*   background: @surface; */
-/*   border-radius: 6px */
-/* } */
-/**/
-/* menuitem { */
-/*   border-radius: 6px */
-/* } */
-/**/
-/**/
-
 #privacy,
 #custom-dunst-notification.alert,
 #custom-needrestart {
   color: @error;
-}
-
-#custom-wm_menu,
-#clock,
-#custom-dunst-notification,
-#custom-weather,
-#memory,
-#custom-arch_updates,
-#custom-aur_updates,
-#custom-flatpak_updates,
-#custom-updates,
-#custom-needrestart,
-#privacy,
-#gamemode,
-#workspaces,
-#mpris,
-#tray,
-#custom-vpn,
-#idle_inhibitor,
-#system,
-#custom-power {
-  border: 1px solid @surface_container_highest;
-  border-radius: 6px;
-  background: @surface_container;
-  /* vertical */
-  /* padding: 0px 8px; */
-  /* margin: 6px 4px; */
-  /* horizontal */
-  padding: 4px 2px;
-  margin: 4px 6px;
 }
 
 .modules-left {
@@ -115,9 +109,66 @@ tooltip {
   color: alpha(@on_surface, 0.50);
 }
 
-@import url("style/power.css");
-@import url("style/battery.css");
-@import url("style/tray.css");
-@import url("style/workspaces.css");
-@import url("style/wm_menu.css");
-@import url("style/system_group.css");
+#custom-power {
+  font-weight: bold;
+  color: @error;
+}
+#custom-power:hover {
+  color: alpha(@error, 0.50);
+}
+
+#custom-wm_menu {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1793d1;
+  animation-name: static;
+  /* horizontal */
+  padding: 0px 2px;
+}
+
+#custom-wm_menu:hover {
+  color: alpha(#1793d1,0.5);
+}
+
+
+#tray {
+    color: @on-surface;
+}
+#tray > .active {
+    color: @on-surface;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+  color: @on-surface;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    color: @on-surface;
+    background-color: alpha(@error, 0.80);
+}
+
+#tray menu * {
+    font-size: 13px;
+    border-radius: 6px;
+    box-shadow: none;
+}
+
+#tray menu {
+    color: @on-surface;
+    border: 1px solid @surface_container;
+    background-color: @surface;
+    border-radius: 6px;
+    margin: 4px;
+}
+
+#tray menuitem {
+    color: @on-surface;
+    padding: 3px 4px;
+    margin: 3px 4px;
+}
+
+#tray menuitem:hover {
+    color: @outline;
+}

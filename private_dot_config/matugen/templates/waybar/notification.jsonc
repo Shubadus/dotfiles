@@ -11,9 +11,9 @@
     // "hide-empty-text": true,
     "format": "{icon}",
     "format-icons": {
-      "notification": "󰂚<sup><span foreground='{{ colors.error.default.hex }}'></span></sup>",
+      "notification": "</span size='small'>󰂚</span><sup><span foreground='{{ colors.error.default.hex }}'></span></sup>",
       "none": "󰂚",
-      "dnd-notification": "󰂛<sup><span foreground='{{ colors.error.default.hex }}'></span></sup>",
+      "dnd-notification": "</span size='small'>󰂛</span><sup><span foreground='{{ colors.error.default.hex }}'></span></sup>",
       "dnd-none": "󰂛"
     }
   }

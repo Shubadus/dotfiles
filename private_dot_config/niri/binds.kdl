@@ -2,7 +2,7 @@ binds {
     Mod+Shift+Slash                                            { show-hotkey-overlay; }
 
     Mod+T hotkey-overlay-title="Open Terminal"                 { spawn "foot"; }
-    Mod+E hotkey-overlay-title="Open File Manager"             { spawn "nautilus"; }
+    Mod+E hotkey-overlay-title="Open File Manager"             { spawn "dolphin"; }
     Mod+B hotkey-overlay-title="Open Browser"                  { spawn "chromium";}
 
     Ctrl+Shift+Escape repeat=false hotkey-overlay-title="Open SysMonitor"   { spawn-sh "pkill btop || foot --app-id btop -e btop";}
@@ -26,9 +26,9 @@ binds {
     Mod+Shift+J                                                { move-window-down-or-to-workspace-down; }
     Mod+Shift+K                                                { move-window-up-or-to-workspace-up; }
 
-    Mod+Shift+M hotkey-overlay-title="Run custom menu"         { spawn "~/.local/bin/scripts/window_manager/menu.sh"; }
-    Mod+Shift+W hotkey-overlay-title="Run custom work menu"    { spawn "~/.local/bin/scripts/window_manager/work_menu.sh"; }
-    Mod+Shift+B hotkey-overlay-title="View Chromium bookmarks" { spawn-sh "~/.local/bin/scripts/window_manager/bookmarks.py ~/.config/chromium/Default/Bookmarks -r 'fuzzel --dmenu --prompt=Bookmarks: ' -b 'chromium'"; }
+    Mod+Shift+M hotkey-overlay-title="Run custom menu"         { spawn "~/.local/bin/scripts/launcher/menu.sh"; }
+    Mod+Shift+W hotkey-overlay-title="Run custom work menu"    { spawn "~/.local/bin/scripts/work/work_menu.sh"; }
+    Mod+Shift+B hotkey-overlay-title="View Chromium bookmarks" { spawn-sh "~/.local/bin/scripts/launcher//bookmarks.py ~/.config/chromium/Default/Bookmarks -r 'fuzzel --dmenu --prompt=Bookmarks: ' -b 'chromium'"; }
 
     Mod+Home                                                   { focus-column-first; }
     Mod+End                                                    { focus-column-last; }

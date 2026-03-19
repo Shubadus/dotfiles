@@ -1,12 +1,28 @@
-output "DP-1" {
-  mode "2560x1440"
-  variable-refresh-rate on-demand=true
-  position x=0 y=0
+output "PNP(AOC) 2460G4 0x00006801" {
+    mode "1920x1080@60.000"
+    scale 1
+    position x=2560 y=0
+    hot-corners {
+        off
+    }
+    layout {
+        always-center-single-column
+    }
 }
-output "DP-3" {
-  mode "1920x1080"
-  variable-refresh-rate on-demand=true
+
+output "GIGA-BYTE TECHNOLOGY CO., LTD. M27Q 23250B005743" {
+    mode "2560x1440@170.001"
+    scale 1
+    position x=0 y=0
+    focus-at-startup
+    hot-corners {
+        off
+    }
+    layout {
+        always-center-single-column
+    }
 }
+
 /-output "eDP-1" {
     scale 2
 }

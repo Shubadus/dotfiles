@@ -3,7 +3,8 @@
 #   "/opt/homebrew/lib/node_modules/alacritty-themes/themes/github_dark.toml"
 # ]
 import = [
-  "~/.config/alacritty/colors.toml"
+  # "~/.config/alacritty/colors.toml"
+  "~/.config/alacritty/dank-theme.toml"
 ]
 
 # import = [

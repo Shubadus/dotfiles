@@ -4,7 +4,7 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}",
+    "format": "<span size='small' rise='2pt'>{icon}</span>",
     "format-alt": "{icon}",
     "format-full": "",
     "format-icons": {
@@ -44,11 +44,11 @@
       "critical": 15
     },
     "interval": 60,
-    "format": "{icon}",
+    "format": "<span size='small' rise='2pt'>{icon}</span>",
     "format-alt": "{icon} {capacity}%",
     "format-full": "",
-    "format-charging": "{icon}",
-    "format-discharging-full": "{icon}",
+    "format-charging": "<span size='small' rise='2pt'>{icon}</span>",
+    "format-discharging-full": "<span size='small' rise='2pt'>{icon}</span>",
     "tooltip-format-discharging": "Discharging: {capacity}%, {time} til empty",
     "tooltip-format-charging": "Charging: {capacity}%, {time} til full",
     "format-icons": [
